@@ -8,7 +8,7 @@ long_description = (this_directory / "README.md").read_text()
 setup(
     name='pysurfline',
     version="0.0.1",
-    description="get notifications when the surf gets good",
+    description="python client to Surfline API",
     long_description_content_type='text/markdown',
     long_description=long_description,
     url='https://github.com/giocaizzi/pysurfline',
