@@ -1,4 +1,4 @@
-pysurfline.core.SpotForecast
+﻿pysurfline.core.SpotForecast
 ============================
 
 .. currentmodule:: pysurfline.core
@@ -17,6 +17,7 @@ pysurfline.core.SpotForecast
    .. autosummary::
    
       ~SpotForecast.__init__
+      ~SpotForecast.get_dataframe
    
    
 

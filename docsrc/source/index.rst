@@ -6,6 +6,8 @@ Welcome to pysurfline's documentation!
    :maxdepth: 2
    :caption: Contents
 
+   surfline_api
+
 
 .. toctree::
    :maxdepth: 2

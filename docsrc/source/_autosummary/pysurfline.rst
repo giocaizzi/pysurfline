@@ -29,4 +29,5 @@
    :recursive:
 
    pysurfline.core
+   pysurfline.utils
 
