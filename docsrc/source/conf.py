@@ -35,24 +35,25 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.napoleon',
     "sphinx.ext.autosummary",
+    'nbsphinx',
     'myst_parser',
     'sphinxemoji.sphinxemoji',
 ]
 autosummary_generate = True
 source_suffix = ['.rst', '.md']
-myst_enable_extensions = [
-    "amsmath",
-    "colon_fence",
-    "deflist",
-    "dollarmath",
-    "html_admonition",
-    "html_image",
-    # "linkify", #resitutes weird error
-    "replacements",
-    "smartquotes",
-    "substitution",
-    "tasklist",
-]
+# myst_enable_extensions = [
+#     "amsmath",
+#     "colon_fence",
+#     "deflist",
+#     "dollarmath",
+#     "html_admonition",
+#     "html_image",
+#     # "linkify", #resitutes weird error
+#     "replacements",
+#     "smartquotes",
+#     "substitution",
+#     "tasklist",
+# ]
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 

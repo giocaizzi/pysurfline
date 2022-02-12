@@ -4,9 +4,14 @@ Welcome to pysurfline's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contents
 
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Examples
+
+   examples/requests.ipynb
 
 
 Code reference
@@ -15,7 +20,7 @@ Code reference
 .. autosummary::
    :toctree: _autosummary
    :template: custom-module-template.rst
-   :caption: Code reference:
+   :caption: Code reference
    :recursive:
 
    pysurfline
