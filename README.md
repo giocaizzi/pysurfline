@@ -3,10 +3,8 @@
 python client to Surfline API
 
 ## [Surfline](https://www.surfline.com/) API v2
-)
 
-
-Requests:
+Requests URL:
 
 `https://services.surfline.com/kbyg/spots/forecasts/{type}?{params}`
 
