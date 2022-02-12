@@ -1,0 +1,22 @@
+name: pysurfline
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - ipython
+  - ipykernel
+  - requests
+#formatting
+  - black
+#docs
+  - sphinx
+  - sphinx_rtd_theme
+  - myst-parser
+#testing
+  - pytest
+  - pytest-cov
+#environment variables
+  - python-decouple
+  - pip
+  - pip:
+    - sphinxemoji

@@ -17,7 +17,7 @@ setup(
     license="MIT",
     packages=find_packages(include=['pysurfline','pysurfline/*']),
     setup_requires=[],
-    tests_require=['pytest',"pytest-cov"],
+    tests_require=[],
     install_requires=[
         ],   
     extras_require={
@@ -29,7 +29,6 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.9",
     ],
     project_urls={
