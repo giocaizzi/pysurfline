@@ -3,9 +3,12 @@ channels:
   - conda-forge
 dependencies:
   - python=3.9
+#notebooks
   - ipython
   - ipykernel
+#pysurfline
   - requests
+  - pandas
 #formatting
   - black
 #docs
@@ -16,8 +19,7 @@ dependencies:
 #testing
   - pytest
   - pytest-cov
-#environment variables
-  - python-decouple
+#pip
   - pip
   - pip:
     - sphinxemoji

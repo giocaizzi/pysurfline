@@ -11,7 +11,7 @@ Welcome to pysurfline's documentation!
    :maxdepth: 2
    :caption: Examples
 
-   examples/requests.ipynb
+   examples/forecasts.ipynb
 
 
 Code reference
