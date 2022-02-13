@@ -353,8 +353,8 @@ div.rendered_html tbody tr:hover {
 </style>
 <section id="Produce-a-surf-report">
 <h1>Produce a surf report<a class="headerlink" href="#Produce-a-surf-report" title="Permalink to this headline"></a></h1>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[135]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
@@ -364,10 +364,21 @@ div.rendered_html tbody tr:hover {
 <span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patheffects</span> <span class="k">as</span> <span class="nn">pe</span>
+
 
 <span class="kn">from</span> <span class="nn">pysurfline</span> <span class="kn">import</span> <span class="n">SpotForecast</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The autoreload extension is already loaded. To reload it, use:
+  %reload_ext autoreload
+</pre></div></div>
 </div>
 <p>List of known spot id</p>
 <table class="docutils align-default">
@@ -387,50 +398,55 @@ div.rendered_html tbody tr:hover {
 <tr class="row-odd"><td><p>584204204e65fad6a7709b09</p></td>
 <td><p>Varazze (ITA)</p></td>
 </tr>
+<tr class="row-even"><td><p>5842041f4e65fad6a7708b4b</p></td>
+<td><p>Uluwatu (IDN)</p></td>
+</tr>
 </tbody>
 </table>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[136]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;spotId&quot;</span><span class="p">:</span><span class="s2">&quot;5842041f4e65fad6a7708890&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;days&quot;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span>
-    <span class="s2">&quot;intervalHours&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
-    <span class="p">}</span>
-<span class="n">spot</span><span class="o">=</span><span class="n">SpotForecast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;spotId&quot;</span><span class="p">:</span> <span class="s2">&quot;5842041f4e65fad6a7708b4b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;days&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;intervalHours&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">spot</span> <span class="o">=</span> <span class="n">SpotForecast</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">spot</span><span class="o">.</span><span class="n">api_log</span>
 <br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[136]:
+</pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
------
-ForecastGetter(Type:wave, Status:200)
------
-ForecastGetter(Type:wind, Status:200)
------
-ForecastGetter(Type:tides, Status:200)
------
-ForecastGetter(Type:weather, Status:200)
+[&#39;ForecastGetter(Type:wave, Status:200)&#39;,
+ &#39;ForecastGetter(Type:wind, Status:200)&#39;,
+ &#39;ForecastGetter(Type:tides, Status:200)&#39;,
+ &#39;ForecastGetter(Type:weather, Status:200)&#39;]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[137]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;wave&quot;</span><span class="p">,</span><span class="s2">&quot;wind&quot;</span><span class="p">,</span><span class="s2">&quot;weather&quot;</span><span class="p">]:</span> <span class="c1">#exclude &quot;tides&quot; because of HIGH LOW exact times</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="s2">&quot;wave&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wind&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;weather&quot;</span><span class="p">,</span>
+<span class="p">]:</span>  <span class="c1"># exclude &quot;tides&quot; because of HIGH LOW exact times</span>
     <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spot</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="n">attr</span><span class="p">))</span>
-<span class="n">report</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">report</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">report</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[137]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -487,88 +503,88 @@ ForecastGetter(Type:weather, Status:200)
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-13 10:00:00</th>
-      <td>-10</td>
-      <td>1.555120</td>
-      <td>1.925840</td>
-      <td>0</td>
-      <td>[{'height': 1.0067, 'period': 8, 'direction': ...</td>
-      <td>-10</td>
-      <td>26.17570</td>
-      <td>61.06052</td>
-      <td>Cross-shore</td>
-      <td>28.44523</td>
-      <td>0</td>
-      <td>-10</td>
-      <td>22.56595</td>
-      <td>NIGHT_BRIEF_SHOWERS_POSSIBLE</td>
-    </tr>
-    <tr>
-      <th>2022-02-13 13:00:00</th>
-      <td>-10</td>
-      <td>1.497900</td>
-      <td>1.813900</td>
-      <td>0</td>
-      <td>[{'height': 1.09102, 'period': 8, 'direction':...</td>
-      <td>-10</td>
-      <td>25.13432</td>
-      <td>59.40920</td>
-      <td>Cross-shore</td>
-      <td>27.72073</td>
-      <td>0</td>
-      <td>-10</td>
-      <td>22.27188</td>
-      <td>NIGHT_CLEAR</td>
-    </tr>
-    <tr>
       <th>2022-02-13 16:00:00</th>
-      <td>-10</td>
-      <td>1.440680</td>
-      <td>1.611960</td>
-      <td>0</td>
-      <td>[{'height': 1.18276, 'period': 8, 'direction':...</td>
-      <td>-10</td>
-      <td>27.02486</td>
-      <td>63.20843</td>
-      <td>Cross-shore</td>
-      <td>29.17300</td>
-      <td>0</td>
-      <td>-10</td>
-      <td>22.22278</td>
-      <td>NIGHT_CLEAR</td>
+      <td>8</td>
+      <td>1.284200</td>
+      <td>1.823650</td>
+      <td>2</td>
+      <td>[{'height': 1.57, 'period': 14, 'direction': 2...</td>
+      <td>8</td>
+      <td>5.70499</td>
+      <td>319.98552</td>
+      <td>Onshore</td>
+      <td>5.70499</td>
+      <td>2</td>
+      <td>8</td>
+      <td>27.27277</td>
+      <td>NIGHT_THUNDER_SHOWERS</td>
     </tr>
     <tr>
       <th>2022-02-13 19:00:00</th>
-      <td>-10</td>
-      <td>1.150483</td>
-      <td>1.455083</td>
-      <td>0</td>
-      <td>[{'height': 1.34372, 'period': 6, 'direction':...</td>
-      <td>-10</td>
-      <td>27.23453</td>
-      <td>59.22836</td>
-      <td>Cross-shore</td>
-      <td>27.23453</td>
-      <td>0</td>
-      <td>-10</td>
-      <td>22.54321</td>
-      <td>CLEAR</td>
+      <td>8</td>
+      <td>1.259200</td>
+      <td>1.823000</td>
+      <td>2</td>
+      <td>[{'height': 1.51, 'period': 14, 'direction': 2...</td>
+      <td>8</td>
+      <td>5.76447</td>
+      <td>358.21331</td>
+      <td>Onshore</td>
+      <td>5.76447</td>
+      <td>2</td>
+      <td>8</td>
+      <td>27.19324</td>
+      <td>NIGHT_CLEAR</td>
     </tr>
     <tr>
       <th>2022-02-13 22:00:00</th>
-      <td>-10</td>
-      <td>1.224333</td>
-      <td>1.368333</td>
-      <td>0</td>
-      <td>[{'height': 0.97719, 'period': 6, 'direction':...</td>
-      <td>-10</td>
-      <td>22.07972</td>
-      <td>54.38195</td>
+      <td>8</td>
+      <td>1.234200</td>
+      <td>1.822350</td>
+      <td>2</td>
+      <td>[{'height': 1.47, 'period': 13, 'direction': 2...</td>
+      <td>8</td>
+      <td>3.66975</td>
+      <td>40.78133</td>
       <td>Cross-shore</td>
-      <td>22.07972</td>
-      <td>0</td>
-      <td>-10</td>
-      <td>22.72507</td>
+      <td>3.66975</td>
+      <td>2</td>
+      <td>8</td>
+      <td>26.74509</td>
+      <td>NIGHT_CLEAR</td>
+    </tr>
+    <tr>
+      <th>2022-02-14 01:00:00</th>
+      <td>8</td>
+      <td>1.214267</td>
+      <td>1.782233</td>
+      <td>2</td>
+      <td>[{'height': 1.46, 'period': 13, 'direction': 2...</td>
+      <td>8</td>
+      <td>7.67474</td>
+      <td>67.47215</td>
+      <td>Cross-shore</td>
+      <td>8.66773</td>
+      <td>2</td>
+      <td>8</td>
+      <td>26.97534</td>
+      <td>CLEAR</td>
+    </tr>
+    <tr>
+      <th>2022-02-14 04:00:00</th>
+      <td>8</td>
+      <td>1.196867</td>
+      <td>1.717383</td>
+      <td>2</td>
+      <td>[{'height': 1.46, 'period': 13, 'direction': 2...</td>
+      <td>8</td>
+      <td>14.48425</td>
+      <td>139.59396</td>
+      <td>Offshore</td>
+      <td>16.23947</td>
+      <td>2</td>
+      <td>8</td>
+      <td>27.81131</td>
       <td>CLEAR</td>
     </tr>
   </tbody>
@@ -576,17 +592,16 @@ ForecastGetter(Type:weather, Status:200)
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[138]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surf</span><span class="o">=</span><span class="n">report</span><span class="o">.</span><span class="n">copy</span><span class="p">()[[</span><span class="s2">&quot;surf_min&quot;</span><span class="p">,</span>     <span class="s2">&quot;surf_max&quot;</span><span class="p">,</span><span class="s2">&quot;speed&quot;</span><span class="p">,</span><span class="s2">&quot;directionType&quot;</span><span class="p">]]</span>
-<span class="n">surf</span><span class="p">[</span><span class="s2">&quot;surf_height&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">surf</span><span class="p">[[</span><span class="s2">&quot;surf_min&quot;</span><span class="p">,</span><span class="s2">&quot;surf_max&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surf</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">copy</span><span class="p">()[[</span><span class="s2">&quot;surf_min&quot;</span><span class="p">,</span> <span class="s2">&quot;surf_max&quot;</span><span class="p">,</span> <span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;directionType&quot;</span><span class="p">]]</span>
 <span class="n">surf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[138]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -612,11 +627,9 @@ ForecastGetter(Type:weather, Status:200)
       <th>surf_max</th>
       <th>speed</th>
       <th>directionType</th>
-      <th>surf_height</th>
     </tr>
     <tr>
       <th>timestamp</th>
-      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -625,117 +638,267 @@ ForecastGetter(Type:weather, Status:200)
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-13 10:00:00</th>
-      <td>1.555120</td>
-      <td>1.925840</td>
-      <td>26.17570</td>
-      <td>Cross-shore</td>
-      <td>1.740480</td>
-    </tr>
-    <tr>
-      <th>2022-02-13 13:00:00</th>
-      <td>1.497900</td>
-      <td>1.813900</td>
-      <td>25.13432</td>
-      <td>Cross-shore</td>
-      <td>1.655900</td>
-    </tr>
-    <tr>
       <th>2022-02-13 16:00:00</th>
-      <td>1.440680</td>
-      <td>1.611960</td>
-      <td>27.02486</td>
-      <td>Cross-shore</td>
-      <td>1.526320</td>
+      <td>1.284200</td>
+      <td>1.823650</td>
+      <td>5.70499</td>
+      <td>Onshore</td>
     </tr>
     <tr>
       <th>2022-02-13 19:00:00</th>
-      <td>1.150483</td>
-      <td>1.455083</td>
-      <td>27.23453</td>
-      <td>Cross-shore</td>
-      <td>1.302783</td>
+      <td>1.259200</td>
+      <td>1.823000</td>
+      <td>5.76447</td>
+      <td>Onshore</td>
     </tr>
     <tr>
       <th>2022-02-13 22:00:00</th>
-      <td>1.224333</td>
-      <td>1.368333</td>
-      <td>22.07972</td>
+      <td>1.234200</td>
+      <td>1.822350</td>
+      <td>3.66975</td>
       <td>Cross-shore</td>
-      <td>1.296333</td>
+    </tr>
+    <tr>
+      <th>2022-02-14 01:00:00</th>
+      <td>1.214267</td>
+      <td>1.782233</td>
+      <td>7.67474</td>
+      <td>Cross-shore</td>
+    </tr>
+    <tr>
+      <th>2022-02-14 04:00:00</th>
+      <td>1.196867</td>
+      <td>1.717383</td>
+      <td>14.48425</td>
+      <td>Offshore</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[139]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-
-<span class="n">colors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Cross-shore&#39;</span><span class="p">:</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span> <span class="s1">&#39;Offshore&#39;</span><span class="p">:</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s1">&#39;Onshore&#39;</span><span class="p">:</span><span class="s2">&quot;darkred&quot;</span><span class="p">}</span>
-<span class="n">surf</span><span class="p">[</span><span class="s2">&quot;hist_color&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">surf</span><span class="p">[</span><span class="s2">&quot;directionType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
-    <span class="n">surf</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-    <span class="n">surf</span><span class="p">[</span><span class="s2">&quot;surf_height&quot;</span><span class="p">],</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">surf</span><span class="p">[</span><span class="s2">&quot;hist_color&quot;</span><span class="p">],</span>
-    <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="p">)</span>
-
-<span class="k">if</span> <span class="n">surf</span><span class="p">[</span><span class="s2">&quot;surf_height&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;major&quot;</span><span class="p">,</span><span class="n">zorder</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">21</span><span class="p">)))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DayLocator</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Date (UTC Time)&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Surf Height [m]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b&#39;</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H&#39;</span><span class="p">))</span>
-
-<span class="c1"># Rotates and right-aligns the x labels so they don&#39;t crowd each other.</span>
-<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">):</span>
-    <span class="n">label</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">):</span>
-    <span class="n">label</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">):</span>
-    <span class="n">label</span><span class="o">.</span><span class="n">set</span><span class="p">(</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Now&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-<span class="n">daylight</span><span class="o">=</span><span class="n">spot</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;sunlightTimes&quot;</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">surf</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">surf</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="n">daylight</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;midnight&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;dawn&quot;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkgrey&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;dawn&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;sunrise&quot;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgrey&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;sunset&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;dusk&quot;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgrey&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;dusk&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;midnight&quot;</span><span class="p">]</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkgrey&quot;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">key</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="o">+</span><span class="s2">&quot; wind&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">daylight</span> <span class="o">=</span> <span class="n">spot</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;sunlightTimes&quot;</span><span class="p">)</span>
+<span class="n">daylight</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[139]:
 </pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>midnight</th>
+      <th>midnightUTCOffset</th>
+      <th>dawn</th>
+      <th>dawnUTCOffset</th>
+      <th>sunrise</th>
+      <th>sunriseUTCOffset</th>
+      <th>sunset</th>
+      <th>sunsetUTCOffset</th>
+      <th>dusk</th>
+      <th>duskUTCOffset</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-02-13 16:00:00</td>
+      <td>8</td>
+      <td>2022-02-13 22:01:56</td>
+      <td>8</td>
+      <td>2022-02-13 22:23:28</td>
+      <td>8</td>
+      <td>2022-02-14 10:47:02</td>
+      <td>8</td>
+      <td>2022-02-14 11:08:35</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2022-02-14 16:00:00</td>
+      <td>8</td>
+      <td>2022-02-14 22:02:10</td>
+      <td>8</td>
+      <td>2022-02-14 22:23:40</td>
+      <td>8</td>
+      <td>2022-02-15 10:46:47</td>
+      <td>8</td>
+      <td>2022-02-15 11:08:17</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-02-15 16:00:00</td>
+      <td>8</td>
+      <td>2022-02-15 22:02:23</td>
+      <td>8</td>
+      <td>2022-02-15 22:23:52</td>
+      <td>8</td>
+      <td>2022-02-16 10:46:30</td>
+      <td>8</td>
+      <td>2022-02-16 11:07:59</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[140]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot</span><span class="o">.</span><span class="n">utcOffset</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x124077d60&gt;
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">/Users/giorgiocaizzi/Documents/GitHub/pysurfline/docsrc/source/examples/surf_report.ipynb Cell 8&#39;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; &lt;a href=&#39;vscode-notebook-cell:/Users/giorgiocaizzi/Documents/GitHub/pysurfline/docsrc/source/examples/surf_report.ipynb#ch0000024?line=0&#39;&gt;1&lt;/a&gt;</span> spot.utcOffset_wave
+
+<span class="ansi-red-fg">AttributeError</span>: &#39;SpotForecast&#39; object has no attribute &#39;utcOffset_wave&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">surf_colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Hmax&quot;</span><span class="p">:</span> <span class="s2">&quot;dodgerblue&quot;</span><span class="p">,</span> <span class="s2">&quot;Hmin&quot;</span><span class="p">:</span> <span class="s2">&quot;lightblue&quot;</span><span class="p">}</span>
+<span class="n">wind_colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Cross-shore&quot;</span><span class="p">:</span> <span class="s2">&quot;gold&quot;</span><span class="p">,</span> <span class="s2">&quot;Offshore&quot;</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;Onshore&quot;</span><span class="p">:</span> <span class="s2">&quot;darkred&quot;</span><span class="p">}</span>
+<span class="n">surf</span><span class="p">[</span><span class="s2">&quot;hist_color&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">surf</span><span class="p">[</span><span class="s2">&quot;directionType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+
+<span class="c1"># zorder 0</span>
+<span class="c1"># night and day</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">daylight</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;midnight&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;dawn&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkgrey&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;dawn&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;sunrise&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgrey&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;sunset&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;dusk&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgrey&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">[</span><span class="s2">&quot;dusk&quot;</span><span class="p">],</span>
+        <span class="n">x</span><span class="p">[</span><span class="s2">&quot;midnight&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;darkgrey&quot;</span><span class="p">,</span>
+        <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
+<span class="c1">#zorder 1</span>
+<span class="c1"># grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;major&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;major&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+
+<span class="c1">#zorder 2</span>
+<span class="c1">#bars</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">surf</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">surf</span><span class="p">[</span><span class="s2">&quot;surf_max&quot;</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;dodgerblue&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Hmax&quot;</span><span class="p">,</span>
+    <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">surf</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">surf</span><span class="p">[</span><span class="s2">&quot;surf_min&quot;</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Hmin&quot;</span><span class="p">,</span>
+    <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1">#zorder 3</span>
+<span class="c1"># barlabels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span>
+    <span class="n">p1</span><span class="p">,</span>
+    <span class="n">label_type</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span>
+    <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
+    <span class="n">path_effects</span><span class="o">=</span><span class="p">[</span><span class="n">pe</span><span class="o">.</span><span class="n">withStroke</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span>
+    <span class="n">p2</span><span class="p">,</span>
+    <span class="n">label_type</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span>
+    <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
+    <span class="n">path_effects</span><span class="o">=</span><span class="p">[</span><span class="n">pe</span><span class="o">.</span><span class="n">withStroke</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)],</span>
+<span class="p">)</span>
+
+<span class="c1"># dates index</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">21</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DayLocator</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Date (UTC Time)&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Surf Height [m]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%b&quot;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s2">&quot;%H&quot;</span><span class="p">))</span>
+
+<span class="c1"># Rotates and right-aligns the x labels so they don&#39;t crowd each other.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;major&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;major&quot;</span><span class="p">):</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;major&quot;</span><span class="p">):</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;minor&quot;</span><span class="p">):</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># now line</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Now&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># limits</span>
+<span class="k">if</span> <span class="n">surf</span><span class="p">[</span><span class="s2">&quot;surf_max&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">surf</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">surf</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x12bfd5d00&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_surf_report_6_1.png" src="../_images/examples_surf_report_6_1.png" />
+<img alt="../_images/examples_surf_report_8_1.png" src="../_images/examples_surf_report_8_1.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">

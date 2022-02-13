@@ -28,10 +28,7 @@ class SpotForecast:
         units_wave (dict) : wave units
         units_weather (dict) : weather units
         units_wind (dict) : wind units
-        utcOffset_tides (int) : tides utc offset
-        utcOffset_wave (int) :  wave utc offset
-        utcOffset_weather (int) :  weather utc offset
-        utcOffset_wind (int) : wind utc offset
+        utcOffset (int) : utc offset
         verbose (bool) : print log
         wave (list): list of wave forecast
         weather (list): list of weather forecast
@@ -61,7 +58,9 @@ class SpotForecast:
 
                 # parse all associated information
                 for key in forecast["associated"]:
-                    if key in ["utcOffset","units"] or hasattr(self,key):
+                    #units stored with attribute name that refers to
+                    #eventually duplicated attr are not overwritten
+                    if key in ["units",] or hasattr(self,key):
                         setattr(self, key+"_"+type, forecast["associated"][key])
                     else:
                         setattr(self, key, forecast["associated"][key])
@@ -74,7 +73,7 @@ class SpotForecast:
             if self.verbose:
                 print("-----")
                 print(f)
-                log.append(str(f))
+            log.append(str(f))
         self.api_log=log
 
     def _format_attribute(self,type):
