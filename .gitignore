@@ -42,6 +42,9 @@ coverage.xml
 .pytest_cache/
 cover/
 
+#dataframes
+*.csv
+
 # Sphinx documentation
 docsrc/build/
 
