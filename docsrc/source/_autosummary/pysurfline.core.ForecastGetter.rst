@@ -1,4 +1,4 @@
-﻿pysurfline.core.ForecastGetter
+pysurfline.core.ForecastGetter
 ==============================
 
 .. currentmodule:: pysurfline.core

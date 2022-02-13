@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Build URL for Surfline API &mdash; pysurfline 0.0.1 documentation</title>
+  <title>Surfline API v2 &mdash; pysurfline 0.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Get forecast for a specific spot" href="forecasts.html" />
-    <link rel="prev" title="Surfline API v2" href="../surfline_api.html" /> 
+    <link rel="prev" title="Welcome to pysurfline’s documentation!" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,13 +44,16 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../surfline_api.html">Surfline API v2</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Surfline API v2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pysurfline-URLBuilder-module">pysurfline <code class="docutils literal notranslate"><span class="pre">URLBuilder</span></code> module</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Build URL for Surfline API</a></li>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="forecasts.html">Get forecast for a specific spot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="surf_report.html">Produce a surf report</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
 <ul>
@@ -71,9 +74,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Build URL for Surfline API</li>
+      <li>Surfline API v2</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/examples/url_builder.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/examples/surfline_api.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -351,9 +354,19 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<section id="Build-URL-for-Surfline-API">
-<h1>Build URL for Surfline API<a class="headerlink" href="#Build-URL-for-Surfline-API" title="Permalink to this headline"></a></h1>
-<p>Class to construct <code class="docutils literal notranslate"><span class="pre">url</span></code> in the format required by Surfline API.</p>
+<section id="Surfline-API-v2">
+<h1>Surfline API v2<a class="headerlink" href="#Surfline-API-v2" title="Permalink to this headline"></a></h1>
+<p>Surfline v2 API URL is constructed with the two following arugments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">params</span></code></p></li>
+</ul>
+<p>The base URL is the following.</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://services.surfline.com/kbyg/spots/forecasts/{type}?{params}</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pysurfline</span></code> offers a custom class for helping constructing the correct request URLs.</p>
+<section id="pysurfline-URLBuilder-module">
+<h2>pysurfline <code class="docutils literal notranslate"><span class="pre">URLBuilder</span></code> module<a class="headerlink" href="#pysurfline-URLBuilder-module" title="Permalink to this headline"></a></h2>
+<p>Custom class to construct <code class="docutils literal notranslate"><span class="pre">url</span></code> in the format required by Surfline API.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -428,31 +441,45 @@ div.rendered_html tbody tr:hover {
 </tr>
 </tbody>
 </table>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<p>A Surfline spot URL is <code class="docutils literal notranslate"><span class="pre">`https://www.surfline.com/surf-report/pipeline/5842041f4e65fad6a7708890</span></code> &lt;<a class="reference external" href="https://www.surfline.com/surf-report/varazze/5842041f4e65fad6a7708890">https://www.surfline.com/surf-report/varazze/5842041f4e65fad6a7708890</a>&gt;`__ where <code class="docutils literal notranslate"><span class="pre">584204204e65fad6a7709b09</span></code> is the <code class="docutils literal notranslate"><span class="pre">spotId</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="o">=</span><span class="n">URLBuilder</span><span class="p">(</span><span class="s2">&quot;wave&quot;</span><span class="p">,{</span><span class="s2">&quot;spotId&quot;</span><span class="p">:</span><span class="s2">&quot;584204204e65fad6a7709b09&quot;</span><span class="p">})</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;spotId&quot;</span><span class="p">:</span><span class="s2">&quot;584204204e65fad6a7709b09&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;days&quot;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;intervalHours&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="o">=</span><span class="n">URLBuilder</span><span class="p">(</span><span class="s2">&quot;wave&quot;</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
 <span class="n">u</span><span class="o">.</span><span class="n">url</span>
 <br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&#39;https://services.surfline.com/kbyg/spots/forecasts/wave?spotId=584204204e65fad6a7709b09&#39;
+&#39;https://services.surfline.com/kbyg/spots/forecasts/wave?spotId=584204204e65fad6a7709b09&amp;days=7&amp;intervalHours=3&#39;
 </pre></div></div>
 </div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../surfline_api.html" class="btn btn-neutral float-left" title="Surfline API v2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to pysurfline’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="forecasts.html" class="btn btn-neutral float-right" title="Get forecast for a specific spot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

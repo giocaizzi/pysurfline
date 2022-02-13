@@ -21,7 +21,7 @@ class SpotForecast:
         location (dict) : spot location
         offshoreLocation (dict) : location where wave are forecasted
         params (dict) : forecast parameters
-        sunlightTimes : sunlight times (sunrise,sunset)
+        sunlightTimes (list): sunlight times (sunrise,sunset)
         tideLocation (dict) : location where tide is computed
         tides (list): list of tides forecast
         units_tides (dict) : tides units
@@ -102,8 +102,13 @@ class SpotForecast:
         """
         if isinstance(getattr(self,attr),list):
             df=pd.DataFrame(getattr(self,attr))
-            df['timestamp'] = pd.to_datetime(df['timestamp'],unit='s')
-            df.set_index("timestamp",inplace=True)
+            if "midnight" in df.columns.tolist():
+                for t in ["midnight","dawn","sunrise","sunset","dusk"]:
+                    df[t] = pd.to_datetime(df[t],unit='s')
+                df.set_index("midnight",inplace=True)
+            else:
+                df['timestamp'] = pd.to_datetime(df['timestamp'],unit='s')
+                df.set_index("timestamp",inplace=True)
             return df
         else:
             raise TypeError("Must be a list.")

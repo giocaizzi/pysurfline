@@ -1,4 +1,4 @@
-﻿pysurfline.core.URLBuilder
+pysurfline.core.URLBuilder
 ==========================
 
 .. currentmodule:: pysurfline.core

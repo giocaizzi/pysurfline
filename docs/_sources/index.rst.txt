@@ -6,15 +6,16 @@ Welcome to pysurfline's documentation!
    :maxdepth: 2
    :caption: Contents
 
-   surfline_api
+   examples/surfline_api.ipynb
 
 
 .. toctree::
    :maxdepth: 2
    :caption: Examples
 
-   examples/url_builder.ipynb
    examples/forecasts.ipynb
+   examples/surf_report.ipynb
+
 
 
 Code reference
