@@ -105,7 +105,7 @@ class SpotForecast:
             if "midnight" in df.columns.tolist():
                 for t in ["midnight","dawn","sunrise","sunset","dusk"]:
                     df[t] = pd.to_datetime(df[t],unit='s')
-                df.set_index("midnight",inplace=True)
+                # df.set_index("midnight",inplace=True)
             else:
                 df['timestamp'] = pd.to_datetime(df['timestamp'],unit='s')
                 df.set_index("timestamp",inplace=True)
