@@ -103,6 +103,7 @@ class SpotForecast:
         if isinstance(getattr(self,attr),list):
             df=pd.DataFrame(getattr(self,attr))
             df['timestamp'] = pd.to_datetime(df['timestamp'],unit='s')
+            df.set_index("timestamp",inplace=True)
             return df
         else:
             raise TypeError("Must be a list.")
@@ -159,7 +160,7 @@ class URLBuilder:
         stringparams=""
         for k,v in self.params.items():
             if stringparams:
-                stringparams=stringparams+"&"+k+"="+v
+                stringparams=stringparams+"&"+k+"="+str(v)
             else:
-                stringparams=k+"="+v
+                stringparams=k+"="+str(v)
         self.url=f"https://services.surfline.com/kbyg/spots/forecasts/{self.type}?{stringparams}"
