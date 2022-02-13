@@ -1,9 +1,9 @@
-pysurfline.core.SpotForecast
-============================
+pysurfline.core.URLBuilder
+==========================
 
 .. currentmodule:: pysurfline.core
 
-.. autoclass:: SpotForecast
+.. autoclass:: URLBuilder
    :members:
    :show-inheritance:
    :inherited-members:
@@ -16,8 +16,7 @@ pysurfline.core.SpotForecast
 
    .. autosummary::
    
-      ~SpotForecast.__init__
-      ~SpotForecast.get_dataframe
+      ~URLBuilder.__init__
    
    
 

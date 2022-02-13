@@ -1,4 +1,4 @@
-﻿pysurfline.core.SpotForecast
+pysurfline.core.SpotForecast
 ============================
 
 .. currentmodule:: pysurfline.core

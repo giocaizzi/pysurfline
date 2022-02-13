@@ -13,6 +13,7 @@ Welcome to pysurfline's documentation!
    :maxdepth: 2
    :caption: Examples
 
+   examples/url_builder.ipynb
    examples/forecasts.ipynb
 
 

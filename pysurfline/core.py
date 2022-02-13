@@ -64,3 +64,19 @@ class SpotForecast:
             return pd.DataFrame(getattr(self,attr))
         else:
             raise TypeError("Must be a dictionary")
+
+class URLBuilder:
+    def __init__(self,type,params):
+        self.type=type
+        self.params=params
+        self._build()
+        
+    
+    def _build(self):
+        stringparams=""
+        for k,v in self.params.items():
+            if stringparams:
+                stringparams=stringparams+"&"+k+"="+v
+            else:
+                stringparams=k+"="+v
+        self.url=f"https://services.surfline.com/kbyg/spots/forecasts/{self.type}?{stringparams}"

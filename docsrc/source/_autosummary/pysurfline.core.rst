@@ -1,4 +1,4 @@
-pysurfline.core
+﻿pysurfline.core
 ===============
 
 .. automodule:: pysurfline.core
@@ -20,6 +20,7 @@ pysurfline.core
       :template: custom-class-template.rst
    
       SpotForecast
+      URLBuilder
    
    
 
