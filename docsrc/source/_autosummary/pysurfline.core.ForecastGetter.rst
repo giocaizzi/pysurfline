@@ -1,9 +1,9 @@
-﻿pysurfline.core.URLBuilder
-==========================
+﻿pysurfline.core.ForecastGetter
+==============================
 
 .. currentmodule:: pysurfline.core
 
-.. autoclass:: URLBuilder
+.. autoclass:: ForecastGetter
    :members:
    :show-inheritance:
    :inherited-members:
@@ -13,7 +13,7 @@
    .. rubric:: Methods
    .. autosummary::
    
-      ~URLBuilder.__init__
+      ~ForecastGetter.__init__
    
    
 

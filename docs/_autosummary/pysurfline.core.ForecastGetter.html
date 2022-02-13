@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pysurfline.core.URLBuilder &mdash; pysurfline 0.0.1 documentation</title>
+  <title>pysurfline.core.ForecastGetter &mdash; pysurfline 0.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pysurfline.utils" href="pysurfline.utils.html" />
-    <link rel="prev" title="pysurfline.core.SpotForecast" href="pysurfline.core.SpotForecast.html" /> 
+    <link rel="next" title="pysurfline.core.SpotForecast" href="pysurfline.core.SpotForecast.html" />
+    <link rel="prev" title="pysurfline.core" href="pysurfline.core.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,9 +54,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="pysurfline.html">pysurfline</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pysurfline.core.html">pysurfline.core</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="pysurfline.core.ForecastGetter.html">pysurfline.core.ForecastGetter</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.core.ForecastGetter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.core.SpotForecast.html">pysurfline.core.SpotForecast</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.core.URLBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pysurfline.core.URLBuilder.html">pysurfline.core.URLBuilder</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pysurfline.utils.html">pysurfline.utils</a></li>
@@ -80,9 +80,9 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="pysurfline.html">pysurfline</a> &raquo;</li>
           <li><a href="pysurfline.core.html">pysurfline.core</a> &raquo;</li>
-      <li>pysurfline.core.URLBuilder</li>
+      <li>pysurfline.core.ForecastGetter</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_autosummary/pysurfline.core.URLBuilder.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_autosummary/pysurfline.core.ForecastGetter.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -114,25 +114,25 @@
     text-align: unset;
 }
 </style>
-<section id="pysurfline-core-urlbuilder">
-<h1>pysurfline.core.URLBuilder<a class="headerlink" href="#pysurfline-core-urlbuilder" title="Permalink to this headline"></a></h1>
+<section id="pysurfline-core-forecastgetter">
+<h1>pysurfline.core.ForecastGetter<a class="headerlink" href="#pysurfline-core-forecastgetter" title="Permalink to this headline"></a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="pysurfline.core.URLBuilder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pysurfline.core.</span></span><span class="sig-name descname"><span class="pre">URLBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.core.URLBuilder" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pysurfline.core.ForecastGetter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pysurfline.core.</span></span><span class="sig-name descname"><span class="pre">ForecastGetter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.core.ForecastGetter" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Build URL for Surfline v2 API</p>
+<p>Getter of specific forecast type (<code class="xref py py-obj docutils literal notranslate"><span class="pre">wave</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">wind</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">tides</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">weather</span></code>).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>type</strong> (<em>str</em>) – type of forecast to get <cite>wave</cite>,`wind`,`tides`,`weather`</p></li>
+<li><p><strong>type</strong> (<em>str</em>) – type of forecast to get <code class="xref py py-obj docutils literal notranslate"><span class="pre">wave</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">wind</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">tides</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">weather</span></code></p></li>
 <li><p><strong>params</strong> (<em>dict</em>) – dictonary of forecast parameters</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="pysurfline.core.URLBuilder.url">
-<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#pysurfline.core.URLBuilder.url" title="Permalink to this definition"></a></dt>
-<dd><p>URL of desired forecast</p>
+<dt class="sig sig-object py" id="pysurfline.core.ForecastGetter.url">
+<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#pysurfline.core.ForecastGetter.url" title="Permalink to this definition"></a></dt>
+<dd><p>URL built by <code class="xref py py-obj docutils literal notranslate"><span class="pre">pysurfline.URLBuilder</span></code> object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>str</p>
@@ -141,9 +141,20 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="pysurfline.core.URLBuilder.type">
-<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#pysurfline.core.URLBuilder.type" title="Permalink to this definition"></a></dt>
-<dd><p>type of forecast URL to get ( <code class="xref py py-obj docutils literal notranslate"><span class="pre">wave</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">wind</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">tides</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">weather</span></code> )</p>
+<dt class="sig sig-object py" id="pysurfline.core.ForecastGetter.response">
+<span class="sig-name descname"><span class="pre">response</span></span><a class="headerlink" href="#pysurfline.core.ForecastGetter.response" title="Permalink to this definition"></a></dt>
+<dd><p>A <code class="xref py py-obj docutils literal notranslate"><span class="pre">request.response</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">requests.response</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pysurfline.core.ForecastGetter.type">
+<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#pysurfline.core.ForecastGetter.type" title="Permalink to this definition"></a></dt>
+<dd><p>type of forecast to get ( <code class="xref py py-obj docutils literal notranslate"><span class="pre">wave</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">wind</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">tides</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">weather</span></code>)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>str</p>
@@ -152,9 +163,9 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="pysurfline.core.URLBuilder.params">
-<span class="sig-name descname"><span class="pre">params</span></span><a class="headerlink" href="#pysurfline.core.URLBuilder.params" title="Permalink to this definition"></a></dt>
-<dd><p>dictonary of forecast URL parameters</p>
+<dt class="sig sig-object py" id="pysurfline.core.ForecastGetter.params">
+<span class="sig-name descname"><span class="pre">params</span></span><a class="headerlink" href="#pysurfline.core.ForecastGetter.params" title="Permalink to this definition"></a></dt>
+<dd><p>dictonary of forecast parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>dict</p>
@@ -182,8 +193,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pysurfline.core.SpotForecast.html" class="btn btn-neutral float-left" title="pysurfline.core.SpotForecast" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pysurfline.utils.html" class="btn btn-neutral float-right" title="pysurfline.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pysurfline.core.html" class="btn btn-neutral float-left" title="pysurfline.core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pysurfline.core.SpotForecast.html" class="btn btn-neutral float-right" title="pysurfline.core.SpotForecast" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

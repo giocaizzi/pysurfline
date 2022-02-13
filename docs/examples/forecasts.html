@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pysurfline" href="../_autosummary/pysurfline.html" />
-    <link rel="prev" title="Surfline API v2" href="../surfline_api.html" /> 
+    <link rel="prev" title="Build URL for Surfline API" href="url_builder.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,6 +49,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="url_builder.html">Build URL for Surfline API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Get forecast for a specific spot</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
@@ -353,12 +354,11 @@ div.rendered_html tbody tr:hover {
 <section id="Get-forecast-for-a-specific-spot">
 <h1>Get forecast for a specific spot<a class="headerlink" href="#Get-forecast-for-a-specific-spot" title="Permalink to this headline"></a></h1>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[143]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
 <span class="o">%</span><span class="k">autoreload</span> 2
-<span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
@@ -379,60 +379,40 @@ The autoreload extension is already loaded. To reload it, use:
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[144]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="o">=</span><span class="n">URLBuilder</span><span class="p">(</span><span class="s2">&quot;wave&quot;</span><span class="p">,{</span><span class="s2">&quot;spotId&quot;</span><span class="p">:</span><span class="s2">&quot;584204204e65fad6a7709b09&quot;</span><span class="p">})</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
-<span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;spotId&quot;</span><span class="p">:</span><span class="s2">&quot;584204204e65fad6a7709b09&quot;</span><span class="p">}</span>
+<span class="n">spot</span><span class="o">=</span><span class="n">SpotForecast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-200
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">SpotForecast</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">.</span><span class="n">location</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-{&#39;lon&#39;: 8.577, &#39;lat&#39;: 44.358}
+-----
+ForecastGetter(Type:wave, Status:200)
+-----
+ForecastGetter(Type:wind, Status:200)
+-----
+ForecastGetter(Type:tides, Status:200)
+-----
+ForecastGetter(Type:weather, Status:200)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[145]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">waves</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;wave&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">waves</span><span class="o">=</span><span class="n">spot</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;wave&quot;</span><span class="p">)</span>
 <span class="n">waves</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[145]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -465,7 +445,7 @@ The autoreload extension is already loaded. To reload it, use:
   <tbody>
     <tr>
       <th>0</th>
-      <td>2022-02-13 00:00:00</td>
+      <td>2022-02-12 23:00:00</td>
       <td>1</td>
       <td>0.0</td>
       <td>0.16</td>
@@ -474,46 +454,46 @@ The autoreload extension is already loaded. To reload it, use:
     </tr>
     <tr>
       <th>1</th>
-      <td>2022-02-13 01:00:00</td>
+      <td>2022-02-13 00:00:00</td>
       <td>1</td>
       <td>0.0</td>
       <td>0.16</td>
       <td>0</td>
-      <td>[{'height': 0.81617, 'period': 4, 'direction':...</td>
+      <td>[{'height': 0.81023, 'period': 4, 'direction':...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2022-02-13 02:00:00</td>
+      <td>2022-02-13 01:00:00</td>
       <td>1</td>
       <td>0.0</td>
-      <td>0.16</td>
+      <td>0.17</td>
       <td>0</td>
-      <td>[{'height': 0.76001, 'period': 4, 'direction':...</td>
+      <td>[{'height': 0.74594, 'period': 4, 'direction':...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2022-02-13 03:00:00</td>
+      <td>2022-02-13 02:00:00</td>
       <td>1</td>
       <td>0.0</td>
       <td>0.18</td>
       <td>0</td>
-      <td>[{'height': 0.69152, 'period': 4, 'direction':...</td>
+      <td>[{'height': 0.67722, 'period': 4, 'direction':...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2022-02-13 04:00:00</td>
+      <td>2022-02-13 03:00:00</td>
       <td>1</td>
       <td>0.0</td>
       <td>0.20</td>
       <td>0</td>
-      <td>[{'height': 0.62422, 'period': 4, 'direction':...</td>
+      <td>[{'height': 0.61241, 'period': 4, 'direction':...</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[146]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surf</span><span class="o">=</span><span class="n">waves</span><span class="o">.</span><span class="n">copy</span><span class="p">()[[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span><span class="s2">&quot;surf_min&quot;</span><span class="p">,</span>  <span class="s2">&quot;surf_max&quot;</span><span class="p">]]</span>
@@ -528,7 +508,7 @@ The autoreload extension is already loaded. To reload it, use:
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[146]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -561,14 +541,19 @@ The autoreload extension is already loaded. To reload it, use:
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-13 00:00:00</th>
+      <th>2022-02-12 21:00:00</th>
       <td>0.0</td>
       <td>0.160000</td>
     </tr>
     <tr>
+      <th>2022-02-13 00:00:00</th>
+      <td>0.0</td>
+      <td>0.170000</td>
+    </tr>
+    <tr>
       <th>2022-02-13 03:00:00</th>
       <td>0.0</td>
-      <td>0.193333</td>
+      <td>0.200000</td>
     </tr>
     <tr>
       <th>2022-02-13 06:00:00</th>
@@ -578,19 +563,14 @@ The autoreload extension is already loaded. To reload it, use:
     <tr>
       <th>2022-02-13 09:00:00</th>
       <td>0.0</td>
-      <td>0.166667</td>
-    </tr>
-    <tr>
-      <th>2022-02-13 12:00:00</th>
-      <td>0.0</td>
-      <td>0.143333</td>
+      <td>0.163333</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[147]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
@@ -614,7 +594,7 @@ The autoreload extension is already loaded. To reload it, use:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/examples_forecasts_7_0.png" src="../_images/examples_forecasts_7_0.png" />
+<img alt="../_images/examples_forecasts_5_0.png" src="../_images/examples_forecasts_5_0.png" />
 </div>
 </div>
 </section>
@@ -623,7 +603,7 @@ The autoreload extension is already loaded. To reload it, use:
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../surfline_api.html" class="btn btn-neutral float-left" title="Surfline API v2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="url_builder.html" class="btn btn-neutral float-left" title="Build URL for Surfline API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../_autosummary/pysurfline.html" class="btn btn-neutral float-right" title="pysurfline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

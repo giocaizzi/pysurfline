@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pysurfline.core.SpotForecast" href="pysurfline.core.SpotForecast.html" />
+    <link rel="next" title="pysurfline.core.ForecastGetter" href="pysurfline.core.ForecastGetter.html" />
     <link rel="prev" title="pysurfline" href="pysurfline.html" /> 
 </head>
 
@@ -47,12 +47,14 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/url_builder.html">Build URL for Surfline API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/forecasts.html">Get forecast for a specific spot</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="pysurfline.html">pysurfline</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">pysurfline.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pysurfline.core.ForecastGetter.html">pysurfline.core.ForecastGetter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.core.SpotForecast.html">pysurfline.core.SpotForecast</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.core.URLBuilder.html">pysurfline.core.URLBuilder</a></li>
 </ul>
@@ -121,11 +123,14 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast" title="pysurfline.core.SpotForecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpotForecast</span></code></a>(forecast)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.core.ForecastGetter.html#pysurfline.core.ForecastGetter" title="pysurfline.core.ForecastGetter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ForecastGetter</span></code></a>(type, params)</p></td>
+<td><p>Getter of specific forecast type (<code class="xref py py-obj docutils literal notranslate"><span class="pre">wave</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">wind</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">tides</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">weather</span></code>).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pysurfline.core.URLBuilder.html#pysurfline.core.URLBuilder" title="pysurfline.core.URLBuilder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">URLBuilder</span></code></a>(type, params)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast" title="pysurfline.core.SpotForecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpotForecast</span></code></a>(params[, verbose])</p></td>
+<td><p>Surfline forecast of given spot.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.core.URLBuilder.html#pysurfline.core.URLBuilder" title="pysurfline.core.URLBuilder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">URLBuilder</span></code></a>(type, params)</p></td>
+<td><p>Build URL for Surfline v2 API</p></td>
 </tr>
 </tbody>
 </table>
@@ -136,7 +141,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="pysurfline.html" class="btn btn-neutral float-left" title="pysurfline" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pysurfline.core.SpotForecast.html" class="btn btn-neutral float-right" title="pysurfline.core.SpotForecast" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pysurfline.core.ForecastGetter.html" class="btn btn-neutral float-right" title="pysurfline.core.ForecastGetter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

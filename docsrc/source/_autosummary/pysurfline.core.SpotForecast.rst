@@ -1,4 +1,4 @@
-pysurfline.core.SpotForecast
+﻿pysurfline.core.SpotForecast
 ============================
 
 .. currentmodule:: pysurfline.core
@@ -9,11 +9,8 @@ pysurfline.core.SpotForecast
    :inherited-members:
 
    
-   .. automethod:: __init__
-
    
    .. rubric:: Methods
-
    .. autosummary::
    
       ~SpotForecast.__init__

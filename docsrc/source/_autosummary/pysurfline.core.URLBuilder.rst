@@ -1,4 +1,4 @@
-pysurfline.core.URLBuilder
+﻿pysurfline.core.URLBuilder
 ==========================
 
 .. currentmodule:: pysurfline.core
@@ -9,11 +9,8 @@ pysurfline.core.URLBuilder
    :inherited-members:
 
    
-   .. automethod:: __init__
-
    
    .. rubric:: Methods
-
    .. autosummary::
    
       ~URLBuilder.__init__
