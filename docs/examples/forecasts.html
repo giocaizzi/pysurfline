@@ -354,7 +354,7 @@ div.rendered_html tbody tr:hover {
 <section id="Get-forecast-for-a-specific-spot">
 <h1>Get forecast for a specific spot<a class="headerlink" href="#Get-forecast-for-a-specific-spot" title="Permalink to this headline"></a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pysurfline</span> <span class="kn">import</span> <span class="n">SpotForecast</span>
@@ -362,7 +362,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="o">=</span><span class="p">{</span>
@@ -390,7 +390,7 @@ ForecastGetter(Type:weather, Status:200)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">waves</span><span class="o">=</span><span class="n">spot</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;wave&quot;</span><span class="p">)</span>
@@ -399,7 +399,7 @@ ForecastGetter(Type:weather, Status:200)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -440,49 +440,49 @@ ForecastGetter(Type:weather, Status:200)
     <tr>
       <th>2022-02-13 10:00:00</th>
       <td>-10</td>
-      <td>1.4220</td>
-      <td>1.8268</td>
+      <td>1.555120</td>
+      <td>1.925840</td>
       <td>0</td>
-      <td>[{'height': 1.02912, 'period': 8, 'direction':...</td>
+      <td>[{'height': 1.0067, 'period': 8, 'direction': ...</td>
     </tr>
     <tr>
       <th>2022-02-13 13:00:00</th>
       <td>-10</td>
-      <td>1.3315</td>
-      <td>1.6801</td>
+      <td>1.497900</td>
+      <td>1.813900</td>
       <td>0</td>
-      <td>[{'height': 1.13672, 'period': 8, 'direction':...</td>
+      <td>[{'height': 1.09102, 'period': 8, 'direction':...</td>
     </tr>
     <tr>
       <th>2022-02-13 16:00:00</th>
       <td>-10</td>
-      <td>1.2010</td>
-      <td>1.4934</td>
+      <td>1.440680</td>
+      <td>1.611960</td>
       <td>0</td>
-      <td>[{'height': 1.17986, 'period': 8, 'direction':...</td>
+      <td>[{'height': 1.18276, 'period': 8, 'direction':...</td>
     </tr>
     <tr>
       <th>2022-02-13 19:00:00</th>
       <td>-10</td>
-      <td>0.9705</td>
-      <td>1.3267</td>
+      <td>1.150483</td>
+      <td>1.455083</td>
       <td>0</td>
-      <td>[{'height': 1.0289, 'period': 6, 'direction': ...</td>
+      <td>[{'height': 1.34372, 'period': 6, 'direction':...</td>
     </tr>
     <tr>
       <th>2022-02-13 22:00:00</th>
       <td>-10</td>
-      <td>0.8400</td>
-      <td>1.1500</td>
+      <td>1.224333</td>
+      <td>1.368333</td>
       <td>0</td>
-      <td>[{'height': 1.26823, 'period': 6, 'direction':...</td>
+      <td>[{'height': 0.97719, 'period': 6, 'direction':...</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wind</span><span class="o">=</span><span class="n">spot</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;wind&quot;</span><span class="p">)</span>
@@ -491,7 +491,7 @@ ForecastGetter(Type:weather, Status:200)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -534,46 +534,46 @@ ForecastGetter(Type:weather, Status:200)
     <tr>
       <th>2022-02-13 10:00:00</th>
       <td>-10</td>
-      <td>27.45028</td>
-      <td>61.46909</td>
+      <td>26.17570</td>
+      <td>61.06052</td>
       <td>Cross-shore</td>
-      <td>29.53946</td>
+      <td>28.44523</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2022-02-13 13:00:00</th>
       <td>-10</td>
-      <td>26.33655</td>
-      <td>58.48280</td>
+      <td>25.13432</td>
+      <td>59.40920</td>
       <td>Cross-shore</td>
-      <td>28.50559</td>
+      <td>27.72073</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2022-02-13 16:00:00</th>
       <td>-10</td>
-      <td>26.38725</td>
-      <td>63.18200</td>
+      <td>27.02486</td>
+      <td>63.20843</td>
       <td>Cross-shore</td>
-      <td>28.08024</td>
+      <td>29.17300</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2022-02-13 19:00:00</th>
       <td>-10</td>
-      <td>26.22154</td>
-      <td>57.65973</td>
+      <td>27.23453</td>
+      <td>59.22836</td>
       <td>Cross-shore</td>
-      <td>26.22154</td>
+      <td>27.23453</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2022-02-13 22:00:00</th>
       <td>-10</td>
-      <td>21.87551</td>
-      <td>51.86909</td>
+      <td>22.07972</td>
+      <td>54.38195</td>
       <td>Cross-shore</td>
-      <td>21.87551</td>
+      <td>22.07972</td>
       <td>0</td>
     </tr>
   </tbody>
@@ -581,7 +581,7 @@ ForecastGetter(Type:weather, Status:200)
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tides</span><span class="o">=</span><span class="n">spot</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;tides&quot;</span><span class="p">)</span>
@@ -590,7 +590,7 @@ ForecastGetter(Type:weather, Status:200)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -659,7 +659,7 @@ ForecastGetter(Type:weather, Status:200)
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather</span><span class="o">=</span><span class="n">spot</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;weather&quot;</span><span class="p">)</span>
@@ -668,7 +668,7 @@ ForecastGetter(Type:weather, Status:200)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -705,31 +705,31 @@ ForecastGetter(Type:weather, Status:200)
     <tr>
       <th>2022-02-13 10:00:00</th>
       <td>-10</td>
-      <td>22.55325</td>
-      <td>NIGHT_CLEAR</td>
+      <td>22.56595</td>
+      <td>NIGHT_BRIEF_SHOWERS_POSSIBLE</td>
     </tr>
     <tr>
       <th>2022-02-13 13:00:00</th>
       <td>-10</td>
-      <td>22.36676</td>
+      <td>22.27188</td>
       <td>NIGHT_CLEAR</td>
     </tr>
     <tr>
       <th>2022-02-13 16:00:00</th>
       <td>-10</td>
-      <td>22.30981</td>
-      <td>NIGHT_BRIEF_SHOWERS_POSSIBLE</td>
+      <td>22.22278</td>
+      <td>NIGHT_CLEAR</td>
     </tr>
     <tr>
       <th>2022-02-13 19:00:00</th>
       <td>-10</td>
-      <td>22.48560</td>
+      <td>22.54321</td>
       <td>CLEAR</td>
     </tr>
     <tr>
       <th>2022-02-13 22:00:00</th>
       <td>-10</td>
-      <td>22.62952</td>
+      <td>22.72507</td>
       <td>CLEAR</td>
     </tr>
   </tbody>
@@ -737,7 +737,7 @@ ForecastGetter(Type:weather, Status:200)
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;sunlightTimes&quot;</span><span class="p">)</span>
@@ -745,7 +745,7 @@ ForecastGetter(Type:weather, Status:200)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
