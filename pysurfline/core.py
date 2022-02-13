@@ -1,12 +1,13 @@
 """
 core classes for basic Surfline API v2 URL requests
 """
+import requests
 import datetime
 import pandas as pd
 from pysurfline.utils import flatten
 
 class SpotForecast:
-    def __init__(self, forecast):
+    def __init__(self,type,params):
         """
         custom response object of Surfline API forecast for specific spot
 
@@ -22,33 +23,48 @@ class SpotForecast:
             offshoreLocation (dict) :
 
         """
-        self._forecast = forecast
+        self.type=type
+        self.params = params
+        self.get_forecast()
 
-        # parse response data
-        for key in self._forecast["data"]:
-            setattr(self, key, self._forecast["data"][key])
+    def __str__(self):
+        return f"SpotForecast(Type:{self.type}, Status:{self.status_code})"
 
-        # parse all associated information
-        for key in self._forecast["associated"]:
-            setattr(self, key, self._forecast["associated"][key])
+    def get_forecast(self):
+        u=URLBuilder(self.type,self.params)
+        self.url=u.url
+        r = requests.get(self.url)
+        self.status_code=r.status_code
+        if self.status_code==200: 
+            self._forecast=r.json()
 
-        #format dates contained ion data 
-        self._format_attribute("wave")
+            # parse response data
+            for key in self._forecast["data"]:
+                setattr(self, key, self._forecast["data"][key])
+
+            # parse all associated information
+            for key in self._forecast["associated"]:
+                setattr(self, key, self._forecast["associated"][key])
+
+            #format dates contained ion data 
+            self._format_attribute()
+        else:
+            print(f"Error : {self.status_code}")
+            print(r.reason)
 
 
-    def _format_attribute(self,attr):
+    def _format_attribute(self):
         """
         format attribute to more readable format.
 
-        - dates from integer timestamp to datetime
         - flattened dictionary, preserving lists
 
         Arguments:
             attr (str): attribute to format eg. wave, tide
         """
-        for i in range(len(getattr(self,attr))):
-            getattr(self,attr)[i]=flatten(getattr(self,attr)[i])
-            getattr(self,attr)[i]["timestamp"]= datetime.datetime.fromtimestamp(self.wave[i]["timestamp"])
+        for i in range(len(getattr(self,self.type))):
+            if self.type=="wave":
+                getattr(self,self.type)[i]=flatten(getattr(self,self.type)[i])
 
     def get_dataframe(self,attr):
         """
@@ -61,7 +77,9 @@ class SpotForecast:
             df (:obj:`pandas.DataFrame`)
         """
         if isinstance(getattr(self,attr),list):
-            return pd.DataFrame(getattr(self,attr))
+            df=pd.DataFrame(getattr(self,attr))
+            df['timestamp'] = pd.to_datetime(df['timestamp'],unit='s')
+            return df
         else:
             raise TypeError("Must be a dictionary")
 
