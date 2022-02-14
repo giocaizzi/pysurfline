@@ -1,4 +1,4 @@
-pysurfline.core
+﻿pysurfline.core
 ===============
 
 .. automodule:: pysurfline.core
@@ -21,6 +21,7 @@ pysurfline.core
    
       ForecastGetter
       SpotForecast
+      SurfReport
       URLBuilder
    
    
