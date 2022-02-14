@@ -4,12 +4,13 @@ core classes for basic Surfline API v2 URL requests
 from tabnanny import verbose
 import requests
 import pandas as pd
-from pysurfline.utils import flatten
+from pysurfline.utils import flatten,degToCompass
 import matplotlib.pyplot as plt
 import matplotlib
 import matplotlib.dates as mdates
 import datetime
 import pandas as pd
+import numpy as np
 import matplotlib.patheffects as pe
 
 class SpotForecast:
@@ -189,20 +190,23 @@ class SurfReport(SpotForecast):
         df = []
         for attr in ["wave", "wind","weather",]:  # exclude "tides" because of HIGH LOW exact times
             df.append(self.get_dataframe(attr))
-        self.df = pd.concat(df, axis=1)
+        df = pd.concat(df, axis=1)
+        self.df = df
 
     def _get_simple_surf_report(self):
-        self.surf = self.df.copy()[["surf_min", "surf_max", "speed", "directionType"]]
+        self.surf = self.df.copy()[["surf_min", "surf_max", "speed", "directionType","direction"]]
+        #set Hmin <0.2m to nan for plotting reasons
+        self.surf.loc[(self.df["surf_min"]<0.2),"surf_min"]=np.nan
 
     def plot(self):
         f, ax = plt.subplots(dpi=300)
         surf_colors = {"Hmax": "dodgerblue", "Hmin": "lightblue"}
-        wind_colors = {"Cross-shore": "gold", "Offshore": "green", "Onshore": "darkred"}
+        wind_colors = {"Cross-shore": "coral", "Offshore": "green", "Onshore": "darkred"}
         daylight = self.get_dataframe("sunlightTimes")
 
         #scale parameter
         hmax=self.surf["surf_max"].max()
-        hmax=hmax*1.1
+        hmax=hmax*1.2
         if hmax<2:
             hmax=2
 
@@ -229,7 +233,7 @@ class SurfReport(SpotForecast):
         p1 = ax.bar(
             self.surf.index,
             self.surf["surf_max"],
-            color="dodgerblue",
+            color=surf_colors["Hmax"],
             label="Hmax",
             zorder=2,
             width=0.1,
@@ -237,18 +241,29 @@ class SurfReport(SpotForecast):
         p2 = ax.bar(
             self.surf.index,
             self.surf["surf_min"],
-            color="lightblue",
+            color=surf_colors["Hmin"],
             label="Hmin",
             zorder=3,
             width=0.1,
         )
         #zorder 3
-        # barlabels
+        # now line
+        ax.axvline(
+            datetime.datetime.now(datetime.timezone.utc),
+            color="r",
+            label="Now",
+            linewidth=0.5,
+            zorder=3,
+        )
+
+        #zorder 4
+        # labels
+        # # barlabels
         ax.bar_label(
             p1,
             label_type="edge",
-            zorder=3,
-            size=3,
+            zorder=4,
+            size=5,
             fmt="%.1f",
             weight="bold",
             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
@@ -256,20 +271,37 @@ class SurfReport(SpotForecast):
         ax.bar_label(
             p2,
             label_type="edge",
-            zorder=3,
-            size=3,
+            zorder=4,
+            size=5,
             fmt="%.1f",
             weight="bold",
             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
         )
-        # windspeed
-        for x,ws,dir in zip(self.surf.index.tolist(),self.surf.speed.tolist(),self.surf.directionType.tolist()):
+        # windspeed and wind direction colored on condition
+        xs=self.surf.index.tolist()
+        windspeeds=self.surf.speed.tolist()
+        conditions=self.surf.directionType.tolist()
+        winddirections=self.surf.direction.tolist()
+        for x,ws,cond,wd in zip(xs,windspeeds,conditions,winddirections):
             ax.annotate(
                 int(ws),
                 xy=(mdates.date2num(x),hmax-(hmax*0.01)),
                 fontsize=7,
-                color=wind_colors[dir],
+                color=wind_colors[cond],
+                zorder=4,
                 weight="bold",
+                va="top",
+                ha="center",
+                path_effects=[pe.withStroke(linewidth=1, foreground="w")],
+
+            )
+            ax.annotate(
+                degToCompass(wd),
+                xy=(mdates.date2num(x),hmax-(hmax*0.05)),
+                fontsize=4,
+                color=wind_colors[cond],
+                weight="bold",
+                zorder=4,
                 va="top",
                 ha="center",
                 path_effects=[pe.withStroke(linewidth=1, foreground="w")],
@@ -293,18 +325,8 @@ class SurfReport(SpotForecast):
         for label in ax.get_xticklabels(which="minor"):
             label.set(horizontalalignment="center", size=3)
 
-        # now line
-        ax.axvline(
-            datetime.datetime.now(datetime.timezone.utc),
-            color="r",
-            label="Now",
-            linewidth=0.5,
-            zorder=5,
-        )
 
-        # limits
-        if self.surf["surf_max"].max() < 2:
-            ax.set_ylim([0, hmax])
+        ax.set_ylim([0, hmax])
         ax.set_xlim([self.surf.index[0], self.surf.index[-1]])
 
         ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5),fontsize=5)
