@@ -200,6 +200,12 @@ class SurfReport(SpotForecast):
         wind_colors = {"Cross-shore": "gold", "Offshore": "green", "Onshore": "darkred"}
         daylight = self.get_dataframe("sunlightTimes")
 
+        #scale parameter
+        hmax=self.surf["surf_max"].max()
+        hmax=hmax*1.1
+        if hmax<2:
+            hmax=2
+
         # zorder 0
         # night and day
         for i, x in daylight.iterrows():
@@ -256,6 +262,19 @@ class SurfReport(SpotForecast):
             weight="bold",
             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
         )
+        # windspeed
+        for x,ws,dir in zip(self.surf.index.tolist(),self.surf.speed.tolist(),self.surf.directionType.tolist()):
+            ax.annotate(
+                int(ws),
+                xy=(mdates.date2num(x),hmax-(hmax*0.01)),
+                fontsize=7,
+                color=wind_colors[dir],
+                weight="bold",
+                va="top",
+                ha="center",
+                path_effects=[pe.withStroke(linewidth=1, foreground="w")],
+
+            )
 
         # dates index
         ax.figure.autofmt_xdate()
@@ -285,9 +304,9 @@ class SurfReport(SpotForecast):
 
         # limits
         if self.surf["surf_max"].max() < 2:
-            ax.set_ylim([0, 2])
+            ax.set_ylim([0, hmax])
         ax.set_xlim([self.surf.index[0], self.surf.index[-1]])
 
-        ax.legend(fontsize=5)
+        ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5),fontsize=5)
         return f
 
