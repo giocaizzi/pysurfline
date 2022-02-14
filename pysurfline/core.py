@@ -296,8 +296,8 @@ class SurfReport(SpotForecast):
 
             )
             ax.annotate(
-                degToCompass(wd),
-                xy=(mdates.date2num(x),hmax-(hmax*0.05)),
+                degToCompass(wd)+f"\n("+"{:.0f}".format(wd)+"°)",
+                xy=(mdates.date2num(x),hmax-(hmax*0.04)),
                 fontsize=4,
                 color=wind_colors[cond],
                 weight="bold",
@@ -329,6 +329,25 @@ class SurfReport(SpotForecast):
         ax.set_ylim([0, hmax])
         ax.set_xlim([self.surf.index[0], self.surf.index[-1]])
 
+        #legend
         ax.legend(loc='lower left', bbox_to_anchor=(1, 0),fontsize=5)
+        #windlegend 
+        ax.annotate(
+            "WIND",
+            xy=(1.025,0.998),size=7,xycoords="axes fraction",va="top",ha="left"
+        )
+        ax.annotate(
+            "Offshore",
+            xy=(1.025,0.965),size=4,xycoords="axes fraction",va="top",ha="left",color=wind_colors["Offshore"]
+        )
+        ax.annotate(
+            "Cross-shore",
+            xy=(1.025,0.95),size=4,xycoords="axes fraction",va="top",ha="left",color=wind_colors["Cross-shore"]
+        )
+        ax.annotate(
+            "Onshore",
+            xy=(1.025,0.935),size=4,xycoords="axes fraction",va="top",ha="left",color=wind_colors["Onshore"]
+        )
+        f.set_tight_layout(True)
         return f
 
