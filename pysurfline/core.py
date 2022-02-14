@@ -325,10 +325,10 @@ class SurfReport(SpotForecast):
         for label in ax.get_xticklabels(which="minor"):
             label.set(horizontalalignment="center", size=3)
 
-
+        #lims
         ax.set_ylim([0, hmax])
         ax.set_xlim([self.surf.index[0], self.surf.index[-1]])
 
-        ax.legend(loc='center left', bbox_to_anchor=(1.0, 0.5),fontsize=5)
+        ax.legend(loc='lower left', bbox_to_anchor=(1, 0),fontsize=5)
         return f
 
