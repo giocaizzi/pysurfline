@@ -11,3 +11,7 @@ Python wrapper of Surfline V2 API.
 Get the `pysurfline.SurfReport` plot for Banzai Pipeline in Oahu, Hawaii (USA).
 
 ![SurfReport plot](/docsrc/source/images/surfreport_pipeline.jpeg)
+
+# Documentation
+
+The documentation can be found [here](https://giocaizzi.github.io/pysurfline/).
