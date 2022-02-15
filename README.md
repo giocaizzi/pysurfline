@@ -6,6 +6,13 @@ Python wrapper of Surfline V2 API.
 - getting Surfline forecast for any spot that is listed on [Surfline](https://www.surfline.com)(surf, swell, wind, tides, daylight info)
 - produce structured surf reports.
 
+# Installation
+
+Install with `pip`
+```
+pip install pysurfline
+```
+
 # Example
 
 Get the `pysurfline.SurfReport` plot for Banzai Pipeline in Oahu, Hawaii (USA).
