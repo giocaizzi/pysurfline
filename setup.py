@@ -32,7 +32,7 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     project_urls={
-        'Documentation':'',
+        'Documentation':'https://giocaizzi.github.io/pysurfline/',
         'Bug Reports': 'https://github.com/giocaizzi/pysurfline/issues',
         'Source': 'https://github.com/giocaizzi/pysurfline',
     },
