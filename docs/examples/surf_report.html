@@ -354,8 +354,8 @@ div.rendered_html tbody tr:hover {
 <section id="Produce-a-surf-report">
 <h1>Produce a surf report<a class="headerlink" href="#Produce-a-surf-report" title="Permalink to this headline"></a></h1>
 <p>A <code class="docutils literal notranslate"><span class="pre">pysurfline.SurfReport</span></code> objects inherit from a simple <code class="docutils literal notranslate"><span class="pre">pysurfline.SpotForecast</span></code> object and features additional reporting functionalities, such as plotting methods and easily readable outputs.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[143]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
@@ -366,11 +366,20 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The autoreload extension is already loaded. To reload it, use:
+  %reload_ext autoreload
+</pre></div></div>
+</div>
 <p>List of known spot id</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 63%" />
-<col style="width: 37%" />
+<col style="width: 59%" />
+<col style="width: 41%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Spot Id</p></th>
@@ -387,15 +396,18 @@ div.rendered_html tbody tr:hover {
 <tr class="row-even"><td><p>5842041f4e65fad6a7708b4b</p></td>
 <td><p>Uluwatu (IDN)</p></td>
 </tr>
+<tr class="row-odd"><td><p>5842041f4e65fad6a7708c8e</p></td>
+<td><p>La Graviere (FRA)</p></td>
+</tr>
 </tbody>
 </table>
 <p>Initializing a <code class="docutils literal notranslate"><span class="pre">SurfReport</span></code> objects does nothing else than calling a <code class="docutils literal notranslate"><span class="pre">SpotForecast</span></code> object with the specified <code class="docutils literal notranslate"><span class="pre">params</span></code> for specifying the desired response by the Surfline API.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[144]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;spotId&quot;</span><span class="p">:</span> <span class="s2">&quot;5842041f4e65fad6a7708b4b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;spotId&quot;</span><span class="p">:</span> <span class="s2">&quot;5842041f4e65fad6a7708890&quot;</span><span class="p">,</span>
     <span class="s2">&quot;days&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
     <span class="s2">&quot;intervalHours&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
 <span class="p">}</span>
@@ -405,7 +417,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[144]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -418,7 +430,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>This object has the <code class="docutils literal notranslate"><span class="pre">df</span></code> attribute to easily inspect the hourly data fetched from the Surfline servers.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[145]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -426,7 +438,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[145]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -483,88 +495,88 @@ div.rendered_html tbody tr:hover {
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-14 16:00:00</th>
-      <td>8</td>
-      <td>1.02435</td>
-      <td>1.435067</td>
-      <td>2</td>
-      <td>[{'height': 1.37, 'period': 13, 'direction': 2...</td>
-      <td>8</td>
-      <td>6.60343</td>
-      <td>72.74445</td>
+      <th>2022-02-14 10:00:00</th>
+      <td>-10</td>
+      <td>0.789106</td>
+      <td>1.198612</td>
+      <td>0</td>
+      <td>[{'height': 0.83656, 'period': 6, 'direction':...</td>
+      <td>-10</td>
+      <td>16.19458</td>
+      <td>31.64920</td>
       <td>Cross-shore</td>
-      <td>7.92000</td>
-      <td>2</td>
-      <td>8</td>
-      <td>27.29218</td>
-      <td>NIGHT_MOSTLY_CLEAR</td>
+      <td>18.00000</td>
+      <td>0</td>
+      <td>-10</td>
+      <td>21.47415</td>
+      <td>NIGHT_BRIEF_SHOWERS_POSSIBLE</td>
     </tr>
     <tr>
-      <th>2022-02-14 19:00:00</th>
-      <td>8</td>
-      <td>0.99820</td>
-      <td>1.371467</td>
-      <td>2</td>
-      <td>[{'height': 1.35, 'period': 13, 'direction': 2...</td>
-      <td>8</td>
-      <td>7.00634</td>
-      <td>79.90601</td>
-      <td>Offshore</td>
-      <td>7.27319</td>
-      <td>2</td>
-      <td>8</td>
-      <td>25.99869</td>
-      <td>NIGHT_THUNDER_SHOWERS</td>
-    </tr>
-    <tr>
-      <th>2022-02-14 22:00:00</th>
-      <td>8</td>
-      <td>0.99205</td>
-      <td>1.317867</td>
-      <td>2</td>
-      <td>[{'height': 1.36, 'period': 13, 'direction': 2...</td>
-      <td>8</td>
-      <td>8.00959</td>
-      <td>57.03559</td>
+      <th>2022-02-14 13:00:00</th>
+      <td>-10</td>
+      <td>0.858518</td>
+      <td>1.227435</td>
+      <td>0</td>
+      <td>[{'height': 0.92111, 'period': 7, 'direction':...</td>
+      <td>-10</td>
+      <td>18.86230</td>
+      <td>48.06489</td>
       <td>Cross-shore</td>
-      <td>8.28023</td>
-      <td>2</td>
-      <td>8</td>
-      <td>25.98441</td>
+      <td>19.80010</td>
+      <td>0</td>
+      <td>-10</td>
+      <td>21.43503</td>
       <td>NIGHT_CLEAR</td>
     </tr>
     <tr>
-      <th>2022-02-15 01:00:00</th>
-      <td>8</td>
-      <td>0.98000</td>
-      <td>1.280000</td>
-      <td>2</td>
-      <td>[{'height': 1.39, 'period': 13, 'direction': 2...</td>
-      <td>8</td>
-      <td>6.01276</td>
-      <td>79.61222</td>
+      <th>2022-02-14 16:00:00</th>
+      <td>-10</td>
+      <td>0.917929</td>
+      <td>1.236259</td>
+      <td>0</td>
+      <td>[{'height': 1.08641, 'period': 8, 'direction':...</td>
+      <td>-10</td>
+      <td>18.07010</td>
+      <td>61.51265</td>
+      <td>Cross-shore</td>
+      <td>20.16000</td>
+      <td>0</td>
+      <td>-10</td>
+      <td>21.26218</td>
+      <td>NIGHT_CLEAR</td>
+    </tr>
+    <tr>
+      <th>2022-02-14 19:00:00</th>
+      <td>-10</td>
+      <td>1.014867</td>
+      <td>1.329267</td>
+      <td>0</td>
+      <td>[{'height': 1.47381, 'period': 9, 'direction':...</td>
+      <td>-10</td>
+      <td>20.21768</td>
+      <td>75.86896</td>
       <td>Offshore</td>
-      <td>6.85524</td>
-      <td>2</td>
-      <td>8</td>
-      <td>26.39307</td>
+      <td>21.67319</td>
+      <td>0</td>
+      <td>-10</td>
+      <td>21.98868</td>
       <td>CLEAR</td>
     </tr>
     <tr>
-      <th>2022-02-15 04:00:00</th>
-      <td>8</td>
-      <td>1.00000</td>
-      <td>1.300000</td>
-      <td>2</td>
-      <td>[{'height': 1.45, 'period': 13, 'direction': 2...</td>
-      <td>8</td>
-      <td>5.26632</td>
-      <td>162.55734</td>
+      <th>2022-02-14 22:00:00</th>
+      <td>-10</td>
+      <td>1.250567</td>
+      <td>1.444367</td>
+      <td>0</td>
+      <td>[{'height': 1.70335, 'period': 10, 'direction'...</td>
+      <td>-10</td>
+      <td>18.27161</td>
+      <td>79.89386</td>
       <td>Offshore</td>
-      <td>7.20110</td>
-      <td>2</td>
-      <td>8</td>
-      <td>27.35364</td>
+      <td>18.36023</td>
+      <td>0</td>
+      <td>-10</td>
+      <td>22.47440</td>
       <td>CLEAR</td>
     </tr>
   </tbody>
@@ -573,7 +585,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>Moreover, a simplified version of the dataframe is available with the <code class="docutils literal notranslate"><span class="pre">surf</span></code> attribute. This represents the surf data that is actually plotted.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[146]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -581,7 +593,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[146]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -607,9 +619,11 @@ div.rendered_html tbody tr:hover {
       <th>surf_max</th>
       <th>speed</th>
       <th>directionType</th>
+      <th>direction</th>
     </tr>
     <tr>
       <th>timestamp</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -618,39 +632,44 @@ div.rendered_html tbody tr:hover {
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-14 16:00:00</th>
-      <td>1.02435</td>
-      <td>1.435067</td>
-      <td>6.60343</td>
+      <th>2022-02-14 10:00:00</th>
+      <td>0.789106</td>
+      <td>1.198612</td>
+      <td>16.19458</td>
       <td>Cross-shore</td>
+      <td>31.64920</td>
+    </tr>
+    <tr>
+      <th>2022-02-14 13:00:00</th>
+      <td>0.858518</td>
+      <td>1.227435</td>
+      <td>18.86230</td>
+      <td>Cross-shore</td>
+      <td>48.06489</td>
+    </tr>
+    <tr>
+      <th>2022-02-14 16:00:00</th>
+      <td>0.917929</td>
+      <td>1.236259</td>
+      <td>18.07010</td>
+      <td>Cross-shore</td>
+      <td>61.51265</td>
     </tr>
     <tr>
       <th>2022-02-14 19:00:00</th>
-      <td>0.99820</td>
-      <td>1.371467</td>
-      <td>7.00634</td>
+      <td>1.014867</td>
+      <td>1.329267</td>
+      <td>20.21768</td>
       <td>Offshore</td>
+      <td>75.86896</td>
     </tr>
     <tr>
       <th>2022-02-14 22:00:00</th>
-      <td>0.99205</td>
-      <td>1.317867</td>
-      <td>8.00959</td>
-      <td>Cross-shore</td>
-    </tr>
-    <tr>
-      <th>2022-02-15 01:00:00</th>
-      <td>0.98000</td>
-      <td>1.280000</td>
-      <td>6.01276</td>
+      <td>1.250567</td>
+      <td>1.444367</td>
+      <td>18.27161</td>
       <td>Offshore</td>
-    </tr>
-    <tr>
-      <th>2022-02-15 04:00:00</th>
-      <td>1.00000</td>
-      <td>1.300000</td>
-      <td>5.26632</td>
-      <td>Offshore</td>
+      <td>79.89386</td>
     </tr>
   </tbody>
 </table>
@@ -659,11 +678,11 @@ div.rendered_html tbody tr:hover {
 <p>Lets then call the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> method, that returns a <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> figure representing the minimum and maximum surf size that is forecasted for the spot.</p>
 <p>Additionally, the daylight hours are shown in the plot, with darkgrey representing night and lightgrey representing dusk and dawn.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[147]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">report</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">f</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;surfreport_pipeline.jpeg&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../images/surfreport_pipeline.jpeg&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

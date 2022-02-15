@@ -1,4 +1,4 @@
-pysurfline.utils
+﻿pysurfline.utils
 ================
 
 .. automodule:: pysurfline.utils
@@ -14,6 +14,7 @@ pysurfline.utils
    .. autosummary::
       :toctree:
    
+      degToCompass
       flatten
    
    
