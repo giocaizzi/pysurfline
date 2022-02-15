@@ -1,4 +1,4 @@
-﻿pysurfline.utils
+pysurfline.utils
 ================
 
 .. automodule:: pysurfline.utils

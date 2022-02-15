@@ -1,4 +1,4 @@
-﻿pysurfline.core
+pysurfline.core
 ===============
 
 .. automodule:: pysurfline.core
