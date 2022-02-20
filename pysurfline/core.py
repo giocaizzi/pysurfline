@@ -1,10 +1,9 @@
 """
 core classes for basic Surfline API v2 URL requests
 """
-from tabnanny import verbose
 import requests
 import pandas as pd
-from pysurfline.utils import flatten,degToCompass
+from pysurfline.utils import flatten, degToCompass
 import matplotlib.pyplot as plt
 import matplotlib
 import matplotlib.dates as mdates
@@ -12,6 +11,7 @@ import datetime
 import pandas as pd
 import numpy as np
 import matplotlib.patheffects as pe
+
 
 class SpotForecast:
     """
@@ -42,21 +42,21 @@ class SpotForecast:
         wind (list): list of wind forecast
     """
 
-    def __init__(self,params,verbose=False):
+    def __init__(self, params, verbose=False):
         self.params = params
-        self.verbose=verbose
+        self.verbose = verbose
         self._get_forecasts()
 
     def _get_forecasts(self):
         """
         get all types of forecasts setting an attribute for each
         """
-        types=["wave","wind","tides","weather"]
-        log=[]
+        types = ["wave", "wind", "tides", "weather"]
+        log = []
         for type in types:
-            f=ForecastGetter(type,self.params)
-            if f.response.status_code==200: 
-                forecast=f.response.json()
+            f = ForecastGetter(type, self.params)
+            if f.response.status_code == 200:
+                forecast = f.response.json()
 
                 # parse response data
                 for key in forecast["data"]:
@@ -64,14 +64,16 @@ class SpotForecast:
 
                 # parse all associated information
                 for key in forecast["associated"]:
-                    #units stored with attribute name that refers to
-                    #eventually duplicated attr are not overwritten
-                    if key in ["units",] or hasattr(self,key):
-                        setattr(self, key+"_"+type, forecast["associated"][key])
+                    # units stored with attribute name that refers to
+                    # eventually duplicated attr are not overwritten
+                    if key in [
+                        "units",
+                    ] or hasattr(self, key):
+                        setattr(self, key + "_" + type, forecast["associated"][key])
                     else:
                         setattr(self, key, forecast["associated"][key])
 
-                #format dates contained ion data 
+                # format dates contained ion data
                 self._format_attribute(type)
             else:
                 print(f"Error : {f.response.status_code}")
@@ -80,9 +82,9 @@ class SpotForecast:
                 print("-----")
                 print(f)
             log.append(str(f))
-        self.api_log=log
+        self.api_log = log
 
-    def _format_attribute(self,type):
+    def _format_attribute(self, type):
         """
         format attribute to more readable format.
 
@@ -91,11 +93,11 @@ class SpotForecast:
         Arguments:
             type (str): string name of attribute to format eg. wave, tides
         """
-        for i in range(len(getattr(self,type))):
-            if type=="wave":
-                getattr(self,type)[i]=flatten(getattr(self,type)[i])
+        for i in range(len(getattr(self, type))):
+            if type == "wave":
+                getattr(self, type)[i] = flatten(getattr(self, type)[i])
 
-    def get_dataframe(self,attr):
+    def get_dataframe(self, attr):
         """
         returns requested attribute as pandas dataframe
 
@@ -105,18 +107,19 @@ class SpotForecast:
         Returns:
             df (:obj:`pandas.DataFrame`)
         """
-        if isinstance(getattr(self,attr),list):
-            df=pd.DataFrame(getattr(self,attr))
+        if isinstance(getattr(self, attr), list):
+            df = pd.DataFrame(getattr(self, attr))
             if "midnight" in df.columns.tolist():
-                for t in ["midnight","dawn","sunrise","sunset","dusk"]:
-                    df[t] = pd.to_datetime(df[t],unit='s')
+                for t in ["midnight", "dawn", "sunrise", "sunset", "dusk"]:
+                    df[t] = pd.to_datetime(df[t], unit="s")
                 # df.set_index("midnight",inplace=True)
             else:
-                df['timestamp'] = pd.to_datetime(df['timestamp'],unit='s')
-                df.set_index("timestamp",inplace=True)
+                df["timestamp"] = pd.to_datetime(df["timestamp"], unit="s")
+                df.set_index("timestamp", inplace=True)
             return df
         else:
             raise TypeError("Must be a list.")
+
 
 class ForecastGetter:
     """
@@ -124,19 +127,20 @@ class ForecastGetter:
 
     Arguments:
         type (str): type of forecast to get :obj:`wave`, :obj:`wind`, :obj:`tides`, :obj:`weather`
-        params (dict): dictonary of forecast parameters   
-    
+        params (dict): dictonary of forecast parameters
+
     Attributes:
         url (str) : URL built by :obj:`pysurfline.URLBuilder` object.
         response (:obj:`requests.response`): A :obj:`request.response` object.
         type (str): type of forecast to get ( :obj:`wave`, :obj:`wind`, :obj:`tides`, :obj:`weather`)
-        params (dict): dictonary of forecast parameters     
+        params (dict): dictonary of forecast parameters
     """
-    def __init__(self,type,params):
-        self.type=type
-        self.params=params
-        u=URLBuilder(self.type,self.params)
-        self.url=u.url
+
+    def __init__(self, type, params):
+        self.type = type
+        self.params = params
+        u = URLBuilder(self.type, self.params)
+        self.url = u.url
         self.response = requests.get(self.url)
 
     def __repr__(self):
@@ -144,6 +148,7 @@ class ForecastGetter:
 
     def __str__(self):
         return f"ForecastGetter(Type:{self.type}, Status:{self.response.status_code})"
+
 
 class URLBuilder:
     """
@@ -156,59 +161,71 @@ class URLBuilder:
     Attributes:
         url(str): URL of desired forecast
         type (str): type of forecast URL to get ( :obj:`wave`, :obj:`wind`, :obj:`tides`, :obj:`weather` )
-        params (dict): dictonary of forecast URL parameters  
+        params (dict): dictonary of forecast URL parameters
     """
-    def __init__(self,type,params):
-        self.type=type
-        self.params=params
+
+    def __init__(self, type, params):
+        self.type = type
+        self.params = params
         self._build()
-        
+
     def _build(self):
         """
         build URL
         """
-        stringparams=""
-        for k,v in self.params.items():
+        stringparams = ""
+        for k, v in self.params.items():
             if stringparams:
-                stringparams=stringparams+"&"+k+"="+str(v)
+                stringparams = stringparams + "&" + k + "=" + str(v)
             else:
-                stringparams=k+"="+str(v)
-        self.url=f"https://services.surfline.com/kbyg/spots/forecasts/{self.type}?{stringparams}"
+                stringparams = k + "=" + str(v)
+        self.url = f"https://services.surfline.com/kbyg/spots/forecasts/{self.type}?{stringparams}"
 
 
 class SurfReport(SpotForecast):
     """
     Structured spot surf-report object.
     """
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
         self._set_df()
         self._get_simple_surf_report()
 
     def _set_df(self):
         df = []
-        for attr in ["wave", "wind","weather",]:  # exclude "tides" because of HIGH LOW exact times
+        for attr in [
+            "wave",
+            "wind",
+            "weather",
+        ]:  # exclude "tides" because of HIGH LOW exact times
             df.append(self.get_dataframe(attr))
         df = pd.concat(df, axis=1)
         self.df = df
 
     def _get_simple_surf_report(self):
-        self.surf = self.df.copy()[["surf_min", "surf_max", "speed", "directionType","direction"]]
-        #set Hmin <0.2m to nan for plotting reasons
-        self.surf.loc[(self.df["surf_min"]<0.2),"surf_min"]=np.nan
+        self.surf = self.df.copy()[
+            ["surf_min", "surf_max", "speed", "directionType", "direction"]
+        ]
+        # set Hmin <0.2m to nan for plotting reasons
+        self.surf.loc[(self.df["surf_min"] < 0.2), "surf_min"] = np.nan
 
     def plot(self):
         f, ax = plt.subplots(dpi=300)
         surf_colors = {"Hmax": "dodgerblue", "Hmin": "lightblue"}
-        wind_colors = {"Cross-shore": "coral", "Offshore": "green", "Onshore": "darkred"}
+        wind_colors = {
+            "Cross-shore": "coral",
+            "Offshore": "green",
+            "Onshore": "darkred",
+        }
         daylight = self.get_dataframe("sunlightTimes")
 
-        #scale parameter
-        hmax=self.surf["surf_max"].max()
-        hmax=hmax*1.2
-        if hmax<2:
-            hmax=2
+        # scale parameter
+        hmax = self.surf["surf_max"].max()
+        hmax = hmax * 1.2
+        if hmax < 2:
+            hmax = 2
 
         # zorder 0
         # night and day
@@ -220,16 +237,16 @@ class SurfReport(SpotForecast):
                 x["dusk"],
                 x["midnight"] + datetime.timedelta(days=1),
                 color="darkgrey",
-                zorder=1
-                )
+                zorder=1,
+            )
 
-        #zorder 1
+        # zorder 1
         # grid
         ax.grid(axis="y", which="major", zorder=1, linewidth=0.1, color="k")
         ax.grid(axis="x", which="major", zorder=1, linewidth=0.1, color="k")
 
-        #zorder 2
-        #bars
+        # zorder 2
+        # bars
         p1 = ax.bar(
             self.surf.index,
             self.surf["surf_max"],
@@ -246,7 +263,7 @@ class SurfReport(SpotForecast):
             zorder=3,
             width=0.1,
         )
-        #zorder 3
+        # zorder 3
         # now line
         ax.axvline(
             datetime.datetime.now(datetime.timezone.utc),
@@ -256,7 +273,7 @@ class SurfReport(SpotForecast):
             zorder=3,
         )
 
-        #zorder 4
+        # zorder 4
         # labels
         # # barlabels
         ax.bar_label(
@@ -278,14 +295,14 @@ class SurfReport(SpotForecast):
             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
         )
         # windspeed and wind direction colored on condition
-        xs=self.surf.index.tolist()
-        windspeeds=self.surf.speed.tolist()
-        conditions=self.surf.directionType.tolist()
-        winddirections=self.surf.direction.tolist()
-        for x,ws,cond,wd in zip(xs,windspeeds,conditions,winddirections):
+        xs = self.surf.index.tolist()
+        windspeeds = self.surf.speed.tolist()
+        conditions = self.surf.directionType.tolist()
+        winddirections = self.surf.direction.tolist()
+        for x, ws, cond, wd in zip(xs, windspeeds, conditions, winddirections):
             ax.annotate(
                 int(ws),
-                xy=(mdates.date2num(x),hmax-(hmax*0.01)),
+                xy=(mdates.date2num(x), hmax - (hmax * 0.01)),
                 fontsize=7,
                 color=wind_colors[cond],
                 zorder=4,
@@ -293,11 +310,10 @@ class SurfReport(SpotForecast):
                 va="top",
                 ha="center",
                 path_effects=[pe.withStroke(linewidth=1, foreground="w")],
-
             )
             ax.annotate(
-                degToCompass(wd)+f"\n("+"{:.0f}".format(wd)+"°)",
-                xy=(mdates.date2num(x),hmax-(hmax*0.04)),
+                degToCompass(wd) + f"\n(" + "{:.0f}".format(wd) + "°)",
+                xy=(mdates.date2num(x), hmax - (hmax * 0.04)),
                 fontsize=4,
                 color=wind_colors[cond],
                 weight="bold",
@@ -305,12 +321,13 @@ class SurfReport(SpotForecast):
                 va="top",
                 ha="center",
                 path_effects=[pe.withStroke(linewidth=1, foreground="w")],
-
             )
 
         # dates index
         ax.figure.autofmt_xdate()
-        ax.xaxis.set_minor_locator(mdates.HourLocator(byhour=(0, 3, 6, 9, 12, 15, 18, 21)))
+        ax.xaxis.set_minor_locator(
+            mdates.HourLocator(byhour=(0, 3, 6, 9, 12, 15, 18, 21))
+        )
         ax.xaxis.set_major_locator(mdates.DayLocator())
         ax.set(xlabel="Date (UTC Time)", ylabel="Surf Height [m]")
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%d-%b"))
@@ -325,29 +342,47 @@ class SurfReport(SpotForecast):
         for label in ax.get_xticklabels(which="minor"):
             label.set(horizontalalignment="center", size=3)
 
-        #lims
+        # lims
         ax.set_ylim([0, hmax])
         ax.set_xlim([self.surf.index[0], self.surf.index[-1]])
 
-        #legend
-        ax.legend(loc='lower left', bbox_to_anchor=(1, 0),fontsize=5)
-        #windlegend 
+        # legend
+        ax.legend(loc="lower left", bbox_to_anchor=(1, 0), fontsize=5)
+        # windlegend
         ax.annotate(
             "WIND",
-            xy=(1.025,0.998),size=7,xycoords="axes fraction",va="top",ha="left"
+            xy=(1.025, 0.998),
+            size=7,
+            xycoords="axes fraction",
+            va="top",
+            ha="left",
         )
         ax.annotate(
             "Offshore",
-            xy=(1.025,0.965),size=4,xycoords="axes fraction",va="top",ha="left",color=wind_colors["Offshore"]
+            xy=(1.025, 0.965),
+            size=4,
+            xycoords="axes fraction",
+            va="top",
+            ha="left",
+            color=wind_colors["Offshore"],
         )
         ax.annotate(
             "Cross-shore",
-            xy=(1.025,0.95),size=4,xycoords="axes fraction",va="top",ha="left",color=wind_colors["Cross-shore"]
+            xy=(1.025, 0.95),
+            size=4,
+            xycoords="axes fraction",
+            va="top",
+            ha="left",
+            color=wind_colors["Cross-shore"],
         )
         ax.annotate(
             "Onshore",
-            xy=(1.025,0.935),size=4,xycoords="axes fraction",va="top",ha="left",color=wind_colors["Onshore"]
+            xy=(1.025, 0.935),
+            size=4,
+            xycoords="axes fraction",
+            va="top",
+            ha="left",
+            color=wind_colors["Onshore"],
         )
         f.set_tight_layout(True)
         return f
-
