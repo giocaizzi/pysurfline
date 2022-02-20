@@ -4,7 +4,8 @@ utility functions
 
 import collections
 
-def flatten(d, parent_key='', sep='_'):
+
+def flatten(d, parent_key="", sep="_"):
     """
     flatten nested dictionary, preserving lists
 
@@ -21,7 +22,25 @@ def flatten(d, parent_key='', sep='_'):
             items.append((new_key, v))
     return dict(items)
 
+
 def degToCompass(num):
-    val=int((num/22.5)+.5)
-    arr=["N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"]
+    val = int((num / 22.5) + 0.5)
+    arr = [
+        "N",
+        "NNE",
+        "NE",
+        "ENE",
+        "E",
+        "ESE",
+        "SE",
+        "SSE",
+        "S",
+        "SSW",
+        "SW",
+        "WSW",
+        "W",
+        "WNW",
+        "NW",
+        "NNW",
+    ]
     return arr[(val % 16)]
