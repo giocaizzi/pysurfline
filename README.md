@@ -1,5 +1,9 @@
 # pysurfline
 
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pysurfline)
+![PyPI](https://img.shields.io/pypi/v/pysurfline?color=blue)
+![PyPI - License](https://img.shields.io/pypi/l/pysurfline)
+
 Python wrapper of Surfline V2 API.
 
 `pysurfline` features:
