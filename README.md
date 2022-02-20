@@ -2,6 +2,8 @@
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pysurfline)
 ![PyPI](https://img.shields.io/pypi/v/pysurfline?color=blue)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/giocaizzi/pysurfline/ci)
+![Codecov](https://img.shields.io/codecov/c/gh/giocaizzi/pysurfline)
 ![PyPI - License](https://img.shields.io/pypi/l/pysurfline)
 
 Python wrapper of Surfline V2 API.
