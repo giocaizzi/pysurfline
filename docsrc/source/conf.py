@@ -37,8 +37,7 @@ extensions = [
     "sphinx.ext.autosummary",
     'nbsphinx',
     'myst_parser',
-    # "myst_nb",
-
+    'IPython.sphinxext.ipython_console_highlighting', # fix nbsphinx bug
     'sphinxemoji.sphinxemoji',
 ]
 autosummary_generate = True
