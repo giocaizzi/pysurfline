@@ -24,4 +24,4 @@ jobs:
         python -m pip install flake8 flake8-rst-docstrings
 
     - name: Lint with flake8 for RST erorrs
-      run : flake8 --select=RST surfingcrypto
+      run : flake8 --select=RST pysurfline
