@@ -9,6 +9,7 @@ dependencies:
 #pysurfline
   - requests
   - pandas
+  - matplotlib
 #formatting
   - black
 #docs
