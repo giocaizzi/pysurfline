@@ -2,7 +2,7 @@ name: Update readme forecast
 
 on:
   schedule:
-    - cron: "* * * * *"
+    - cron: "*/6 * * * *"
 
 jobs:
   update-readme:
