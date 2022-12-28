@@ -24,7 +24,7 @@ pip install pysurfline
 Get the `pysurfline.SurfReport` plot for Banzai Pipeline in Oahu, Hawaii (USA).
 [Go to full example.](https://giocaizzi.github.io/pysurfline/examples/surf_report.html)
 
-![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/main/docsrc/source/images/surfreport_pipeline.jpeg)
+![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_pipeline.jpeg)
 
 # Documentation
 
