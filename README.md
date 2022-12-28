@@ -2,7 +2,7 @@
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pysurfline)
 ![PyPI](https://img.shields.io/pypi/v/pysurfline?color=blue)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/giocaizzi/pysurfline/ci)
+[![Tests](https://github.com/giocaizzi/pysurfline/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/giocaizzi/pysurfline/actions/workflows/tests.yml)
 ![Codecov](https://img.shields.io/codecov/c/gh/giocaizzi/pysurfline)
 ![PyPI - License](https://img.shields.io/pypi/l/pysurfline)
 
@@ -24,7 +24,7 @@ pip install pysurfline
 Get the `pysurfline.SurfReport` plot for Banzai Pipeline in Oahu, Hawaii (USA).
 [Go to full example.](https://giocaizzi.github.io/pysurfline/examples/surf_report.html)
 
-![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/main/docsrc/source/images/surfreport_pipeline.jpeg)
+![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_pipeline.jpeg)
 
 # Documentation
 

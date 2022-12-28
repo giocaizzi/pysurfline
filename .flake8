@@ -1,0 +1,22 @@
+[flake8]
+require-plugins =
+    flake8-rst-docstrings
+# flake8 and black compatibility
+max-line-length = 88
+# rst plugin
+rst-roles =
+    class,
+    func,
+    ref,
+    obj,
+rst-directives =
+    envvar,
+    exception,
+rst-substitutions =
+    version,
+# Google Python style is not RST until after processed by Napoleon
+# See https://github.com/peterjc/flake8-rst-docstrings/issues/17
+# E203: flake8 and black compatibility
+# d107: missing docstring in init
+extend-ignore =
+    RST307,RST201,RST203,RST301,E203
