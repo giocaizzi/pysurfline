@@ -17,9 +17,8 @@ class SpotForecast:
     """
     Surfline forecast of given spot.
 
-        Arguments:
-        params (dict): forecast
-    parameters
+    Arguments:
+        params (dict): forecast parameters
         verbose (bool): print log
 
     Attributes:
