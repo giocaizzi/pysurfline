@@ -1,8 +1,9 @@
 name: Update readme forecast
 
+# schedlued execution is not granted at exact timings
 on:
   schedule:
-    - cron: "* * * * *"
+    - cron: "0 0 * * *"
 
 jobs:
   update-readme:
@@ -22,7 +23,7 @@ jobs:
       - name: dependencies
         run : |
           pip install --upgrade pip
-          pip install requirements.txt
+          pip install -r requirements.txt
           pip install .
           python -m update_readme_forecast.py
 
