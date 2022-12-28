@@ -30,7 +30,7 @@ jobs:
 
     - name : Run all notebooks in examples folder
       run : |
-        jupyter nbconvert --to notebook --execute docsrc/source/examples/*
+        jupyter nbconvert --to notebook --execute --inplace docsrc/source/examples/*
   
     - name: Building docs
       run : |
