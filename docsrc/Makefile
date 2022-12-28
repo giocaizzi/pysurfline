@@ -29,3 +29,11 @@ gitclean:
 	@make clean
 	@rm -r source/_autosummary
 	@rm -r ../docs/*
+
+#This will cause the build to fail immediately when a warning is encountered.
+# If you add --keep-going then the docs build will still fail but it will run 
+# to completion so you can see all the warnings
+github-action:
+	@make html SPHINXOPTS="-W --keep-going"
+	@cp -a build/html/. ../docs
+	@touch ../docs/.nojekyll
