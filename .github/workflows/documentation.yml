@@ -25,6 +25,7 @@ jobs:
         pip install --upgrade pip 
         pip install -r requirements.txt
         pip install -r docsrc/requirements.txt
+        pip install ipython ipykernel
         pip install -e . 
 
     - name : Run all notebooks in examples folder
