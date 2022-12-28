@@ -1,0 +1,43 @@
+name: Update readme forecast
+
+on:
+  schedule:
+    - cron: "* * * * *"
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout gh branch
+        uses: actions/checkout@v2
+        with:
+          ref : gh-pages
+
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: dependencies
+        run : |
+          pip install --upgrade pip
+          pip install requirements.txt
+          pip install .
+          python -m update_readme_forecast.py
+
+      - name: Commit documentation changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Actions: Build documentation" -a || true
+      
+        # The last command will fail if no changes were present, so we ignore
+        # the return code.
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
