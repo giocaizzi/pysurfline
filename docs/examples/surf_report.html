@@ -14,7 +14,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -70,8 +72,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Produce a surf report</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Produce a surf report</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/examples/surf_report.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -191,10 +193,11 @@ div.nboutput.container div.prompt > div {
     }
 }
 
-/* disable scrollbars on prompts */
+/* disable scrollbars and line breaks on prompts */
 div.nbinput.container div.prompt pre,
 div.nboutput.container div.prompt pre {
     overflow: hidden;
+    white-space: pre;
 }
 
 /* input/output area */
@@ -296,6 +299,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -304,10 +308,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -319,12 +327,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -352,7 +363,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Produce-a-surf-report">
-<h1>Produce a surf report<a class="headerlink" href="#Produce-a-surf-report" title="Permalink to this headline"></a></h1>
+<h1>Produce a surf report<a class="headerlink" href="#Produce-a-surf-report" title="Permalink to this heading"></a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">SurfReport</span></code> object features additional reporting functionalities, such as plotting methods and easily readable surf reports.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -451,6 +462,7 @@ div.rendered_html tbody tr:hover {
       <th>surf_min</th>
       <th>surf_max</th>
       <th>surf_optimalScore</th>
+      <th>surf_humanRelation</th>
       <th>swells</th>
       <th>utcOffset</th>
       <th>speed</th>
@@ -478,93 +490,99 @@ div.rendered_html tbody tr:hover {
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-19 10:00:00</th>
+      <th>2022-03-15 10:00:00</th>
       <td>-10</td>
-      <td>1.342033</td>
-      <td>1.9896</td>
-      <td>0</td>
-      <td>[{'height': 1.60392, 'period': 13, 'direction'...</td>
+      <td>2.043341</td>
+      <td>2.933365</td>
+      <td>2</td>
+      <td>2x overhead</td>
+      <td>[{'height': 0.89608, 'period': 8, 'direction':...</td>
       <td>-10</td>
-      <td>16.97483</td>
-      <td>36.62702</td>
-      <td>Cross-shore</td>
-      <td>18.72099</td>
-      <td>0</td>
+      <td>25.03418</td>
+      <td>103.28472</td>
+      <td>Offshore</td>
+      <td>27.72000</td>
+      <td>2</td>
       <td>-10</td>
-      <td>22.39011</td>
-      <td>NIGHT_BRIEF_SHOWERS_POSSIBLE</td>
-    </tr>
-    <tr>
-      <th>2022-02-19 13:00:00</th>
-      <td>-10</td>
-      <td>1.620883</td>
-      <td>2.2504</td>
-      <td>0</td>
-      <td>[{'height': 1.63176, 'period': 13, 'direction'...</td>
-      <td>-10</td>
-      <td>16.07982</td>
-      <td>30.38820</td>
-      <td>Cross-shore</td>
-      <td>17.02832</td>
-      <td>0</td>
-      <td>-10</td>
-      <td>22.21567</td>
+      <td>23.64603</td>
       <td>NIGHT_CLEAR</td>
     </tr>
     <tr>
-      <th>2022-02-19 16:00:00</th>
+      <th>2022-03-15 13:00:00</th>
       <td>-10</td>
-      <td>1.959733</td>
-      <td>2.2712</td>
-      <td>0</td>
-      <td>[{'height': 1.75356, 'period': 12, 'direction'...</td>
+      <td>1.922824</td>
+      <td>2.624094</td>
+      <td>2</td>
+      <td>Head to 2x overhead</td>
+      <td>[{'height': 0.88719, 'period': 8, 'direction':...</td>
       <td>-10</td>
-      <td>14.88262</td>
-      <td>31.67077</td>
-      <td>Cross-shore</td>
-      <td>14.88262</td>
-      <td>0</td>
+      <td>22.08038</td>
+      <td>104.44661</td>
+      <td>Offshore</td>
+      <td>24.84019</td>
+      <td>2</td>
       <td>-10</td>
-      <td>22.24850</td>
-      <td>NIGHT_MOSTLY_CLOUDY</td>
+      <td>22.88248</td>
+      <td>NIGHT_CLOUDY</td>
     </tr>
     <tr>
-      <th>2022-02-19 19:00:00</th>
+      <th>2022-03-15 16:00:00</th>
       <td>-10</td>
-      <td>1.918583</td>
-      <td>2.4420</td>
+      <td>1.852306</td>
+      <td>2.484824</td>
       <td>2</td>
-      <td>[{'height': 1.76186, 'period': 12, 'direction'...</td>
+      <td>Overhead to well overhead</td>
+      <td>[{'height': 0.8673, 'period': 8, 'direction': ...</td>
       <td>-10</td>
-      <td>13.09262</td>
-      <td>36.42174</td>
-      <td>Cross-shore</td>
-      <td>13.09262</td>
-      <td>0</td>
+      <td>22.43641</td>
+      <td>101.48412</td>
+      <td>Offshore</td>
+      <td>23.47987</td>
+      <td>2</td>
       <td>-10</td>
-      <td>22.60571</td>
-      <td>BRIEF_SHOWERS_POSSIBLE</td>
+      <td>23.21231</td>
+      <td>NIGHT_CLEAR</td>
     </tr>
     <tr>
-      <th>2022-02-19 22:00:00</th>
+      <th>2022-03-15 19:00:00</th>
       <td>-10</td>
-      <td>2.077433</td>
-      <td>2.5328</td>
+      <td>1.861400</td>
+      <td>2.439367</td>
       <td>2</td>
-      <td>[{'height': 1.69075, 'period': 12, 'direction'...</td>
+      <td>Overhead to well overhead</td>
+      <td>[{'height': 0.85874, 'period': 8, 'direction':...</td>
       <td>-10</td>
-      <td>17.91688</td>
-      <td>21.11892</td>
-      <td>Onshore</td>
-      <td>17.91688</td>
-      <td>0</td>
+      <td>22.76464</td>
+      <td>102.58955</td>
+      <td>Offshore</td>
+      <td>23.40507</td>
+      <td>2</td>
       <td>-10</td>
-      <td>22.84024</td>
-      <td>BRIEF_SHOWERS_POSSIBLE</td>
+      <td>23.25000</td>
+      <td>CLEAR</td>
+    </tr>
+    <tr>
+      <th>2022-03-15 22:00:00</th>
+      <td>-10</td>
+      <td>1.905300</td>
+      <td>2.435817</td>
+      <td>2</td>
+      <td>Overhead to well overhead</td>
+      <td>[{'height': 0.80098, 'period': 8, 'direction':...</td>
+      <td>-10</td>
+      <td>20.79936</td>
+      <td>94.59084</td>
+      <td>Offshore</td>
+      <td>20.79936</td>
+      <td>2</td>
+      <td>-10</td>
+      <td>23.95001</td>
+      <td>CLEAR</td>
     </tr>
   </tbody>
 </table>
@@ -619,44 +637,44 @@ div.rendered_html tbody tr:hover {
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-19 10:00:00</th>
-      <td>1.342033</td>
-      <td>1.9896</td>
-      <td>16.97483</td>
-      <td>Cross-shore</td>
-      <td>36.62702</td>
+      <th>2022-03-15 10:00:00</th>
+      <td>2.043341</td>
+      <td>2.933365</td>
+      <td>25.03418</td>
+      <td>Offshore</td>
+      <td>103.28472</td>
     </tr>
     <tr>
-      <th>2022-02-19 13:00:00</th>
-      <td>1.620883</td>
-      <td>2.2504</td>
-      <td>16.07982</td>
-      <td>Cross-shore</td>
-      <td>30.38820</td>
+      <th>2022-03-15 13:00:00</th>
+      <td>1.922824</td>
+      <td>2.624094</td>
+      <td>22.08038</td>
+      <td>Offshore</td>
+      <td>104.44661</td>
     </tr>
     <tr>
-      <th>2022-02-19 16:00:00</th>
-      <td>1.959733</td>
-      <td>2.2712</td>
-      <td>14.88262</td>
-      <td>Cross-shore</td>
-      <td>31.67077</td>
+      <th>2022-03-15 16:00:00</th>
+      <td>1.852306</td>
+      <td>2.484824</td>
+      <td>22.43641</td>
+      <td>Offshore</td>
+      <td>101.48412</td>
     </tr>
     <tr>
-      <th>2022-02-19 19:00:00</th>
-      <td>1.918583</td>
-      <td>2.4420</td>
-      <td>13.09262</td>
-      <td>Cross-shore</td>
-      <td>36.42174</td>
+      <th>2022-03-15 19:00:00</th>
+      <td>1.861400</td>
+      <td>2.439367</td>
+      <td>22.76464</td>
+      <td>Offshore</td>
+      <td>102.58955</td>
     </tr>
     <tr>
-      <th>2022-02-19 22:00:00</th>
-      <td>2.077433</td>
-      <td>2.5328</td>
-      <td>17.91688</td>
-      <td>Onshore</td>
-      <td>21.11892</td>
+      <th>2022-03-15 22:00:00</th>
+      <td>1.905300</td>
+      <td>2.435817</td>
+      <td>20.79936</td>
+      <td>Offshore</td>
+      <td>94.59084</td>
     </tr>
   </tbody>
 </table>
