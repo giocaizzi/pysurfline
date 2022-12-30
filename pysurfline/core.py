@@ -136,48 +136,11 @@ class ForecastGetter:
     def __init__(self, type, params):
         self.type = type
         self.params = params
-        u = URLBuilder(self.type, self.params)
-        self.url = u.url
-        self.response = requests.get(self.url)
+        self.url = "https://services.surfline.com/kbyg/spots/forecasts/"
+        self.response = requests.get(self.url+self.type,params=params)
 
     def __repr__(self):
         return f"ForecastGetter(Type:{self.type}, Status:{self.response.status_code})"
 
     def __str__(self):
         return f"ForecastGetter(Type:{self.type}, Status:{self.response.status_code})"
-
-
-class URLBuilder:
-    """
-    Build URL for Surfline v2 API
-
-    Arguments:
-        type (str): type of forecast to get `wave`,`wind`,`tides`,`weather`
-        params (dict): dictonary of forecast parameters
-
-    Attributes:
-        url(str): URL of desired forecast
-        type (str): type of forecast URL to get ( :obj:`wave`,
-            :obj:`wind`, :obj:`tides`, :obj:`weather` )
-        params (dict): dictonary of forecast URL parameters
-    """
-
-    def __init__(self, type, params):
-        self.type = type
-        self.params = params
-        self._build()
-
-    def _build(self):
-        """
-        build URL
-        """
-        stringparams = ""
-        for k, v in self.params.items():
-            if stringparams:
-                stringparams = stringparams + "&" + k + "=" + str(v)
-            else:
-                stringparams = k + "=" + str(v)
-        self.url = (
-            f"https://services.surfline.com/kbyg/spots/forecasts/{self.type}"
-            f"?{stringparams}"
-        )
