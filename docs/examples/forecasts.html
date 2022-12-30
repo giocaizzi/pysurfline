@@ -514,7 +514,7 @@ ForecastGetter(Type:weather, Status:200)
 </ul>
 <p>The data is stores as obtainded by the Surfline server. In the form of dictionary or list of dictionaries.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot</span><span class="o">.</span><span class="n">wave</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
@@ -522,40 +522,44 @@ ForecastGetter(Type:weather, Status:200)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[{&#39;timestamp&#39;: 1644919200,
+[{&#39;timestamp&#39;: 1672394400,
   &#39;utcOffset&#39;: -10,
-  &#39;surf_min&#39;: 2.4255764705882354,
-  &#39;surf_max&#39;: 3.3482588235294113,
+  &#39;surf_min&#39;: 3,
+  &#39;surf_max&#39;: 4.5,
   &#39;surf_optimalScore&#39;: 2,
-  &#39;swells&#39;: [{&#39;height&#39;: 1.49573,
-    &#39;period&#39;: 9,
-    &#39;direction&#39;: 27.57953,
-    &#39;directionMin&#39;: 17.088825,
-    &#39;optimalScore&#39;: 0},
-   {&#39;height&#39;: 1.46124,
-    &#39;period&#39;: 18,
-    &#39;direction&#39;: 304.51038,
-    &#39;directionMin&#39;: 301.07846,
+  &#39;surf_plus&#39;: False,
+  &#39;surf_humanRelation&#39;: &#39;2-3x overhead&#39;,
+  &#39;surf_raw_min&#39;: 2.9332,
+  &#39;surf_raw_max&#39;: 4.3347999999999995,
+  &#39;swells&#39;: [{&#39;height&#39;: 2.13539,
+    &#39;period&#39;: 14,
+    &#39;direction&#39;: 308.66663,
+    &#39;directionMin&#39;: 303.20616,
     &#39;optimalScore&#39;: 2},
-   {&#39;height&#39;: 0.40123,
-    &#39;period&#39;: 10,
-    &#39;direction&#39;: 317.74255,
-    &#39;directionMin&#39;: 308.7481,
-    &#39;optimalScore&#39;: 0},
-   {&#39;height&#39;: 0.34288,
+   {&#39;height&#39;: 0.615,
     &#39;period&#39;: 8,
-    &#39;direction&#39;: 95.32605,
-    &#39;directionMin&#39;: 91.40186,
+    &#39;direction&#39;: 89.72766,
+    &#39;directionMin&#39;: 82.00524,
     &#39;optimalScore&#39;: 0},
-   {&#39;height&#39;: 0.20144,
-    &#39;period&#39;: 16,
-    &#39;direction&#39;: 213.55383,
-    &#39;directionMin&#39;: 208.33016,
+   {&#39;height&#39;: 0.18666,
+    &#39;period&#39;: 17,
+    &#39;direction&#39;: 238.93628,
+    &#39;directionMin&#39;: 226.490135,
+    &#39;optimalScore&#39;: 0},
+   {&#39;height&#39;: 0,
+    &#39;period&#39;: 0,
+    &#39;direction&#39;: 0,
+    &#39;directionMin&#39;: 0,
+    &#39;optimalScore&#39;: 0},
+   {&#39;height&#39;: 0,
+    &#39;period&#39;: 0,
+    &#39;direction&#39;: 0,
+    &#39;directionMin&#39;: 0,
     &#39;optimalScore&#39;: 0},
    {&#39;height&#39;: 0,
     &#39;period&#39;: 0,
@@ -601,6 +605,10 @@ ForecastGetter(Type:weather, Status:200)
       <th>surf_min</th>
       <th>surf_max</th>
       <th>surf_optimalScore</th>
+      <th>surf_plus</th>
+      <th>surf_humanRelation</th>
+      <th>surf_raw_min</th>
+      <th>surf_raw_max</th>
       <th>swells</th>
     </tr>
     <tr>
@@ -610,48 +618,72 @@ ForecastGetter(Type:weather, Status:200)
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-15 10:00:00</th>
+      <th>2022-12-30 10:00:00</th>
       <td>-10</td>
-      <td>2.425576</td>
-      <td>3.348259</td>
+      <td>3.0</td>
+      <td>4.5</td>
       <td>2</td>
-      <td>[{'height': 1.49573, 'period': 9, 'direction':...</td>
+      <td>False</td>
+      <td>2-3x overhead</td>
+      <td>2.9332</td>
+      <td>4.3348</td>
+      <td>[{'height': 2.13539, 'period': 14, 'direction'...</td>
     </tr>
     <tr>
-      <th>2022-02-15 13:00:00</th>
+      <th>2022-12-30 13:00:00</th>
       <td>-10</td>
-      <td>2.223929</td>
-      <td>3.227976</td>
+      <td>3.0</td>
+      <td>4.5</td>
       <td>2</td>
-      <td>[{'height': 1.47839, 'period': 9, 'direction':...</td>
+      <td>False</td>
+      <td>2-3x overhead</td>
+      <td>3.0706</td>
+      <td>4.5434</td>
+      <td>[{'height': 2.19978, 'period': 14, 'direction'...</td>
     </tr>
     <tr>
-      <th>2022-02-15 16:00:00</th>
+      <th>2022-12-30 16:00:00</th>
       <td>-10</td>
-      <td>2.512282</td>
-      <td>3.697694</td>
+      <td>3.0</td>
+      <td>4.5</td>
       <td>2</td>
-      <td>[{'height': 1.45506, 'period': 9, 'direction':...</td>
+      <td>False</td>
+      <td>2-3x overhead</td>
+      <td>3.0480</td>
+      <td>4.5720</td>
+      <td>[{'height': 2.22352, 'period': 14, 'direction'...</td>
     </tr>
     <tr>
-      <th>2022-02-15 19:00:00</th>
+      <th>2022-12-30 19:00:00</th>
       <td>-10</td>
-      <td>2.533467</td>
-      <td>3.742283</td>
+      <td>3.0</td>
+      <td>4.5</td>
       <td>2</td>
-      <td>[{'height': 1.35026, 'period': 9, 'direction':...</td>
+      <td>False</td>
+      <td>2-3x overhead</td>
+      <td>2.7332</td>
+      <td>4.1348</td>
+      <td>[{'height': 2.19437, 'period': 14, 'direction'...</td>
     </tr>
     <tr>
-      <th>2022-02-15 22:00:00</th>
+      <th>2022-12-30 22:00:00</th>
       <td>-10</td>
-      <td>2.928667</td>
-      <td>4.116333</td>
+      <td>2.4</td>
+      <td>3.7</td>
       <td>2</td>
-      <td>[{'height': 1.27662, 'period': 9, 'direction':...</td>
+      <td>False</td>
+      <td>2x overhead</td>
+      <td>2.4384</td>
+      <td>3.6576</td>
+      <td>[{'height': 2.11455, 'period': 14, 'direction'...</td>
     </tr>
   </tbody>
 </table>
@@ -708,48 +740,48 @@ ForecastGetter(Type:weather, Status:200)
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-15 10:00:00</th>
+      <th>2022-12-30 10:00:00</th>
       <td>-10</td>
-      <td>19.52784</td>
-      <td>62.20807</td>
-      <td>Cross-shore</td>
-      <td>20.89105</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2022-02-15 13:00:00</th>
-      <td>-10</td>
-      <td>25.51237</td>
-      <td>74.83075</td>
-      <td>Cross-shore</td>
-      <td>28.44089</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2022-02-15 16:00:00</th>
-      <td>-10</td>
-      <td>23.08405</td>
-      <td>92.03106</td>
+      <td>7.14811</td>
+      <td>110.98103</td>
       <td>Offshore</td>
-      <td>26.28000</td>
+      <td>8.28467</td>
       <td>2</td>
     </tr>
     <tr>
-      <th>2022-02-15 19:00:00</th>
+      <th>2022-12-30 13:00:00</th>
       <td>-10</td>
-      <td>19.02943</td>
-      <td>74.52762</td>
+      <td>9.44096</td>
+      <td>56.91445</td>
       <td>Cross-shore</td>
-      <td>19.44187</td>
+      <td>12.24000</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>2022-02-15 22:00:00</th>
+      <th>2022-12-30 16:00:00</th>
       <td>-10</td>
-      <td>21.47713</td>
-      <td>74.64142</td>
+      <td>13.65204</td>
+      <td>37.81846</td>
       <td>Cross-shore</td>
-      <td>22.71399</td>
+      <td>17.65384</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2022-12-30 19:00:00</th>
+      <td>-10</td>
+      <td>19.34267</td>
+      <td>60.61127</td>
+      <td>Cross-shore</td>
+      <td>24.50858</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2022-12-30 22:00:00</th>
+      <td>-10</td>
+      <td>24.57754</td>
+      <td>78.93308</td>
+      <td>Offshore</td>
+      <td>25.97832</td>
       <td>0</td>
     </tr>
   </tbody>
@@ -801,34 +833,34 @@ ForecastGetter(Type:weather, Status:200)
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-15 10:00:00</th>
+      <th>2022-12-30 10:00:00</th>
       <td>-10</td>
       <td>NORMAL</td>
-      <td>0.39</td>
+      <td>0.28</td>
     </tr>
     <tr>
-      <th>2022-02-15 11:00:00</th>
+      <th>2022-12-30 11:00:00</th>
       <td>-10</td>
       <td>NORMAL</td>
-      <td>0.47</td>
+      <td>0.23</td>
     </tr>
     <tr>
-      <th>2022-02-15 12:00:00</th>
+      <th>2022-12-30 12:00:00</th>
       <td>-10</td>
       <td>NORMAL</td>
-      <td>0.52</td>
+      <td>0.21</td>
     </tr>
     <tr>
-      <th>2022-02-15 12:45:07</th>
+      <th>2022-12-30 12:30:04</th>
       <td>-10</td>
-      <td>HIGH</td>
-      <td>0.53</td>
+      <td>LOW</td>
+      <td>0.20</td>
     </tr>
     <tr>
-      <th>2022-02-15 13:00:00</th>
+      <th>2022-12-30 13:00:00</th>
       <td>-10</td>
       <td>NORMAL</td>
-      <td>0.53</td>
+      <td>0.20</td>
     </tr>
   </tbody>
 </table>
@@ -879,33 +911,33 @@ ForecastGetter(Type:weather, Status:200)
   </thead>
   <tbody>
     <tr>
-      <th>2022-02-15 10:00:00</th>
+      <th>2022-12-30 10:00:00</th>
       <td>-10</td>
-      <td>22.05899</td>
+      <td>23.60580</td>
       <td>NIGHT_CLEAR</td>
     </tr>
     <tr>
-      <th>2022-02-15 13:00:00</th>
+      <th>2022-12-30 13:00:00</th>
       <td>-10</td>
-      <td>21.84009</td>
+      <td>23.48029</td>
       <td>NIGHT_CLEAR</td>
     </tr>
     <tr>
-      <th>2022-02-15 16:00:00</th>
+      <th>2022-12-30 16:00:00</th>
       <td>-10</td>
-      <td>22.05951</td>
+      <td>23.48877</td>
       <td>NIGHT_CLEAR</td>
     </tr>
     <tr>
-      <th>2022-02-15 19:00:00</th>
+      <th>2022-12-30 19:00:00</th>
       <td>-10</td>
-      <td>22.63235</td>
+      <td>24.40082</td>
       <td>CLEAR</td>
     </tr>
     <tr>
-      <th>2022-02-15 22:00:00</th>
+      <th>2022-12-30 22:00:00</th>
       <td>-10</td>
-      <td>23.13605</td>
+      <td>24.58682</td>
       <td>CLEAR</td>
     </tr>
   </tbody>
@@ -958,93 +990,93 @@ ForecastGetter(Type:weather, Status:200)
   <tbody>
     <tr>
       <th>0</th>
-      <td>2022-02-15 10:00:00</td>
+      <td>2022-12-30 10:00:00</td>
       <td>-10</td>
-      <td>2022-02-15 16:41:38</td>
+      <td>2022-12-30 16:46:52</td>
       <td>-10</td>
-      <td>2022-02-15 17:04:23</td>
+      <td>2022-12-30 17:11:08</td>
       <td>-10</td>
-      <td>2022-02-16 04:31:08</td>
+      <td>2022-12-31 04:00:49</td>
       <td>-10</td>
-      <td>2022-02-16 04:53:53</td>
+      <td>2022-12-31 04:25:05</td>
       <td>-10</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2022-02-16 10:00:00</td>
+      <td>2022-12-31 10:00:00</td>
       <td>-10</td>
-      <td>2022-02-16 16:41:03</td>
+      <td>2022-12-31 16:47:13</td>
       <td>-10</td>
-      <td>2022-02-16 17:03:46</td>
+      <td>2022-12-31 17:11:28</td>
       <td>-10</td>
-      <td>2022-02-17 04:31:39</td>
+      <td>2023-01-01 04:01:25</td>
       <td>-10</td>
-      <td>2022-02-17 04:54:22</td>
+      <td>2023-01-01 04:25:40</td>
       <td>-10</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2022-02-17 10:00:00</td>
+      <td>2023-01-01 10:00:00</td>
       <td>-10</td>
-      <td>2022-02-17 16:40:26</td>
+      <td>2023-01-01 16:47:33</td>
       <td>-10</td>
-      <td>2022-02-17 17:03:07</td>
+      <td>2023-01-01 17:11:47</td>
       <td>-10</td>
-      <td>2022-02-18 04:32:10</td>
+      <td>2023-01-02 04:02:02</td>
       <td>-10</td>
-      <td>2022-02-18 04:54:51</td>
+      <td>2023-01-02 04:26:16</td>
       <td>-10</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2022-02-18 10:00:00</td>
+      <td>2023-01-02 10:00:00</td>
       <td>-10</td>
-      <td>2022-02-18 16:39:48</td>
+      <td>2023-01-02 16:47:51</td>
       <td>-10</td>
-      <td>2022-02-18 17:02:28</td>
+      <td>2023-01-02 17:12:05</td>
       <td>-10</td>
-      <td>2022-02-19 04:32:40</td>
+      <td>2023-01-03 04:02:39</td>
       <td>-10</td>
-      <td>2022-02-19 04:55:20</td>
+      <td>2023-01-03 04:26:52</td>
       <td>-10</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2022-02-19 10:00:00</td>
+      <td>2023-01-03 10:00:00</td>
       <td>-10</td>
-      <td>2022-02-19 16:39:10</td>
+      <td>2023-01-03 16:48:09</td>
       <td>-10</td>
-      <td>2022-02-19 17:01:48</td>
+      <td>2023-01-03 17:12:21</td>
       <td>-10</td>
-      <td>2022-02-20 04:33:10</td>
+      <td>2023-01-04 04:03:17</td>
       <td>-10</td>
-      <td>2022-02-20 04:55:48</td>
+      <td>2023-01-04 04:27:29</td>
       <td>-10</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>2022-02-20 10:00:00</td>
+      <td>2023-01-04 10:00:00</td>
       <td>-10</td>
-      <td>2022-02-20 16:38:30</td>
+      <td>2023-01-04 16:48:26</td>
       <td>-10</td>
-      <td>2022-02-20 17:01:06</td>
+      <td>2023-01-04 17:12:37</td>
       <td>-10</td>
-      <td>2022-02-21 04:33:39</td>
+      <td>2023-01-05 04:03:55</td>
       <td>-10</td>
-      <td>2022-02-21 04:56:16</td>
+      <td>2023-01-05 04:28:06</td>
       <td>-10</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>2022-02-21 10:00:00</td>
+      <td>2023-01-05 10:00:00</td>
       <td>-10</td>
-      <td>2022-02-21 16:37:50</td>
+      <td>2023-01-05 16:48:41</td>
       <td>-10</td>
-      <td>2022-02-21 17:00:24</td>
+      <td>2023-01-05 17:12:51</td>
       <td>-10</td>
-      <td>2022-02-22 04:34:08</td>
+      <td>2023-01-06 04:04:33</td>
       <td>-10</td>
-      <td>2022-02-22 04:56:43</td>
+      <td>2023-01-06 04:28:43</td>
       <td>-10</td>
     </tr>
   </tbody>

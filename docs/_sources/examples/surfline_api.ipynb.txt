@@ -49,6 +49,7 @@
    ]
   },
   {
+   "attachments": {},
    "cell_type": "markdown",
    "metadata": {},
    "source": [
@@ -59,35 +60,30 @@
     "\n",
     "The Pipeline in Hawaii (USA) has the following surfline.com URL  `https://www.surfline.com/surf-report/pipeline/5842041f4e65fad6a7708890`where `5842041f4e65fad6a7708890` is the `spotId` of the spot.\n",
     "\n",
-    "</div>\n",
-    "\n",
-    "\n",
-    "`pysurfline` offers a custom class for helping constructing the correct request URLs.\n",
-    "\n",
-    "## pysurfline `URLBuilder` module\n",
-    "Custom class to construct `url` in the format required by Surfline API."
+    "</div>"
    ]
   },
   {
-   "cell_type": "code",
-   "execution_count": 1,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "from pysurfline import URLBuilder"
-   ]
-  },
-  {
+   "attachments": {},
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "### Example URL\n",
+    "\n",
     "Get `wave` forecast for next 7 days, at 3 hour interval for spotID=`5842041f4e65fad6a7708890` that is Pipeline in Hawaii (USA)."
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
-   "metadata": {},
+   "execution_count": 1,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-12-30T17:07:39.166054Z",
+     "iopub.status.busy": "2022-12-30T17:07:39.165703Z",
+     "iopub.status.idle": "2022-12-30T17:07:39.176278Z",
+     "shell.execute_reply": "2022-12-30T17:07:39.175119Z"
+    }
+   },
    "outputs": [],
    "source": [
     "params={\n",
@@ -95,34 +91,6 @@
     "    \"days\":7,\n",
     "    \"intervalHours\":3,\n",
     "    }"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "The resulting URL will then be:"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 3,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "'https://services.surfline.com/kbyg/spots/forecasts/wave?spotId=584204204e65fad6a7709b09&days=7&intervalHours=3'"
-      ]
-     },
-     "execution_count": 3,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "u=URLBuilder(\"wave\",params)\n",
-    "u.url"
    ]
   }
  ],
@@ -145,9 +113,8 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.9.10"
-  },
-  "orig_nbformat": 4
+   "version": "3.9.15"
+  }
  },
  "nbformat": 4,
  "nbformat_minor": 2
