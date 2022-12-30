@@ -126,18 +126,18 @@ class ForecastGetter:
         params (dict): dictonary of forecast parameters
 
     Attributes:
-        url (str) : URL built by :obj:`pysurfline.URLBuilder` object.
+        baseurl (str) : URL built by :obj:`pysurfline.URLBuilder` object.
         response (:obj:`requests.response`): A :obj:`request.response` object.
         type (str): type of forecast to get ( :obj:`wave`, :obj:`wind`,
             :obj:`tides`, :obj:`weather`)
-        params (dict): dictonary of forecast parameters
+        params (dict): dictonary for request of forecast parameters
     """
 
-    def __init__(self, type, params):
+    def __init__(self, type: str, params: dict):
         self.type = type
         self.params = params
-        self.url = "https://services.surfline.com/kbyg/spots/forecasts/"
-        self.response = requests.get(self.url+self.type,params=params)
+        self.baseurl = "https://services.surfline.com/kbyg/spots/forecasts/"
+        self.response = requests.get(self.baseurl + self.type, params=params)
 
     def __repr__(self):
         return f"ForecastGetter(Type:{self.type}, Status:{self.response.status_code})"
