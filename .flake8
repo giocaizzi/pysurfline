@@ -1,4 +1,12 @@
 [flake8]
+exclude =
+    tests,
+    .github,
+    .vscode,
+    docs,
+    docsrc,
+    temp,
+    ./build
 require-plugins =
     flake8-rst-docstrings
 # flake8 and black compatibility
