@@ -63,9 +63,7 @@ class SpotForecast:
                     if key in [
                         "units",
                     ] or hasattr(self, key):
-                        setattr(
-                            self, key + "_" + type, forecast["associated"][key]
-                        )
+                        setattr(self, key + "_" + type, forecast["associated"][key])
                     else:
                         setattr(self, key, forecast["associated"][key])
 
