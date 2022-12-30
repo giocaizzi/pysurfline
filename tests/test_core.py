@@ -5,13 +5,16 @@ import pytest
 
 from pysurfline import ForecastGetter
 
-SPOTID = "5842041f4e65fad6a7708890"
+SPOTID = "5842041f4e65fad6a7708cfd"
 
-
-def test_ForecastGetter():
-    f = ForecastGetter("wave", params={"SpotId": SPOTID})
-    assert f.type == "wave"
+@pytest.mark.parametrize("forecasttype",["wave","wind","tides","weather"])
+def test_ForecastGetter_basic_request_URL(forecasttype):
+    """test basic request URL"""
+    f = ForecastGetter(forecasttype, params={"spotId": SPOTID})
+    assert f.type == forecasttype
     assert (
-        f.response.url == "https://services.surfline.com/kbyg/spots/forecasts/"
-        "wave?SpotId=5842041f4e65fad6a7708890"
+        f.url == "https://services.surfline.com/kbyg/spots/forecasts/"\
+        f"{forecasttype}"\
+        f"?spotId={SPOTID}"
     )
+    assert f.response.status_code == 200

@@ -138,6 +138,7 @@ class ForecastGetter:
         self.params = params
         self.baseurl = "https://services.surfline.com/kbyg/spots/forecasts/"
         self.response = requests.get(self.baseurl + self.type, params=params)
+        self.url = self.response.url
 
     def __repr__(self):
         return f"ForecastGetter(Type:{self.type}, Status:{self.response.status_code})"
