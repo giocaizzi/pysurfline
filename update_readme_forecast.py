@@ -10,5 +10,5 @@ params = {
 report = SurfReport(params)
 report.api_log
 
-f=report.plot()
+f = report.plot()
 f.savefig("docsrc/source/images/surfreport_pipeline.jpeg")
