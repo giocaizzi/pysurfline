@@ -136,8 +136,11 @@ class ForecastGetter:
     def __init__(self, type: str, params: dict):
         self.type = type
         self.params = params
+        headers = {
+            "User-Agent":"pysurfline_ci"
+        }
         self.baseurl = "https://services.surfline.com/kbyg/spots/forecasts/"
-        self.response = requests.get(self.baseurl + self.type, params=params)
+        self.response = requests.get(self.baseurl + self.type, params=params,headers=headers)
         self.url = self.response.url
 
     def __repr__(self):
