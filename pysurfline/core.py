@@ -132,6 +132,7 @@ class ForecastGetter:
             :obj:`tides`, :obj:`weather`)
         params (dict): dictonary for request of forecast parameters
     """
+
     baseurl = "https://services.surfline.com/kbyg/spots/forecasts/"
 
     def __init__(self, type: str, params: dict):
