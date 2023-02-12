@@ -2,7 +2,7 @@
 
 import pytest
 
-from pysurfline.utils import flatten,degToCompass
+from pysurfline.utils import flatten, degToCompass
 
 
 def test_flatten():
@@ -12,7 +12,8 @@ def test_flatten():
     r = flatten(d)
     assert r == expected
 
-@pytest.mark.parametrize("direction,expected",[(315,"NW"),(135,"SE"),(248,"WSW")])
-def test_degToCompass(direction,expected):
+
+@pytest.mark.parametrize("direction,expected", [(315, "NW"), (135, "SE"), (248, "WSW")])
+def test_degToCompass(direction, expected):
     r = degToCompass(direction)
     assert r == expected

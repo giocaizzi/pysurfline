@@ -8,7 +8,6 @@ from pysurfline import ForecastGetter
 SPOTID = "5842041f4e65fad6a7708cfd"
 
 
-
 @pytest.mark.skip
 @pytest.mark.parametrize("forecasttype", ["wave", "wind", "tides", "weather"])
 def test_ForecastGetter_basic_request_URL(forecasttype):

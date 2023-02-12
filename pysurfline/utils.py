@@ -2,13 +2,14 @@
 utility functions
 """
 import sys
+
 if sys.version_info.major == 3 and sys.version_info.minor >= 10:
     from collections.abc import MutableMapping
 else:
     from collections import MutableMapping
 
 
-def flatten(d: dict, parent_key="", sep="_")->dict:
+def flatten(d: dict, parent_key="", sep="_") -> dict:
     """
     flatten nested dictionary, preserving lists
 
@@ -29,7 +30,7 @@ def flatten(d: dict, parent_key="", sep="_")->dict:
     return dict(items)
 
 
-def degToCompass(num:float)->str:
+def degToCompass(num: float) -> str:
     """
     convert numerical (deg) direction into a cardinal string
     eg. N, S, W with a 22.5 deg accuracy.
