@@ -5,13 +5,14 @@ utility functions
 import collections
 
 
-def flatten(d, parent_key="", sep="_"):
+def flatten(d:dict, parent_key="", sep="_"):
     """
     flatten nested dictionary, preserving lists
 
     Arguments:
-        parent_key (str):
-        sep (str):
+        parent_key (str): 
+        sep (str): separator between upper and lowe level
+            keys when concatenated in new key
     """
     items = []
     for k, v in d.items():
