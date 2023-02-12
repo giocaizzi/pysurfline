@@ -9,7 +9,8 @@ from pysurfline.utils import flatten
 
 class SpotForecast:
     """
-    Surfline forecast of given spot.
+    Full surfline forecast of given spot.
+    Data is stored as class attributes.
 
     Arguments:
         params (dict): forecast parameters

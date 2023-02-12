@@ -15,9 +15,10 @@ dependencies:
   - flake8
   - flake8-rst-docstrings
 #docs
-  - sphinx
+  - sphinx==4.1.2
   - sphinx_rtd_theme
   - myst-parser
+  - docutils=0.16
   - nbsphinx
 #testing
   - pytest
