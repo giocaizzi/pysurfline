@@ -1,4 +1,4 @@
-pysurfline.core.ForecastGetter
+﻿pysurfline.core.ForecastGetter
 ==============================
 
 .. currentmodule:: pysurfline.core
@@ -18,5 +18,10 @@ pysurfline.core.ForecastGetter
    
 
    
+   
+   .. rubric:: Attributes
+   .. autosummary::
+   
+      ~ForecastGetter.baseurl
    
    
