@@ -25,7 +25,9 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
           pip install .
-          python -m update_readme_forecast.py
+    
+      - name: run
+        run : python -m update_readme_forecast.py
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
