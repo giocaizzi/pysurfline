@@ -26,6 +26,8 @@ jobs:
           pip install -r requirements.txt
           pip install .
           python -m update_readme_forecast.py
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit documentation changes
         run: |
