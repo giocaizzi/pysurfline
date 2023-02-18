@@ -10,34 +10,16 @@ import matplotlib.patheffects as pe
 from pysurfline import SpotForecast
 
 
-class SurfReport(SpotForecast):
+class SurfReport:
     """
     Structured spot surf-report object.
     """
+    def __init__(self, spotforecast : SpotForecast):
+        if hasattr(spotforecast,"forecasts"):
+            self.spotforecast = spotforecast
+        else:
+            raise ValueError("SpotForecast object must have a `forecast` attribute")
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self._set_df()
-        self._get_simple_surf_report()
-
-    def _set_df(self):
-        df = []
-        for attr in [
-            "wave",
-            "wind",
-            "weather",
-        ]:  # exclude "tides" because of HIGH LOW exact times
-            df.append(self.get_dataframe(attr))
-        df = pd.concat(df, axis=1)
-        self.df = df
-
-    def _get_simple_surf_report(self):
-        self.surf = self.df.copy()[
-            ["surf_min", "surf_max", "speed", "directionType", "direction"]
-        ]
-        # set Hmin <0.2m to nan for plotting reasons
-        self.surf.loc[(self.df["surf_min"] < 0.2), "surf_min"] = np.nan
 
     def plot(self):
         f, ax = plt.subplots(dpi=300)

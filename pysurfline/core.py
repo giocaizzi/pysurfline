@@ -41,6 +41,7 @@ class SpotForecast:
         self.json = SurflineAPI(self.spot_id).get_forecast(**kwargs)
         for key in self.json["data"]:
             df = pd.json_normalize(self.json["data"][key])
+            # convert date columns from timestamp to datetime
             if key == "sunriseSunsetTimes":
                 for col in df.columns:
                     df[col] = pd.to_datetime(df[col], unit="s")
