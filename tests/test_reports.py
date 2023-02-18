@@ -3,6 +3,7 @@ import pytest
 from pysurfline.core import SurflineAPI, SpotForecast
 from pysurfline.reports import SurfReport
 from unittest import mock
+import pandas as pd
 
 
 SPOT_ID = "123"
@@ -30,6 +31,7 @@ def pacthed_SpotForecast_noinfo(mock_get, cached_json):
 def test_SurfReport_init(pacthed_SpotForecast):
     r = SurfReport(pacthed_SpotForecast)
     assert hasattr(r,"spotforecast")
+    assert isinstance(r.spotforecast.forecasts,pd.DataFrame)
 
 def test_SurfReport_init_missinginfo(pacthed_SpotForecast_noinfo):
     with pytest.raises(ValueError):
