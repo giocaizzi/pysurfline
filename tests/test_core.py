@@ -3,9 +3,12 @@ import requests
 from unittest import mock
 from pysurfline.core import SurflineAPI, SpotForecast
 import json
+import pandas as pd
 
 SPOT_ID = "123"
 ENDPOINT = "https://services.surfline.com/kbyg/spots/forecasts?"
+
+################################################# SURFLINE API WRAPPER
 
 
 @pytest.fixture
@@ -66,6 +69,9 @@ def test_SurflineAPI_get_forecast_raises_othererror(mock_get, api):
         api.get_forecast()
 
 
+################################################# CUSTOM CLASSES
+
+
 @pytest.fixture
 def spotforecast():
     return SpotForecast(SPOT_ID)
@@ -85,9 +91,10 @@ def test_SpotForecast_init(spotforecast):
 
 
 @mock.patch("pysurfline.SurflineAPI.get_forecast")
-def test_SpotForecast_get_forecasts(mock_get, spotforecast):
+def test_SpotForecast_load_forecast(mock_get, spotforecast):
     mock_get.return_value = cached_json("surf")
     spotforecast.load_forecast()
     attrs = ["sunriseSunsetTimes", "tideLocation", "forecasts", "tides"]
     for attr in attrs:
         assert hasattr(spotforecast, attr)
+        assert isinstance(getattr(spotforecast, attr), pd.DataFrame)
