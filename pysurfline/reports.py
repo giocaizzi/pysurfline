@@ -1,10 +1,9 @@
 """reports"""
-import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import datetime
-import numpy as np
 import matplotlib.patheffects as pe
+
 from pysurfline.utils import degToCompass
 from pysurfline import SpotForecast
 
@@ -75,7 +74,7 @@ class SurfReport:
         )
 
         self.bars = [p1, p2]
-        self.self.hmax = self.hmax
+        self.hmax = self.hmax
 
     def _add_now_line(self, ax):
         ax.axvline(
@@ -108,7 +107,7 @@ class SurfReport:
         # windspeed and wind direction colored on condition
         xs = self.spotforecast.forecasts.index.tolist()
         windspeeds = self.spotforecast.forecasts["wind.speed"].tolist()
-        winddirections = self.spotforecast.forecasts.direction.tolist()
+        winddirections = self.spotforecast.forecasts["wind.direction"].tolist()
         for x, ws, wd in zip(xs, windspeeds, winddirections):
             ax.annotate(
                 int(ws),
