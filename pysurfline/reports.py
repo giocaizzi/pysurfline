@@ -32,7 +32,7 @@ class SurfReport:
         self._add_bars(ax)
         self._add_now_line(ax)
         self._add_labels(ax)
-        # self._add_dates(ax)
+        self._add_dates(ax)
 
         plt.show()
 
@@ -53,9 +53,9 @@ class SurfReport:
         ax.grid(axis="x", which="major", zorder=1, linewidth=0.1, color="k")
 
     def _add_bars(self, ax):
-        hmax = self.forecasts["surf.max"].max() * 1.2
-        if hmax < 2:
-            hmax = 2
+        self.hmax = self.forecasts["surf.max"].max() * 1.2
+        if self.hmax < 2:
+            self.hmax = 2
 
         p1 = ax.bar(
             self.forecasts.index,
@@ -75,7 +75,7 @@ class SurfReport:
         )
 
         self.bars = [p1, p2]
-        self.hmax = hmax
+        self.self.hmax = self.hmax
 
     def _add_now_line(self, ax):
         ax.axvline(
@@ -87,16 +87,112 @@ class SurfReport:
         )
 
     def _add_labels(self, ax):
+        ax.bar_label(
+            self.bars[0],
+            label_type="edge",
+            zorder=4,
+            size=5,
+            fmt="%.1f",
+            weight="bold",
+            path_effects=[pe.withStroke(linewidth=1, foreground="w")],
+        )
+        ax.bar_label(
+            self.bars[1],
+            label_type="edge",
+            zorder=4,
+            size=5,
+            fmt="%.1f",
+            weight="bold",
+            path_effects=[pe.withStroke(linewidth=1, foreground="w")],
+        )
+        # windspeed and wind direction colored on condition
         xs = self.forecasts.index.tolist()
-        windspeeds = self.forecasts.speed.tolist()
-        conditions = self.forecasts.directionType.tolist()
+        windspeeds = self.forecasts["wind.speed"].tolist()
         winddirections = self.forecasts.direction.tolist()
-        for x, ws, cond, wd in zip(xs, windspeeds, conditions, winddirections):
+        for x, ws, wd in zip(xs, windspeeds, winddirections):
             ax.annotate(
                 int(ws),
                 xy=(mdates.date2num(x), self.hmax - (self.hmax * 0.01)),
                 fontsize=7,
-                color=WIND_COLORS[cond],
+                color="k",
                 zorder=4,
-                weight="bold",)
-               
+                weight="bold",
+                va="top",
+                ha="center",
+                path_effects=[pe.withStroke(linewidth=1, foreground="w")],
+            )
+            ax.annotate(
+                degToCompass(wd) + "\n(" + "{:.0f}".format(wd) + "°)",
+                xy=(mdates.date2num(x), self.hmax - (self.hmax * 0.04)),
+                fontsize=4,
+                color="k",
+                weight="bold",
+                zorder=4,
+                va="top",
+                ha="center",
+                path_effects=[pe.withStroke(linewidth=1, foreground="w")],
+            )
+
+    def _add_dates(self, ax):
+        # dates index
+        ax.figure.autofmt_xdate()
+        ax.xaxis.set_minor_locator(
+            mdates.HourLocator(byhour=(0, 3, 6, 9, 12, 15, 18, 21))
+        )
+        ax.xaxis.set_major_locator(mdates.DayLocator())
+        ax.set(xlabel="Date (UTC Time)", ylabel="Surf Height [m]")
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%d-%b"))
+        ax.xaxis.set_minor_formatter(mdates.DateFormatter("%H"))
+
+        # Rotates and right-aligns the x labels so they don't crowd each other.
+        ax.tick_params(axis="x", which="major", pad=10)
+        for label in ax.get_yticklabels(which="major"):
+            label.set(rotation=0, size=4)
+        for label in ax.get_xticklabels(which="major"):
+            label.set(rotation=0, horizontalalignment="center", size=4)
+        for label in ax.get_xticklabels(which="minor"):
+            label.set(horizontalalignment="center", size=3)
+
+        # lims
+        ax.set_ylim([0, self.hmax])
+        ax.set_xlim([self.surf.index[0], self.surf.index[-1]])
+
+        # legend
+        ax.legend(loc="lower left", bbox_to_anchor=(1, 0), fontsize=5)
+        # windlegend
+        ax.annotate(
+            "WIND",
+            xy=(1.025, 0.998),
+            size=7,
+            xycoords="axes fraction",
+            va="top",
+            ha="left",
+        )
+        ax.annotate(
+            "Offshore",
+            xy=(1.025, 0.965),
+            size=4,
+            xycoords="axes fraction",
+            va="top",
+            ha="left",
+            color=WIND_COLORS["Offshore"],
+        )
+        ax.annotate(
+            "Cross-shore",
+            xy=(1.025, 0.95),
+            size=4,
+            xycoords="axes fraction",
+            va="top",
+            ha="left",
+            color=WIND_COLORS["Cross-shore"],
+        )
+        ax.annotate(
+            "Onshore",
+            xy=(1.025, 0.935),
+            size=4,
+            xycoords="axes fraction",
+            va="top",
+            ha="left",
+            color=WIND_COLORS["Onshore"],
+        )
+        ax.set_tight_layout(True)
