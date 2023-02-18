@@ -32,7 +32,7 @@ class SurfReport:
         self._add_bars(ax)
         self._add_now_line(ax)
         self._add_labels(ax)
-        self._add_dates(ax)
+        # self._add_dates(ax)
 
         plt.show()
 
