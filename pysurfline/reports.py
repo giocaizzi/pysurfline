@@ -53,21 +53,21 @@ class SurfReport:
         ax.grid(axis="x", which="major", zorder=1, linewidth=0.1, color="k")
 
     def _add_bars(self, ax):
-        self.hmax = self.forecasts["surf.max"].max() * 1.2
+        self.hmax = self.spotforecast.forecasts["surf.max"].max() * 1.2
         if self.hmax < 2:
             self.hmax = 2
 
         p1 = ax.bar(
-            self.forecasts.index,
-            self.forecasts["surf.max"],
+            self.spotforecast.forecasts.index,
+            self.spotforecast.forecasts["surf.max"],
             color=SURF_COLORS["Hmax"],
             label="Hmax",
             zorder=2,
             width=0.1,
         )
         p2 = ax.bar(
-            self.forecasts.index,
-            self.forecasts["surf.min"],
+            self.spotforecast.forecasts.index,
+            self.spotforecast.forecasts["surf.min"],
             color=SURF_COLORS["Hmin"],
             label="Hmin",
             zorder=3,
@@ -106,9 +106,9 @@ class SurfReport:
             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
         )
         # windspeed and wind direction colored on condition
-        xs = self.forecasts.index.tolist()
-        windspeeds = self.forecasts["wind.speed"].tolist()
-        winddirections = self.forecasts.direction.tolist()
+        xs = self.spotforecast.forecasts.index.tolist()
+        windspeeds = self.spotforecast.forecasts["wind.speed"].tolist()
+        winddirections = self.spotforecast.forecasts.direction.tolist()
         for x, ws, wd in zip(xs, windspeeds, winddirections):
             ax.annotate(
                 int(ws),
