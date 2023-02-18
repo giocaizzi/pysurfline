@@ -14,12 +14,12 @@ class SurfReport:
     """
     Structured spot surf-report object.
     """
-    def __init__(self, spotforecast : SpotForecast):
-        if hasattr(spotforecast,"forecasts"):
+
+    def __init__(self, spotforecast: SpotForecast):
+        if hasattr(spotforecast, "forecasts"):
             self.spotforecast = spotforecast
         else:
             raise ValueError("SpotForecast object must have a `forecast` attribute")
-
 
     def plot(self):
         f, ax = plt.subplots(dpi=300)

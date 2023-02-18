@@ -75,6 +75,7 @@ def test_SurflineAPI_get_forecast_raises_othererror(mock_get, api):
 def spotforecast():
     return SpotForecast(SPOT_ID)
 
+
 def test_SpotForecast_init(spotforecast):
     """
     Test the initialization of the SpotForecast object.
@@ -83,7 +84,7 @@ def test_SpotForecast_init(spotforecast):
 
 
 @mock.patch("pysurfline.SurflineAPI.get_forecast")
-def test_SpotForecast_load_forecast(mock_get, spotforecast,cached_json):
+def test_SpotForecast_load_forecast(mock_get, spotforecast, cached_json):
     mock_get.return_value = cached_json
     spotforecast.load_forecast()
     attrs = ["sunriseSunsetTimes", "tideLocation", "forecasts", "tides"]
