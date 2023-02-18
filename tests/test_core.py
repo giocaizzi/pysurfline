@@ -1,26 +1,31 @@
 import pytest
 import requests
 from unittest import mock
-from pysurfline.core import SurflineAPI
+from pysurfline.core import SurflineAPI, SpotForecast
+import json
+
+SPOT_ID = "123"
+ENDPOINT = "https://services.surfline.com/kbyg/spots/forecasts?"
 
 
 @pytest.fixture
 def api():
-    return SurflineAPI("123")
+    return SurflineAPI(SPOT_ID)
 
 
-def test_init(api):
+def test_SurflineAPI_init(api):
     """
     Test the initialization of the API object.
     """
-    assert api.endpoint == "https://services.surfline.com/kbyg/spots/forecasts?"
-    assert api.spot_id == "123"
+    assert api.endpoint == ENDPOINT
+    assert api.spot_id == SPOT_ID
 
 
 @mock.patch("pysurfline.core.requests.get")
-def test_get_forecast(mock_get, api):
+def test_SurflineAPI_get_forecast(mock_get, api):
     """
     Test the retrieval of forecast data from the API.
+    Both with default and custom parameters
     """
     mock_get.return_value.status_code = 200
     mock_get.return_value.json.return_value = {"foo": "bar"}
@@ -29,21 +34,21 @@ def test_get_forecast(mock_get, api):
     assert api.get_forecast() == {"foo": "bar"}
     mock_get.assert_called_once_with(
         f"{api.endpoint}",
-        params={"spotId": "123", "days": 3, "type": "surf", "interval_hours": 3},
+        params={"spotId": SPOT_ID, "days": 3, "type": "surf", "interval_hours": 3},
     )
 
     # custom
-    assert api.get_forecast("wind", 2, 6) == {"foo": "bar"}
+    assert api.get_forecast(7, 6) == {"foo": "bar"}
     mock_get.assert_called_with(
         f"{api.endpoint}",
-        params={"spotId": "123", "days": 2, "type": "wind", "interval_hours": 6},
+        params={"spotId": SPOT_ID, "days": 7, "type": "surf", "interval_hours": 6},
     )
 
 
 @mock.patch("pysurfline.core.requests.get")
-def test_get_forecast_error(mock_get, api):
+def test_SurflineAPI_get_forecast_error(mock_get, api):
     """
-    Test the retrieval of forecast data from the API with an error status code.
+    Test the retrieval of forecast data from the API with an HTTP error status code.
     """
     mock_get.return_value.raise_for_status.side_effect = requests.exceptions.HTTPError()
 
@@ -52,8 +57,37 @@ def test_get_forecast_error(mock_get, api):
 
 
 @mock.patch("pysurfline.core.requests.get")
-def test_get_forecast_raises_othererror(mock_get, api):
+def test_SurflineAPI_get_forecast_raises_othererror(mock_get, api):
+    """
+    Tests the retrieval of forecast data from the API with other errors.
+    """
     mock_get.return_value.raise_for_status.side_effect = ValueError()
-
     with pytest.raises(ValueError):
         api.get_forecast()
+
+
+@pytest.fixture
+def spotforecast():
+    return SpotForecast(SPOT_ID)
+
+
+def cached_json(jsonfilename):
+    """gets cached json responses from tests/fixtures folder"""
+    with open(f"tests/fixtures/{jsonfilename}.json", "r") as f:
+        return json.load(f)
+
+
+def test_SpotForecast_init(spotforecast):
+    """
+    Test the initialization of the SpotForecast object.
+    """
+    assert spotforecast.spot_id == SPOT_ID
+
+
+@mock.patch("pysurfline.SurflineAPI.get_forecast")
+def test_SpotForecast_get_forecasts(mock_get, spotforecast):
+    mock_get.return_value = cached_json("surf")
+    spotforecast.load_forecast()
+    attrs = ["sunriseSunsetTimes", "tideLocation", "forecasts", "tides"]
+    for attr in attrs:
+        assert hasattr(spotforecast, attr)

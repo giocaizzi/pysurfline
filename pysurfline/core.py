@@ -10,15 +10,11 @@ from pysurfline.utils import flatten
 
 class SpotForecast:
     """
-    Full surfline forecast of given spot.
+    Custom object representing the forecast of a single spot.
     Data is stored as class attributes.
 
-    Arguments:
-        params (dict): forecast parameters
-        verbose (bool): print log
-
     Attributes:
-        api_log (list): api requests log
+        api (:obj:`pysurfline.core.SurflineAPI`): original API object
         forecastLocation (dict) : forecast location
         location (dict) : spot location
         offshoreLocation (dict) : location where wave are forecasted
@@ -38,47 +34,27 @@ class SpotForecast:
         wind (list): list of wind forecast
     """
 
-    def __init__(self, params, verbose=False):
-        self.params = params
-        self.verbose = verbose
-        self._get_forecasts()
-
-    def _get_forecasts(self):
+    def __init__(self, spot_id: str):
         """
-        get all types of forecasts setting an attribute for each
+        Initialize the SpotForecast object with a `spot_id` argument.
+
+        Args:
+            spot_id (str): _description_
         """
-        types = ["wave", "wind", "tides", "weather"]
-        log = []
-        for type in types:
-            f = ForecastGetter(type, self.params)
-            if f.response.status_code == 200:
-                forecast = f.response.json()
+        self.spot_id = spot_id
 
-                # parse response data
-                for key in forecast["data"]:
-                    setattr(self, key, forecast["data"][key])
+    def load_forecast(self, **kwargs):
+        """
+        loads spot forecast, setting an attribute for each
 
-                # parse all associated information
-                for key in forecast["associated"]:
-                    # units stored with attribute name that refers to
-                    # eventually duplicated attr are not overwritten
-                    if key in [
-                        "units",
-                    ] or hasattr(self, key):
-                        setattr(self, key + "_" + type, forecast["associated"][key])
-                    else:
-                        setattr(self, key, forecast["associated"][key])
-
-                # format dates contained ion data
-                self._format_attribute(type)
-            else:
-                print(f"Error : {f.response.status_code}")
-                print(f.response.reason)
-            if self.verbose:
-                print("-----")
-                print(f)
-            log.append(str(f))
-        self.api_log = log
+        Args:
+            **kwargs: keyword arguments passed to 'SurflineAPI.get_forecast' method.
+        """
+        self.api = SurflineAPI(self.spot_id).get_forecast(**kwargs)
+        for key in self.api["data"]:
+            setattr(self, key, self.api["data"][key])
+        # format dates contained ion data
+        # self._format_attribute(type)
 
     def _format_attribute(self, type):
         """
@@ -93,7 +69,7 @@ class SpotForecast:
             if type == "wave":
                 getattr(self, type)[i] = flatten(getattr(self, type)[i])
 
-    def get_dataframe(self, attr):
+    def get_dataframe(self, attr: str):
         """
         returns requested attribute as pandas dataframe
 
@@ -122,9 +98,6 @@ class SurflineAPI:
 
     BASE_URL = "https://services.surfline.com/kbyg/spots/forecasts"
     SURF_TYPE = "surf"
-    WIND_TYPE = "wind"
-    WEATHER_TYPE = "weather"
-    TIDES_TYPE = "tides"
 
     def __init__(self, spot_id: str):
         """
@@ -138,7 +111,6 @@ class SurflineAPI:
 
     def get_forecast(
         self,
-        forecast_type: str = SURF_TYPE,
         days: int = 3,
         interval_hours: int = 3,
     ) -> dict:
@@ -147,8 +119,6 @@ class SurflineAPI:
         the forecast for the specified spot.
 
         Args:
-            forecast_type: The type of forecast requested, can be 'surf',
-                'wind', 'weather', or 'tides' (defaults to 'surf').
             interval_hours (int): The number of hours between each
                 forecast data point. Defaults to 3.
             days: The number of forecast days requested (defaults to 3).
@@ -163,7 +133,7 @@ class SurflineAPI:
         """
         params = {
             "spotId": self.spot_id,
-            "type": forecast_type,
+            "type": "surf",
             "days": days,
             "interval_hours": interval_hours,
         }
