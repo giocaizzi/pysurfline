@@ -2,6 +2,7 @@
 core classes for basic Surfline API v2 URL requests
 """
 import requests
+from requests.exceptions import HTTPError
 import pandas as pd
 
 from pysurfline.utils import flatten
@@ -116,34 +117,62 @@ class SpotForecast:
             raise TypeError("Must be a list.")
 
 
-class ForecastGetter:
-    """
-    Getter of specific forecast type (:obj:`wave`,
-    :obj:`wind`, :obj:`tides`, :obj:`weather`).
+class SurflineAPI:
+    """Wrapper for the Surfline API."""
 
-    Arguments:
-        type (str): type of forecast to get :obj:`wave`,
-            :obj:`wind`, :obj:`tides`, :obj:`weather`
-        params (dict): dictonary of forecast parameters
+    BASE_URL = "https://services.surfline.com/kbyg/spots/forecasts"
+    SURF_TYPE = "surf"
+    WIND_TYPE = "wind"
+    WEATHER_TYPE = "weather"
+    TIDES_TYPE = "tides"
 
-    Attributes:
-        baseurl (str) : URL built by :obj:`pysurfline.URLBuilder` object.
-        response (:obj:`requests.response`): A :obj:`request.response` object.
-        type (str): type of forecast to get ( :obj:`wave`, :obj:`wind`,
-            :obj:`tides`, :obj:`weather`)
-        params (dict): dictonary for request of forecast parameters
-    """
+    def __init__(self, spot_id: str):
+        """
+        Initializes the API object with the spot ID code.
 
-    baseurl = "https://services.surfline.com/kbyg/spots/forecasts/"
+        Args:
+            spot_id: The ID of the spot.
+        """
+        self.spot_id = spot_id
+        self.endpoint = f"{self.BASE_URL}?"
 
-    def __init__(self, type: str, params: dict):
-        self.type = type
-        self.params = params
-        self.response = requests.get(self.baseurl + self.type, params=params)
-        self.url = self.response.url
+    def get_forecast(
+        self,
+        forecast_type: str = SURF_TYPE,
+        days: int = 3,
+        interval_hours: int = 3,
+    ) -> dict:
+        """
+        Sends an HTTP request to the Surfline API to retrieve
+        the forecast for the specified spot.
 
-    def __repr__(self):
-        return f"ForecastGetter(Type:{self.type}, Status:{self.response.status_code})"
+        Args:
+            forecast_type: The type of forecast requested, can be 'surf',
+                'wind', 'weather', or 'tides' (defaults to 'surf').
+            interval_hours (int): The number of hours between each
+                forecast data point. Defaults to 3.
+            days: The number of forecast days requested (defaults to 3).
 
-    def __str__(self):
-        return f"ForecastGetter(Type:{self.type}, Status:{self.response.status_code})"
+        Returns:
+            A dictionary containing the forecast data.
+
+        Raises:
+            HTTPError: If the HTTP request returns an error status code.
+            ValueError: If an error occurs while processing
+                the response data.
+        """
+        params = {
+            "spotId": self.spot_id,
+            "type": forecast_type,
+            "days": days,
+            "interval_hours": interval_hours,
+        }
+        response = requests.get(self.endpoint, params=params)
+
+        try:
+            response.raise_for_status()
+            return response.json()
+        except HTTPError as http_err:
+            raise HTTPError(f"HTTP error occurred: {http_err}")
+        except Exception as err:
+            raise ValueError(f"Error occurred: {err}")
