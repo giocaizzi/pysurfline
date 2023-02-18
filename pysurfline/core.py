@@ -40,10 +40,17 @@ class SpotForecast:
         """
         self.json = SurflineAPI(self.spot_id).get_forecast(**kwargs)
         for key in self.json["data"]:
-            setattr(self, key, pd.json_normalize(self.json["data"][key]))
-        
+            df = pd.json_normalize(self.json["data"][key])
+            if key == "sunriseSunsetTimes":
+                for col in df.columns:
+                    df[col] = pd.to_datetime(df[col], unit="s")
+            elif key in ["forecasts", "tides"]:
+                df["timestamp"] = pd.to_datetime(df["timestamp"], unit="s")
+            setattr(self, key, df)
+
         self.utcOffset = self.json["utcOffset"]
         self.units = self.json["units"]
+
 
 class SurflineAPI:
     """Wrapper for the Surfline API.
