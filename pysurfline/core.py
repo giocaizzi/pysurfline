@@ -18,6 +18,8 @@ class SpotForecast:
         forecast (:obj:`pd.DataFrame`): surf forecast
         tideLocation (:obj:`pd.DataFrame`) : location where tide is computed
         tides (:obj:`pd.DataFrame`): tides forecast
+        utcOffset (int) : utc offset
+        units (dict): units of data
     """
 
     def __init__(self, spot_id: str):
@@ -39,7 +41,9 @@ class SpotForecast:
         self.json = SurflineAPI(self.spot_id).get_forecast(**kwargs)
         for key in self.json["data"]:
             setattr(self, key, pd.json_normalize(self.json["data"][key]))
-
+        
+        self.utcOffset = self.json["utcOffset"]
+        self.units = self.json["units"]
 
 class SurflineAPI:
     """Wrapper for the Surfline API.
