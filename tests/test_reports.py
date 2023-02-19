@@ -1,13 +1,17 @@
 """test reports"""
 import pytest
-from pysurfline.core import SurflineAPI, SpotForecast
+from pysurfline.core import SpotForecast
 from pysurfline.reports import SurfReport
 from unittest import mock
 import pandas as pd
-from matplotlib.dates import date2num,num2date
+from matplotlib.dates import date2num
 import matplotlib.pyplot as plt
 import datetime
 import matplotlib
+import matplotlib.patheffects as pe
+
+# decorator from matplotlib.testing.decorators 
+# to ensure that the figure is closed at the end of the test.
 
 
 SPOT_ID = "123"
@@ -45,6 +49,22 @@ def test_SurfReport_init_missinginfo(patched_SpotForecast_noinfo):
         SurfReport(patched_SpotForecast_noinfo)
 
 
+def test_add_wave_labels(patched_SpotForecast):
+    r = SurfReport(patched_SpotForecast)
+    fig, ax = plt.subplots()
+    r._add_bars(ax)
+    r._add_wave_labels(ax)
+    assert len(r.bars) == 2
+    for ib,bardata in zip(r.bars,[patched_SpotForecast.forecasts["surf.max"],patched_SpotForecast.forecasts["surf.min"]]):
+        labelcollection = ax.bar_label(ib)
+
+        ## get_text() restitutes raw data, ignoring formatting
+        assert labelcollection[0].get_text() == f"{bardata[0]}"
+        assert labelcollection[0].get_fontsize() == 10
+        # # assert labelcollection[0].get_fontweight() == "bold"
+        # assert labelcollection[0].get_path_effects()[0].get_linewidth() == 1
+        # assert labelcollection[0].get_path_effects()[0].get_foreground() == "w"
+
 def test_add_grid(patched_SpotForecast):
     r = SurfReport(patched_SpotForecast)
     fig, ax = plt.subplots()
@@ -60,7 +80,7 @@ def test_add_grid(patched_SpotForecast):
         assert line.get_linewidth() == 0.1
         assert line.get_color() == "k"
 
-@pytest.mark.skip
+
 def test_add_bars(patched_SpotForecast):
     """test that a red line is placed at the now date"""
     r = SurfReport(patched_SpotForecast)    
@@ -68,7 +88,7 @@ def test_add_bars(patched_SpotForecast):
     r._add_bars(ax)
     
     patches = ax.get_children()
-    actual_patches = [p for p in patches if isinstance(p, matplotlib.patches.Rectangle)]
+    actual_patches = [p for p in patches if isinstance(p, matplotlib.patches.Polygon)]
 
     assert len(ax.patches) == len(patched_SpotForecast.forecasts)*2
 
@@ -84,6 +104,7 @@ def test_add_bars(patched_SpotForecast):
         )
         assert patch.get_x() == date2num(patched_SpotForecast.forecasts["timestamp"].iloc[i])
 
+
 def test_add_now_line(patched_SpotForecast):
     """test that a red line is placed at the now date"""
     r = SurfReport(patched_SpotForecast)
@@ -92,9 +113,11 @@ def test_add_now_line(patched_SpotForecast):
         + datetime.timedelta(hours=4)
     )
     fig, ax = plt.subplots()
+
     with mock.patch("pysurfline.reports.datetime.datetime") as mock_now:
         mock_now.now.return_value = now
         r._add_now_line(ax)
+
     # Check that the line exists and is in the correct position
     lines = ax.get_lines()
     assert len(lines) == 1

@@ -35,8 +35,8 @@ class SurfReport:
         self._add_grid(ax)
         self._add_bars(ax)
         self._add_now_line(ax)
-
-        # self._add_labels(ax)
+        self._add_wave_labels(ax)
+        self._add_wind_labels(ax)
         # self._add_dates(ax)
         # self._add_legend(ax)
 
@@ -97,7 +97,7 @@ class SurfReport:
             zorder=3,
         )
 
-    def _add_labels(self, ax):
+    def _add_wave_labels(self, ax):
         ax.bar_label(
             self.bars[0],
             label_type="edge",
@@ -116,7 +116,9 @@ class SurfReport:
             weight="bold",
             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
         )
-        # windspeed and wind direction colored on condition
+
+    def _add_wind_labels(self,ax):
+        # windspeed and wind direction
         xs = self.spotforecast.forecasts.index.tolist()
         windspeeds = self.spotforecast.forecasts["wind.speed"].tolist()
         winddirections = self.spotforecast.forecasts["wind.direction"].tolist()
