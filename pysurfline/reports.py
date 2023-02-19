@@ -24,15 +24,16 @@ class SurfReport:
             raise ValueError("SpotForecast object must have a `forecast` attribute")
 
     def plot(self):
-        f, ax = plt.subplots(dpi=300)
+        f, ax = plt.subplots()
 
         self.hmax = self.spotforecast.forecasts["surf.max"].max() * 1.2
         if self.hmax < 2:
             self.hmax = 2
 
+        self._set_xlims(ax)
         self._add_day_night(ax)
         self._add_grid(ax)
-        # self._add_bars(ax)
+        self._add_bars(ax)
         self._add_now_line(ax)
 
         # self._add_labels(ax)
@@ -40,6 +41,16 @@ class SurfReport:
         # self._add_legend(ax)
 
         plt.show()
+    
+    def _set_xlims(self,ax):
+        """set xlims"""
+        ax.set_ylim([0, self.hmax])
+        ax.set_xlim(
+            [
+                self.spotforecast.forecasts["timestamp"].iloc[0],
+                self.spotforecast.forecasts["timestamp"].iloc[-1],
+            ]
+        )
 
     def _add_day_night(self, ax):
         daylight = self.spotforecast.sunriseSunsetTimes
@@ -59,7 +70,7 @@ class SurfReport:
 
     def _add_bars(self, ax):
         p1 = ax.bar(
-            self.spotforecast.forecasts.index,
+            self.spotforecast.forecasts["timestamp"],
             self.spotforecast.forecasts["surf.max"],
             color=SURF_COLORS["Hmax"],
             label="Hmax",
@@ -67,7 +78,7 @@ class SurfReport:
             width=0.1,
         )
         p2 = ax.bar(
-            self.spotforecast.forecasts.index,
+            self.spotforecast.forecasts["timestamp"],
             self.spotforecast.forecasts["surf.min"],
             color=SURF_COLORS["Hmin"],
             label="Hmin",
@@ -76,7 +87,6 @@ class SurfReport:
         )
 
         self.bars = [p1, p2]
-        self.hmax = self.hmax
 
     def _add_now_line(self, ax):
         ax.axvline(
@@ -154,14 +164,6 @@ class SurfReport:
         for label in ax.get_xticklabels(which="minor"):
             label.set(horizontalalignment="center", size=3)
 
-        # lims
-        ax.set_ylim([0, self.hmax])
-        ax.set_xlim(
-            [
-                self.spotforecast.forecasts.index[0],
-                self.spotforecast.forecasts.index[-1],
-            ]
-        )
 
     def _add_legend(self, ax):
         # legend

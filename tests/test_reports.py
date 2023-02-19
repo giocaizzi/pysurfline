@@ -4,9 +4,10 @@ from pysurfline.core import SurflineAPI, SpotForecast
 from pysurfline.reports import SurfReport
 from unittest import mock
 import pandas as pd
-import matplotlib
+from matplotlib.dates import date2num,num2date
 import matplotlib.pyplot as plt
 import datetime
+import matplotlib
 
 
 SPOT_ID = "123"
@@ -59,11 +60,34 @@ def test_add_grid(patched_SpotForecast):
         assert line.get_linewidth() == 0.1
         assert line.get_color() == "k"
 
+@pytest.mark.skip
+def test_add_bars(patched_SpotForecast):
+    """test that a red line is placed at the now date"""
+    r = SurfReport(patched_SpotForecast)    
+    fig, ax = plt.subplots()
+    r._add_bars(ax)
+    
+    patches = ax.get_children()
+    actual_patches = [p for p in patches if isinstance(p, matplotlib.patches.Rectangle)]
+
+    assert len(ax.patches) == len(patched_SpotForecast.forecasts)*2
+
+    # Check that the patches are located correctly
+    for i, patch in enumerate(actual_patches):
+        assert patch.get_width() == 0.1
+        v1=patch.get_xy()[0, 0]
+        v2=patch.get_xy()[3, 0]
+        print(
+            i,
+            v1,
+            v2
+        )
+        assert patch.get_x() == date2num(patched_SpotForecast.forecasts["timestamp"].iloc[i])
 
 def test_add_now_line(patched_SpotForecast):
     """test that a red line is placed at the now date"""
     r = SurfReport(patched_SpotForecast)
-    now = matplotlib.dates.date2num(
+    now = date2num(
         patched_SpotForecast.sunriseSunsetTimes["midnight"][0]
         + datetime.timedelta(hours=4)
     )
@@ -112,8 +136,8 @@ def test_add_day_night(patched_SpotForecast):
         actual_patches, expected_spans, expected_colors * len(expected_spans)
     ):
         assert patch.get_facecolor() == expected_color
-        es1 = matplotlib.dates.date2num(expected_span[0])
-        es2 = matplotlib.dates.date2num(expected_span[1])
+        es1 = date2num(expected_span[0])
+        es2 = date2num(expected_span[1])
         as1 = patch.get_xy()[0, 0]
         as2 = patch.get_xy()[3, 0]
 
