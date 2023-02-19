@@ -10,7 +10,7 @@ import datetime
 import matplotlib
 import matplotlib.patheffects as pe
 
-# decorator from matplotlib.testing.decorators 
+# decorator from matplotlib.testing.decorators
 # to ensure that the figure is closed at the end of the test.
 
 
@@ -55,15 +55,21 @@ def test_add_wave_labels(patched_SpotForecast):
     r._add_bars(ax)
     r._add_wave_labels(ax)
     assert len(r.bars) == 2
-    for ib,bardata in zip(r.bars,[patched_SpotForecast.forecasts["surf.max"],patched_SpotForecast.forecasts["surf.min"]]):
+    for ib, bardata in zip(
+        r.bars,
+        [
+            patched_SpotForecast.forecasts["surf.max"],
+            patched_SpotForecast.forecasts["surf.min"],
+        ],
+    ):
         labelcollection = ax.bar_label(ib)
-
         ## get_text() restitutes raw data, ignoring formatting
         assert labelcollection[0].get_text() == f"{bardata[0]}"
         assert labelcollection[0].get_fontsize() == 10
         # # assert labelcollection[0].get_fontweight() == "bold"
         # assert labelcollection[0].get_path_effects()[0].get_linewidth() == 1
         # assert labelcollection[0].get_path_effects()[0].get_foreground() == "w"
+
 
 def test_add_grid(patched_SpotForecast):
     r = SurfReport(patched_SpotForecast)
@@ -83,26 +89,24 @@ def test_add_grid(patched_SpotForecast):
 
 def test_add_bars(patched_SpotForecast):
     """test that a red line is placed at the now date"""
-    r = SurfReport(patched_SpotForecast)    
+    r = SurfReport(patched_SpotForecast)
     fig, ax = plt.subplots()
     r._add_bars(ax)
-    
+
     patches = ax.get_children()
     actual_patches = [p for p in patches if isinstance(p, matplotlib.patches.Polygon)]
 
-    assert len(ax.patches) == len(patched_SpotForecast.forecasts)*2
+    assert len(ax.patches) == len(patched_SpotForecast.forecasts) * 2
 
     # Check that the patches are located correctly
     for i, patch in enumerate(actual_patches):
         assert patch.get_width() == 0.1
-        v1=patch.get_xy()[0, 0]
-        v2=patch.get_xy()[3, 0]
-        print(
-            i,
-            v1,
-            v2
+        v1 = patch.get_xy()[0, 0]
+        v2 = patch.get_xy()[3, 0]
+        print(i, v1, v2)
+        assert patch.get_x() == date2num(
+            patched_SpotForecast.forecasts["timestamp"].iloc[i]
         )
-        assert patch.get_x() == date2num(patched_SpotForecast.forecasts["timestamp"].iloc[i])
 
 
 def test_add_now_line(patched_SpotForecast):

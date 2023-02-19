@@ -41,8 +41,8 @@ class SurfReport:
         # self._add_legend(ax)
 
         plt.show()
-    
-    def _set_xlims(self,ax):
+
+    def _set_xlims(self, ax):
         """set xlims"""
         ax.set_ylim([0, self.hmax])
         ax.set_xlim(
@@ -117,7 +117,7 @@ class SurfReport:
             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
         )
 
-    def _add_wind_labels(self,ax):
+    def _add_wind_labels(self, ax):
         # windspeed and wind direction
         xs = self.spotforecast.forecasts.index.tolist()
         windspeeds = self.spotforecast.forecasts["wind.speed"].tolist()
@@ -165,7 +165,6 @@ class SurfReport:
             label.set(rotation=0, horizontalalignment="center", size=4)
         for label in ax.get_xticklabels(which="minor"):
             label.set(horizontalalignment="center", size=3)
-
 
     def _add_legend(self, ax):
         # legend
