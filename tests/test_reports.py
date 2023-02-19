@@ -32,14 +32,32 @@ def patched_SpotForecast_noinfo(mock_get, cached_json):
 
 
 def test_SurfReport_init(patched_SpotForecast):
+    """test initailzation"""
     r = SurfReport(patched_SpotForecast)
     assert hasattr(r, "spotforecast")
     assert isinstance(r.spotforecast.forecasts, pd.DataFrame)
 
 
 def test_SurfReport_init_missinginfo(patched_SpotForecast_noinfo):
+    """test failed intialization with object that did not have forecast yet"""
     with pytest.raises(ValueError):
         SurfReport(patched_SpotForecast_noinfo)
+
+
+def test_add_grid(patched_SpotForecast):
+    r = SurfReport(patched_SpotForecast)
+    fig, ax = plt.subplots()
+    r._add_grid(ax)
+    ygridlines = ax.yaxis.get_gridlines()
+    assert len(ygridlines) > 0
+    for line in ygridlines:
+        assert line.get_linewidth() == 0.1
+        assert line.get_color() == "k"
+    xgridlines = ax.xaxis.get_gridlines()
+    assert len(xgridlines) > 0
+    for line in xgridlines:
+        assert line.get_linewidth() == 0.1
+        assert line.get_color() == "k"
 
 
 def test_add_day_night(patched_SpotForecast):
