@@ -26,12 +26,18 @@ class SurfReport:
     def plot(self):
         f, ax = plt.subplots(dpi=300)
 
+        self.hmax = self.spotforecast.forecasts["surf.max"].max() * 1.2
+        if self.hmax < 2:
+            self.hmax = 2
+
         self._add_day_night(ax)
         self._add_grid(ax)
-        self._add_bars(ax)
+        # self._add_bars(ax)
         self._add_now_line(ax)
-        self._add_labels(ax)
-        self._add_dates(ax)
+
+        # self._add_labels(ax)
+        # self._add_dates(ax)
+        # self._add_legend(ax)
 
         plt.show()
 
@@ -52,10 +58,6 @@ class SurfReport:
         ax.grid(axis="x", which="major", zorder=1, linewidth=0.1, color="k")
 
     def _add_bars(self, ax):
-        self.hmax = self.spotforecast.forecasts["surf.max"].max() * 1.2
-        if self.hmax < 2:
-            self.hmax = 2
-
         p1 = ax.bar(
             self.spotforecast.forecasts.index,
             self.spotforecast.forecasts["surf.max"],
@@ -154,8 +156,14 @@ class SurfReport:
 
         # lims
         ax.set_ylim([0, self.hmax])
-        ax.set_xlim([self.surf.index[0], self.surf.index[-1]])
+        ax.set_xlim(
+            [
+                self.spotforecast.forecasts.index[0],
+                self.spotforecast.forecasts.index[-1],
+            ]
+        )
 
+    def _add_legend(self, ax):
         # legend
         ax.legend(loc="lower left", bbox_to_anchor=(1, 0), fontsize=5)
         # windlegend
@@ -194,4 +202,3 @@ class SurfReport:
             ha="left",
             color=WIND_COLORS["Onshore"],
         )
-        ax.set_tight_layout(True)
