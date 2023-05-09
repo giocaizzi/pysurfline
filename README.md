@@ -3,7 +3,7 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pysurfline)
 ![PyPI](https://img.shields.io/pypi/v/pysurfline?color=blue)
 [![Tests](https://github.com/giocaizzi/pysurfline/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/giocaizzi/pysurfline/actions/workflows/tests.yml)
-![Codecov](https://img.shields.io/codecov/c/gh/giocaizzi/pysurfline)
+[![codecov](https://codecov.io/gh/giocaizzi/pysurfline/branch/main/graph/badge.svg?token=48CPYKM5BR)](https://codecov.io/gh/giocaizzi/pysurfline)
 ![PyPI - License](https://img.shields.io/pypi/l/pysurfline)
 
 Python wrapper of Surfline V2 API.
