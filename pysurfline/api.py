@@ -4,7 +4,7 @@ core classes for basic Surfline API v2 URL requests
 import requests
 from requests.exceptions import HTTPError
 
-from .spotforecast import SpotForecast
+from .models import SpotForecast
 
 
 def get_spot_forecast(spotId: str) -> SpotForecast:
