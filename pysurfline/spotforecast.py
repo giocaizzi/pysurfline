@@ -15,6 +15,15 @@ class DayLightTimes:
         self.sunrise = dt.fromtimestamp(self.sunrise)
         self.sunset = dt.fromtimestamp(self.sunset)
 
+@dataclass
+class ForecastLocation:
+    name: str
+    min: float
+    max: float
+    lon: float
+    lat: float
+    mean: float
+
 
 @dataclass
 class SpotForecast:
@@ -28,3 +37,4 @@ class SpotForecast:
         self.sunriseSunsetTimes = [
             DayLightTimes(**item) for item in self.sunriseSunsetTimes
         ]
+        self.tideLocation = ForecastLocation(**self.tideLocation)
