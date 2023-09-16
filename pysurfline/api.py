@@ -2,7 +2,6 @@
 core classes for basic Surfline API v2 URL requests
 """
 import requests
-from requests.exceptions import HTTPError
 
 from .models import SpotForecast
 
@@ -33,6 +32,7 @@ class SurflineClient:
             spotId,
             **APIGetter(self, "spots/forecasts").get(params={"spotId": spotId}).data,
         )
+
 
 class APIGetter:
     """

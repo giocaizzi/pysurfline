@@ -3,9 +3,10 @@ from dataclasses import dataclass
 from typing import List
 from datetime import datetime as dt
 
+
 @dataclass
 class Time:
-    timestamp : int
+    timestamp: int
 
     def __post_init__(self):
         self.timestamp = dt.utcfromtimestamp(self.timestamp)
@@ -36,6 +37,7 @@ class Swell:
     directionMin: float
     period: float
 
+
 @dataclass
 class ForecastLocation:
     name: str
@@ -44,6 +46,7 @@ class ForecastLocation:
     lon: float
     lat: float
     mean: float
+
 
 @dataclass
 class Tide:
