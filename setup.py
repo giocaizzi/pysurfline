@@ -16,7 +16,7 @@ setup(
     author="giocaizzi",
     author_email="giocaizzi@gmail.com",
     license="MIT",
-    packages=find_packages(include=["pysurfline", "pysurfline/*"]),
+    packages=find_packages(include=["pysurfline", "pysurfline.*"]),
     setup_requires=[],
     tests_require=[],
     install_requires=[
