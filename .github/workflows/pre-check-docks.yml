@@ -30,6 +30,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           echo "current local branches:"
+          git fetch
           git branch
           git branch precheck
           git checkout precheck
