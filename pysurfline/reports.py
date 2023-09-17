@@ -4,7 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import datetime
-import numpy as np
 import matplotlib.patheffects as pe
 
 from pysurfline.models import SpotForecasts
@@ -18,8 +17,8 @@ def plot_surf_report(spotforecast: SpotForecasts, *args, **kwargs):
 
     Args:
         spotforecast (SpotForecast): SpotForecast object
-        *args: Variable length argument list.
-        **kwargs: Arbitrary keyword arguments.
+        \\*args: Variable length argument list.
+        \\*\\*kwargs: Arbitrary keyword arguments.
 
     Returns:
         SurfReport: SurfReport object
@@ -38,9 +37,7 @@ class SurfReport:
         self.spot_name = spotforecast.name
         # data as dataframe
         self.forecasts = spotforecast.get_dataframe("forecasts")
-        self.sunrisesunsettimes = spotforecast.get_dataframe(
-            "sunriseSunsetTimes"
-        )
+        self.sunrisesunsettimes = spotforecast.get_dataframe("sunriseSunsetTimes")
         # figure
         self.f, self.ax = plt.subplots(dpi=300)
         self.plot()
@@ -84,12 +81,8 @@ class SurfReport:
     def _plot_gird(self):
         # zorder 1
         # grid
-        self.ax.grid(
-            axis="y", which="major", zorder=1, linewidth=0.1, color="k"
-        )
-        self.ax.grid(
-            axis="x", which="major", zorder=1, linewidth=0.1, color="k"
-        )
+        self.ax.grid(axis="y", which="major", zorder=1, linewidth=0.1, color="k")
+        self.ax.grid(axis="x", which="major", zorder=1, linewidth=0.1, color="k")
 
     def _plot_surf(self) -> tuple:
         """plot surf as bars"""
