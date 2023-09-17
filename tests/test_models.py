@@ -1,5 +1,6 @@
 from datetime import datetime
 import pandas as pd
+import pytest
 
 from pysurfline.models import (
     Time,
@@ -185,3 +186,13 @@ def test_SpotForecast_get_dataframe():
         "TestID", "Test", FORECASTS, SUNRISESUNSETTIMES, TIDES, TIDELOCATION,
     )
     assert isinstance(s.get_dataframe(), pd.DataFrame)
+    assert isinstance(s.get_dataframe("tides"), pd.DataFrame)
+    assert isinstance(s.get_dataframe("sunriseSunsetTimes"), pd.DataFrame)
+
+
+def test_SpotForecast_get_dataframe_unsupported():
+    s = SpotForecasts(
+        "TestID", "Test", FORECASTS, SUNRISESUNSETTIMES, TIDES, TIDELOCATION,
+    )
+    with pytest.raises(ValueError):
+        s.get_dataframe("unsupported")

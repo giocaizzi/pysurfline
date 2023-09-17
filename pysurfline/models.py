@@ -4,6 +4,8 @@ from typing import List
 from datetime import datetime
 import pandas as pd
 
+from .utils import flatten
+
 
 @dataclass
 class Time:
@@ -123,11 +125,11 @@ class SpotForecasts:
         """
 
         if attr == "forecasts":
-            data = [item.__dict__ for item in self.forecasts]
+            data = [flatten(item.__dict__) for item in self.forecasts]
         elif attr == "tides":
-            data = [item.__dict__ for item in self.tides]
+            data = [flatten(item.__dict__ )for item in self.tides]
         elif attr == "sunriseSunsetTimes":
-            data = [item.__dict__ for item in self.sunriseSunsetTimes]
+            data = [flatten(item.__dict__) for item in self.sunriseSunsetTimes]
         else:
             raise ValueError(
                 f"Attribute {attr} not supported. Use 'forecast', 'tides'"
