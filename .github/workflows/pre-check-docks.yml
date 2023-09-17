@@ -22,18 +22,17 @@ jobs:
       # by default its main branch
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: "0"
           ref : ${{ github.ref }}
-
-      # - name: Set up dependencies
-      #   run: |
-      #     pip install --upgrade pip
-      #     pip install -r requirements.txt
-      #     pip install -r docsrc/requirements.txt
-      #     pip install .
-
+      
+      # due to brach protection i need to do this on another branch
       - name: merge head branch of PR with base branch
         run: |
+          git branch precheck
+          git checkout precheck
           git merge ${{ github.head_ref }}
           git commit -m "merge head branch of PR with base branch"
           git checkout gh-pages
+          git merge precheck
+
+          
