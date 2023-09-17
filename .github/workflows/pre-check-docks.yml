@@ -1,0 +1,37 @@
+name: Pre-check docs
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  pre-check-docs:
+    runs-on: ubuntu-latest
+    steps:
+      # full pandoc installation by
+      # nbsphinx extension
+      - name: Install pandoc
+        run: sudo apt-get install pandoc
+      
+      # python 3.10 installation
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+      
+      # checkout the repository
+      # by default its main branch
+      - uses: actions/checkout@v3
+
+
+      # - name: Set up dependencies
+      #   run: |
+      #     pip install --upgrade pip 
+      #     pip install -r requirements.txt
+      #     pip install -r docsrc/requirements.txt
+      #     pip install .
+
+      - name: merge head branch of PR with base branch
+        run: |
+          git merge ${{ github.head_ref }}
+          git commit -m "merge head branch of PR with base branch"
+          git checkout gh-pages
