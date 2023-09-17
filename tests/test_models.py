@@ -167,7 +167,7 @@ def test_ForecastObject():
 
 def test_SpotForecast():
     s = SpotForecasts(
-        "TestID", "Test", SUNRISESUNSETTIMES, TIDELOCATION, FORECASTS, TIDES
+        "TestID", "Test", FORECASTS, SUNRISESUNSETTIMES, TIDES, TIDELOCATION,
     )
     assert s.name == "Test"
     assert s.spotId == "TestID"
@@ -182,6 +182,6 @@ def test_SpotForecast():
 
 def test_SpotForecast_get_dataframe():
     s = SpotForecasts(
-        "TestID", "Test", SUNRISESUNSETTIMES, TIDELOCATION, FORECASTS, TIDES
+        "TestID", "Test", FORECASTS, SUNRISESUNSETTIMES, TIDES, TIDELOCATION,
     )
     assert isinstance(s.get_dataframe(), pd.DataFrame)
