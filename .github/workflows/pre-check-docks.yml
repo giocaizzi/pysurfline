@@ -20,9 +20,10 @@ jobs:
 
       # checkout the repository
       # by default its main branch
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          ref : main
+          fetch-depth: 0
+          ref: ${{github.ref}}
 
       # due to brach protection i need to do this on another branch
       - name: merge head branch of PR with base branch
