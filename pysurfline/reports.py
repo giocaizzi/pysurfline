@@ -34,6 +34,8 @@ class SurfReport:
     sunrisesunsettimes: pd.DataFrame
 
     def __init__(self, spotforecast: SpotForecasts, *args, **kwargs):
+        # spot name
+        self.spot_name = spotforecast.name
         # data as dataframe
         self.forecasts = spotforecast.get_dataframe("forecasts")
         self.sunrisesunsettimes = spotforecast.get_dataframe(
@@ -71,8 +73,12 @@ class SurfReport:
         # format axes
         self._fmt_ax()
 
+        # title
+        self.ax.set_title(self.spot_name)
+
         # legend
         self.ax.legend(loc="lower left", bbox_to_anchor=(1, 0), fontsize=5)
+        # tight layout
         self.f.set_tight_layout(True)
 
     def _plot_gird(self):
