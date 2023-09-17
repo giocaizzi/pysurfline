@@ -54,7 +54,6 @@ class SurfReport:
 
     def plot(self, barLabels: bool = True):
         """make the plot"""
-
         # zorder 0 : night and day
         self._plot_daylight()
 
@@ -69,8 +68,9 @@ class SurfReport:
             # zorder 4 : bar labels
             self._plot_bar_labels(barplots)
 
-        # self._fmt_ax()
-        
+        # format axes
+        self._fmt_ax()
+
         # legend
         self.ax.legend(loc="lower left", bbox_to_anchor=(1, 0), fontsize=5)
         self.f.set_tight_layout(True)
@@ -136,7 +136,12 @@ class SurfReport:
 
         # lims
         self.ax.set_ylim([0, self.h_scale])
-        self.ax.set_xlim([self.forecasts.index[0], self.forecasts.index[-1]])
+        self.ax.set_xlim(
+            [
+                self.forecasts["timestamp_dt"].iloc[0],
+                self.forecasts["timestamp_dt"].iloc[-1],
+            ]
+        )
 
     def _plot_daylight(self):
         # zorder 0
