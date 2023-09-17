@@ -37,7 +37,7 @@ jobs:
           git add .
           git commit -m "merge head branch of PR with base branch"
           echo "merged head branch of PR with base branch"
-          git checkout origin/gh-pages
+          git checkout gh-pages
           git merge precheck
           git commit -m "merge updated base branch into gh-pages"
           echo "merged updated base branch into gh-pages"
