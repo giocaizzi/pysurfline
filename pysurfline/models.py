@@ -4,8 +4,6 @@ from typing import List
 from datetime import datetime as dt
 import pandas as pd
 
-from .utils import flatten_dataclasses
-
 
 @dataclass
 class Time:
@@ -121,11 +119,11 @@ class SpotForecasts:
 
         Raises:
         """
-        
+
         if attr == "forecasts":
             data = [item.__dict__ for item in self.forecasts]
         elif attr == "tides":
-            data = [item for item in self.tides]
+            data = [item.__dict__ for item in self.tides]
         elif attr == "sunriseSunsetTimes":
             data = [item.__dict__ for item in self.sunriseSunsetTimes]
         else:

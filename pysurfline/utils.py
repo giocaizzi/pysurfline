@@ -5,9 +5,9 @@ from collections import MutableMapping
 
 
 from dataclasses import is_dataclass
-from typing import Any, List, MutableMapping
 
-def flatten_dict(d: dict, parent_key: str = '', sep: str = '_') -> dict:
+
+def flatten_dict(d: dict, parent_key: str = "", sep: str = "_") -> dict:
     """
     Flatten a nested dictionary.
 
@@ -27,9 +27,15 @@ def flatten_dict(d: dict, parent_key: str = '', sep: str = '_') -> dict:
         elif isinstance(v, list):
             for i, item in enumerate(v):
                 if isinstance(item, MutableMapping):
-                    items.extend(flatten_dict(item, f"{new_key}{sep}{i}", sep=sep).items())
+                    items.extend(
+                        flatten_dict(item, f"{new_key}{sep}{i}", sep=sep).items()
+                    )
                 elif is_dataclass(item):
-                    items.extend(flatten_dict(item.__dict__, f"{new_key}{sep}{i}", sep=sep).items())
+                    items.extend(
+                        flatten_dict(
+                            item.__dict__, f"{new_key}{sep}{i}", sep=sep
+                        ).items()
+                    )
                 else:
                     items.append((f"{new_key}{sep}{i}", item))
         elif is_dataclass(v):
