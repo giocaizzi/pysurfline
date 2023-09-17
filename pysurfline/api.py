@@ -28,24 +28,25 @@ class SurflineClient:
         pass
 
     def _get_spot_forecast(self, spotId: str) -> SpotForecast:
+        """create a SpotForecast object from API responses"""
         return SpotForecast(
             spotId,
-            **APIGetter(self, "spots/details")
+            **APIResource(self, "spots/details")
             .get(params={"spotId": spotId})
             .json["spot"],
-            **APIGetter(self, "spots/forecasts")
+            **APIResource(self, "spots/forecasts")
             .get(params={"spotId": spotId})
             .json["data"],
         )
 
 
-class APIGetter:
+class APIResource:
     """
-    Class for Surfline V2 REST API GET requests.
+    Class for Surfline V2 REST API resources.
 
     Arguments:
         client (SurflineAPIClient): Surfline API client
-        endpoint (str): API endpoint
+        endpoint (str): API endpoint of service
 
     Attributes:
         client (SurflineAPIClient): Surfline API client
