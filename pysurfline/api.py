@@ -56,6 +56,7 @@ class APIResource:
         data (dict): response data
         status_code (int): response status code
     """
+
     _client: SurflineClient = None
     _endpoint: str = None
     response: requests.Response = None
@@ -99,7 +100,6 @@ class APIResource:
             print("An error occurred!")
             raise e
         return self
-
 
     @property
     def url(self):

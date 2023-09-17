@@ -9,6 +9,7 @@ from .test_models import TEST_API_RESPONSE_DATA
 TEST_BASEURL = "test_baseurl/"
 TEST_ENDPOINT = "test_endpoint"
 
+
 @pytest.fixture
 def mock_client():
     """Create a mock Client object
@@ -70,6 +71,7 @@ def test_APIResource_get_HTTPError(mock_client):
         with pytest.raises(HTTPError):
             api_resource.get()
 
+
 def test_APIResource_get_ConnectionError(mock_client):
     """Test APIResource get method with a generic ConnectionError"""
     # Create a mock response
@@ -82,6 +84,7 @@ def test_APIResource_get_ConnectionError(mock_client):
         api_resource = APIResource(mock_client, TEST_ENDPOINT)
         with pytest.raises(ConnectionError):
             api_resource.get()
+
 
 def test_APIResource_get_RequestException(mock_client):
     """Test APIResource get method with a generic RequestException"""
