@@ -1,17 +1,17 @@
-name: Documentation Linting
+name: Flake8 Linting
 
 on:
   push:
-    branches: [ main]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  docs-lint:
+  lint:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
@@ -23,5 +23,7 @@ jobs:
         python -m pip install --upgrade pip 
         python -m pip install flake8 flake8-rst-docstrings
 
-    - name: Lint with flake8 for RST erorrs
-      run : flake8 --select=RST pysurfline
+# this linting considers also RST errors for Building the docs
+
+    - name: Lint with flake8
+      run : flake8 pysurfline

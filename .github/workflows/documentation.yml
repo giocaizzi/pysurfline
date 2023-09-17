@@ -1,48 +1,61 @@
-name: Documentation
+name: Documentation build
 
 on:
   push:
-    branches:
-      - gh-pages
+    branches: [gh-pages]
+  pull_request:
+    branches: [gh-pages]
 
 jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
+      
+    # full pandoc installation by
+    # nbsphinx extension
+    - name: Install pandoc
+      run: |
+        sudo apt-get install pandoc
 
-    - uses: actions/checkout@v4
-      with:
-        ref : gh-pages
-
-    - name: Set up Python 3.9
+    # python 3.9 installation
+    - name: Set up Python 3.10
       uses: actions/setup-python@v4
       with:
-        python-version: "3.9"
+        python-version: "3.10"
+
+    - uses: actions/checkout@v3
+      with:
+        ref : ${{ github.ref }}
+    
 
     - name: Set up dependencies
       run: |
-        sudo apt install pandoc
         pip install --upgrade pip 
         pip install -r requirements.txt
         pip install -r docsrc/requirements.txt
-        pip install -e . 
+        pip install . 
+
+    # run all notebooks to check for errors
+    # fails if any notebook has Errors
+    - name: Run all notebooks
+      run : |
+        jupyter nbconvert --to notebook --execute --inplace docsrc/source/examples/*
   
-    - name: Building docs
+    - name: Build docs
       run : |
         cd docsrc/
         make github-action
         cd ..
 
+  # The last command will fail if no changes were present, so we ignore
+  # the return code.
     - name: Commit documentation changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
         git commit -m "Actions: Build documentation" -a || true
-    
-      # The last command will fail if no changes were present, so we ignore
-      # the return code.
-
+  
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
