@@ -22,7 +22,7 @@ jobs:
       # by default its main branch
       - uses: actions/checkout@v3
         with:
-          ref : ${{ github.ref }}
+          ref : main
 
       # due to brach protection i need to do this on another branch
       - name: merge head branch of PR with base branch
