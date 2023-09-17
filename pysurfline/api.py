@@ -30,7 +30,12 @@ class SurflineClient:
     def _get_spot_forecast(self, spotId: str):
         return SpotForecast(
             spotId,
-            **APIGetter(self, "spots/forecasts").get(params={"spotId": spotId}).data,
+            **APIGetter(self, "spots/details")
+            .get(params={"spotId": spotId})
+            .json["spot"],
+            **APIGetter(self, "spots/forecasts")
+            .get(params={"spotId": spotId})
+            .json["data"],
         )
 
 
@@ -80,8 +85,8 @@ class APIGetter:
         return self.response.url
 
     @property
-    def data(self):
-        return self.response.json()["data"]
+    def json(self):
+        return self.response.json()
 
     @property
     def status_code(self):

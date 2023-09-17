@@ -88,6 +88,7 @@ class ForecastObject:
 @dataclass
 class SpotForecast:
     spotId: str
+    name: str
     sunriseSunsetTimes: List[DayLightTimes]
     tideLocation: dict
     forecasts: List[ForecastObject]
