@@ -22,17 +22,20 @@ jobs:
       # by default its main branch
       - uses: actions/checkout@v3
         with:
-          fetch-depth: "0"
+          fetch-depth: 0
           ref : ${{ github.ref }}
       
       # due to brach protection i need to do this on another branch
       - name: merge head branch of PR with base branch
         run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git branch precheck
           git checkout precheck
           git merge ${{ github.head_ref }}
-          echo "merged head branch of PR with base branch"
+          git add .
           git commit -m "merge head branch of PR with base branch"
+          echo "merged head branch of PR with base branch"
           git checkout gh-pages
           git merge precheck
 
