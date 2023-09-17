@@ -1,4 +1,6 @@
 from datetime import datetime
+import pandas as pd
+
 from pysurfline.models import (
     Time,
     Weather,
@@ -176,3 +178,10 @@ def test_SpotForecast():
     assert isinstance(s.forecasts[0], Forecast)
     assert isinstance(s.tides, list)
     assert isinstance(s.tides[0], Tide)
+
+
+def test_SpotForecast_get_dataframe():
+    s = SpotForecasts(
+        "TestID", "Test", SUNRISESUNSETTIMES, TIDELOCATION, FORECASTS, TIDES
+    )
+    assert isinstance(s.get_dataframe(), pd.DataFrame)

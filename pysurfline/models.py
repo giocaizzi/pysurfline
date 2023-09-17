@@ -93,10 +93,10 @@ class Forecast:
 class SpotForecasts:
     spotId: str
     name: str
-    sunriseSunsetTimes: List[SunriseSunsetTime]
-    tideLocation: dict
     forecasts: List[Forecast]
+    sunriseSunsetTimes: List[SunriseSunsetTime]
     tides: List[Tide]
+    tideLocation: dict
 
     def __post_init__(self):
         self.sunriseSunsetTimes = [
