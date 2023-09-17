@@ -11,7 +11,7 @@ __license__ = "MIT"
 __maintainer__ = __author__
 __email__ = "giocaizzi@gmail.com"
 
-from pysurfline.api import get_spot_forecast
+from pysurfline.api import get_spot_forecasts
 
 
-__all__ = ["get_spot_forecast"]
+__all__ = ["get_spot_forecasts"]

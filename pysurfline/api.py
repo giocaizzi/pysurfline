@@ -3,10 +3,10 @@ api functional objects and methods
 """
 import requests
 
-from .models import SpotForecast
+from .models import SpotForecasts
 
 
-def get_spot_forecast(spotId: str) -> SpotForecast:
+def get_spot_forecasts(spotId: str) -> SpotForecasts:
     """get spot forecast
 
     Get forecast for given spot by passing the spotId
@@ -18,7 +18,7 @@ def get_spot_forecast(spotId: str) -> SpotForecast:
     Returns:
         forecast (:obj:`SpotForecast`)
     """
-    return SurflineClient()._get_spot_forecast(spotId)
+    return SurflineClient()._get_spot_forecasts(spotId)
 
 
 class SurflineClient:
@@ -27,9 +27,9 @@ class SurflineClient:
     def __init__(self):
         pass
 
-    def _get_spot_forecast(self, spotId: str) -> SpotForecast:
+    def _get_spot_forecasts(self, spotId: str) -> SpotForecasts:
         """create a SpotForecast object from API responses"""
-        return SpotForecast(
+        return SpotForecasts(
             spotId,
             **APIResource(self, "spots/details")
             .get(params={"spotId": spotId})

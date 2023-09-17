@@ -4,6 +4,8 @@ from typing import List
 from datetime import datetime as dt
 import pandas as pd
 
+from .utils import flatten_dataclasses
+
 
 @dataclass
 class Time:
@@ -83,11 +85,12 @@ class ForecastObject:
         self.timestamp = dt.fromtimestamp(self.timestamp)
         self.weather = Weather(**self.weather)
         self.wind = Wind(**self.wind)
+        self.surf = Surf(**self.surf)
         self.swells = [Swell(**item) for item in self.swells]
 
 
 @dataclass
-class SpotForecast:
+class SpotForecasts:
     spotId: str
     name: str
     sunriseSunsetTimes: List[DayLightTimes]
@@ -103,5 +106,31 @@ class SpotForecast:
         self.forecasts = [ForecastObject(**item) for item in self.forecasts]
         self.tides = [Tide(**item) for item in self.tides]
 
-    def get_dataframe(self,attr="forecast")->pd.DataFrame:
-        pass
+    def get_dataframe(self, attr="forecasts") -> pd.DataFrame:
+        """pandas dataframe of selected attribute
+
+        Get the pandas dataframe of the selected attribute. The attribute
+        can be:
+            - 'forecast'
+            - 'tides'
+            - 'sunriseSunsetTimes'
+
+        Args:
+            attr (str, optional): attribute to get dataframe from.
+                Defaults to "forecast".
+
+        Raises:
+        """
+        
+        if attr == "forecasts":
+            data = [item.__dict__ for item in self.forecasts]
+        elif attr == "tides":
+            data = [item for item in self.tides]
+        elif attr == "sunriseSunsetTimes":
+            data = [item.__dict__ for item in self.sunriseSunsetTimes]
+        else:
+            raise ValueError(
+                f"Attribute {attr} not supported. Use 'forecast', 'tides'"
+                " or 'sunriseSunsetTimes'"
+            )
+        return pd.DataFrame(data)
