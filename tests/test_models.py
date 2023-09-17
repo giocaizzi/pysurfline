@@ -91,6 +91,15 @@ TIDES = [
     TIDE,
 ]
 
+TEST_API_RESPONSE_DATA = {
+    "spotId": "TestID",
+    "name": "Test",
+    "forecasts": FORECASTS,
+    "sunriseSunsetTimes": SUNRISESUNSETTIMES,
+    "tides": TIDES,
+    "tideLocation": TIDELOCATION,
+}
+
 
 def test_Time():
     t = Time(TIMESTAMP)
@@ -167,14 +176,7 @@ def test_ForecastObject():
 
 
 def test_SpotForecast():
-    s = SpotForecasts(
-        "TestID",
-        "Test",
-        FORECASTS,
-        SUNRISESUNSETTIMES,
-        TIDES,
-        TIDELOCATION,
-    )
+    s = SpotForecasts(**TEST_API_RESPONSE_DATA)
     assert s.name == "Test"
     assert s.spotId == "TestID"
     assert isinstance(s.sunriseSunsetTimes, list)
@@ -187,27 +189,13 @@ def test_SpotForecast():
 
 
 def test_SpotForecast_get_dataframe():
-    s = SpotForecasts(
-        "TestID",
-        "Test",
-        FORECASTS,
-        SUNRISESUNSETTIMES,
-        TIDES,
-        TIDELOCATION,
-    )
+    s = SpotForecasts(**TEST_API_RESPONSE_DATA)
     assert isinstance(s.get_dataframe(), pd.DataFrame)
     assert isinstance(s.get_dataframe("tides"), pd.DataFrame)
     assert isinstance(s.get_dataframe("sunriseSunsetTimes"), pd.DataFrame)
 
 
 def test_SpotForecast_get_dataframe_unsupported():
-    s = SpotForecasts(
-        "TestID",
-        "Test",
-        FORECASTS,
-        SUNRISESUNSETTIMES,
-        TIDES,
-        TIDELOCATION,
-    )
+    s = SpotForecasts(**TEST_API_RESPONSE_DATA)
     with pytest.raises(ValueError):
         s.get_dataframe("unsupported")

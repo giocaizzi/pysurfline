@@ -56,7 +56,8 @@ class APIResource:
         data (dict): response data
         status_code (int): response status code
     """
-
+    _client: SurflineClient = None
+    _endpoint: str = None
     response: requests.Response = None
 
     def __init__(self, client: SurflineClient, endpoint: str):
@@ -86,12 +87,19 @@ class APIResource:
             )
             self.response.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            print(f"HTTP error occurred: {e}")
+            print("HTTP error occurred!")
+            raise e
         except requests.exceptions.ConnectionError as e:
-            print(f"Connection error occurred: {e}")
+            print("Connection error occurred!")
+            raise e
         except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
+            print("An request error occurred!")
+            return e
+        except Exception as e:
+            print("An error occurred!")
+            raise e
         return self
+
 
     @property
     def url(self):
@@ -106,7 +114,7 @@ class APIResource:
         return self.response.status_code
 
     def __str__(self):
-        return f"APIGetter(endpoint:{self._endpoint},status:{self.status_code})"
+        return f"APIResource(endpoint:{self._endpoint},status:{self.status_code})"
 
     def __repr__(self):
         return str(self)
