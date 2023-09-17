@@ -12,6 +12,7 @@ __maintainer__ = __author__
 __email__ = "giocaizzi@gmail.com"
 
 from pysurfline.api import get_spot_forecasts
+from pysurfline.reports import plot_surf_report
 
 
 __all__ = ["get_spot_forecasts"]
