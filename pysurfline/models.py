@@ -1,16 +1,18 @@
 """api objects models"""
 from dataclasses import dataclass
 from typing import List
-from datetime import datetime as dt
+from datetime import datetime
 import pandas as pd
 
 
 @dataclass
 class Time:
     timestamp: int
+    dt: datetime = None
 
     def __post_init__(self):
-        self.timestamp = dt.utcfromtimestamp(self.timestamp)
+        # utc naive datetime
+        self.dt = datetime.utcfromtimestamp(self.timestamp)
 
 
 @dataclass
@@ -40,7 +42,7 @@ class Swell:
 
 
 @dataclass
-class ForecastLocation:
+class TideLocation:
     name: str
     min: float
     max: float
@@ -60,7 +62,7 @@ class Tide:
 
 
 @dataclass
-class DayLightTimes:
+class SunriseSunsetTime:
     midnight: Time
     sunrise: Time
     sunset: Time
@@ -72,15 +74,15 @@ class DayLightTimes:
 
 
 @dataclass
-class ForecastObject:
-    timestamp: int
+class Forecast:
+    timestamp: Time
     weather: Weather
     wind: Wind
     surf: Surf
     swells: List[Swell]
 
     def __post_init__(self):
-        self.timestamp = dt.fromtimestamp(self.timestamp)
+        self.timestamp = Time(self.timestamp)
         self.weather = Weather(**self.weather)
         self.wind = Wind(**self.wind)
         self.surf = Surf(**self.surf)
@@ -91,17 +93,17 @@ class ForecastObject:
 class SpotForecasts:
     spotId: str
     name: str
-    sunriseSunsetTimes: List[DayLightTimes]
+    sunriseSunsetTimes: List[SunriseSunsetTime]
     tideLocation: dict
-    forecasts: List[ForecastObject]
+    forecasts: List[Forecast]
     tides: List[Tide]
 
     def __post_init__(self):
         self.sunriseSunsetTimes = [
-            DayLightTimes(**item) for item in self.sunriseSunsetTimes
+            SunriseSunsetTime(**item) for item in self.sunriseSunsetTimes
         ]
-        self.tideLocation = ForecastLocation(**self.tideLocation)
-        self.forecasts = [ForecastObject(**item) for item in self.forecasts]
+        self.tideLocation = TideLocation(**self.tideLocation)
+        self.forecasts = [Forecast(**item) for item in self.forecasts]
         self.tides = [Tide(**item) for item in self.tides]
 
     def get_dataframe(self, attr="forecasts") -> pd.DataFrame:
