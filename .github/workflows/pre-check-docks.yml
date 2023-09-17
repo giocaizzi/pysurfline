@@ -23,6 +23,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref : ${{ github.ref }}
 
       # - name: Set up dependencies
       #   run: |
