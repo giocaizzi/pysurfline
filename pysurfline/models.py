@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 from typing import List
 from datetime import datetime as dt
+import pandas as pd
 
 
 @dataclass
@@ -101,3 +102,6 @@ class SpotForecast:
         self.tideLocation = ForecastLocation(**self.tideLocation)
         self.forecasts = [ForecastObject(**item) for item in self.forecasts]
         self.tides = [Tide(**item) for item in self.tides]
+
+    def get_dataframe(self,attr="forecast")->pd.DataFrame:
+        pass
