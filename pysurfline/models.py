@@ -1,4 +1,4 @@
-"""spot forecast class"""
+"""api objects models"""
 from dataclasses import dataclass
 from typing import List
 from datetime import datetime as dt

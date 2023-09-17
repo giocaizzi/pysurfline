@@ -1,8 +1,9 @@
 """
-python client to Surfline API
+python Surfline API
 """
 # Version
 __version__ = "0.1"
+
 # Credits
 __author__ = "Giorgio Caizzi"
 __copyright__ = "Giorgio Caizzi, 2023"

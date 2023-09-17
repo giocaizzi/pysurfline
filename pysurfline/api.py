@@ -1,5 +1,5 @@
 """
-core classes for basic Surfline API v2 URL requests
+api functional objects and methods
 """
 import requests
 
@@ -27,7 +27,7 @@ class SurflineClient:
     def __init__(self):
         pass
 
-    def _get_spot_forecast(self, spotId: str):
+    def _get_spot_forecast(self, spotId: str) -> SpotForecast:
         return SpotForecast(
             spotId,
             **APIGetter(self, "spots/details")
@@ -66,6 +66,18 @@ class APIGetter:
         """
         get response from request.
         Handles HTTP errors and connection errors.
+
+        Arguments:
+            params (dict): request parameters
+            headers (dict): request headers
+
+        Returns:
+            self (:obj:`APIGetter`)
+
+        Raises:
+            requests.exceptions.HTTPError: if HTTP error occurs
+            requests.exceptions.ConnectionError: if connection error occurs
+            requests.exceptions.RequestException: if other error occurs
         """
         try:
             self.response = requests.get(
