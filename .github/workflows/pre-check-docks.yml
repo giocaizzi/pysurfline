@@ -29,12 +29,11 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          echo "current local branches:"
           git fetch
           git branch
           git branch precheck
           git checkout precheck
-          git merge origin/${{github.head_ref}} --verbose
+          git merge ${{github.head_ref}} --verbose
           git add .
           git commit -m "merge head branch of PR with base branch"
           echo "merged head branch of PR with base branch"
