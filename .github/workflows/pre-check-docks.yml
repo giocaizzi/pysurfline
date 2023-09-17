@@ -31,8 +31,8 @@ jobs:
           git branch precheck
           git checkout precheck
           git merge ${{ github.head_ref }}
+          echo "merged head branch of PR with base branch"
           git commit -m "merge head branch of PR with base branch"
           git checkout gh-pages
           git merge precheck
 
-          
