@@ -168,7 +168,12 @@ def test_ForecastObject():
 
 def test_SpotForecast():
     s = SpotForecasts(
-        "TestID", "Test", FORECASTS, SUNRISESUNSETTIMES, TIDES, TIDELOCATION,
+        "TestID",
+        "Test",
+        FORECASTS,
+        SUNRISESUNSETTIMES,
+        TIDES,
+        TIDELOCATION,
     )
     assert s.name == "Test"
     assert s.spotId == "TestID"
@@ -183,7 +188,12 @@ def test_SpotForecast():
 
 def test_SpotForecast_get_dataframe():
     s = SpotForecasts(
-        "TestID", "Test", FORECASTS, SUNRISESUNSETTIMES, TIDES, TIDELOCATION,
+        "TestID",
+        "Test",
+        FORECASTS,
+        SUNRISESUNSETTIMES,
+        TIDES,
+        TIDELOCATION,
     )
     assert isinstance(s.get_dataframe(), pd.DataFrame)
     assert isinstance(s.get_dataframe("tides"), pd.DataFrame)
@@ -192,7 +202,12 @@ def test_SpotForecast_get_dataframe():
 
 def test_SpotForecast_get_dataframe_unsupported():
     s = SpotForecasts(
-        "TestID", "Test", FORECASTS, SUNRISESUNSETTIMES, TIDES, TIDELOCATION,
+        "TestID",
+        "Test",
+        FORECASTS,
+        SUNRISESUNSETTIMES,
+        TIDES,
+        TIDELOCATION,
     )
     with pytest.raises(ValueError):
         s.get_dataframe("unsupported")

@@ -1,5 +1,8 @@
-from pysurfline.utils import flatten
+"""tests for utility functions"""
+
 from dataclasses import dataclass
+
+from pysurfline.utils import flatten, degToCompass
 
 
 def test_flatten_dict():
@@ -31,3 +34,22 @@ def test_flatten_dict():
         "m_1_b": 4,
     }
     assert flatten(d) == expected
+
+
+def test_degToCompass():
+    # given that the cardinal directions are centered,
+    # the North goes is [348.75, 11.25)  and so on
+    assert degToCompass(348.74) == "NNW"
+    assert degToCompass(348.75) == "N"
+    assert degToCompass(0) == "N"
+    assert degToCompass(11.24) == "N"
+    assert degToCompass(11.25) == "NNE"
+    assert degToCompass(33.74) == "NNE"
+    assert degToCompass(33.75) == "NE"
+    assert degToCompass(56.24) == "NE"
+    assert degToCompass(56.25) == "ENE"
+    assert degToCompass(78.74) == "ENE"
+    assert degToCompass(78.75) == "E"
+    assert degToCompass(90) == "E"
+    assert degToCompass(101.24) == "E"
+    assert degToCompass(101.25) == "ESE"

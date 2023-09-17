@@ -27,16 +27,10 @@ def flatten(d: dict, parent_key: str = "", sep: str = "_") -> dict:
         elif isinstance(v, list):
             for i, item in enumerate(v):
                 if isinstance(item, MutableMapping):
-                    items.extend(
-                        flatten(
-                            item, f"{new_key}{sep}{i}", sep=sep
-                        ).items()
-                    )
+                    items.extend(flatten(item, f"{new_key}{sep}{i}", sep=sep).items())
                 elif is_dataclass(item):
                     items.extend(
-                        flatten(
-                            item.__dict__, f"{new_key}{sep}{i}", sep=sep
-                        ).items()
+                        flatten(item.__dict__, f"{new_key}{sep}{i}", sep=sep).items()
                     )
                 else:
                     items.append((f"{new_key}{sep}{i}", item))

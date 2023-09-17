@@ -127,7 +127,7 @@ class SpotForecasts:
         if attr == "forecasts":
             data = [flatten(item.__dict__) for item in self.forecasts]
         elif attr == "tides":
-            data = [flatten(item.__dict__ )for item in self.tides]
+            data = [flatten(item.__dict__) for item in self.tides]
         elif attr == "sunriseSunsetTimes":
             data = [flatten(item.__dict__) for item in self.sunriseSunsetTimes]
         else:
