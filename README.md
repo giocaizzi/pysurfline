@@ -2,10 +2,10 @@
 
 **Get the surf forecast** for any spot listed on [Surfline](https://www.surfline.com/).
 
-Quickly get the forecast as a [pandas Dataframe](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) and plot surf forecast with [matplotlib](https://matplotlib.org/stable/) to visualize the conditions of your favorite surf spot.
+Quickly get the forecast data as a [pandas Dataframe](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) and plot surf forecast with [matplotlib](https://matplotlib.org/stable/) to visualize the conditions of your favorite surf spot.
 
-- **Surf** data (wave min and max)
-- **Wind** data (speed and direction)
+- **Surf** (wave min and max)
+- **Wind** (speed and direction)
 - **Swell** (height, period, direction)
 - **Tide** (height, direction)
 - **Daylight** (sunrise, sunset)
@@ -31,7 +31,7 @@ pip install pysurfline
 Get the `pysurfline.SurfReport` plot for Banzai Pipeline in Oahu, Hawaii (USA).
 [Go to full example.](https://giocaizzi.github.io/pysurfline/examples/surf_report.html)
 
-![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_readme.jpeg)
+![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_readme.png)
 
 # Documentation
 
