@@ -1,6 +1,15 @@
 # pysurfline
 
-Get the surf forecast of any spot listed on [Surfline](https://www.surfline.com/).
+**Get the surf forecast** for any spot listed on [Surfline](https://www.surfline.com/).
+
+Quickly get the forecast as a [pandas Dataframe](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) and plot surf forecast with [matplotlib](https://matplotlib.org/stable/) to visualize the conditions of your favorite surf spot.
+
+- **Surf** data (wave min and max)
+- **Wind** data (speed and direction)
+- **Swell** (height, period, direction)
+- **Tide** (height, direction)
+- **Daylight** (sunrise, sunset)
+
 
 | | |
 | --- | --- |
