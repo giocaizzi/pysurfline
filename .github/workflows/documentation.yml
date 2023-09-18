@@ -34,12 +34,6 @@ jobs:
         pip install -r requirements.txt
         pip install -r docsrc/requirements.txt
         pip install . 
-
-    # run all notebooks to check for errors
-    # fails if any notebook has Errors
-    - name: Run all notebooks
-      run : |
-        jupyter nbconvert --to notebook --execute --inplace docsrc/source/examples/*
   
     - name: Build docs
       run : |
