@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produce a surf report &mdash; pysurfline 0.0.4.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pysurfline" href="../_autosummary/pysurfline.html" />
+    <link rel="prev" title="Get forecast for a specific spot" href="forecasts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pysurfline
+          </a>
+              <div class="version">
+                0.0.4.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="surfline_api.html">Surfline API v2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="forecasts.html">Get forecast for a specific spot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Produce a surf report</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/pysurfline.html">pysurfline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pysurfline</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Produce a surf report</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/surf_report.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="Produce-a-surf-report">
+<h1>Produce a surf report<a class="headerlink" href="#Produce-a-surf-report" title="Permalink to this headline"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">SurfReport</span></code> object features additional reporting functionalities, such as plotting methods and easily readable surf reports.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pysurfline</span> <span class="kn">import</span> <span class="n">SurfReport</span>
+</pre></div>
+</div>
+</div>
+<p>List of known spot id</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 59%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Spot Id</p></th>
+<th class="head"><p>Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>5842041f4e65fad6a7708890</p></td>
+<td><p>Pipeline (USA)</p></td>
+</tr>
+<tr class="row-odd"><td><p>584204204e65fad6a7709b09</p></td>
+<td><p>Varazze (ITA)</p></td>
+</tr>
+<tr class="row-even"><td><p>5842041f4e65fad6a7708b4b</p></td>
+<td><p>Uluwatu (IDN)</p></td>
+</tr>
+<tr class="row-odd"><td><p>5842041f4e65fad6a7708c8e</p></td>
+<td><p>La Graviere (FRA)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Initializing a <code class="docutils literal notranslate"><span class="pre">SurfReport</span></code> objects does nothing else than calling a <code class="docutils literal notranslate"><span class="pre">SpotForecast</span></code> object with the specified <code class="docutils literal notranslate"><span class="pre">params</span></code> for requesting the desired response data by the Surfline API.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;spotId&quot;</span><span class="p">:</span> <span class="s2">&quot;5842041f4e65fad6a7708890&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;days&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;intervalHours&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">SurfReport</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">report</span><span class="o">.</span><span class="n">api_log</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;ForecastGetter(Type:wave, Status:200)&#39;,
+ &#39;ForecastGetter(Type:wind, Status:200)&#39;,
+ &#39;ForecastGetter(Type:tides, Status:200)&#39;,
+ &#39;ForecastGetter(Type:weather, Status:200)&#39;]
+</pre></div></div>
+</div>
+<p>With respect to the <code class="docutils literal notranslate"><span class="pre">SpotForecast</span></code> objects, that stores separately all the raw response data as class attributes, the <code class="docutils literal notranslate"><span class="pre">SurfReport</span></code> object has the additional <code class="docutils literal notranslate"><span class="pre">df</span></code> attribute to easily inspect all the hourly data fetched from the Surfline servers merged into a readable <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>probability</th>
+      <th>utcOffset</th>
+      <th>surf_min</th>
+      <th>surf_max</th>
+      <th>surf_optimalScore</th>
+      <th>surf_plus</th>
+      <th>surf_humanRelation</th>
+      <th>surf_raw_min</th>
+      <th>surf_raw_max</th>
+      <th>swells</th>
+      <th>utcOffset</th>
+      <th>speed</th>
+      <th>direction</th>
+      <th>directionType</th>
+      <th>gust</th>
+      <th>optimalScore</th>
+      <th>utcOffset</th>
+      <th>temperature</th>
+      <th>condition</th>
+      <th>pressure</th>
+    </tr>
+    <tr>
+      <th>timestamp</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-04-20 10:00:00</th>
+      <td>None</td>
+      <td>-10</td>
+      <td>1.2</td>
+      <td>1.8</td>
+      <td>2</td>
+      <td>False</td>
+      <td>Chest to overhead</td>
+      <td>1.0168</td>
+      <td>1.5578</td>
+      <td>[{'height': 1.19331, 'period': 11, 'impact': 0...</td>
+      <td>-10</td>
+      <td>3.05080</td>
+      <td>339.02262</td>
+      <td>Onshore</td>
+      <td>3.11053</td>
+      <td>2</td>
+      <td>-10</td>
+      <td>22.83887</td>
+      <td>NIGHT_CLEAR</td>
+      <td>1013</td>
+    </tr>
+    <tr>
+      <th>2023-04-20 13:00:00</th>
+      <td>None</td>
+      <td>-10</td>
+      <td>1.2</td>
+      <td>1.8</td>
+      <td>2</td>
+      <td>False</td>
+      <td>Chest to overhead</td>
+      <td>1.0480</td>
+      <td>1.5509</td>
+      <td>[{'height': 1.29065, 'period': 11, 'impact': 0...</td>
+      <td>-10</td>
+      <td>3.35334</td>
+      <td>9.71420</td>
+      <td>Onshore</td>
+      <td>3.35334</td>
+      <td>2</td>
+      <td>-10</td>
+      <td>22.45587</td>
+      <td>NIGHT_CLEAR</td>
+      <td>1012</td>
+    </tr>
+    <tr>
+      <th>2023-04-20 16:00:00</th>
+      <td>None</td>
+      <td>-10</td>
+      <td>1.2</td>
+      <td>1.5</td>
+      <td>2</td>
+      <td>False</td>
+      <td>Chest to head</td>
+      <td>1.2192</td>
+      <td>1.5240</td>
+      <td>[{'height': 1.36121, 'period': 11, 'impact': 0...</td>
+      <td>-10</td>
+      <td>3.55174</td>
+      <td>58.61706</td>
+      <td>Cross-shore</td>
+      <td>3.55174</td>
+      <td>2</td>
+      <td>-10</td>
+      <td>22.35001</td>
+      <td>CLEAR</td>
+      <td>1013</td>
+    </tr>
+    <tr>
+      <th>2023-04-20 19:00:00</th>
+      <td>None</td>
+      <td>-10</td>
+      <td>1.2</td>
+      <td>1.5</td>
+      <td>2</td>
+      <td>False</td>
+      <td>Chest to head</td>
+      <td>1.1192</td>
+      <td>1.5040</td>
+      <td>[{'height': 1.39629, 'period': 11, 'impact': 0...</td>
+      <td>-10</td>
+      <td>4.60979</td>
+      <td>78.15334</td>
+      <td>Offshore</td>
+      <td>4.60979</td>
+      <td>2</td>
+      <td>-10</td>
+      <td>22.92432</td>
+      <td>CLEAR</td>
+      <td>1015</td>
+    </tr>
+    <tr>
+      <th>2023-04-20 22:00:00</th>
+      <td>None</td>
+      <td>-10</td>
+      <td>1.2</td>
+      <td>1.5</td>
+      <td>2</td>
+      <td>False</td>
+      <td>Chest to head</td>
+      <td>1.2192</td>
+      <td>1.5240</td>
+      <td>[{'height': 1.39883, 'period': 11, 'impact': 0...</td>
+      <td>-10</td>
+      <td>7.33489</td>
+      <td>67.65101</td>
+      <td>Cross-shore</td>
+      <td>7.33489</td>
+      <td>0</td>
+      <td>-10</td>
+      <td>23.12579</td>
+      <td>MOSTLY_CLOUDY</td>
+      <td>1015</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Moreover, a simplified version of the dataframe is available with the <code class="docutils literal notranslate"><span class="pre">surf</span></code> attribute. This represents the surf data that is actually plotted.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>surf_min</th>
+      <th>surf_max</th>
+      <th>speed</th>
+      <th>directionType</th>
+      <th>direction</th>
+    </tr>
+    <tr>
+      <th>timestamp</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-04-20 10:00:00</th>
+      <td>1.2</td>
+      <td>1.8</td>
+      <td>3.05080</td>
+      <td>Onshore</td>
+      <td>339.02262</td>
+    </tr>
+    <tr>
+      <th>2023-04-20 13:00:00</th>
+      <td>1.2</td>
+      <td>1.8</td>
+      <td>3.35334</td>
+      <td>Onshore</td>
+      <td>9.71420</td>
+    </tr>
+    <tr>
+      <th>2023-04-20 16:00:00</th>
+      <td>1.2</td>
+      <td>1.5</td>
+      <td>3.55174</td>
+      <td>Cross-shore</td>
+      <td>58.61706</td>
+    </tr>
+    <tr>
+      <th>2023-04-20 19:00:00</th>
+      <td>1.2</td>
+      <td>1.5</td>
+      <td>4.60979</td>
+      <td>Offshore</td>
+      <td>78.15334</td>
+    </tr>
+    <tr>
+      <th>2023-04-20 22:00:00</th>
+      <td>1.2</td>
+      <td>1.5</td>
+      <td>7.33489</td>
+      <td>Cross-shore</td>
+      <td>67.65101</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Lets then call the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> method, that returns a <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> figure representing the minimum and maximum <strong>surf size</strong> that is forecasted for the spot.</p>
+<p><strong>Daylight hours</strong> are shown in the plot, with darkgrey representing night and lightgrey representing dusk and dawn.</p>
+<p><strong>Wind speed and direction</strong> is annotated at the top.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">report</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_surf_report_10_0.png" src="../_images/examples_surf_report_10_0.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="forecasts.html" class="btn btn-neutral float-left" title="Get forecast for a specific spot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../_autosummary/pysurfline.html" class="btn btn-neutral float-right" title="pysurfline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, giocaizzi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
