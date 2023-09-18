@@ -28,8 +28,8 @@ jobs:
 
           git branch precheck_branch
           git checkout precheck_branch
-          git merge origin/${{ github.head_ref }}
-          git checkout origin/gh-pages
+          git merge "origin/${{ github.head_ref }}"
+          git checkout "origin/gh-pages"
           git merge precheck_branch
 
       # from here on it's a copy paste of documentation.yml
