@@ -1,4 +1,4 @@
-"""api objects models"""
+"""api objects: data models"""
 from dataclasses import dataclass
 from typing import List
 from datetime import datetime
@@ -9,6 +9,13 @@ from .utils import flatten
 
 @dataclass
 class Time:
+    """time data model
+
+    Attributes:
+        timestamp (int): utc timestamp
+        dt (datetime): utc naive datetime
+    """
+
     timestamp: int
     dt: datetime = None
 
@@ -19,24 +26,32 @@ class Time:
 
 @dataclass
 class Weather:
+    """wheter data model"""
+
     temperature: float
     condition: str
 
 
 @dataclass
 class Wind:
+    """wind data model"""
+
     speed: float
     direction: float
 
 
 @dataclass
 class Surf:
+    """surf data model"""
+
     min: float
     max: float
 
 
 @dataclass
 class Swell:
+    """swell data model"""
+
     height: float
     direction: float
     directionMin: float
@@ -45,6 +60,8 @@ class Swell:
 
 @dataclass
 class TideLocation:
+    """tide location data model"""
+
     name: str
     min: float
     max: float
@@ -55,6 +72,8 @@ class TideLocation:
 
 @dataclass
 class Tide:
+    """tide data model"""
+
     timestamp: Time
     type: str
     height: float
@@ -65,6 +84,8 @@ class Tide:
 
 @dataclass
 class SunriseSunsetTime:
+    """daylight data model"""
+
     midnight: Time
     sunrise: Time
     sunset: Time
@@ -77,6 +98,12 @@ class SunriseSunsetTime:
 
 @dataclass
 class Forecast:
+    """forecast data model
+
+    Composite data model of all the forecast data.
+    Associated to a specific timestamp of type `Time`.
+    """
+
     timestamp: Time
     weather: Weather
     wind: Wind
@@ -93,6 +120,14 @@ class Forecast:
 
 @dataclass
 class SpotForecasts:
+    """spot forecasts data model
+
+    Composite data model of all the spot forecasts data,
+    - forecasts (surf, weather, wind, swells)
+    - sunrise and sunset times
+    - tides
+    """
+
     spotId: str
     name: str
     forecasts: List[Forecast]

@@ -11,28 +11,13 @@ from pysurfline.models import SpotForecasts
 SURF_COLORS = {"surf_max": "dodgerblue", "surf_min": "lightblue"}
 
 
-def plot_surf_report(spotforecast: SpotForecasts, *args, **kwargs):
-    """
-    Create a surf report from a spotforecast object.
-
-    Args:
-        spotforecast (SpotForecast): SpotForecast object
-        \\*args: Variable length argument list.
-        \\*\\*kwargs: Arbitrary keyword arguments.
-
-    Returns:
-        SurfReport: SurfReport object
-    """
-    return SurfReport(spotforecast, *args, **kwargs)
-
-
 class SurfReport:
     f: plt.Figure
     ax: plt.Axes
     forecasts: pd.DataFrame
     sunrisesunsettimes: pd.DataFrame
 
-    def __init__(self, spotforecast: SpotForecasts, *args, **kwargs):
+    def __init__(self, spotforecast: SpotForecasts):
         # spot name
         self.spot_name = spotforecast.name
         # data as dataframe
@@ -40,7 +25,6 @@ class SurfReport:
         self.sunrisesunsettimes = spotforecast.get_dataframe("sunriseSunsetTimes")
         # figure
         self.f, self.ax = plt.subplots(dpi=300)
-        self.plot()
         pass
 
     @property
@@ -51,8 +35,13 @@ class SurfReport:
             factor = 2
         return factor
 
-    def plot(self, barLabels: bool = True):
-        """make the plot"""
+    def plot(self, barLabels: bool = False):
+        """plot surf report
+
+        Args:
+            barLabels (bool, optional): surf height labels.
+             Defaults to False.
+        """
         # zorder 0 : night and day
         self._plot_daylight()
 
@@ -169,6 +158,24 @@ class SurfReport:
                 path_effects=[pe.withStroke(linewidth=1, foreground="w")],
             )
 
+
+def plot_surf_report(spotforecast: SpotForecasts, **kwargs) -> SurfReport:
+    """
+    Plot surf report from a spotforecast object.
+
+    Control the plot by passing a keyword arguments:
+    - barLabels: label surf with height.
+
+    Args:
+        spotforecast (SpotForecast): SpotForecast object
+        \\*\\*kwargs: Keyword arguments to pass to `SurfReport.plot`.
+
+    Returns:
+        SurfReport: SurfReport object
+    """
+    return SurfReport(spotforecast).plot(**kwargs)
+
+    # def _plot_wind(self):
     #     # windspeed and wind direction colored on condition
     #     xs = self.forecasts.index.tolist()
     #     windspeeds = self.forecasts.speed.tolist()

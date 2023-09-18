@@ -1,6 +1,5 @@
-"""
-api functional objects and methods
-"""
+"""api functions and classes"""
+
 import requests
 
 from .models import SpotForecasts
@@ -22,13 +21,26 @@ def get_spot_forecasts(spotId: str) -> SpotForecasts:
 
 
 class SurflineClient:
+    """surfline client
+
+    Surfline API client.
+    At the moment, does not require authentication.
+    """
+
     _baseurl: str = "https://services.surfline.com/kbyg/"
 
     def __init__(self):
         pass
 
     def _get_spot_forecasts(self, spotId: str) -> SpotForecasts:
-        """create a SpotForecast object from API responses"""
+        """create a SpotForecast object from API responses
+
+        Arguments:
+            spotId (str): spot id
+
+        Returns:
+            SpotForecast: SpotForecast object
+        """
         return SpotForecasts(
             spotId,
             **APIResource(self, "spots/details")
