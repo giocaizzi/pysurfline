@@ -20,6 +20,9 @@ jobs:
           ref: "${{ github.base_ref }}"
 
       - run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
           git branch precheck_branch
           git checkout precheck_branch
           git merge origin/${{ github.head_ref }}
