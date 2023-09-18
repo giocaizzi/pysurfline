@@ -4,3 +4,5 @@ myst-parser
 docutils==0.16
 nbsphinx
 sphinxemoji
+ipython
+ipykernel

@@ -28,7 +28,8 @@
    :template: custom-module-template.rst
    :recursive:
 
-   pysurfline.core
+   pysurfline.api
+   pysurfline.models
    pysurfline.reports
    pysurfline.utils
 

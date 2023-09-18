@@ -2,31 +2,27 @@
 Welcome to pysurfline's documentation!
 ======================================
 
-Python wrapper of Surfline V2 API.
 
-:obj:`pysurfline` features:
+Get the surf forecast for any spot listed on `Surfline <https://www.surfline.com>`_.
 
-- getting Surfline forecast for any spot that is listed on `Surfline <https://www.surfline.com>`_ (surf, swell, wind, tides, daylight info )
-- produce structured surf reports.
+Quickly get the forecast data as a `pandas DataFrame <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html>`_ and 
+plot surf forecast with `matplotlib <https://matplotlib.org/stable/>`_ to visualize the conditions of your favorite surf spot.
 
-.. figure :: images/surfreport_pipeline.jpeg
-   :align: center
-   
-   SurfReport for Pipeline in Hawaii (USA).
+- **Surf** (wave min and max)
+- **Wind** (speed and direction)
+- **Swell** (height, period, direction)
+- **Tide** (height, direction)
+- **Daylight** (sunrise, sunset)
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents
-
-   examples/surfline_api.ipynb
-
+.. image:: https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_readme.png
+   :alt: surfreport example
 
 .. toctree::
    :maxdepth: 2
    :caption: Examples
 
-   examples/forecasts.ipynb
-   examples/surf_report.ipynb
+   examples/SpotForecast.ipynb
+   examples/SurfReport.ipynb
 
 
 

@@ -9,6 +9,13 @@ pysurfline.reports
 
    
    
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      plot_surf_report
+   
    
 
    

@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pysurfline.reports &mdash; pysurfline 0.0.4.1 documentation</title>
+  <title>pysurfline.reports &mdash; pysurfline 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pysurfline.reports.SurfReport" href="pysurfline.reports.SurfReport.html" />
-    <link rel="prev" title="pysurfline.core.SpotForecast" href="pysurfline.core.SpotForecast.html" /> 
+    <link rel="next" title="pysurfline.reports.plot_surf_report" href="pysurfline.reports.plot_surf_report.html" />
+    <link rel="prev" title="pysurfline.models.Wind" href="pysurfline.models.Wind.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,7 +36,7 @@
             pysurfline
           </a>
               <div class="version">
-                0.0.4.1
+                0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -44,20 +46,18 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/surfline_api.html">Surfline API v2</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/forecasts.html">Get forecast for a specific spot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/surf_report.html">Produce a surf report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/SpotForecast.html">Get forecast for a spot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/SurfReport.html">Visualize the surf report</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="pysurfline.html">pysurfline</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pysurfline.core.html">pysurfline.core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysurfline.api.html">pysurfline.api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysurfline.models.html">pysurfline.models</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">pysurfline.reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pysurfline.reports.plot_surf_report.html">pysurfline.reports.plot_surf_report</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.reports.SurfReport.html">pysurfline.reports.SurfReport</a></li>
 </ul>
 </li>
@@ -91,29 +91,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-pysurfline.reports">
-<span id="pysurfline-reports"></span><h1>pysurfline.reports<a class="headerlink" href="#module-pysurfline.reports" title="Permalink to this headline"></a></h1>
+  <section id="module-pysurfline.reports">
+<span id="pysurfline-reports"></span><h1>pysurfline.reports<a class="headerlink" href="#module-pysurfline.reports" title="Link to this heading"></a></h1>
 <p>reports</p>
-<p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.reports.SurfReport.html#pysurfline.reports.SurfReport" title="pysurfline.reports.SurfReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SurfReport</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Structured spot surf-report object.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.reports.plot_surf_report.html#pysurfline.reports.plot_surf_report" title="pysurfline.reports.plot_surf_report"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_surf_report</span></code></a>(spotforecast, **kwargs)</p></td>
+<td><p>Plot surf report from a spotforecast object.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.reports.SurfReport.html#pysurfline.reports.SurfReport" title="pysurfline.reports.SurfReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SurfReport</span></code></a>(spotforecast)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pysurfline.core.SpotForecast.html" class="btn btn-neutral float-left" title="pysurfline.core.SpotForecast" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pysurfline.reports.SurfReport.html" class="btn btn-neutral float-right" title="pysurfline.reports.SurfReport" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pysurfline.models.Wind.html" class="btn btn-neutral float-left" title="pysurfline.models.Wind" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pysurfline.reports.plot_surf_report.html" class="btn btn-neutral float-right" title="pysurfline.reports.plot_surf_report" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

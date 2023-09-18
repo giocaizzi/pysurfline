@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; pysurfline 0.0.4.1 documentation</title>
+  <title>Index &mdash; pysurfline 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
@@ -32,7 +33,7 @@
             pysurfline
           </a>
               <div class="version">
-                0.0.4.1
+                0.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -42,14 +43,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/surfline_api.html">Surfline API v2</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="examples/forecasts.html">Get forecast for a specific spot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/surf_report.html">Produce a surf report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/SpotForecast.html">Get forecast for a spot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/SurfReport.html">Visualize the surf report</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
 <ul>
@@ -84,34 +81,32 @@
 
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
- | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
- | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
- | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.api_log">api_log (pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.api.APIResource.html#pysurfline.api.APIResource">APIResource (class in pysurfline.api)</a>
 </li>
   </ul></td>
 </tr></table>
 
-<h2 id="B">B</h2>
+<h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.ForecastGetter.html#pysurfline.core.ForecastGetter.baseurl">baseurl (pysurfline.core.ForecastGetter attribute)</a>
+      <li><a href="_autosummary/pysurfline.api.APIResource.html#pysurfline.api.APIResource.client">client (pysurfline.api.APIResource attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -119,7 +114,21 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/pysurfline.api.APIResource.html#pysurfline.api.APIResource.data">data (pysurfline.api.APIResource attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/pysurfline.utils.degToCompass.html#pysurfline.utils.degToCompass">degToCompass() (in module pysurfline.utils)</a>
+</li>
+      <li><a href="_autosummary/pysurfline.models.Time.html#pysurfline.models.Time.dt">dt (pysurfline.models.Time attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/pysurfline.api.APIResource.html#pysurfline.api.APIResource.endpoint">endpoint (pysurfline.api.APIResource attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -131,9 +140,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.ForecastGetter.html#pysurfline.core.ForecastGetter">ForecastGetter (class in pysurfline.core)</a>
-</li>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.forecastLocation">forecastLocation (pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.models.Forecast.html#pysurfline.models.Forecast">Forecast (class in pysurfline.models)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -141,19 +148,13 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.get_dataframe">get_dataframe() (pysurfline.core.SpotForecast method)</a>
-
-      <ul>
-        <li><a href="_autosummary/pysurfline.reports.SurfReport.html#pysurfline.reports.SurfReport.get_dataframe">(pysurfline.reports.SurfReport method)</a>
+      <li><a href="_autosummary/pysurfline.api.APIResource.html#pysurfline.api.APIResource.get">get() (pysurfline.api.APIResource method)</a>
 </li>
-      </ul></li>
   </ul></td>
-</tr></table>
-
-<h2 id="L">L</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.location">location (pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.models.SpotForecasts.html#pysurfline.models.SpotForecasts.get_dataframe">get_dataframe() (pysurfline.models.SpotForecasts method)</a>
+</li>
+      <li><a href="_autosummary/pysurfline.api.get_spot_forecasts.html#pysurfline.api.get_spot_forecasts">get_spot_forecasts() (in module pysurfline.api)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -167,7 +168,9 @@
       <ul>
         <li><a href="_autosummary/pysurfline.html#module-pysurfline">pysurfline</a>
 </li>
-        <li><a href="_autosummary/pysurfline.core.html#module-pysurfline.core">pysurfline.core</a>
+        <li><a href="_autosummary/pysurfline.api.html#module-pysurfline.api">pysurfline.api</a>
+</li>
+        <li><a href="_autosummary/pysurfline.models.html#module-pysurfline.models">pysurfline.models</a>
 </li>
         <li><a href="_autosummary/pysurfline.reports.html#module-pysurfline.reports">pysurfline.reports</a>
 </li>
@@ -177,23 +180,13 @@
   </ul></td>
 </tr></table>
 
-<h2 id="O">O</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.offshoreLocation">offshoreLocation (pysurfline.core.SpotForecast attribute)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.ForecastGetter.html#pysurfline.core.ForecastGetter.params">params (pysurfline.core.ForecastGetter attribute)</a>
-
-      <ul>
-        <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.params">(pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.reports.SurfReport.html#pysurfline.reports.SurfReport.plot">plot() (pysurfline.reports.SurfReport method)</a>
 </li>
-      </ul></li>
+      <li><a href="_autosummary/pysurfline.reports.plot_surf_report.html#pysurfline.reports.plot_surf_report">plot_surf_report() (in module pysurfline.reports)</a>
+</li>
       <li>
     pysurfline
 
@@ -202,14 +195,21 @@
 </li>
       </ul></li>
       <li>
-    pysurfline.core
+    pysurfline.api
 
       <ul>
-        <li><a href="_autosummary/pysurfline.core.html#module-pysurfline.core">module</a>
+        <li><a href="_autosummary/pysurfline.api.html#module-pysurfline.api">module</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    pysurfline.models
+
+      <ul>
+        <li><a href="_autosummary/pysurfline.models.html#module-pysurfline.models">module</a>
+</li>
+      </ul></li>
       <li>
     pysurfline.reports
 
@@ -230,7 +230,7 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.ForecastGetter.html#pysurfline.core.ForecastGetter.response">response (pysurfline.core.ForecastGetter attribute)</a>
+      <li><a href="_autosummary/pysurfline.api.APIResource.html#pysurfline.api.APIResource.response">response (pysurfline.api.APIResource attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -238,13 +238,21 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast">SpotForecast (class in pysurfline.core)</a>
+      <li><a href="_autosummary/pysurfline.models.SpotForecasts.html#pysurfline.models.SpotForecasts">SpotForecasts (class in pysurfline.models)</a>
+</li>
+      <li><a href="_autosummary/pysurfline.api.APIResource.html#pysurfline.api.APIResource.status_code">status_code (pysurfline.api.APIResource attribute)</a>
+</li>
+      <li><a href="_autosummary/pysurfline.models.SunriseSunsetTime.html#pysurfline.models.SunriseSunsetTime">SunriseSunsetTime (class in pysurfline.models)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.sunlightTimes">sunlightTimes (pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.models.Surf.html#pysurfline.models.Surf">Surf (class in pysurfline.models)</a>
+</li>
+      <li><a href="_autosummary/pysurfline.api.SurflineClient.html#pysurfline.api.SurflineClient">SurflineClient (class in pysurfline.api)</a>
 </li>
       <li><a href="_autosummary/pysurfline.reports.SurfReport.html#pysurfline.reports.SurfReport">SurfReport (class in pysurfline.reports)</a>
+</li>
+      <li><a href="_autosummary/pysurfline.models.Swell.html#pysurfline.models.Swell">Swell (class in pysurfline.models)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -252,13 +260,15 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.tideLocation">tideLocation (pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.models.Tide.html#pysurfline.models.Tide">Tide (class in pysurfline.models)</a>
+</li>
+      <li><a href="_autosummary/pysurfline.models.TideLocation.html#pysurfline.models.TideLocation">TideLocation (class in pysurfline.models)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.tides">tides (pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.models.Time.html#pysurfline.models.Time">Time (class in pysurfline.models)</a>
 </li>
-      <li><a href="_autosummary/pysurfline.core.ForecastGetter.html#pysurfline.core.ForecastGetter.type">type (pysurfline.core.ForecastGetter attribute)</a>
+      <li><a href="_autosummary/pysurfline.models.Time.html#pysurfline.models.Time.timestamp">timestamp (pysurfline.models.Time attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -266,25 +276,7 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.units_tides">units_tides (pysurfline.core.SpotForecast attribute)</a>
-</li>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.units_wave">units_wave (pysurfline.core.SpotForecast attribute)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.units_weather">units_weather (pysurfline.core.SpotForecast attribute)</a>
-</li>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.units_wind">units_wind (pysurfline.core.SpotForecast attribute)</a>
-</li>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.utcOffset">utcOffset (pysurfline.core.SpotForecast attribute)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.verbose">verbose (pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.api.APIResource.html#pysurfline.api.APIResource.url">url (pysurfline.api.APIResource attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -292,15 +284,11 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.wave">wave (pysurfline.core.SpotForecast attribute)</a>
-</li>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.weather">weather (pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.models.Weather.html#pysurfline.models.Weather">Weather (class in pysurfline.models)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.weatherIconPath">weatherIconPath (pysurfline.core.SpotForecast attribute)</a>
-</li>
-      <li><a href="_autosummary/pysurfline.core.SpotForecast.html#pysurfline.core.SpotForecast.wind">wind (pysurfline.core.SpotForecast attribute)</a>
+      <li><a href="_autosummary/pysurfline.models.Wind.html#pysurfline.models.Wind">Wind (class in pysurfline.models)</a>
 </li>
   </ul></td>
 </tr></table>

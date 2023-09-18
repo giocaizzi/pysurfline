@@ -14,11 +14,19 @@ pysurfline.reports.SurfReport
    .. autosummary::
    
       ~SurfReport.__init__
-      ~SurfReport.get_dataframe
       ~SurfReport.plot
    
    
 
    
+   
+   .. rubric:: Attributes
+   .. autosummary::
+   
+      ~SurfReport.h_scale
+      ~SurfReport.f
+      ~SurfReport.ax
+      ~SurfReport.forecasts
+      ~SurfReport.sunrisesunsettimes
    
    

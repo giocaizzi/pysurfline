@@ -1,9 +1,9 @@
-pysurfline.core.ForecastGetter
-==============================
+pysurfline.models.Tide
+======================
 
-.. currentmodule:: pysurfline.core
+.. currentmodule:: pysurfline.models
 
-.. autoclass:: ForecastGetter
+.. autoclass:: Tide
    :members:
    :show-inheritance:
    :inherited-members:
@@ -13,7 +13,7 @@ pysurfline.core.ForecastGetter
    .. rubric:: Methods
    .. autosummary::
    
-      ~ForecastGetter.__init__
+      ~Tide.__init__
    
    
 
@@ -22,6 +22,8 @@ pysurfline.core.ForecastGetter
    .. rubric:: Attributes
    .. autosummary::
    
-      ~ForecastGetter.baseurl
+      ~Tide.timestamp
+      ~Tide.type
+      ~Tide.height
    
    
