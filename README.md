@@ -28,7 +28,8 @@ pip install pysurfline
 
 # Example
 
-Get the `pysurfline.SurfReport` plot for Banzai Pipeline in Oahu, Hawaii (USA).
+Get the spot forecast for a given `SpotId`.
+
 [Go to full example.](https://giocaizzi.github.io/pysurfline/examples/surf_report.html)
 
 ![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_readme.png)
