@@ -1,0 +1,19 @@
+name: Documentation precheck
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  pre-check-docs:
+    runs on: ubuntu-latest
+    steps:
+      # python 3.9 installation
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - uses: actions/checkout@v4
+        with:
+          ref : ${{ github.ref }}
