@@ -16,15 +16,36 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           ref: "${{ github.base_ref }}"
+
+      # merge PR into main
+      # merge main into gh-pages
 
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
+
           git branch precheck_branch
           git checkout precheck_branch
           git merge origin/${{ github.head_ref }}
-          git add .
-          git commit -m "precheck commit"
+          git checkout origin/gh-pages
+          git merge precheck_branch
+
+      # from here on it's a copy paste of documentation.yml
+
+      - name: Install pandoc
+        run: |
+          sudo apt-get install pandoc
+
+      - name: Set up dependencies
+        run: |
+          pip install --upgrade pip 
+          pip install -r requirements.txt
+          pip install -r docsrc/requirements.txt
+          pip install .
+
+      - name: Build docs
+        run: |
+          cd docsrc/
+          make github-action
+          cd ..
