@@ -1,0 +1,81 @@
+name: Versioning Checks
+
+on:
+  pull_request:
+    branches:
+      - main 
+
+jobs:
+  check-version-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify versions
+        run: |
+          # Get the commit hashes for the base and head branches
+          BASE_SHA=$(git rev-parse origin/${{ github.base_ref }})
+          HEAD_SHA=$(git rev-parse origin/${{ github.head_ref }})
+
+          echo "Base ref: ${{ github.base_ref }}"
+          echo "Base SHA: ${BASE_SHA}"
+          echo "Head ref: ${{ github.head_ref }}"
+          echo "Head SHA: ${HEAD_SHA}"
+          echo "HEAD: $(git rev-parse HEAD)"
+
+          # Check if there are changes in the specific folder
+          CHANGED_FILES=$(git diff --name-only $BASE_SHA $HEAD_SHA './pysurfline/')
+
+          if [[ -n "$CHANGED_FILES" ]]; then
+            echo "------------------------------------------"
+            echo "There are changes in the pysurfline folder"
+            echo "------------------------------------------"
+            echo "Checking __init__.py file..."
+
+            head_init_version=$(git show HEAD:./pysurfline/__init__.py | grep -oP '__version__ = "\K[^"]+')
+            echo "Head version: ${head_init_version}"
+
+            base_init_version=$(git show ${BASE_SHA}:./pysurfline/__init__.py | grep -oP '__version__ = "\K[^"]+')
+            echo "Base version: ${base_init_version}"
+
+            if [ "$base_init_version" != "$head_init_version" ]; then
+              echo "The __version__ variable has been updated in package init."
+            else
+              echo "Error: The __version__ variable has not been updated in package init."
+              exit 1
+            fi
+
+            echo "------------------------------------------"
+            echo "Checking setup.py file..."
+
+            head_setup_version=$(git show HEAD:./setup.py | grep -oP 'version="\K[^"]+')
+            echo "Head version: ${head_setup_version}"
+
+            base_setup_version=$(git show ${BASE_SHA}:./setup.py | grep -oP 'version="\K[^"]+')
+            echo "Base version: ${base_setup_version}"
+
+            if [ "$head_setup_version" != "$base_setup_version" ]; then
+              echo "The version variable have both been updated in setup.py."
+            else
+              echo "Error: The version variable has not been updated in setup.py."
+              exit 1
+            fi
+
+            echo "------------------------------------------"
+            echo "Checking they are equal..."
+
+            if [ "$head_init_version" == "$head_setup_version" ]; then
+              echo "The versions are equal."
+            else
+              echo "Error: The versions are not equal."
+              exit 1
+            fi
+          else
+            echo "There are no changes in the pysurfline folder"
+            exit 0
+          fi
+
+

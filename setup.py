@@ -8,7 +8,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="pysurfline",
-    version="0.0.4.1",
+    version="0.1",
     description="python client to Surfline API",
     long_description_content_type="text/markdown",
     long_description=long_description,
@@ -16,7 +16,7 @@ setup(
     author="giocaizzi",
     author_email="giocaizzi@gmail.com",
     license="MIT",
-    packages=find_packages(include=["pysurfline", "pysurfline/*"]),
+    packages=find_packages(include=["pysurfline", "pysurfline.*"]),
     setup_requires=[],
     tests_require=[],
     install_requires=[
@@ -35,7 +35,6 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
-
     ],
     project_urls={
         "Documentation": "https://giocaizzi.github.io/pysurfline/",
