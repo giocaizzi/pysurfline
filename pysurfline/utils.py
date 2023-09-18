@@ -1,30 +1,41 @@
 """
 utility functions
 """
-import sys
-
-if sys.version_info.major == 3 and sys.version_info.minor >= 10:
-    from collections.abc import MutableMapping
-else:
-    from collections import MutableMapping
+from collections.abc import MutableMapping
 
 
-def flatten(d: dict, parent_key="", sep="_") -> dict:
+from dataclasses import is_dataclass
+
+
+def flatten(d: dict, parent_key: str = "", sep: str = "_") -> dict:
     """
-    flatten nested dictionary, preserving lists
+    Recursively flattens a nested dictionary.
 
-    Arguments:
-        parent_key (str): _
-        sep (str): separator between upper and lowe level
-            keys when concatenated in new key
+    Args:
+        d (dict): The dictionary to flatten.
+        parent_key (str): The parent key to use for the flattened keys.
+        sep (str): The separator to use between keys.
+
     Returns:
-        dict: flattened dictionary
+        dict: The flattened dictionary.
     """
     items = []
     for k, v in d.items():
         new_key = parent_key + sep + k if parent_key else k
-        if v and isinstance(v, MutableMapping):
+        if isinstance(v, MutableMapping):
             items.extend(flatten(v, new_key, sep=sep).items())
+        elif isinstance(v, list):
+            for i, item in enumerate(v):
+                if isinstance(item, MutableMapping):
+                    items.extend(flatten(item, f"{new_key}{sep}{i}", sep=sep).items())
+                elif is_dataclass(item):
+                    items.extend(
+                        flatten(item.__dict__, f"{new_key}{sep}{i}", sep=sep).items()
+                    )
+                else:
+                    items.append((f"{new_key}{sep}{i}", item))
+        elif is_dataclass(v):
+            items.extend(flatten(v.__dict__, new_key, sep=sep).items())
         else:
             items.append((new_key, v))
     return dict(items)
