@@ -6,7 +6,7 @@ on:
 
 jobs:
   pre-check-docs:
-    runs on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       # python 3.9 installation
       - name: Set up Python 3.9
@@ -18,7 +18,5 @@ jobs:
         with:
           fetch-depth: 0
 
-      - run : |
+      - run: |
           git branch
-
-      
