@@ -30,16 +30,14 @@ jobs:
           git checkout temp
           echo "created temporary branch"
 
-          git fetch origin ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
           echo "Pulled ${{ github.head_ref }} into temporary branch"
-
           git checkout "${{ github.head_ref }}"
+
           git checkout temp
-
-          git branch
-
           git merge ${{ github.head_ref }}
+          git add .
+          git commit -m "merged ${{ github.head_ref }} into temporary branch"
           echo "merged ${{ github.head_ref }} into temporary branch"
 
           git pull origin gh-pages
