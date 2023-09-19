@@ -34,6 +34,9 @@ jobs:
           git pull origin ${{ github.head_ref }}
           echo "Pulled ${{ github.head_ref }} into temporary branch"
 
+          git checkout "${{ github.base_ref }}"
+          git checkout temp
+
           git branch
 
           git merge ${{ github.head_ref }}
