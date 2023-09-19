@@ -148,9 +148,9 @@ class SpotForecasts:
 
         Get the pandas dataframe of the selected attribute. The attribute
         can be:
-            - 'forecast'
-            - 'tides'
-            - 'sunriseSunsetTimes'
+        - 'forecast'
+        - 'tides'
+        - 'sunriseSunsetTimes'
 
         Args:
             attr (str, optional): attribute to get dataframe from.
