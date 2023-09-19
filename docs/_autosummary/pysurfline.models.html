@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pysurfline.models &mdash; pysurfline 0.1 documentation</title>
+  <title>pysurfline.models &mdash; pysurfline 0.1.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=2709fde1"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -36,7 +34,7 @@
             pysurfline
           </a>
               <div class="version">
-                0.1
+                0.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -99,16 +97,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-pysurfline.models">
-<span id="pysurfline-models"></span><h1>pysurfline.models<a class="headerlink" href="#module-pysurfline.models" title="Link to this heading"></a></h1>
+  <div class="section" id="module-pysurfline.models">
+<span id="pysurfline-models"></span><h1>pysurfline.models<a class="headerlink" href="#module-pysurfline.models" title="Permalink to this headline"></a></h1>
 <p>api objects: data models</p>
 <p class="rubric">Classes</p>
-<table class="autosummary longtable docutils align-default">
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.models.Forecast.html#pysurfline.models.Forecast" title="pysurfline.models.Forecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Forecast</span></code></a>(timestamp, weather, wind, surf, swells)</p></td>
 <td><p>forecast data model</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pysurfline.models.SpotForecasts.html#pysurfline.models.SpotForecasts" title="pysurfline.models.SpotForecasts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpotForecasts</span></code></a>(spotId, name, forecasts, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pysurfline.models.SpotForecasts.html#pysurfline.models.SpotForecasts" title="pysurfline.models.SpotForecasts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpotForecasts</span></code></a>(spotId, name, forecasts, …)</p></td>
 <td><p>spot forecasts data model</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.models.SunriseSunsetTime.html#pysurfline.models.SunriseSunsetTime" title="pysurfline.models.SunriseSunsetTime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SunriseSunsetTime</span></code></a>(midnight, sunrise, sunset)</p></td>
@@ -126,7 +128,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.models.TideLocation.html#pysurfline.models.TideLocation" title="pysurfline.models.TideLocation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TideLocation</span></code></a>(name, min, max, lon, lat, mean)</p></td>
 <td><p>tide location data model</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pysurfline.models.Time.html#pysurfline.models.Time" title="pysurfline.models.Time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Time</span></code></a>(timestamp[, dt])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pysurfline.models.Time.html#pysurfline.models.Time" title="pysurfline.models.Time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Time</span></code></a>(timestamp, dt)</p></td>
 <td><p>time data model</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pysurfline.models.Weather.html#pysurfline.models.Weather" title="pysurfline.models.Weather"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Weather</span></code></a>(temperature, condition)</p></td>
@@ -137,7 +139,7 @@
 </tr>
 </tbody>
 </table>
-</section>
+</div>
 
 
            </div>
