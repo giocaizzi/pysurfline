@@ -1,0 +1,64 @@
+name: Documentation precheck
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  pre-check-docs:
+    runs-on: ubuntu-latest
+    steps:
+      # python 3.9 installation
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # required otherwise impossible to merge
+          ref: "${{ github.base_ref }}"
+
+      # merge PR into main
+      # merge main into gh-pages
+
+      - run: |
+          git config pull.rebase false
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          git branch temp
+          git checkout temp
+          echo "created temporary branch"
+
+          git pull origin ${{ github.head_ref }}
+          echo "Pulled ${{ github.head_ref }} into temporary branch"
+          git checkout "${{ github.head_ref }}"
+
+          git checkout temp
+          git merge ${{ github.head_ref }}
+          echo "merged ${{ github.head_ref }} into temporary branch"
+
+          git pull origin gh-pages
+          git checkout gh-pages
+          git merge temp
+          echo "merged temporary branch into gh-pages"
+
+      # from here on it's a copy paste of documentation.yml
+
+      - name: Install pandoc
+        run: |
+          sudo apt-get install pandoc
+
+      - name: Set up dependencies
+        run: |
+          pip install --upgrade pip 
+          pip install -r requirements.txt
+          pip install -r docsrc/requirements.txt
+          pip install . 
+      
+      - name: Build docs
+        run : |
+          cd docsrc/
+          make github-action
+          cd ..
