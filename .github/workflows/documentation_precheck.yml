@@ -26,8 +26,8 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-          git branch precheck_branch
-          git checkout precheck_branch
+          git branch temp
+          git checkout temp
           echo "created temporary branch"
 
           git fetch origin ${{ github.head_ref }}
