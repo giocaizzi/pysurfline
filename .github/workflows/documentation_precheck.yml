@@ -28,7 +28,10 @@ jobs:
 
           git branch precheck_branch
           git checkout precheck_branch
-          git merge "origin/${{ github.head_ref }}"
+
+          head_branch="origin/${{ github.head_ref }}"
+          git echo "Head branch: ${head_branch}"
+          git merge ${branch}
           git checkout "origin/gh-pages"
           git merge precheck_branch
 
