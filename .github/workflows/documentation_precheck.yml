@@ -23,6 +23,7 @@ jobs:
       # merge main into gh-pages
 
       - run: |
+          git config pull.rebase false
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
