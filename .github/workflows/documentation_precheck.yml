@@ -41,7 +41,7 @@ jobs:
 
           git pull origin gh-pages
           git checkout gh-pages
-          git merge precheck_branch
+          git merge temp
           echo "merged temporary branch into gh-pages"
 
       # from here on it's a copy paste of documentation.yml
