@@ -32,6 +32,10 @@ jobs:
 
           git fetch origin ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
+          echo "Pulled ${{ github.head_ref }} into temporary branch"
+
+          git branch
+
           git merge ${{ github.head_ref }}
           echo "merged ${{ github.head_ref }} into temporary branch"
 
