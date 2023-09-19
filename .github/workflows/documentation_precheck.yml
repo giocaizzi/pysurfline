@@ -29,10 +29,12 @@ jobs:
           git branch precheck_branch
           git checkout precheck_branch
 
-          head_branch="origin/${{ github.head_ref }}"
-          echo "Head branch: ${head_branch}"
-          git merge ${branch}
-          git checkout "origin/gh-pages"
+          git fetch origin ${{ github.head_ref }}
+          git pull origin ${{ github.head_ref }}
+          git merge ${{ github.head_ref }}
+
+          git pull origin gh-pages
+          git checkout gh-pages
           git merge precheck_branch
 
       # from here on it's a copy paste of documentation.yml
