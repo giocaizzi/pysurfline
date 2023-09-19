@@ -10,48 +10,46 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      
-    # full pandoc installation by
-    # nbsphinx extension
-    - name: Install pandoc
-      run: |
-        sudo apt-get install pandoc
+      # python 3.9 installation
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
 
-    # python 3.9 installation
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.9"
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
 
-    - uses: actions/checkout@v4
-      with:
-        ref : ${{ github.ref }}
-    
+      # full pandoc installation by
+      # nbsphinx extension
+      - name: Install pandoc
+        run: |
+          sudo apt-get install pandoc
 
-    - name: Set up dependencies
-      run: |
-        pip install --upgrade pip 
-        pip install -r requirements.txt
-        pip install -r docsrc/requirements.txt
-        pip install . 
-  
-    - name: Build docs
-      run : |
-        cd docsrc/
-        make github-action
-        cd ..
+      - name: Set up dependencies
+        run: |
+          pip install --upgrade pip 
+          pip install -r requirements.txt
+          pip install -r docsrc/requirements.txt
+          pip install .
 
-  # The last command will fail if no changes were present, so we ignore
-  # the return code.
-    - name: Commit documentation changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Actions: Build documentation" -a || true
-  
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: gh-pages
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build docs
+        run: |
+          cd docsrc/
+          make github-action
+          cd ..
+
+      # The last command will fail if no changes were present, so we ignore
+      # the return code.
+      - name: Commit documentation changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Actions: Build documentation" -a || true
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
