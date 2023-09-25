@@ -4,8 +4,8 @@
 
 Quickly get the forecast data as a [pandas Dataframe](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) and plot surf forecast with [matplotlib](https://matplotlib.org/stable/) to visualize the conditions of your favorite surf spot.
 
-- **Surf** (wave min and max)
-- **Wind** (speed and direction)
+- **Surf** (surf min, surf max)
+- **Wind** (speed, direction)
 - **Swell** (height, period, direction)
 - **Tide** (height, direction)
 - **Daylight** (sunrise, sunset)
@@ -19,36 +19,56 @@ Quickly get the forecast data as a [pandas Dataframe](https://pandas.pydata.org/
 | Documentation | [![Documentation build](https://github.com/giocaizzi/pysurfline/actions/workflows/documentation.yml/badge.svg?branch=gh-pages)](https://github.com/giocaizzi/pysurfline/actions/workflows/documentation.yml) |
 
 
-# Installation
+## Installation
 
 Install with `pip`
 ```
 pip install pysurfline
 ```
 
-# Example
+## Example
 
-Visualize the surf report for a given `SpotId`.
+- Get the surf forecasts for a given `SpotId` and get data as a pandas Dataframe.
 
-[Go to full example.](https://giocaizzi.github.io/pysurfline/examples/surf_report.html)
+    [Go to full example.](https://giocaizzi.github.io/pysurfline/examples/SpotForecast.html)
 
-```python
-import pysurfline
+    ```python
+    import pysurfline
 
-spotId = "5842041f4e65fad6a7708cfd"
+    spotId = "5842041f4e65fad6a7708cfd"
 
-spotforecast = pysurfline.get_spot_forecasts(spotId)
+    spotforecasts = pysurfline.get_spot_forecasts(spotId)
 
-pysurfline.plot_surf_report(
-    spotforecast,
-    barLabels = True,
-    )
-```
+    df = spotforecasts.get_dataframe()
+    ```
 
+- Visualize the surf report for a given `SpotId`.
+
+    [Go to full example.](https://giocaizzi.github.io/pysurfline/examples/SurfReport.html)
+
+    ```python
+    import pysurfline
+
+    spotId = "5842041f4e65fad6a7708cfd"
+
+    spotforecasts = pysurfline.get_spot_forecasts(spotId)
+
+    pysurfline.plot_surf_report(
+        spotforecasts,
+        barLabels = True,
+        )
+    ```
 
 
 ![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_readme.png)
 
-# Documentation
+## Documentation
 
 The documentation can be found [here](https://giocaizzi.github.io/pysurfline/).
+
+## Disclaimer
+This package is **not official** and **not affiliated with Surfline in any way**. 
+
+**API responses may change at any time** and the developement of this package may not be able to keep up with those changes. 
+
+If you find any issues, [please open an issue](https://github.com/giocaizzi/pysurfline/issues) or submit a [pull request](https://github.com/giocaizzi/pysurfline/pulls).
