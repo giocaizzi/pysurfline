@@ -19,14 +19,14 @@ Quickly get the forecast data as a [pandas Dataframe](https://pandas.pydata.org/
 | Documentation | [![Documentation build](https://github.com/giocaizzi/pysurfline/actions/workflows/documentation.yml/badge.svg?branch=gh-pages)](https://github.com/giocaizzi/pysurfline/actions/workflows/documentation.yml) |
 
 
-# Installation
+## Installation
 
 Install with `pip`
 ```
 pip install pysurfline
 ```
 
-# Example
+## Example
 
 - Get the surf forecasts for a given `SpotId` and get data as a pandas Dataframe.
 
@@ -62,6 +62,13 @@ pip install pysurfline
 
 ![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_readme.png)
 
-# Documentation
+## Documentation
 
 The documentation can be found [here](https://giocaizzi.github.io/pysurfline/).
+
+## Disclaimer
+This package is **not official** and **not affiliated with Surfline in any way**. 
+
+**API responses may change at any time** and the developement of this package may not be able to keep up with those changes. 
+
+If you find any issues, [please open an issue](https://github.com/giocaizzi/pysurfline/issues) or submit a [pull request](https://github.com/giocaizzi/pysurfline/pulls).
