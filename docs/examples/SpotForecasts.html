@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get surf forecasts for a spot &mdash; pysurfline 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Visualize the surf report" href="SurfReport.html" />
+    <link rel="prev" title="Welcome to pysurfline’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pysurfline
+          </a>
+              <div class="version">
+                0.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Get surf forecasts for a spot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#SpotForecasts">SpotForecasts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#as-pandas-DataFrame">as pandas DataFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SurfReport.html">Visualize the surf report</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/pysurfline.html">pysurfline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pysurfline</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Get surf forecasts for a spot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/SpotForecasts.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Get-surf-forecasts-for-a-spot">
+<h1>Get surf forecasts for a spot<a class="headerlink" href="#Get-surf-forecasts-for-a-spot" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">pysurfline</span></code> offers a simple interface to get the forecast for a spot.</p>
+<p>This data received from the API is unpacked into a <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> object for convienience.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pysurfline</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotId</span> <span class="o">=</span> <span class="s2">&quot;5842041f4e65fad6a7708cfd&quot;</span> <span class="c1"># anchor point</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotforecasts</span> <span class="o">=</span> <span class="n">pysurfline</span><span class="o">.</span><span class="n">get_spot_forecasts</span><span class="p">(</span><span class="n">spotId</span><span class="p">)</span>
+<span class="n">spotforecasts</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SpotForecasts(spotId=&#39;5842041f4e65fad6a7708cfd&#39;, name=&#39;Anchor Point&#39;, forecasts=[Forecast(timestamp=Time(timestamp=1695596400, dt=datetime.datetime(2023, 9, 24, 23, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=7.05638, direction=123.95191), surf=Surf(min=0.69661, max=1.08845), swells=[Swell(height=0.88, direction=319.34, directionMin=308.685, period=10), Swell(height=0.64, direction=286.22, directionMin=280.41, period=15), Swell(height=0.22, direction=275, directionMin=271.405, period=10), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695607200, dt=datetime.datetime(2023, 9, 25, 2, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=4.67634, direction=141.51741), surf=Surf(min=0.72732, max=1.13643), swells=[Swell(height=0.79, direction=322.07, directionMin=312.03, period=9), Swell(height=0.68, direction=285.31, directionMin=279.61, period=14), Swell(height=0.29, direction=279.38, directionMin=275.405, period=10), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695618000, dt=datetime.datetime(2023, 9, 25, 5, 0)), weather=Weather(temperature=19, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=1.79393, direction=136.22342), surf=Surf(min=0.72257, max=1.12901), swells=[Swell(height=0.74, direction=321.36, directionMin=310.885, period=9), Swell(height=0.71, direction=285.67, directionMin=279.725, period=13), Swell(height=0.25, direction=276.15, directionMin=272.66999999999996, period=9), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695628800, dt=datetime.datetime(2023, 9, 25, 8, 0)), weather=Weather(temperature=20, condition=&#39;CLEAR&#39;), wind=Wind(speed=0.98865, direction=164.88908), surf=Surf(min=0.88315, max=1.37992), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.27, direction=277.28, directionMin=273.54999999999995, period=9), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.01, direction=301.02, directionMin=288.935, period=13), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695639600, dt=datetime.datetime(2023, 9, 25, 11, 0)), weather=Weather(temperature=21, condition=&#39;CLEAR&#39;), wind=Wind(speed=4.90004, direction=242.40149), surf=Surf(min=0.84304, max=1.31725), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.96, direction=300.27, directionMin=288.135, period=13), Swell(height=0.3, direction=283.53, directionMin=278.53, period=9)]), Forecast(timestamp=Time(timestamp=1695650400, dt=datetime.datetime(2023, 9, 25, 14, 0)), weather=Weather(temperature=21, condition=&#39;CLEAR&#39;), wind=Wind(speed=6.56063, direction=282.74234), surf=Surf(min=0.77174, max=1.20585), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.9, direction=300.49, directionMin=288.445, period=12), Swell(height=0.32, direction=283.04, directionMin=277.91, period=9)]), Forecast(timestamp=Time(timestamp=1695661200, dt=datetime.datetime(2023, 9, 25, 17, 0)), weather=Weather(temperature=22, condition=&#39;CLEAR&#39;), wind=Wind(speed=8.58942, direction=291.89735), surf=Surf(min=0.69154, max=1.08054), swells=[Swell(height=0.47, direction=326.59, directionMin=316.38, period=8), Swell(height=0.74, direction=289.13, directionMin=280.99, period=12), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.32, direction=285.43, directionMin=279.835, period=9)]), Forecast(timestamp=Time(timestamp=1695672000, dt=datetime.datetime(2023, 9, 25, 20, 0)), weather=Weather(temperature=21, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=3.92145, direction=322.26491), surf=Surf(min=0.77036, max=1.20368), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.91, direction=298.02, directionMin=286.34999999999997, period=12), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695682800, dt=datetime.datetime(2023, 9, 25, 23, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=1.57852, direction=70.86981), surf=Surf(min=0.72037, max=1.12558), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.85, direction=299.01, directionMin=287.27, period=12), Swell(height=0.18, direction=282.55, directionMin=278.55, period=7)]), Forecast(timestamp=Time(timestamp=1695693600, dt=datetime.datetime(2023, 9, 26, 2, 0)), weather=Weather(temperature=19, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=2.26916, direction=77.10599), surf=Surf(min=0.67515, max=1.05492), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.81, direction=298.67, directionMin=287.2, period=11), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695704400, dt=datetime.datetime(2023, 9, 26, 5, 0)), weather=Weather(temperature=19, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=0.21259, direction=282.88964), surf=Surf(min=0.65058, max=1.01653), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.09, direction=307.38, directionMin=302.045, period=18), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.78, direction=298.82, directionMin=287.635, period=11), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695715200, dt=datetime.datetime(2023, 9, 26, 8, 0)), weather=Weather(temperature=20, condition=&#39;CLEAR&#39;), wind=Wind(speed=0.92878, direction=182.02193), surf=Surf(min=0.59385, max=0.92789), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.26, direction=295.33, directionMin=288.955, period=14), Swell(height=0.2, direction=305.13, directionMin=299.4, period=17), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.7, direction=299.82, directionMin=288.485, period=11), Swell(height=0.15, direction=284.39, directionMin=280.515, period=6)]), Forecast(timestamp=Time(timestamp=1695726000, dt=datetime.datetime(2023, 9, 26, 11, 0)), weather=Weather(temperature=22, condition=&#39;CLEAR&#39;), wind=Wind(speed=6.18996, direction=265.27635), surf=Surf(min=0.58045, max=0.90695), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.45, direction=299.83, directionMin=292.81, period=16), Swell(height=0.28, direction=333.03, directionMin=323.005, period=5), Swell(height=0.66, direction=293.79, directionMin=285.99, period=11), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695736800, dt=datetime.datetime(2023, 9, 26, 14, 0)), weather=Weather(temperature=23, condition=&#39;CLEAR&#39;), wind=Wind(speed=7.66112, direction=279.96821), surf=Surf(min=0.68463, max=1.06974), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.68, direction=300.37, directionMin=293.485, period=15), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.68, direction=300.88, directionMin=290.215, period=10), Swell(height=0.15, direction=286.47, directionMin=281.93, period=6)]), Forecast(timestamp=Time(timestamp=1695747600, dt=datetime.datetime(2023, 9, 26, 17, 0)), weather=Weather(temperature=24, condition=&#39;CLEAR&#39;), wind=Wind(speed=9.88804, direction=317.98725), surf=Surf(min=0.94004, max=1.46881), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.03, direction=300.78, directionMin=293.84999999999997, period=14), Swell(height=0.49, direction=321.71, directionMin=309.78999999999996, period=4), Swell(height=0.37, direction=283.11, directionMin=279.315, period=10), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695758400, dt=datetime.datetime(2023, 9, 26, 20, 0)), weather=Weather(temperature=22, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=3.4595, direction=67.66442), surf=Surf(min=1.06943, max=1.67098), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.24, direction=298.88, directionMin=291.96999999999997, period=14), Swell(height=0.65, direction=322.59, directionMin=310, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695769200, dt=datetime.datetime(2023, 9, 26, 23, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_MOSTLY_CLEAR&#39;), wind=Wind(speed=9.13559, direction=123.26966), surf=Surf(min=1.11898, max=1.7484), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.34, direction=299.27, directionMin=292.385, period=14), Swell(height=0.6, direction=324.61, directionMin=311.345, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695780000, dt=datetime.datetime(2023, 9, 27, 2, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=2.0544, direction=137.63649), surf=Surf(min=1.11249, max=1.73827), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.38, direction=299.4, directionMin=292.64, period=13), Swell(height=0.55, direction=326.34, directionMin=313.265, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695790800, dt=datetime.datetime(2023, 9, 27, 5, 0)), weather=Weather(temperature=19, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=0.46359, direction=194.91328), surf=Surf(min=1.10235, max=1.72243), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.38, direction=299.96, directionMin=293.11499999999995, period=13), Swell(height=0.56, direction=327.4, directionMin=315.31, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695801600, dt=datetime.datetime(2023, 9, 27, 8, 0)), weather=Weather(temperature=20, condition=&#39;CLEAR&#39;), wind=Wind(speed=4.02663, direction=307.97996), surf=Surf(min=1.06519, max=1.66436), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.33, direction=300.26, directionMin=293.46, period=13), Swell(height=0.54, direction=328.7, directionMin=317.155, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695812400, dt=datetime.datetime(2023, 9, 27, 11, 0)), weather=Weather(temperature=22, condition=&#39;CLEAR&#39;), wind=Wind(speed=7.19245, direction=267.32573), surf=Surf(min=1.02401, max=1.60001), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.28, direction=300.97, directionMin=294.055, period=12), Swell(height=0.47, direction=331.31, directionMin=319.84, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695823200, dt=datetime.datetime(2023, 9, 27, 14, 0)), weather=Weather(temperature=24, condition=&#39;CLEAR&#39;), wind=Wind(speed=5.75492, direction=281.687), surf=Surf(min=0.98512, max=1.53925), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.23, direction=301.43, directionMin=294.54, period=12), Swell(height=0.56, direction=330.3, directionMin=319.49, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695834000, dt=datetime.datetime(2023, 9, 27, 17, 0)), weather=Weather(temperature=23, condition=&#39;CLEAR&#39;), wind=Wind(speed=0.77587, direction=321.85939), surf=Surf(min=0.95086, max=1.48572), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.18, direction=301.97, directionMin=295.21500000000003, period=12), Swell(height=0.98, direction=325.1, directionMin=313.76500000000004, period=6), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695844800, dt=datetime.datetime(2023, 9, 27, 20, 0)), weather=Weather(temperature=22, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=5.1028, direction=112.36161), surf=Surf(min=0.91636, max=1.43181), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.13, direction=302.24, directionMin=295.595, period=12), Swell(height=1.15, direction=322.54, directionMin=310.68, period=6), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695855600, dt=datetime.datetime(2023, 9, 27, 23, 0)), weather=Weather(temperature=21, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=9.00826, direction=117.98122), surf=Surf(min=0.88027, max=1.37543), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.13, direction=302.77, directionMin=296.005, period=12), Swell(height=1.13, direction=321.61, directionMin=309.86, period=7), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)])], sunriseSunsetTimes=[SunriseSunsetTime(midnight=Time(timestamp=1695596400, dt=datetime.datetime(2023, 9, 24, 23, 0)), sunrise=Time(timestamp=1695623391, dt=datetime.datetime(2023, 9, 25, 6, 29, 51)), sunset=Time(timestamp=1695666853, dt=datetime.datetime(2023, 9, 25, 18, 34, 13))), SunriseSunsetTime(midnight=Time(timestamp=1695682800, dt=datetime.datetime(2023, 9, 25, 23, 0)), sunrise=Time(timestamp=1695709825, dt=datetime.datetime(2023, 9, 26, 6, 30, 25)), sunset=Time(timestamp=1695753177, dt=datetime.datetime(2023, 9, 26, 18, 32, 57))), SunriseSunsetTime(midnight=Time(timestamp=1695769200, dt=datetime.datetime(2023, 9, 26, 23, 0)), sunrise=Time(timestamp=1695796258, dt=datetime.datetime(2023, 9, 27, 6, 30, 58)), sunset=Time(timestamp=1695839500, dt=datetime.datetime(2023, 9, 27, 18, 31, 40))), SunriseSunsetTime(midnight=Time(timestamp=1695855600, dt=datetime.datetime(2023, 9, 27, 23, 0)), sunrise=Time(timestamp=1695882693, dt=datetime.datetime(2023, 9, 28, 6, 31, 33)), sunset=Time(timestamp=1695925824, dt=datetime.datetime(2023, 9, 28, 18, 30, 24)))], tides=[Tide(timestamp=Time(timestamp=1695592800, dt=datetime.datetime(2023, 9, 24, 22, 0)), type=&#39;NORMAL&#39;, height=2.78), Tide(timestamp=Time(timestamp=1695596400, dt=datetime.datetime(2023, 9, 24, 23, 0)), type=&#39;NORMAL&#39;, height=2.69), Tide(timestamp=Time(timestamp=1695600000, dt=datetime.datetime(2023, 9, 25, 0, 0)), type=&#39;NORMAL&#39;, height=2.49), Tide(timestamp=Time(timestamp=1695603600, dt=datetime.datetime(2023, 9, 25, 1, 0)), type=&#39;NORMAL&#39;, height=2.22), Tide(timestamp=Time(timestamp=1695607200, dt=datetime.datetime(2023, 9, 25, 2, 0)), type=&#39;NORMAL&#39;, height=1.95), Tide(timestamp=Time(timestamp=1695610800, dt=datetime.datetime(2023, 9, 25, 3, 0)), type=&#39;NORMAL&#39;, height=1.75), Tide(timestamp=Time(timestamp=1695614400, dt=datetime.datetime(2023, 9, 25, 4, 0)), type=&#39;NORMAL&#39;, height=1.66), Tide(timestamp=Time(timestamp=1695614677, dt=datetime.datetime(2023, 9, 25, 4, 4, 37)), type=&#39;LOW&#39;, height=1.66), Tide(timestamp=Time(timestamp=1695618000, dt=datetime.datetime(2023, 9, 25, 5, 0)), type=&#39;NORMAL&#39;, height=1.73), Tide(timestamp=Time(timestamp=1695621600, dt=datetime.datetime(2023, 9, 25, 6, 0)), type=&#39;NORMAL&#39;, height=1.96), Tide(timestamp=Time(timestamp=1695625200, dt=datetime.datetime(2023, 9, 25, 7, 0)), type=&#39;NORMAL&#39;, height=2.28), Tide(timestamp=Time(timestamp=1695628800, dt=datetime.datetime(2023, 9, 25, 8, 0)), type=&#39;NORMAL&#39;, height=2.62), Tide(timestamp=Time(timestamp=1695632400, dt=datetime.datetime(2023, 9, 25, 9, 0)), type=&#39;NORMAL&#39;, height=2.9), Tide(timestamp=Time(timestamp=1695636000, dt=datetime.datetime(2023, 9, 25, 10, 0)), type=&#39;NORMAL&#39;, height=3.04), Tide(timestamp=Time(timestamp=1695636959, dt=datetime.datetime(2023, 9, 25, 10, 15, 59)), type=&#39;HIGH&#39;, height=3.05), Tide(timestamp=Time(timestamp=1695639600, dt=datetime.datetime(2023, 9, 25, 11, 0)), type=&#39;NORMAL&#39;, height=3), Tide(timestamp=Time(timestamp=1695643200, dt=datetime.datetime(2023, 9, 25, 12, 0)), type=&#39;NORMAL&#39;, height=2.78), Tide(timestamp=Time(timestamp=1695646800, dt=datetime.datetime(2023, 9, 25, 13, 0)), type=&#39;NORMAL&#39;, height=2.43), Tide(timestamp=Time(timestamp=1695650400, dt=datetime.datetime(2023, 9, 25, 14, 0)), type=&#39;NORMAL&#39;, height=2.03), Tide(timestamp=Time(timestamp=1695654000, dt=datetime.datetime(2023, 9, 25, 15, 0)), type=&#39;NORMAL&#39;, height=1.66), Tide(timestamp=Time(timestamp=1695657600, dt=datetime.datetime(2023, 9, 25, 16, 0)), type=&#39;NORMAL&#39;, height=1.42), Tide(timestamp=Time(timestamp=1695660596, dt=datetime.datetime(2023, 9, 25, 16, 49, 56)), type=&#39;LOW&#39;, height=1.35), Tide(timestamp=Time(timestamp=1695661200, dt=datetime.datetime(2023, 9, 25, 17, 0)), type=&#39;NORMAL&#39;, height=1.36), Tide(timestamp=Time(timestamp=1695664800, dt=datetime.datetime(2023, 9, 25, 18, 0)), type=&#39;NORMAL&#39;, height=1.5), Tide(timestamp=Time(timestamp=1695668400, dt=datetime.datetime(2023, 9, 25, 19, 0)), type=&#39;NORMAL&#39;, height=1.81), Tide(timestamp=Time(timestamp=1695672000, dt=datetime.datetime(2023, 9, 25, 20, 0)), type=&#39;NORMAL&#39;, height=2.22), Tide(timestamp=Time(timestamp=1695675600, dt=datetime.datetime(2023, 9, 25, 21, 0)), type=&#39;NORMAL&#39;, height=2.63), Tide(timestamp=Time(timestamp=1695679200, dt=datetime.datetime(2023, 9, 25, 22, 0)), type=&#39;NORMAL&#39;, height=2.92), Tide(timestamp=Time(timestamp=1695682794, dt=datetime.datetime(2023, 9, 25, 22, 59, 54)), type=&#39;HIGH&#39;, height=3.03), Tide(timestamp=Time(timestamp=1695682800, dt=datetime.datetime(2023, 9, 25, 23, 0)), type=&#39;NORMAL&#39;, height=3.03), Tide(timestamp=Time(timestamp=1695686400, dt=datetime.datetime(2023, 9, 26, 0, 0)), type=&#39;NORMAL&#39;, height=2.93), Tide(timestamp=Time(timestamp=1695690000, dt=datetime.datetime(2023, 9, 26, 1, 0)), type=&#39;NORMAL&#39;, height=2.65), Tide(timestamp=Time(timestamp=1695693600, dt=datetime.datetime(2023, 9, 26, 2, 0)), type=&#39;NORMAL&#39;, height=2.26), Tide(timestamp=Time(timestamp=1695697200, dt=datetime.datetime(2023, 9, 26, 3, 0)), type=&#39;NORMAL&#39;, height=1.86), Tide(timestamp=Time(timestamp=1695700800, dt=datetime.datetime(2023, 9, 26, 4, 0)), type=&#39;NORMAL&#39;, height=1.55), Tide(timestamp=Time(timestamp=1695704400, dt=datetime.datetime(2023, 9, 26, 5, 0)), type=&#39;NORMAL&#39;, height=1.41), Tide(timestamp=Time(timestamp=1695704935, dt=datetime.datetime(2023, 9, 26, 5, 8, 55)), type=&#39;LOW&#39;, height=1.41), Tide(timestamp=Time(timestamp=1695708000, dt=datetime.datetime(2023, 9, 26, 6, 0)), type=&#39;NORMAL&#39;, height=1.49), Tide(timestamp=Time(timestamp=1695711600, dt=datetime.datetime(2023, 9, 26, 7, 0)), type=&#39;NORMAL&#39;, height=1.8), Tide(timestamp=Time(timestamp=1695715200, dt=datetime.datetime(2023, 9, 26, 8, 0)), type=&#39;NORMAL&#39;, height=2.25), Tide(timestamp=Time(timestamp=1695718800, dt=datetime.datetime(2023, 9, 26, 9, 0)), type=&#39;NORMAL&#39;, height=2.73), Tide(timestamp=Time(timestamp=1695722400, dt=datetime.datetime(2023, 9, 26, 10, 0)), type=&#39;NORMAL&#39;, height=3.13), Tide(timestamp=Time(timestamp=1695726000, dt=datetime.datetime(2023, 9, 26, 11, 0)), type=&#39;NORMAL&#39;, height=3.32), Tide(timestamp=Time(timestamp=1695726970, dt=datetime.datetime(2023, 9, 26, 11, 16, 10)), type=&#39;HIGH&#39;, height=3.33), Tide(timestamp=Time(timestamp=1695729600, dt=datetime.datetime(2023, 9, 26, 12, 0)), type=&#39;NORMAL&#39;, height=3.26), Tide(timestamp=Time(timestamp=1695733200, dt=datetime.datetime(2023, 9, 26, 13, 0)), type=&#39;NORMAL&#39;, height=2.96), Tide(timestamp=Time(timestamp=1695736800, dt=datetime.datetime(2023, 9, 26, 14, 0)), type=&#39;NORMAL&#39;, height=2.49), Tide(timestamp=Time(timestamp=1695740400, dt=datetime.datetime(2023, 9, 26, 15, 0)), type=&#39;NORMAL&#39;, height=1.94), Tide(timestamp=Time(timestamp=1695744000, dt=datetime.datetime(2023, 9, 26, 16, 0)), type=&#39;NORMAL&#39;, height=1.46), Tide(timestamp=Time(timestamp=1695747600, dt=datetime.datetime(2023, 9, 26, 17, 0)), type=&#39;NORMAL&#39;, height=1.15), Tide(timestamp=Time(timestamp=1695750239, dt=datetime.datetime(2023, 9, 26, 17, 43, 59)), type=&#39;LOW&#39;, height=1.07), Tide(timestamp=Time(timestamp=1695751200, dt=datetime.datetime(2023, 9, 26, 18, 0)), type=&#39;NORMAL&#39;, height=1.08), Tide(timestamp=Time(timestamp=1695754800, dt=datetime.datetime(2023, 9, 26, 19, 0)), type=&#39;NORMAL&#39;, height=1.3), Tide(timestamp=Time(timestamp=1695758400, dt=datetime.datetime(2023, 9, 26, 20, 0)), type=&#39;NORMAL&#39;, height=1.74), Tide(timestamp=Time(timestamp=1695762000, dt=datetime.datetime(2023, 9, 26, 21, 0)), type=&#39;NORMAL&#39;, height=2.3), Tide(timestamp=Time(timestamp=1695765600, dt=datetime.datetime(2023, 9, 26, 22, 0)), type=&#39;NORMAL&#39;, height=2.83), Tide(timestamp=Time(timestamp=1695769200, dt=datetime.datetime(2023, 9, 26, 23, 0)), type=&#39;NORMAL&#39;, height=3.19), Tide(timestamp=Time(timestamp=1695772232, dt=datetime.datetime(2023, 9, 26, 23, 50, 32)), type=&#39;HIGH&#39;, height=3.29), Tide(timestamp=Time(timestamp=1695772800, dt=datetime.datetime(2023, 9, 27, 0, 0)), type=&#39;NORMAL&#39;, height=3.29), Tide(timestamp=Time(timestamp=1695776400, dt=datetime.datetime(2023, 9, 27, 1, 0)), type=&#39;NORMAL&#39;, height=3.11), Tide(timestamp=Time(timestamp=1695780000, dt=datetime.datetime(2023, 9, 27, 2, 0)), type=&#39;NORMAL&#39;, height=2.71), Tide(timestamp=Time(timestamp=1695783600, dt=datetime.datetime(2023, 9, 27, 3, 0)), type=&#39;NORMAL&#39;, height=2.18), Tide(timestamp=Time(timestamp=1695787200, dt=datetime.datetime(2023, 9, 27, 4, 0)), type=&#39;NORMAL&#39;, height=1.66), Tide(timestamp=Time(timestamp=1695790800, dt=datetime.datetime(2023, 9, 27, 5, 0)), type=&#39;NORMAL&#39;, height=1.28), Tide(timestamp=Time(timestamp=1695794365, dt=datetime.datetime(2023, 9, 27, 5, 59, 25)), type=&#39;LOW&#39;, height=1.14), Tide(timestamp=Time(timestamp=1695794400, dt=datetime.datetime(2023, 9, 27, 6, 0)), type=&#39;NORMAL&#39;, height=1.14), Tide(timestamp=Time(timestamp=1695798000, dt=datetime.datetime(2023, 9, 27, 7, 0)), type=&#39;NORMAL&#39;, height=1.3), Tide(timestamp=Time(timestamp=1695801600, dt=datetime.datetime(2023, 9, 27, 8, 0)), type=&#39;NORMAL&#39;, height=1.73), Tide(timestamp=Time(timestamp=1695805200, dt=datetime.datetime(2023, 9, 27, 9, 0)), type=&#39;NORMAL&#39;, height=2.33), Tide(timestamp=Time(timestamp=1695808800, dt=datetime.datetime(2023, 9, 27, 10, 0)), type=&#39;NORMAL&#39;, height=2.94), Tide(timestamp=Time(timestamp=1695812400, dt=datetime.datetime(2023, 9, 27, 11, 0)), type=&#39;NORMAL&#39;, height=3.41), Tide(timestamp=Time(timestamp=1695816000, dt=datetime.datetime(2023, 9, 27, 12, 0)), type=&#39;NORMAL&#39;, height=3.6), Tide(timestamp=Time(timestamp=1695816299, dt=datetime.datetime(2023, 9, 27, 12, 4, 59)), type=&#39;HIGH&#39;, height=3.6), Tide(timestamp=Time(timestamp=1695819600, dt=datetime.datetime(2023, 9, 27, 13, 0)), type=&#39;NORMAL&#39;, height=3.47), Tide(timestamp=Time(timestamp=1695823200, dt=datetime.datetime(2023, 9, 27, 14, 0)), type=&#39;NORMAL&#39;, height=3.04), Tide(timestamp=Time(timestamp=1695826800, dt=datetime.datetime(2023, 9, 27, 15, 0)), type=&#39;NORMAL&#39;, height=2.42), Tide(timestamp=Time(timestamp=1695830400, dt=datetime.datetime(2023, 9, 27, 16, 0)), type=&#39;NORMAL&#39;, height=1.75), Tide(timestamp=Time(timestamp=1695834000, dt=datetime.datetime(2023, 9, 27, 17, 0)), type=&#39;NORMAL&#39;, height=1.19), Tide(timestamp=Time(timestamp=1695837600, dt=datetime.datetime(2023, 9, 27, 18, 0)), type=&#39;NORMAL&#39;, height=0.88), Tide(timestamp=Time(timestamp=1695839388, dt=datetime.datetime(2023, 9, 27, 18, 29, 48)), type=&#39;LOW&#39;, height=0.83), Tide(timestamp=Time(timestamp=1695841200, dt=datetime.datetime(2023, 9, 27, 19, 0)), type=&#39;NORMAL&#39;, height=0.88), Tide(timestamp=Time(timestamp=1695844800, dt=datetime.datetime(2023, 9, 27, 20, 0)), type=&#39;NORMAL&#39;, height=1.22), Tide(timestamp=Time(timestamp=1695848400, dt=datetime.datetime(2023, 9, 27, 21, 0)), type=&#39;NORMAL&#39;, height=1.81), Tide(timestamp=Time(timestamp=1695852000, dt=datetime.datetime(2023, 9, 27, 22, 0)), type=&#39;NORMAL&#39;, height=2.49), Tide(timestamp=Time(timestamp=1695855600, dt=datetime.datetime(2023, 9, 27, 23, 0)), type=&#39;NORMAL&#39;, height=3.1), Tide(timestamp=Time(timestamp=1695859200, dt=datetime.datetime(2023, 9, 28, 0, 0)), type=&#39;NORMAL&#39;, height=3.46), Tide(timestamp=Time(timestamp=1695861270, dt=datetime.datetime(2023, 9, 28, 0, 34, 30)), type=&#39;HIGH&#39;, height=3.51), Tide(timestamp=Time(timestamp=1695862800, dt=datetime.datetime(2023, 9, 28, 1, 0)), type=&#39;NORMAL&#39;, height=3.48), Tide(timestamp=Time(timestamp=1695866400, dt=datetime.datetime(2023, 9, 28, 2, 0)), type=&#39;NORMAL&#39;, height=3.19)], tideLocation=TideLocation(name=&#39;Agadir&#39;, min=0.15, max=4.19, lon=-9.6167, lat=30.4167, mean=0))
+</pre></div></div>
+</div>
+<section id="SpotForecasts">
+<h2>SpotForecasts<a class="headerlink" href="#SpotForecasts" title="Link to this heading"></a></h2>
+<p>The class <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> is an object optimized to store Surfline API Forecast data.</p>
+<p>At the base of its structure there are the <code class="docutils literal notranslate"><span class="pre">Surf</span></code>, <code class="docutils literal notranslate"><span class="pre">Wind</span></code>, <code class="docutils literal notranslate"><span class="pre">Weather</span></code>, <code class="docutils literal notranslate"><span class="pre">Swell</span></code> classes. These objects togheter form an hourly <code class="docutils literal notranslate"><span class="pre">Forecast</span></code> as per the following scheme:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>class Forecast:
+    timestamp: Time
+    weather: Weather
+    wind: Wind
+    surf: Surf
+    swells: List[Swell]
+</pre></div>
+</div>
+<p>Along with a list of <code class="docutils literal notranslate"><span class="pre">SunriseSunsetTime</span></code> and <code class="docutils literal notranslate"><span class="pre">Tide</span></code> ovjects for daylight timings and tides, and <code class="docutils literal notranslate"><span class="pre">TideLocation</span></code> object for general tide information, the <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> object has the following structure:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>class SpotForecasts:
+    name: str
+    spotId: int
+    forecasts: List[Forecast]
+    sunriseSunsetTimes: List[SunriseSunsetTime]
+    tides: List[Tide]
+    tideLocation: TideLocation
+</pre></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotforecasts</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SpotForecasts(spotId=&#39;5842041f4e65fad6a7708cfd&#39;, name=&#39;Anchor Point&#39;, forecasts=[Forecast(timestamp=Time(timestamp=1695596400, dt=datetime.datetime(2023, 9, 24, 23, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=7.05638, direction=123.95191), surf=Surf(min=0.69661, max=1.08845), swells=[Swell(height=0.88, direction=319.34, directionMin=308.685, period=10), Swell(height=0.64, direction=286.22, directionMin=280.41, period=15), Swell(height=0.22, direction=275, directionMin=271.405, period=10), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695607200, dt=datetime.datetime(2023, 9, 25, 2, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=4.67634, direction=141.51741), surf=Surf(min=0.72732, max=1.13643), swells=[Swell(height=0.79, direction=322.07, directionMin=312.03, period=9), Swell(height=0.68, direction=285.31, directionMin=279.61, period=14), Swell(height=0.29, direction=279.38, directionMin=275.405, period=10), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695618000, dt=datetime.datetime(2023, 9, 25, 5, 0)), weather=Weather(temperature=19, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=1.79393, direction=136.22342), surf=Surf(min=0.72257, max=1.12901), swells=[Swell(height=0.74, direction=321.36, directionMin=310.885, period=9), Swell(height=0.71, direction=285.67, directionMin=279.725, period=13), Swell(height=0.25, direction=276.15, directionMin=272.66999999999996, period=9), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695628800, dt=datetime.datetime(2023, 9, 25, 8, 0)), weather=Weather(temperature=20, condition=&#39;CLEAR&#39;), wind=Wind(speed=0.98865, direction=164.88908), surf=Surf(min=0.88315, max=1.37992), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.27, direction=277.28, directionMin=273.54999999999995, period=9), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.01, direction=301.02, directionMin=288.935, period=13), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695639600, dt=datetime.datetime(2023, 9, 25, 11, 0)), weather=Weather(temperature=21, condition=&#39;CLEAR&#39;), wind=Wind(speed=4.90004, direction=242.40149), surf=Surf(min=0.84304, max=1.31725), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.96, direction=300.27, directionMin=288.135, period=13), Swell(height=0.3, direction=283.53, directionMin=278.53, period=9)]), Forecast(timestamp=Time(timestamp=1695650400, dt=datetime.datetime(2023, 9, 25, 14, 0)), weather=Weather(temperature=21, condition=&#39;CLEAR&#39;), wind=Wind(speed=6.56063, direction=282.74234), surf=Surf(min=0.77174, max=1.20585), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.9, direction=300.49, directionMin=288.445, period=12), Swell(height=0.32, direction=283.04, directionMin=277.91, period=9)]), Forecast(timestamp=Time(timestamp=1695661200, dt=datetime.datetime(2023, 9, 25, 17, 0)), weather=Weather(temperature=22, condition=&#39;CLEAR&#39;), wind=Wind(speed=8.58942, direction=291.89735), surf=Surf(min=0.69154, max=1.08054), swells=[Swell(height=0.47, direction=326.59, directionMin=316.38, period=8), Swell(height=0.74, direction=289.13, directionMin=280.99, period=12), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.32, direction=285.43, directionMin=279.835, period=9)]), Forecast(timestamp=Time(timestamp=1695672000, dt=datetime.datetime(2023, 9, 25, 20, 0)), weather=Weather(temperature=21, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=3.92145, direction=322.26491), surf=Surf(min=0.77036, max=1.20368), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.91, direction=298.02, directionMin=286.34999999999997, period=12), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695682800, dt=datetime.datetime(2023, 9, 25, 23, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=1.57852, direction=70.86981), surf=Surf(min=0.72037, max=1.12558), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.85, direction=299.01, directionMin=287.27, period=12), Swell(height=0.18, direction=282.55, directionMin=278.55, period=7)]), Forecast(timestamp=Time(timestamp=1695693600, dt=datetime.datetime(2023, 9, 26, 2, 0)), weather=Weather(temperature=19, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=2.26916, direction=77.10599), surf=Surf(min=0.67515, max=1.05492), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.81, direction=298.67, directionMin=287.2, period=11), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695704400, dt=datetime.datetime(2023, 9, 26, 5, 0)), weather=Weather(temperature=19, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=0.21259, direction=282.88964), surf=Surf(min=0.65058, max=1.01653), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.09, direction=307.38, directionMin=302.045, period=18), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.78, direction=298.82, directionMin=287.635, period=11), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695715200, dt=datetime.datetime(2023, 9, 26, 8, 0)), weather=Weather(temperature=20, condition=&#39;CLEAR&#39;), wind=Wind(speed=0.92878, direction=182.02193), surf=Surf(min=0.59385, max=0.92789), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.26, direction=295.33, directionMin=288.955, period=14), Swell(height=0.2, direction=305.13, directionMin=299.4, period=17), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.7, direction=299.82, directionMin=288.485, period=11), Swell(height=0.15, direction=284.39, directionMin=280.515, period=6)]), Forecast(timestamp=Time(timestamp=1695726000, dt=datetime.datetime(2023, 9, 26, 11, 0)), weather=Weather(temperature=22, condition=&#39;CLEAR&#39;), wind=Wind(speed=6.18996, direction=265.27635), surf=Surf(min=0.58045, max=0.90695), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.45, direction=299.83, directionMin=292.81, period=16), Swell(height=0.28, direction=333.03, directionMin=323.005, period=5), Swell(height=0.66, direction=293.79, directionMin=285.99, period=11), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695736800, dt=datetime.datetime(2023, 9, 26, 14, 0)), weather=Weather(temperature=23, condition=&#39;CLEAR&#39;), wind=Wind(speed=7.66112, direction=279.96821), surf=Surf(min=0.68463, max=1.06974), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.68, direction=300.37, directionMin=293.485, period=15), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0.68, direction=300.88, directionMin=290.215, period=10), Swell(height=0.15, direction=286.47, directionMin=281.93, period=6)]), Forecast(timestamp=Time(timestamp=1695747600, dt=datetime.datetime(2023, 9, 26, 17, 0)), weather=Weather(temperature=24, condition=&#39;CLEAR&#39;), wind=Wind(speed=9.88804, direction=317.98725), surf=Surf(min=0.94004, max=1.46881), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.03, direction=300.78, directionMin=293.84999999999997, period=14), Swell(height=0.49, direction=321.71, directionMin=309.78999999999996, period=4), Swell(height=0.37, direction=283.11, directionMin=279.315, period=10), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695758400, dt=datetime.datetime(2023, 9, 26, 20, 0)), weather=Weather(temperature=22, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=3.4595, direction=67.66442), surf=Surf(min=1.06943, max=1.67098), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.24, direction=298.88, directionMin=291.96999999999997, period=14), Swell(height=0.65, direction=322.59, directionMin=310, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695769200, dt=datetime.datetime(2023, 9, 26, 23, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_MOSTLY_CLEAR&#39;), wind=Wind(speed=9.13559, direction=123.26966), surf=Surf(min=1.11898, max=1.7484), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.34, direction=299.27, directionMin=292.385, period=14), Swell(height=0.6, direction=324.61, directionMin=311.345, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695780000, dt=datetime.datetime(2023, 9, 27, 2, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=2.0544, direction=137.63649), surf=Surf(min=1.11249, max=1.73827), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.38, direction=299.4, directionMin=292.64, period=13), Swell(height=0.55, direction=326.34, directionMin=313.265, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695790800, dt=datetime.datetime(2023, 9, 27, 5, 0)), weather=Weather(temperature=19, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=0.46359, direction=194.91328), surf=Surf(min=1.10235, max=1.72243), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.38, direction=299.96, directionMin=293.11499999999995, period=13), Swell(height=0.56, direction=327.4, directionMin=315.31, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695801600, dt=datetime.datetime(2023, 9, 27, 8, 0)), weather=Weather(temperature=20, condition=&#39;CLEAR&#39;), wind=Wind(speed=4.02663, direction=307.97996), surf=Surf(min=1.06519, max=1.66436), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.33, direction=300.26, directionMin=293.46, period=13), Swell(height=0.54, direction=328.7, directionMin=317.155, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695812400, dt=datetime.datetime(2023, 9, 27, 11, 0)), weather=Weather(temperature=22, condition=&#39;CLEAR&#39;), wind=Wind(speed=7.19245, direction=267.32573), surf=Surf(min=1.02401, max=1.60001), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.28, direction=300.97, directionMin=294.055, period=12), Swell(height=0.47, direction=331.31, directionMin=319.84, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695823200, dt=datetime.datetime(2023, 9, 27, 14, 0)), weather=Weather(temperature=24, condition=&#39;CLEAR&#39;), wind=Wind(speed=5.75492, direction=281.687), surf=Surf(min=0.98512, max=1.53925), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.23, direction=301.43, directionMin=294.54, period=12), Swell(height=0.56, direction=330.3, directionMin=319.49, period=5), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695834000, dt=datetime.datetime(2023, 9, 27, 17, 0)), weather=Weather(temperature=23, condition=&#39;CLEAR&#39;), wind=Wind(speed=0.77587, direction=321.85939), surf=Surf(min=0.95086, max=1.48572), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.18, direction=301.97, directionMin=295.21500000000003, period=12), Swell(height=0.98, direction=325.1, directionMin=313.76500000000004, period=6), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695844800, dt=datetime.datetime(2023, 9, 27, 20, 0)), weather=Weather(temperature=22, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=5.1028, direction=112.36161), surf=Surf(min=0.91636, max=1.43181), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.13, direction=302.24, directionMin=295.595, period=12), Swell(height=1.15, direction=322.54, directionMin=310.68, period=6), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]), Forecast(timestamp=Time(timestamp=1695855600, dt=datetime.datetime(2023, 9, 27, 23, 0)), weather=Weather(temperature=21, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=9.00826, direction=117.98122), surf=Surf(min=0.88027, max=1.37543), swells=[Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=1.13, direction=302.77, directionMin=296.005, period=12), Swell(height=1.13, direction=321.61, directionMin=309.86, period=7), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)])], sunriseSunsetTimes=[SunriseSunsetTime(midnight=Time(timestamp=1695596400, dt=datetime.datetime(2023, 9, 24, 23, 0)), sunrise=Time(timestamp=1695623391, dt=datetime.datetime(2023, 9, 25, 6, 29, 51)), sunset=Time(timestamp=1695666853, dt=datetime.datetime(2023, 9, 25, 18, 34, 13))), SunriseSunsetTime(midnight=Time(timestamp=1695682800, dt=datetime.datetime(2023, 9, 25, 23, 0)), sunrise=Time(timestamp=1695709825, dt=datetime.datetime(2023, 9, 26, 6, 30, 25)), sunset=Time(timestamp=1695753177, dt=datetime.datetime(2023, 9, 26, 18, 32, 57))), SunriseSunsetTime(midnight=Time(timestamp=1695769200, dt=datetime.datetime(2023, 9, 26, 23, 0)), sunrise=Time(timestamp=1695796258, dt=datetime.datetime(2023, 9, 27, 6, 30, 58)), sunset=Time(timestamp=1695839500, dt=datetime.datetime(2023, 9, 27, 18, 31, 40))), SunriseSunsetTime(midnight=Time(timestamp=1695855600, dt=datetime.datetime(2023, 9, 27, 23, 0)), sunrise=Time(timestamp=1695882693, dt=datetime.datetime(2023, 9, 28, 6, 31, 33)), sunset=Time(timestamp=1695925824, dt=datetime.datetime(2023, 9, 28, 18, 30, 24)))], tides=[Tide(timestamp=Time(timestamp=1695592800, dt=datetime.datetime(2023, 9, 24, 22, 0)), type=&#39;NORMAL&#39;, height=2.78), Tide(timestamp=Time(timestamp=1695596400, dt=datetime.datetime(2023, 9, 24, 23, 0)), type=&#39;NORMAL&#39;, height=2.69), Tide(timestamp=Time(timestamp=1695600000, dt=datetime.datetime(2023, 9, 25, 0, 0)), type=&#39;NORMAL&#39;, height=2.49), Tide(timestamp=Time(timestamp=1695603600, dt=datetime.datetime(2023, 9, 25, 1, 0)), type=&#39;NORMAL&#39;, height=2.22), Tide(timestamp=Time(timestamp=1695607200, dt=datetime.datetime(2023, 9, 25, 2, 0)), type=&#39;NORMAL&#39;, height=1.95), Tide(timestamp=Time(timestamp=1695610800, dt=datetime.datetime(2023, 9, 25, 3, 0)), type=&#39;NORMAL&#39;, height=1.75), Tide(timestamp=Time(timestamp=1695614400, dt=datetime.datetime(2023, 9, 25, 4, 0)), type=&#39;NORMAL&#39;, height=1.66), Tide(timestamp=Time(timestamp=1695614677, dt=datetime.datetime(2023, 9, 25, 4, 4, 37)), type=&#39;LOW&#39;, height=1.66), Tide(timestamp=Time(timestamp=1695618000, dt=datetime.datetime(2023, 9, 25, 5, 0)), type=&#39;NORMAL&#39;, height=1.73), Tide(timestamp=Time(timestamp=1695621600, dt=datetime.datetime(2023, 9, 25, 6, 0)), type=&#39;NORMAL&#39;, height=1.96), Tide(timestamp=Time(timestamp=1695625200, dt=datetime.datetime(2023, 9, 25, 7, 0)), type=&#39;NORMAL&#39;, height=2.28), Tide(timestamp=Time(timestamp=1695628800, dt=datetime.datetime(2023, 9, 25, 8, 0)), type=&#39;NORMAL&#39;, height=2.62), Tide(timestamp=Time(timestamp=1695632400, dt=datetime.datetime(2023, 9, 25, 9, 0)), type=&#39;NORMAL&#39;, height=2.9), Tide(timestamp=Time(timestamp=1695636000, dt=datetime.datetime(2023, 9, 25, 10, 0)), type=&#39;NORMAL&#39;, height=3.04), Tide(timestamp=Time(timestamp=1695636959, dt=datetime.datetime(2023, 9, 25, 10, 15, 59)), type=&#39;HIGH&#39;, height=3.05), Tide(timestamp=Time(timestamp=1695639600, dt=datetime.datetime(2023, 9, 25, 11, 0)), type=&#39;NORMAL&#39;, height=3), Tide(timestamp=Time(timestamp=1695643200, dt=datetime.datetime(2023, 9, 25, 12, 0)), type=&#39;NORMAL&#39;, height=2.78), Tide(timestamp=Time(timestamp=1695646800, dt=datetime.datetime(2023, 9, 25, 13, 0)), type=&#39;NORMAL&#39;, height=2.43), Tide(timestamp=Time(timestamp=1695650400, dt=datetime.datetime(2023, 9, 25, 14, 0)), type=&#39;NORMAL&#39;, height=2.03), Tide(timestamp=Time(timestamp=1695654000, dt=datetime.datetime(2023, 9, 25, 15, 0)), type=&#39;NORMAL&#39;, height=1.66), Tide(timestamp=Time(timestamp=1695657600, dt=datetime.datetime(2023, 9, 25, 16, 0)), type=&#39;NORMAL&#39;, height=1.42), Tide(timestamp=Time(timestamp=1695660596, dt=datetime.datetime(2023, 9, 25, 16, 49, 56)), type=&#39;LOW&#39;, height=1.35), Tide(timestamp=Time(timestamp=1695661200, dt=datetime.datetime(2023, 9, 25, 17, 0)), type=&#39;NORMAL&#39;, height=1.36), Tide(timestamp=Time(timestamp=1695664800, dt=datetime.datetime(2023, 9, 25, 18, 0)), type=&#39;NORMAL&#39;, height=1.5), Tide(timestamp=Time(timestamp=1695668400, dt=datetime.datetime(2023, 9, 25, 19, 0)), type=&#39;NORMAL&#39;, height=1.81), Tide(timestamp=Time(timestamp=1695672000, dt=datetime.datetime(2023, 9, 25, 20, 0)), type=&#39;NORMAL&#39;, height=2.22), Tide(timestamp=Time(timestamp=1695675600, dt=datetime.datetime(2023, 9, 25, 21, 0)), type=&#39;NORMAL&#39;, height=2.63), Tide(timestamp=Time(timestamp=1695679200, dt=datetime.datetime(2023, 9, 25, 22, 0)), type=&#39;NORMAL&#39;, height=2.92), Tide(timestamp=Time(timestamp=1695682794, dt=datetime.datetime(2023, 9, 25, 22, 59, 54)), type=&#39;HIGH&#39;, height=3.03), Tide(timestamp=Time(timestamp=1695682800, dt=datetime.datetime(2023, 9, 25, 23, 0)), type=&#39;NORMAL&#39;, height=3.03), Tide(timestamp=Time(timestamp=1695686400, dt=datetime.datetime(2023, 9, 26, 0, 0)), type=&#39;NORMAL&#39;, height=2.93), Tide(timestamp=Time(timestamp=1695690000, dt=datetime.datetime(2023, 9, 26, 1, 0)), type=&#39;NORMAL&#39;, height=2.65), Tide(timestamp=Time(timestamp=1695693600, dt=datetime.datetime(2023, 9, 26, 2, 0)), type=&#39;NORMAL&#39;, height=2.26), Tide(timestamp=Time(timestamp=1695697200, dt=datetime.datetime(2023, 9, 26, 3, 0)), type=&#39;NORMAL&#39;, height=1.86), Tide(timestamp=Time(timestamp=1695700800, dt=datetime.datetime(2023, 9, 26, 4, 0)), type=&#39;NORMAL&#39;, height=1.55), Tide(timestamp=Time(timestamp=1695704400, dt=datetime.datetime(2023, 9, 26, 5, 0)), type=&#39;NORMAL&#39;, height=1.41), Tide(timestamp=Time(timestamp=1695704935, dt=datetime.datetime(2023, 9, 26, 5, 8, 55)), type=&#39;LOW&#39;, height=1.41), Tide(timestamp=Time(timestamp=1695708000, dt=datetime.datetime(2023, 9, 26, 6, 0)), type=&#39;NORMAL&#39;, height=1.49), Tide(timestamp=Time(timestamp=1695711600, dt=datetime.datetime(2023, 9, 26, 7, 0)), type=&#39;NORMAL&#39;, height=1.8), Tide(timestamp=Time(timestamp=1695715200, dt=datetime.datetime(2023, 9, 26, 8, 0)), type=&#39;NORMAL&#39;, height=2.25), Tide(timestamp=Time(timestamp=1695718800, dt=datetime.datetime(2023, 9, 26, 9, 0)), type=&#39;NORMAL&#39;, height=2.73), Tide(timestamp=Time(timestamp=1695722400, dt=datetime.datetime(2023, 9, 26, 10, 0)), type=&#39;NORMAL&#39;, height=3.13), Tide(timestamp=Time(timestamp=1695726000, dt=datetime.datetime(2023, 9, 26, 11, 0)), type=&#39;NORMAL&#39;, height=3.32), Tide(timestamp=Time(timestamp=1695726970, dt=datetime.datetime(2023, 9, 26, 11, 16, 10)), type=&#39;HIGH&#39;, height=3.33), Tide(timestamp=Time(timestamp=1695729600, dt=datetime.datetime(2023, 9, 26, 12, 0)), type=&#39;NORMAL&#39;, height=3.26), Tide(timestamp=Time(timestamp=1695733200, dt=datetime.datetime(2023, 9, 26, 13, 0)), type=&#39;NORMAL&#39;, height=2.96), Tide(timestamp=Time(timestamp=1695736800, dt=datetime.datetime(2023, 9, 26, 14, 0)), type=&#39;NORMAL&#39;, height=2.49), Tide(timestamp=Time(timestamp=1695740400, dt=datetime.datetime(2023, 9, 26, 15, 0)), type=&#39;NORMAL&#39;, height=1.94), Tide(timestamp=Time(timestamp=1695744000, dt=datetime.datetime(2023, 9, 26, 16, 0)), type=&#39;NORMAL&#39;, height=1.46), Tide(timestamp=Time(timestamp=1695747600, dt=datetime.datetime(2023, 9, 26, 17, 0)), type=&#39;NORMAL&#39;, height=1.15), Tide(timestamp=Time(timestamp=1695750239, dt=datetime.datetime(2023, 9, 26, 17, 43, 59)), type=&#39;LOW&#39;, height=1.07), Tide(timestamp=Time(timestamp=1695751200, dt=datetime.datetime(2023, 9, 26, 18, 0)), type=&#39;NORMAL&#39;, height=1.08), Tide(timestamp=Time(timestamp=1695754800, dt=datetime.datetime(2023, 9, 26, 19, 0)), type=&#39;NORMAL&#39;, height=1.3), Tide(timestamp=Time(timestamp=1695758400, dt=datetime.datetime(2023, 9, 26, 20, 0)), type=&#39;NORMAL&#39;, height=1.74), Tide(timestamp=Time(timestamp=1695762000, dt=datetime.datetime(2023, 9, 26, 21, 0)), type=&#39;NORMAL&#39;, height=2.3), Tide(timestamp=Time(timestamp=1695765600, dt=datetime.datetime(2023, 9, 26, 22, 0)), type=&#39;NORMAL&#39;, height=2.83), Tide(timestamp=Time(timestamp=1695769200, dt=datetime.datetime(2023, 9, 26, 23, 0)), type=&#39;NORMAL&#39;, height=3.19), Tide(timestamp=Time(timestamp=1695772232, dt=datetime.datetime(2023, 9, 26, 23, 50, 32)), type=&#39;HIGH&#39;, height=3.29), Tide(timestamp=Time(timestamp=1695772800, dt=datetime.datetime(2023, 9, 27, 0, 0)), type=&#39;NORMAL&#39;, height=3.29), Tide(timestamp=Time(timestamp=1695776400, dt=datetime.datetime(2023, 9, 27, 1, 0)), type=&#39;NORMAL&#39;, height=3.11), Tide(timestamp=Time(timestamp=1695780000, dt=datetime.datetime(2023, 9, 27, 2, 0)), type=&#39;NORMAL&#39;, height=2.71), Tide(timestamp=Time(timestamp=1695783600, dt=datetime.datetime(2023, 9, 27, 3, 0)), type=&#39;NORMAL&#39;, height=2.18), Tide(timestamp=Time(timestamp=1695787200, dt=datetime.datetime(2023, 9, 27, 4, 0)), type=&#39;NORMAL&#39;, height=1.66), Tide(timestamp=Time(timestamp=1695790800, dt=datetime.datetime(2023, 9, 27, 5, 0)), type=&#39;NORMAL&#39;, height=1.28), Tide(timestamp=Time(timestamp=1695794365, dt=datetime.datetime(2023, 9, 27, 5, 59, 25)), type=&#39;LOW&#39;, height=1.14), Tide(timestamp=Time(timestamp=1695794400, dt=datetime.datetime(2023, 9, 27, 6, 0)), type=&#39;NORMAL&#39;, height=1.14), Tide(timestamp=Time(timestamp=1695798000, dt=datetime.datetime(2023, 9, 27, 7, 0)), type=&#39;NORMAL&#39;, height=1.3), Tide(timestamp=Time(timestamp=1695801600, dt=datetime.datetime(2023, 9, 27, 8, 0)), type=&#39;NORMAL&#39;, height=1.73), Tide(timestamp=Time(timestamp=1695805200, dt=datetime.datetime(2023, 9, 27, 9, 0)), type=&#39;NORMAL&#39;, height=2.33), Tide(timestamp=Time(timestamp=1695808800, dt=datetime.datetime(2023, 9, 27, 10, 0)), type=&#39;NORMAL&#39;, height=2.94), Tide(timestamp=Time(timestamp=1695812400, dt=datetime.datetime(2023, 9, 27, 11, 0)), type=&#39;NORMAL&#39;, height=3.41), Tide(timestamp=Time(timestamp=1695816000, dt=datetime.datetime(2023, 9, 27, 12, 0)), type=&#39;NORMAL&#39;, height=3.6), Tide(timestamp=Time(timestamp=1695816299, dt=datetime.datetime(2023, 9, 27, 12, 4, 59)), type=&#39;HIGH&#39;, height=3.6), Tide(timestamp=Time(timestamp=1695819600, dt=datetime.datetime(2023, 9, 27, 13, 0)), type=&#39;NORMAL&#39;, height=3.47), Tide(timestamp=Time(timestamp=1695823200, dt=datetime.datetime(2023, 9, 27, 14, 0)), type=&#39;NORMAL&#39;, height=3.04), Tide(timestamp=Time(timestamp=1695826800, dt=datetime.datetime(2023, 9, 27, 15, 0)), type=&#39;NORMAL&#39;, height=2.42), Tide(timestamp=Time(timestamp=1695830400, dt=datetime.datetime(2023, 9, 27, 16, 0)), type=&#39;NORMAL&#39;, height=1.75), Tide(timestamp=Time(timestamp=1695834000, dt=datetime.datetime(2023, 9, 27, 17, 0)), type=&#39;NORMAL&#39;, height=1.19), Tide(timestamp=Time(timestamp=1695837600, dt=datetime.datetime(2023, 9, 27, 18, 0)), type=&#39;NORMAL&#39;, height=0.88), Tide(timestamp=Time(timestamp=1695839388, dt=datetime.datetime(2023, 9, 27, 18, 29, 48)), type=&#39;LOW&#39;, height=0.83), Tide(timestamp=Time(timestamp=1695841200, dt=datetime.datetime(2023, 9, 27, 19, 0)), type=&#39;NORMAL&#39;, height=0.88), Tide(timestamp=Time(timestamp=1695844800, dt=datetime.datetime(2023, 9, 27, 20, 0)), type=&#39;NORMAL&#39;, height=1.22), Tide(timestamp=Time(timestamp=1695848400, dt=datetime.datetime(2023, 9, 27, 21, 0)), type=&#39;NORMAL&#39;, height=1.81), Tide(timestamp=Time(timestamp=1695852000, dt=datetime.datetime(2023, 9, 27, 22, 0)), type=&#39;NORMAL&#39;, height=2.49), Tide(timestamp=Time(timestamp=1695855600, dt=datetime.datetime(2023, 9, 27, 23, 0)), type=&#39;NORMAL&#39;, height=3.1), Tide(timestamp=Time(timestamp=1695859200, dt=datetime.datetime(2023, 9, 28, 0, 0)), type=&#39;NORMAL&#39;, height=3.46), Tide(timestamp=Time(timestamp=1695861270, dt=datetime.datetime(2023, 9, 28, 0, 34, 30)), type=&#39;HIGH&#39;, height=3.51), Tide(timestamp=Time(timestamp=1695862800, dt=datetime.datetime(2023, 9, 28, 1, 0)), type=&#39;NORMAL&#39;, height=3.48), Tide(timestamp=Time(timestamp=1695866400, dt=datetime.datetime(2023, 9, 28, 2, 0)), type=&#39;NORMAL&#39;, height=3.19)], tideLocation=TideLocation(name=&#39;Agadir&#39;, min=0.15, max=4.19, lon=-9.6167, lat=30.4167, mean=0))
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotforecasts</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;Anchor Point&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotforecasts</span><span class="o">.</span><span class="n">forecasts</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[Forecast(timestamp=Time(timestamp=1695596400, dt=datetime.datetime(2023, 9, 24, 23, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=7.05638, direction=123.95191), surf=Surf(min=0.69661, max=1.08845), swells=[Swell(height=0.88, direction=319.34, directionMin=308.685, period=10), Swell(height=0.64, direction=286.22, directionMin=280.41, period=15), Swell(height=0.22, direction=275, directionMin=271.405, period=10), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)]),
+ Forecast(timestamp=Time(timestamp=1695607200, dt=datetime.datetime(2023, 9, 25, 2, 0)), weather=Weather(temperature=20, condition=&#39;NIGHT_CLEAR&#39;), wind=Wind(speed=4.67634, direction=141.51741), surf=Surf(min=0.72732, max=1.13643), swells=[Swell(height=0.79, direction=322.07, directionMin=312.03, period=9), Swell(height=0.68, direction=285.31, directionMin=279.61, period=14), Swell(height=0.29, direction=279.38, directionMin=275.405, period=10), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0), Swell(height=0, direction=0, directionMin=0, period=0)])]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotforecasts</span><span class="o">.</span><span class="n">tides</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[Tide(timestamp=Time(timestamp=1695592800, dt=datetime.datetime(2023, 9, 24, 22, 0)), type=&#39;NORMAL&#39;, height=2.78),
+ Tide(timestamp=Time(timestamp=1695596400, dt=datetime.datetime(2023, 9, 24, 23, 0)), type=&#39;NORMAL&#39;, height=2.69)]
+</pre></div></div>
+</div>
+</section>
+<section id="as-pandas-DataFrame">
+<h2>as pandas DataFrame<a class="headerlink" href="#as-pandas-DataFrame" title="Link to this heading"></a></h2>
+<p>The different <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> attributes can be accessed as pandas DataFrame for easy data manipulation.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># default is forecasts, wich means surf</span>
+<span class="n">spotforecasts</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>timestamp_timestamp</th>
+      <th>timestamp_dt</th>
+      <th>weather_temperature</th>
+      <th>weather_condition</th>
+      <th>wind_speed</th>
+      <th>wind_direction</th>
+      <th>surf_min</th>
+      <th>surf_max</th>
+      <th>swells_0_height</th>
+      <th>swells_0_direction</th>
+      <th>...</th>
+      <th>swells_3_directionMin</th>
+      <th>swells_3_period</th>
+      <th>swells_4_height</th>
+      <th>swells_4_direction</th>
+      <th>swells_4_directionMin</th>
+      <th>swells_4_period</th>
+      <th>swells_5_height</th>
+      <th>swells_5_direction</th>
+      <th>swells_5_directionMin</th>
+      <th>swells_5_period</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1695596400</td>
+      <td>2023-09-24 23:00:00</td>
+      <td>20</td>
+      <td>NIGHT_CLEAR</td>
+      <td>7.05638</td>
+      <td>123.95191</td>
+      <td>0.69661</td>
+      <td>1.08845</td>
+      <td>0.88</td>
+      <td>319.34</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1695607200</td>
+      <td>2023-09-25 02:00:00</td>
+      <td>20</td>
+      <td>NIGHT_CLEAR</td>
+      <td>4.67634</td>
+      <td>141.51741</td>
+      <td>0.72732</td>
+      <td>1.13643</td>
+      <td>0.79</td>
+      <td>322.07</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1695618000</td>
+      <td>2023-09-25 05:00:00</td>
+      <td>19</td>
+      <td>NIGHT_CLEAR</td>
+      <td>1.79393</td>
+      <td>136.22342</td>
+      <td>0.72257</td>
+      <td>1.12901</td>
+      <td>0.74</td>
+      <td>321.36</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1695628800</td>
+      <td>2023-09-25 08:00:00</td>
+      <td>20</td>
+      <td>CLEAR</td>
+      <td>0.98865</td>
+      <td>164.88908</td>
+      <td>0.88315</td>
+      <td>1.37992</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1.01</td>
+      <td>301.02</td>
+      <td>288.935</td>
+      <td>13</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1695639600</td>
+      <td>2023-09-25 11:00:00</td>
+      <td>21</td>
+      <td>CLEAR</td>
+      <td>4.90004</td>
+      <td>242.40149</td>
+      <td>0.84304</td>
+      <td>1.31725</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0.96</td>
+      <td>300.27</td>
+      <td>288.135</td>
+      <td>13</td>
+      <td>0.3</td>
+      <td>283.53</td>
+      <td>278.53</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 32 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotforecasts</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;tides&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>timestamp_timestamp</th>
+      <th>timestamp_dt</th>
+      <th>type</th>
+      <th>height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1695592800</td>
+      <td>2023-09-24 22:00:00</td>
+      <td>NORMAL</td>
+      <td>2.78</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1695596400</td>
+      <td>2023-09-24 23:00:00</td>
+      <td>NORMAL</td>
+      <td>2.69</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1695600000</td>
+      <td>2023-09-25 00:00:00</td>
+      <td>NORMAL</td>
+      <td>2.49</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1695603600</td>
+      <td>2023-09-25 01:00:00</td>
+      <td>NORMAL</td>
+      <td>2.22</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1695607200</td>
+      <td>2023-09-25 02:00:00</td>
+      <td>NORMAL</td>
+      <td>1.95</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotforecasts</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;sunriseSunsetTimes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>midnight_timestamp</th>
+      <th>midnight_dt</th>
+      <th>sunrise_timestamp</th>
+      <th>sunrise_dt</th>
+      <th>sunset_timestamp</th>
+      <th>sunset_dt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1695596400</td>
+      <td>2023-09-24 23:00:00</td>
+      <td>1695623391</td>
+      <td>2023-09-25 06:29:51</td>
+      <td>1695666853</td>
+      <td>2023-09-25 18:34:13</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1695682800</td>
+      <td>2023-09-25 23:00:00</td>
+      <td>1695709825</td>
+      <td>2023-09-26 06:30:25</td>
+      <td>1695753177</td>
+      <td>2023-09-26 18:32:57</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1695769200</td>
+      <td>2023-09-26 23:00:00</td>
+      <td>1695796258</td>
+      <td>2023-09-27 06:30:58</td>
+      <td>1695839500</td>
+      <td>2023-09-27 18:31:40</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1695855600</td>
+      <td>2023-09-27 23:00:00</td>
+      <td>1695882693</td>
+      <td>2023-09-28 06:31:33</td>
+      <td>1695925824</td>
+      <td>2023-09-28 18:30:24</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to pysurfline’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="SurfReport.html" class="btn btn-neutral float-right" title="Visualize the surf report" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, giocaizzi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pysurfline.api.APIResource &mdash; pysurfline 0.1.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -10,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -46,7 +48,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/SpotForecast.html">Get forecast for a spot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/SpotForecasts.html">Get forecasts for a spot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/SurfReport.html">Visualize the surf report</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
@@ -54,7 +56,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="pysurfline.html">pysurfline</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pysurfline.api.html">pysurfline.api</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.api.get_spot_forecasts.html">pysurfline.api.get_spot_forecasts</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.api.APIResource</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.api.APIResource</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pysurfline.api.APIResource"><code class="docutils literal notranslate"><span class="pre">APIResource</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.api.SurflineClient.html">pysurfline.api.SurflineClient</a></li>
 </ul>
 </li>
@@ -91,15 +96,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="pysurfline-api-apiresource">
-<h1>pysurfline.api.APIResource<a class="headerlink" href="#pysurfline-api-apiresource" title="Permalink to this headline"></a></h1>
+  <section id="pysurfline-api-apiresource">
+<h1>pysurfline.api.APIResource<a class="headerlink" href="#pysurfline-api-apiresource" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pysurfline.api.APIResource">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pysurfline.api.</span></span><span class="sig-name descname"><span class="pre">APIResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="pysurfline.api.SurflineClient.html#pysurfline.api.SurflineClient" title="pysurfline.api.SurflineClient"><span class="pre">pysurfline.api.SurflineClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">endpoint</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.api.APIResource" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pysurfline.api.</span></span><span class="sig-name descname"><span class="pre">APIResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pysurfline.api.SurflineClient.html#pysurfline.api.SurflineClient" title="pysurfline.api.SurflineClient"><span class="pre">SurflineClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">endpoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.api.APIResource" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class for Surfline V2 REST API resources.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>client</strong> (<em>SurflineAPIClient</em>) – Surfline API client</p></li>
 <li><p><strong>endpoint</strong> (<em>str</em>) – API endpoint of service</p></li>
@@ -108,10 +113,10 @@
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pysurfline.api.APIResource.client">
-<span class="sig-name descname"><span class="pre">client</span></span><a class="headerlink" href="#pysurfline.api.APIResource.client" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">client</span></span><a class="headerlink" href="#pysurfline.api.APIResource.client" title="Link to this definition"></a></dt>
 <dd><p>Surfline API client</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>SurflineAPIClient</p>
 </dd>
 </dl>
@@ -119,10 +124,10 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pysurfline.api.APIResource.endpoint">
-<span class="sig-name descname"><span class="pre">endpoint</span></span><a class="headerlink" href="#pysurfline.api.APIResource.endpoint" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">endpoint</span></span><a class="headerlink" href="#pysurfline.api.APIResource.endpoint" title="Link to this definition"></a></dt>
 <dd><p>API endpoint</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -130,10 +135,10 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pysurfline.api.APIResource.response">
-<span class="sig-name descname"><span class="pre">response</span></span><a class="headerlink" href="#pysurfline.api.APIResource.response" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">response</span></span><a class="headerlink" href="#pysurfline.api.APIResource.response" title="Link to this definition"></a></dt>
 <dd><p>response object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>requests.Response</p>
 </dd>
 </dl>
@@ -141,10 +146,10 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pysurfline.api.APIResource.url">
-<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#pysurfline.api.APIResource.url" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#pysurfline.api.APIResource.url" title="Link to this definition"></a></dt>
 <dd><p>response url</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -152,10 +157,10 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pysurfline.api.APIResource.data">
-<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#pysurfline.api.APIResource.data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#pysurfline.api.APIResource.data" title="Link to this definition"></a></dt>
 <dd><p>response data</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
@@ -163,21 +168,17 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pysurfline.api.APIResource.status_code">
-<span class="sig-name descname"><span class="pre">status_code</span></span><a class="headerlink" href="#pysurfline.api.APIResource.status_code" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">status_code</span></span><a class="headerlink" href="#pysurfline.api.APIResource.status_code" title="Link to this definition"></a></dt>
 <dd><p>response status code</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code>(client, endpoint)</p></td>
 <td><p></p></td>
@@ -188,11 +189,7 @@
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">json</span></code></p></td>
 <td><p></p></td>
@@ -210,20 +207,20 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pysurfline.api.APIResource.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.api.APIResource.get" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.api.APIResource.get" title="Link to this definition"></a></dt>
 <dd><p>get response from request.
 Handles HTTP errors and connection errors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>params</strong> (<em>dict</em>) – request parameters</p></li>
 <li><p><strong>headers</strong> (<em>dict</em>) – request headers</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>self (<code class="xref py py-obj docutils literal notranslate"><span class="pre">APIGetter</span></code>)</p>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>requests.exceptions.HTTPError</strong> – if HTTP error occurs</p></li>
 <li><p><strong>requests.exceptions.ConnectionError</strong> – if connection error occurs</p></li>
@@ -235,7 +232,7 @@ Handles HTTP errors and connection errors.</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

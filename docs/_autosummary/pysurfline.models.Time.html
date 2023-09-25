@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pysurfline.models.Time &mdash; pysurfline 0.1.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -10,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -46,7 +48,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/SpotForecast.html">Get forecast for a spot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/SpotForecasts.html">Get forecasts for a spot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/SurfReport.html">Visualize the surf report</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
@@ -61,7 +63,10 @@
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.models.Swell.html">pysurfline.models.Swell</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.models.Tide.html">pysurfline.models.Tide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.models.TideLocation.html">pysurfline.models.TideLocation</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.models.Time</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.models.Time</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pysurfline.models.Time"><code class="docutils literal notranslate"><span class="pre">Time</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.models.Weather.html">pysurfline.models.Weather</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.models.Wind.html">pysurfline.models.Wind</a></li>
 </ul>
@@ -98,19 +103,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="pysurfline-models-time">
-<h1>pysurfline.models.Time<a class="headerlink" href="#pysurfline-models-time" title="Permalink to this headline"></a></h1>
+  <section id="pysurfline-models-time">
+<h1>pysurfline.models.Time<a class="headerlink" href="#pysurfline-models-time" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pysurfline.models.Time">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pysurfline.models.</span></span><span class="sig-name descname"><span class="pre">Time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.models.Time" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pysurfline.models.</span></span><span class="sig-name descname"><span class="pre">Time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.models.Time" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>time data model</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pysurfline.models.Time.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#pysurfline.models.Time.timestamp" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#pysurfline.models.Time.timestamp" title="Link to this definition"></a></dt>
 <dd><p>utc timestamp</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -118,21 +123,17 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pysurfline.models.Time.dt">
-<span class="sig-name descname"><span class="pre">dt</span></span><a class="headerlink" href="#pysurfline.models.Time.dt" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">dt</span></span><a class="headerlink" href="#pysurfline.models.Time.dt" title="Link to this definition"></a></dt>
 <dd><p>utc naive datetime</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>datetime</p>
 </dd>
 </dl>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code>(timestamp[, dt])</p></td>
 <td><p></p></td>
@@ -140,11 +141,7 @@
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pysurfline.models.Time.dt" title="pysurfline.models.Time.dt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dt</span></code></a></p></td>
 <td><p></p></td>
@@ -156,7 +153,7 @@
 </table>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

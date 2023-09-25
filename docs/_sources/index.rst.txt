@@ -3,10 +3,10 @@ Welcome to pysurfline's documentation!
 ======================================
 
 
-Get the surf forecast for any spot listed on `Surfline <https://www.surfline.com>`_.
+Get the surf forecasts for any spot listed on `Surfline <https://www.surfline.com>`_.
 
 Quickly get the forecast data as a `pandas DataFrame <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html>`_ and 
-plot surf forecast with `matplotlib <https://matplotlib.org/stable/>`_ to visualize the conditions of your favorite surf spot.
+plot surf forecasts with `matplotlib <https://matplotlib.org/stable/>`_ to visualize the conditions of your favorite surf spot.
 
 - **Surf** (wave min and max)
 - **Wind** (speed and direction)
@@ -14,14 +14,18 @@ plot surf forecast with `matplotlib <https://matplotlib.org/stable/>`_ to visual
 - **Tide** (height, direction)
 - **Daylight** (sunrise, sunset)
 
-.. image:: https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_readme.png
+.. image:: images/surfreport_readme.png
    :alt: surfreport example
+
+.. warning::
+   This package is **not official** and **not affiliated with Surfline in any way**.
+   Use at your own risk.
 
 .. toctree::
    :maxdepth: 2
    :caption: Examples
 
-   examples/SpotForecast.ipynb
+   examples/SpotForecasts.ipynb
    examples/SurfReport.ipynb
 
 
