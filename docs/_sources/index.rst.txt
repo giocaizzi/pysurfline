@@ -19,7 +19,13 @@ plot surf forecasts with `matplotlib <https://matplotlib.org/stable/>`_ to visua
 
 .. warning::
    This package is **not official** and **not affiliated with Surfline in any way**.
-   Use at your own risk.
+
+   **API responses may change at any time** and the developement of this package may not
+   be able to keep up with those changes.
+
+   If you find any issues, please open an 
+   `issue <https://github.com/giocaizzi/pysurfline/issues>`_ or submit a
+   `pull request <https://github.com/giocaizzi/pysurfline/pulls>`_.
 
 .. toctree::
    :maxdepth: 2
