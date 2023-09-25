@@ -28,9 +28,23 @@ pip install pysurfline
 
 # Example
 
-Visualize the surf report for a given `SpotId`.
+- Get the surf forecast for a given `SpotId`.
 
-[Go to full example.](https://giocaizzi.github.io/pysurfline/examples/surf_report.html)
+[Go to full example.](https://giocaizzi.github.io/pysurfline/examples/SpotForecast.html)
+
+```python
+import pysurfline
+
+spotId = "5842041f4e65fad6a7708cfd"
+spotforecast = pysurfline.get_spot_forecasts(spotId)
+
+>>> spotforecast
+
+```
+
+- Visualize the surf report for a given `SpotId`.
+
+[Go to full example.](https://giocaizzi.github.io/pysurfline/examples/SurfReport.html)
 
 ```python
 import pysurfline
