@@ -108,22 +108,68 @@ def _plot_bar_labels(barplots: list, ax: plt.Axes):
             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
         )
 
+def _plot_tides(spotforecasts: SpotForecasts, ax: plt.Axes):
+    ax2 = ax.twinx()
+    ax2.plot(
+        spotforecasts.get_dataframe("tides")["timestamp_dt"],
+        spotforecasts.get_dataframe("tides")["height"],
+        color="k",
+        linewidth=0.5,
+        zorder=5,
+    )
+    ax2.set_position([0.1, 0.1, 0.8, 0.2])
+    ax2.spines['bottom'].set_visible(False)
+    ax2.tick_params(axis='x', which='both', length=0)
+
 
 class AxisArtist:
-    def __init__(self, spotforecasts: SpotForecasts, ax: plt.Axes):
+    """AxisArtist
+
+    This class is used to plot the surf report of a spot
+    on a single matplotlib `plt.Axes` object.
+
+    Args:
+        spotforecasts (SpotForecasts): SpotForecasts object
+        ax (plt.Axes): matplotlib axes object
+        h_scale (Union[None, float], optional): scale parameter.
+            Defaults to None.
+    """
+
+    _h_scale: float = 2.0
+
+    def __init__(
+        self,
+        spotforecasts: SpotForecasts,
+        ax: plt.Axes,
+        h_scale: Union[None, float] = None,
+    ):
         self.spotforecasts = spotforecasts
         # axes
         self.ax = ax
 
+        # scale parameter
+        # set to surf_max max * 1.2
+        if (
+            self.spotforecasts.get_dataframe("forecasts")["surf_max"].max()
+            * 1.2
+        ) > 2 and h_scale is None:
+            self._h_scale = (
+                self.spotforecasts.get_dataframe("forecasts")["surf_max"].max()
+                * 1.2
+            )
+        elif h_scale is not None:
+            self.h_scale = h_scale
+
     @property
     def h_scale(self):
         # scale parameter
-        factor = self.spotforecasts.get_dataframe("forecasts")["surf_max"].max() * 1.2
-        if factor < 2:
-            factor = 2
-        return factor
+        return self._h_scale
 
-    def plot(self, barLabels: bool = False):
+    @h_scale.setter
+    def h_scale(self, value):
+        self._h_scale = value
+
+    def plot(self, barLabels: bool = False, tides: bool = False):
         # zorder 0 : night and day
         _plot_daylight(self.spotforecasts, self.ax)
 
@@ -138,6 +184,9 @@ class AxisArtist:
             # zorder 4 : bar labels
             _plot_bar_labels(barplots, self.ax)
 
+        if tides:
+            _plot_tides(self.spotforecasts, self.ax)
+
         # format axes
         _fmt_ax(self.spotforecasts, self.ax, self.h_scale)
 
@@ -151,6 +200,7 @@ class AxisArtist:
 class SurfReport:
     f: plt.Figure
     ax: Union[plt.Axes, List[plt.Axes]]
+    _artists: List[AxisArtist] = []
 
     def __init__(
         self, spotforecasts: Union[SpotForecasts, List[SpotForecasts]], ncols=2
@@ -165,27 +215,64 @@ class SurfReport:
         else:
             # axes
             nrows = (
-                len(spotforecasts) // ncols + %
-                if len(spotforecasts) > 1
-                else 1
+                len(spotforecasts) // ncols
+                if len(spotforecasts) % 2 == 0
+                else len(spotforecasts) // ncols + 1
             )
             self.f, self.ax = plt.subplots(ncols=ncols, nrows=nrows, dpi=300)
+
         # make ax a list of axes for single ax that would not be
         # so to be able to iterate over it
-        self.ax = np.array([self.ax]) if isinstance(self.ax, plt.Axes) else self.ax
+        self.ax = (
+            np.array([self.ax]) if isinstance(self.ax, plt.Axes) else self.ax
+        )
 
-    def plot(self, barLabels: bool = False):
+    def plot(
+        self, barLabels: bool = False, tides: bool = False, sameScale: bool = False
+    ) -> plt.Figure:
         """plot surf report
 
         Args:
             barLabels (bool, optional): surf height labels.
-             Defaults to False.
+                Defaults to False.
+            sameScale (bool, optional): same scale for all axes.
+
+        Returns:
+            plt.Figure: matplotlib figure
         """
         for isf, iax in zip(self.spotforecasts, self.ax.flatten()):
-            AxisArtist(isf, iax).plot(barLabels=barLabels)
+            self._artists.append(
+                AxisArtist(isf, iax).plot(barLabels=barLabels, tides=tides)
+            )
+
+        self._delete_unnecessary_axis()
+
+        # if samescale
+        if sameScale:
+            self._adjust_scale()
 
         # tight layout
         self.f.set_tight_layout(True)
+
+        # close figure, it's returned
+        plt.close()
+
+        return self.f
+
+    def _delete_unnecessary_axis(self):
+        delAxes = None
+        for i, iax in enumerate(self.ax.flatten()):
+            if iax.has_data() is False:
+                delAxes = i
+        if delAxes is not None:
+            self.f.delaxes(self.ax.flatten()[delAxes])
+            # reset ax
+            self.ax = self.f.get_axes()
+
+    def _adjust_scale(self):
+        h_scale = max([i.h_scale for i in self._artists])
+        for iax in self.ax.flatten():
+            iax.set_ylim([0, h_scale])
 
 
 def plot_surf_report(spotforecasts: SpotForecasts, **kwargs) -> SurfReport:
@@ -194,6 +281,7 @@ def plot_surf_report(spotforecasts: SpotForecasts, **kwargs) -> SurfReport:
 
     Control the plot by passing a keyword arguments:
     - barLabels: label surf with height.
+    - sameScale: same scale for all axes, if multiple axes are plotted.
 
     Args:
         spotforecasts (SpotForecast): SpotForecast object
