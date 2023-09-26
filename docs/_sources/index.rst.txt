@@ -12,7 +12,7 @@ plot surf forecasts with `matplotlib <https://matplotlib.org/stable/>`_ to visua
 - **Wind** (speed and direction)
 - **Swell** (height, period, direction)
 - **Tide** (height, direction)
-- **Daylight** (sunrise, sunset)
+- **SunriseSunsetTimes** (sunrise, sunset)
 
 .. image:: images/surfreport_readme.png
    :alt: surfreport example
