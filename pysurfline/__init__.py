@@ -2,7 +2,7 @@
 python Surfline API
 """
 # Version
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 # Credits
 __author__ = "Giorgio Caizzi"
