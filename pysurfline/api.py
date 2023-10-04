@@ -28,8 +28,7 @@ class GenericResponse:
 
     def parse_data(self, model_class) -> None:
         self._data = [
-            model_class(**item)
-            for item in self._data[model_class.__name__.lower()]
+            model_class(**item) for item in self._data[model_class.__name__.lower()]
         ]
 
     @property
@@ -133,7 +132,9 @@ class APIResource:
             raise e
         return self._return_modelled_response()
 
-    def _return_modelled_response(self) -> GenericResponse:
+    def _return_modelled_response(
+        self,
+    ) -> GenericResponse:
         if self._endpoint == "spots/forecasts/wave":
             return WaveResponse(self.response)
         elif self._endpoint == "spots/forecasts/wind":
@@ -152,4 +153,3 @@ class APIResource:
 
     def __repr__(self):
         return str(self)
-    

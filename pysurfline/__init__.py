@@ -16,6 +16,6 @@ __email__ = "giocaizzi@gmail.com"
 
 
 # __all__ = [
-#     # "get_spot_forecasts", 
+#     # "get_spot_forecasts",
 #     "plot_surf_report"
 #     ]

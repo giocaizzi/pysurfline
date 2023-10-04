@@ -29,6 +29,7 @@ class SurflineClient:
 
     _baseurl: str = "https://services.surfline.com/kbyg/"
 
+
 #     def _get_spot_forecasts(self, spotId: str, **kwargs) -> SpotForecasts:
 #         """create a SpotForecast object from API responses
 

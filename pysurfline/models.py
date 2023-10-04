@@ -139,9 +139,6 @@ class SunlightTimes:
         self.dusk = Time(self.dusk)
 
 
-
-
-
 # @dataclass
 # class SpotForecasts:
 #     """spot forecasts data model
