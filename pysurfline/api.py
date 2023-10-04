@@ -2,56 +2,77 @@
 
 import requests
 
-from .models import SpotForecasts
+from .client import SurflineClient
+from .models import Wave, Wind, Weather, SunlightTimes, Tide
 
 
-def get_spot_forecasts(spotId: str,**kwargs) -> SpotForecasts:
-    """get spot forecast
+class GenericResponse:
+    _data: dict = None
+    _associated: dict = None
+    # permissions : dict = None TODO: add permissions
+    _url: str = None
+    model_class = None
 
-    Get forecast for given spot by passing the spotId
-    argument.
+    def __init__(self, response: requests.Response, model_class=None):
+        self._data = response.json()["data"]
+        self._associated = response.json()["associated"]
+        self._url = response.url
+        # parse data
+        if model_class is not None:
+            self.model_class = model_class
+            self.parse_data(model_class)
 
-    Arguments:
-        spotId (str): spot id
+    @property
+    def data(self):
+        return self._data
 
-    Returns:
-        forecast (:obj:`SpotForecast`)
-    """
-    return SurflineClient()._get_spot_forecasts(spotId,**kwargs)
+    def parse_data(self, model_class) -> None:
+        self._data = [
+            model_class(**item)
+            for item in self._data[model_class.__name__.lower()]
+        ]
+
+    @property
+    def associated(self):
+        return self._associated
+
+    @property
+    def url(self):
+        return self._url
+
+    def __str__(self):
+        if self.model_class is None:
+            return f"GenericResponse({self.url})"
+        else:
+            return f"{self.model_class.__name__}({self.url})"
+
+    def __repr__(self):
+        return str(self)
 
 
-class SurflineClient:
-    """surfline client
+class WaveResponse(GenericResponse):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, model_class=Wave)
 
-    Surfline API client.
-    At the moment, does not require authentication.
-    """
 
-    _baseurl: str = "https://services.surfline.com/kbyg/"
+class WindResponse(GenericResponse):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, model_class=Wind)
 
-    def __init__(self):
-        pass
 
-    def _get_spot_forecasts(self, spotId: str, **kwargs) -> SpotForecasts:
-        """create a SpotForecast object from API responses
+class WeatherResponse(GenericResponse):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, model_class=Weather)
 
-        Arguments:
-            spotId (str): spot id
-            \\*\\*kwargs: keyword arguments to spot/forecasts endpoint
 
-        Returns:
-            SpotForecast: SpotForecast object
-        """
-        kwargs["spotId"] = spotId
-        return SpotForecasts(
-            spotId,
-            **APIResource(self, "spots/details")
-            .get(params={"spotId": spotId})
-            .json["spot"],
-            **APIResource(self, "spots/forecasts")
-            .get(params=kwargs)
-            .json["data"],
-        )
+class SunlightTimesResponse(GenericResponse):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, model_class=SunlightTimes)
+
+
+class TidesResponse(GenericResponse):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, model_class=Tide)
 
 
 class APIResource:
@@ -66,9 +87,6 @@ class APIResource:
         client (SurflineAPIClient): Surfline API client
         endpoint (str): API endpoint
         response (requests.Response): response object
-        url (str): response url
-        data (dict): response data
-        status_code (int): response status code
     """
 
     _client: SurflineClient = None
@@ -79,17 +97,16 @@ class APIResource:
         self._client = client
         self._endpoint = endpoint
 
-    def get(self, params=None, headers=None):
+    def get(self, params=None) -> GenericResponse:
         """
         get response from request.
         Handles HTTP errors and connection errors.
 
         Arguments:
             params (dict): request parameters
-            headers (dict): request headers
 
         Returns:
-            self (:obj:`APIGetter`)
+            APIResponse: response object
 
         Raises:
             requests.exceptions.HTTPError: if HTTP error occurs
@@ -98,7 +115,8 @@ class APIResource:
         """
         try:
             self.response = requests.get(
-                self._client._baseurl + self._endpoint, params=params, headers=headers
+                self._client._baseurl + self._endpoint,
+                params=params,
             )
             self.response.raise_for_status()
         except requests.exceptions.HTTPError as e:
@@ -113,22 +131,25 @@ class APIResource:
         except Exception as e:
             print("An error occurred!")
             raise e
-        return self
+        return self._return_modelled_response()
 
-    @property
-    def url(self):
-        return self.response.url
-
-    @property
-    def json(self):
-        return self.response.json()
-
-    @property
-    def status_code(self):
-        return self.response.status_code
+    def _return_modelled_response(self) -> GenericResponse:
+        if self._endpoint == "spots/forecasts/wave":
+            return WaveResponse(self.response)
+        elif self._endpoint == "spots/forecasts/wind":
+            return WindResponse(self.response)
+        elif self._endpoint == "spots/forecasts/weather":
+            return WeatherResponse(self.response)
+        elif self._endpoint == "spots/forecasts/tides":
+            return TidesResponse(self.response)
+        else:
+            raise NotImplementedError(
+                "A child BaseResponse class is not implemented for this endpoint."
+            )
 
     def __str__(self):
-        return f"APIResource(endpoint:{self._endpoint},status:{self.status_code})"
+        return f"APIResource(endpoint:{self._endpoint},response:{str(self.response)})"
 
     def __repr__(self):
         return str(self)
+    

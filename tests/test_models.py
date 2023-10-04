@@ -10,9 +10,9 @@ from pysurfline.models import (
     Swell,
     TideLocation,
     Tide,
-    SunriseSunsetTime,
+    sunlightTimes,
     Forecast,
-    SpotForecasts,
+    # SpotForecasts,
 )
 
 TIMESTAMP = 1629475200
@@ -159,7 +159,7 @@ def test_tide():
 
 
 def test_SunriseSunsetTime():
-    d = SunriseSunsetTime(TIMESTAMP, TIMESTAMP, TIMESTAMP)
+    d = sunlightTimes(TIMESTAMP, TIMESTAMP, TIMESTAMP)
     assert isinstance(d.midnight, Time)
     assert isinstance(d.sunrise, Time)
     assert isinstance(d.sunset, Time)
@@ -180,7 +180,7 @@ def test_SpotForecast():
     assert s.name == "Test"
     assert s.spotId == "TestID"
     assert isinstance(s.sunriseSunsetTimes, list)
-    assert isinstance(s.sunriseSunsetTimes[0], SunriseSunsetTime)
+    assert isinstance(s.sunriseSunsetTimes[0], sunlightTimes)
     assert isinstance(s.tideLocation, TideLocation)
     assert isinstance(s.forecasts, list)
     assert isinstance(s.forecasts[0], Forecast)
