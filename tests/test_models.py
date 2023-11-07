@@ -2,14 +2,14 @@ from datetime import datetime
 import pandas as pd
 import pytest
 
-from pysurfline.models import (
+from pysurfline.api.spots.models import (
     Time,
     Weather,
     Wind,
     Surf,
     Swell,
     TideLocation,
-    Tide,
+    Tides,
     sunlightTimes,
     Forecast,
     # SpotForecasts,
@@ -152,7 +152,7 @@ def test_ForecastLocation():
 
 
 def test_tide():
-    t = Tide(TIMESTAMP, TIDE_TYPE, TIDE_HEIGHT)
+    t = Tides(TIMESTAMP, TIDE_TYPE, TIDE_HEIGHT)
     assert t.timestamp.dt == DATETIME
     assert t.type == TIDE_TYPE
     assert t.height == TIDE_HEIGHT
@@ -185,7 +185,7 @@ def test_SpotForecast():
     assert isinstance(s.forecasts, list)
     assert isinstance(s.forecasts[0], Forecast)
     assert isinstance(s.tides, list)
-    assert isinstance(s.tides[0], Tide)
+    assert isinstance(s.tides[0], Tides)
 
 
 def test_SpotForecast_get_dataframe():

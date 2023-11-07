@@ -2,10 +2,6 @@
 from dataclasses import dataclass
 from typing import List, Union
 from datetime import datetime
-import pandas as pd
-
-
-from .utils import flatten
 
 
 class Time:
@@ -104,7 +100,7 @@ class Wave:
 
 
 @dataclass
-class Tide:
+class Tides:
     """tide data model"""
 
     timestamp: Union[int, Time]
@@ -138,57 +134,7 @@ class SunlightTimes:
         self.sunset = Time(self.sunset)
         self.dusk = Time(self.dusk)
 
-
-# @dataclass
-# class SpotForecasts:
-#     """spot forecasts data model
-
-#     Composite data model of all the spot forecasts data,
-#     - forecasts (surf, weather, wind, swells)
-#     - sunrise and sunset times
-#     - tides
-#     """
-
-#     spotId: str
-#     name: str
-#     forecasts: List[Forecast]
-#     sunriseSunsetTimes: List[SunriseSunsetTime]
-#     tides: List[Tide]
-#     tideLocation: dict
-
-#     def __post_init__(self):
-#         self.sunriseSunsetTimes = [
-#             SunriseSunsetTime(**item) for item in self.sunriseSunsetTimes
-#         ]
-#         self.tideLocation = TideLocation(**self.tideLocation)
-#         self.forecasts = [Forecast(**item) for item in self.forecasts]
-#         self.tides = [Tide(**item) for item in self.tides]
-
-#     def get_dataframe(self, attr="forecasts") -> pd.DataFrame:
-#         """pandas dataframe of selected attribute
-
-#         Get the pandas dataframe of the selected attribute. The attribute
-#         can be:
-#         - 'forecast'
-#         - 'tides'
-#         - 'sunriseSunsetTimes'
-
-#         Args:
-#             attr (str, optional): attribute to get dataframe from.
-#                 Defaults to "forecast".
-
-#         Raises:
-#         """
-
-#         if attr == "forecasts":
-#             data = [flatten(item.__dict__) for item in self.forecasts]
-#         elif attr == "tides":
-#             data = [flatten(item.__dict__) for item in self.tides]
-#         elif attr == "sunriseSunsetTimes":
-#             data = [flatten(item.__dict__) for item in self.sunriseSunsetTimes]
-#         else:
-#             raise ValueError(
-#                 f"Attribute {attr} not supported. Use 'forecast', 'tides'"
-#                 " or 'sunriseSunsetTimes'"
-#             )
-#         return pd.DataFrame(data)
+@dataclass
+class Details:
+    """spot details"""
+    name : str
