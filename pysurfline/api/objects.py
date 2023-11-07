@@ -1,8 +1,10 @@
 """api functions and classes"""
 
 import requests
+import pandas as pd
 
 from .spots.models import Wave, Wind, Weather, SunlightTimes, Tides, Details
+from ..utils import flatten
 
 
 class ApiObject:
@@ -36,7 +38,7 @@ class ApiObject:
     @property
     def data(self):
         return self._data
-        
+
     @property
     def associated(self):
         return self._associated
@@ -44,7 +46,6 @@ class ApiObject:
     @property
     def spot(self):
         return self._spot
-
 
     @property
     def url(self):
@@ -124,7 +125,8 @@ class SpotForecasts:
 
     TODO: add associated data and improve utcOffset
     """
-    name : str = None
+
+    name: str = None
 
     def __init__(
         self,
@@ -144,32 +146,24 @@ class SpotForecasts:
         self.weather = weather.data
         self.sunlightTimes = sunlightTimes.data
 
+    def get_dataframe(self, attr="waves") -> pd.DataFrame:
+        """pandas dataframe of selected attribute
 
-#     def get_dataframe(self, attr="forecasts") -> pd.DataFrame:
-#         """pandas dataframe of selected attribute
+        Get the pandas dataframe of the selected attribute.
 
-#         Get the pandas dataframe of the selected attribute. The attribute
-#         can be:
-#         - 'forecast'
-#         - 'tides'
-#         - 'sunriseSunsetTimes'
+        Args:
+            attr (str, optional): attribute to get dataframe from.
+                Defaults to "waves".
 
-#         Args:
-#             attr (str, optional): attribute to get dataframe from.
-#                 Defaults to "forecast".
+        Raises:
+        """
 
-#         Raises:
-#         """
-
-#         if attr == "forecasts":
-#             data = [flatten(item.__dict__) for item in self.forecasts]
-#         elif attr == "tides":
-#             data = [flatten(item.__dict__) for item in self.tides]
-#         elif attr == "sunriseSunsetTimes":
-#             data = [flatten(item.__dict__) for item in self.sunriseSunsetTimes]
-#         else:
-#             raise ValueError(
-#                 f"Attribute {attr} not supported. Use 'forecast', 'tides'"
-#                 " or 'sunriseSunsetTimes'"
-#             )
-#         return pd.DataFrame(data)
+        if attr == "all" :
+            raise NotImplementedError("all not implemented yet")
+        elif attr in ["waves", "wind", "tides", "weather", "sunlightTimes"]:
+            data = [flatten(item.__dict__) for item in getattr(self, attr)]
+        else:
+            raise ValueError(
+                f"Attribute {attr} not supported. Use a valid attribute."
+            )
+        return pd.DataFrame(data)
