@@ -5,7 +5,7 @@ from pysurfline.api.objects import (
     SpotForecastsWave,
     SpotForecastsWeather,
     SpotForecastsWind,
-    SpotDetails
+    SpotDetails,
 )
 
 
@@ -79,7 +79,9 @@ class ApiService:
         elif self._endpoint == "spots/forecasts/wind":
             return SpotForecastsWind(self.response)
         elif self._endpoint == "spots/forecasts/weather":
-            return SpotForecastsWeather(self.response), SpotForecastsSunlightTimes(self.response)
+            return SpotForecastsWeather(self.response), SpotForecastsSunlightTimes(
+                self.response
+            )
         elif self._endpoint == "spots/forecasts/tides":
             return SpotForecastsTides(self.response)
         elif self._endpoint == "spots/details":

@@ -134,7 +134,9 @@ class SunlightTimes:
         self.sunset = Time(self.sunset)
         self.dusk = Time(self.dusk)
 
+
 @dataclass
 class Details:
     """spot details"""
-    name : str
+
+    name: str

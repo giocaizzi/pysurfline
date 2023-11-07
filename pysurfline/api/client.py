@@ -29,13 +29,9 @@ class SurflineClient:
             details=ApiService(self, "spots/details").get({"spotId": spotId}),
             waves=ApiService(self, "spots/forecasts/wave").get(params=kwargs),
             winds=ApiService(self, "spots/forecasts/wind").get(params=kwargs),
-            tides=ApiService(self, "spots/forecasts/tides").get(
+            tides=ApiService(self, "spots/forecasts/tides").get(params=kwargs),
+            weather=ApiService(self, "spots/forecasts/weather").get(params=kwargs)[0],
+            sunlightTimes=ApiService(self, "spots/forecasts/weather").get(
                 params=kwargs
-            ),
-            weather=ApiService(self, "spots/forecasts/weather").get(
-                params=kwargs
-            )[0],
-            sunlightTimes=ApiService(
-                self, "spots/forecasts/weather"
-            ).get(params=kwargs)[1],
+            )[1],
         )

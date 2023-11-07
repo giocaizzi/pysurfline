@@ -57,8 +57,7 @@ class ApiObject:
         self._data = {key.lower(): value for key, value in self._data.items()}
 
         self._data = [
-            model_class(**item)
-            for item in self._data[model_class.__name__.lower()]
+            model_class(**item) for item in self._data[model_class.__name__.lower()]
         ]
 
     def __str__(self):
@@ -158,12 +157,10 @@ class SpotForecasts:
         Raises:
         """
 
-        if attr == "all" :
+        if attr == "all":
             raise NotImplementedError("all not implemented yet")
         elif attr in ["waves", "wind", "tides", "weather", "sunlightTimes"]:
             data = [flatten(item.__dict__) for item in getattr(self, attr)]
         else:
-            raise ValueError(
-                f"Attribute {attr} not supported. Use a valid attribute."
-            )
+            raise ValueError(f"Attribute {attr} not supported. Use a valid attribute.")
         return pd.DataFrame(data)
