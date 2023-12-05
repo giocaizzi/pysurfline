@@ -6,7 +6,7 @@ import matplotlib.dates as mdates
 import datetime
 import matplotlib.patheffects as pe
 
-from pysurfline.api.spots.models import SpotForecasts
+from pysurfline.api.models.spots import SpotForecasts
 
 SURF_COLORS = {"surf_max": "dodgerblue", "surf_min": "lightblue"}
 

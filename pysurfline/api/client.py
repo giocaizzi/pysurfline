@@ -8,7 +8,7 @@ class SurflineClient:
     Surfline API client.
     At the moment, does not require authentication.
 
-    TODO Login and authentication
+    TODO: Login and authentication
     """
 
     _baseurl: str = "https://services.surfline.com/kbyg/"

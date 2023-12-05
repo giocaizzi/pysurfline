@@ -3,7 +3,7 @@
 import requests
 import pandas as pd
 
-from .spots.models import Wave, Wind, Weather, SunlightTimes, Tides, Details
+from .models.spots import Wave, Wind, Weather, SunlightTimes, Tides, Details
 from ..utils import flatten
 
 

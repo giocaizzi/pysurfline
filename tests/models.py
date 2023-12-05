@@ -2,7 +2,7 @@ from datetime import datetime
 import pandas as pd
 import pytest
 
-from pysurfline.api.spots.models import (
+from pysurfline.api.models.spots import (
     Time,
     Weather,
     Wind,
