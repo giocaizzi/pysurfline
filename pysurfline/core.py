@@ -66,12 +66,15 @@ class SpotForecasts:
                 data.append(
                     pd.DataFrame(_flatten_objects(getattr(self, attr))).set_index(
                         "timestamp_dt"
-                    )
+                    ).reset_index()
                 )
-            return pd.concat(data, axis=1)
+            df = pd.concat(data, axis=1)
+            # remove duplicated columns
+            df = df.loc[:, ~df.columns.duplicated()]
+            return df
         elif attr in ["waves", "wind", "tides", "weather", "sunlightTimes"]:
             # return single
-            return pd.DataFrame(_flatten_objects(getattr(self, attr)))
+            return pd.DataFrame(_flatten_objects(getattr(self, attr))).reset_index()
         else:
             raise ValueError(f"Attribute {attr} not supported. Use a valid attribute.")
 

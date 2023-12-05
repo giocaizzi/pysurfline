@@ -21,8 +21,8 @@ class SurfReport:
         # spot name
         self.spot_name = spotforecast.name
         # data as dataframe
-        self.forecasts = spotforecast.get_dataframe("forecasts")
-        self.sunrisesunsettimes = spotforecast.get_dataframe("sunriseSunsetTimes")
+        self.forecasts = spotforecast.get_dataframe("surf")
+        self.sunrisesunsettimes = spotforecast.get_dataframe("sunlightTimes")
         # figure
         self.f, self.ax = plt.subplots(dpi=300)
         pass
