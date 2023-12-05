@@ -1,7 +1,7 @@
 """api functions and classes"""
 
 from .client import SurflineClient
-from .objects import SpotForecasts
+from ..core import SpotForecasts
 
 # from .models import SpotForecasts
 
