@@ -169,12 +169,12 @@ class SpotForecasts:
                 )
             return pd.concat(data, axis=1)
         elif attr in ["waves", "wind", "tides", "weather", "sunlightTimes"]:
-            # return single 
+            # return single
             return pd.DataFrame(_flatten_objects(getattr(self, attr)))
         else:
             raise ValueError(f"Attribute {attr} not supported. Use a valid attribute.")
 
+
 def _flatten_objects(list_of_objects) -> list:
     """return list of flattened objects"""
     return [flatten(item.__dict__) for item in list_of_objects]
-
