@@ -155,12 +155,26 @@ class SpotForecasts:
                 Defaults to "waves".
 
         Raises:
+            ValueError: if attr is not a valid attribute
         """
-
-        if attr == "all":
-            raise NotImplementedError("all not implemented yet")
+        if attr == "surf":
+            # concat all dataframes
+            data = []
+            for attr in ["waves", "wind", "weather"]:
+                # excluding "sunlightTimes"
+                data.append(
+                    pd.DataFrame(_flatten_objects(getattr(self, attr))).set_index(
+                        "timestamp_dt"
+                    )
+                )
+            return pd.concat(data, axis=1)
         elif attr in ["waves", "wind", "tides", "weather", "sunlightTimes"]:
-            data = [flatten(item.__dict__) for item in getattr(self, attr)]
+            # return single 
+            return pd.DataFrame(_flatten_objects(getattr(self, attr)))
         else:
             raise ValueError(f"Attribute {attr} not supported. Use a valid attribute.")
-        return pd.DataFrame(data)
+
+def _flatten_objects(list_of_objects) -> list:
+    """return list of flattened objects"""
+    return [flatten(item.__dict__) for item in list_of_objects]
+
