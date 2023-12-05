@@ -1,5 +1,5 @@
 from pysurfline.api.objects import (
-    ApiObject,
+    ApiResponseObject,
     SpotForecastsSunlightTimes,
     SpotForecastsTides,
     SpotForecastsWave,
@@ -35,7 +35,7 @@ class ApiService:
         self._client = client
         self._endpoint = endpoint
 
-    def get(self, params=None) -> ApiObject:
+    def get(self, params=None) -> ApiResponseObject:
         """
         get response from request.
         Handles HTTP errors and connection errors.
@@ -73,7 +73,7 @@ class ApiService:
 
     def _return_modelled_response(
         self,
-    ) -> Union[ApiObject, Tuple[ApiObject, ApiObject]]:
+    ) -> Union[ApiResponseObject, Tuple[ApiResponseObject, ApiResponseObject]]:
         if self._endpoint == "spots/forecasts/wave":
             return SpotForecastsWave(self.response)
         elif self._endpoint == "spots/forecasts/wind":

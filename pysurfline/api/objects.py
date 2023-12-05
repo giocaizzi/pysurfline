@@ -5,7 +5,7 @@ import requests
 from .models.spots import Wave, Wind, Weather, SunlightTimes, Tides, Details
 
 
-class ApiObject:
+class ApiResponseObject:
     _data: dict = None  # spot/forecasts response
     _associated: dict = None
     _spot: dict = None  # spot/details response
@@ -68,42 +68,42 @@ class ApiObject:
         return str(self)
 
 
-class SpotForecastsWave(ApiObject):
+class SpotForecastsWave(ApiResponseObject):
     """spots/forecasts/wave endpoint"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs, model_class=Wave)
 
 
-class SpotForecastsWind(ApiObject):
+class SpotForecastsWind(ApiResponseObject):
     """spots/forecasts/wind endpoint"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs, model_class=Wind)
 
 
-class SpotForecastsWeather(ApiObject):
+class SpotForecastsWeather(ApiResponseObject):
     """spots/forecasts/weather endpoint"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs, model_class=Weather)
 
 
-class SpotForecastsSunlightTimes(ApiObject):
+class SpotForecastsSunlightTimes(ApiResponseObject):
     """spots/forecasts/sunlightTimes endpoint"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs, model_class=SunlightTimes)
 
 
-class SpotForecastsTides(ApiObject):
+class SpotForecastsTides(ApiResponseObject):
     """spots/forecasts/tides endpoint"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs, model_class=Tides)
 
 
-class SpotDetails(ApiObject):
+class SpotDetails(ApiResponseObject):
     """spots/details endpoint"""
 
     def __init__(self, *args, **kwargs):
