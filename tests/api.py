@@ -4,7 +4,7 @@ import pytest
 from requests.exceptions import HTTPError, ConnectionError, SSLError
 
 from pysurfline.api.services import ApiService
-from .test_models import TEST_API_RESPONSE_DATA
+from .api.spots.test_models import TEST_API_RESPONSE_DATA
 
 TEST_BASEURL = "test_baseurl/"
 TEST_ENDPOINT = "test_endpoint"
