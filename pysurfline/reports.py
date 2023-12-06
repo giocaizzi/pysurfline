@@ -40,7 +40,7 @@ class SurfReport:
 
         Args:
             barLabels (bool, optional): surf height labels.
-             Defaults to False.
+                Defaults to False.
         """
         # zorder 0 : night and day
         self._plot_daylight()
@@ -159,7 +159,7 @@ class SurfReport:
             )
 
 
-def plot_surf_report(spotforecast: SpotForecasts, **kwargs) -> SurfReport:
+def plot_surf_report(spotforecast: SpotForecasts, barLabels=False) -> SurfReport:
     """
     Plot surf report from a spotforecast object.
 
@@ -173,7 +173,7 @@ def plot_surf_report(spotforecast: SpotForecasts, **kwargs) -> SurfReport:
     Returns:
         SurfReport: SurfReport object
     """
-    return SurfReport(spotforecast).plot(**kwargs)
+    return SurfReport(spotforecast).plot(barLabels=barLabels)
 
     # def _plot_wind(self):
     #     # windspeed and wind direction colored on condition

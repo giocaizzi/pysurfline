@@ -13,25 +13,39 @@ class SurflineClient:
 
     _baseurl: str = "https://services.surfline.com/kbyg/"
 
-    def _get_spot_forecasts(self, spotId: str, **kwargs) -> SpotForecasts:
+    def get_spot_forecasts(
+        self, spotId: str, intervalHours: int = None, days: int = None
+    ) -> SpotForecasts:
         """create a SpotForecast object from API responses
 
         Arguments:
             spotId (str): spot id
-            \\*\\*kwargs: keyword arguments to spot/forecasts endpoint
+            intervalHours (int, optional): interval hours. Defaults to None.
+            days (int, optional): days. Defaults to None.
 
         Returns:
             SpotForecast: SpotForecast object
         """
-        kwargs["spotId"] = spotId
+        params = {}
+        params["spotId"] = spotId
+
+        # add optional parameters
+        if intervalHours:
+            params["intervalHours"] = intervalHours
+        if days:
+            params["days"] = days
+
         return SpotForecasts(
             spotId,
+            # spot datails are integrated with forecast,
+            # hence the different GET args
             details=ApiService(self, "spots/details").get({"spotId": spotId}),
-            waves=ApiService(self, "spots/forecasts/wave").get(params=kwargs),
-            winds=ApiService(self, "spots/forecasts/wind").get(params=kwargs),
-            tides=ApiService(self, "spots/forecasts/tides").get(params=kwargs),
-            weather=ApiService(self, "spots/forecasts/weather").get(params=kwargs)[0],
+            waves=ApiService(self, "spots/forecasts/wave").get(params=params),
+            winds=ApiService(self, "spots/forecasts/wind").get(params=params),
+            tides=ApiService(self, "spots/forecasts/tides").get(params=params),
+            # weather and sunlight times are in the same response
+            weather=ApiService(self, "spots/forecasts/weather").get(params=params)[0],
             sunlightTimes=ApiService(self, "spots/forecasts/weather").get(
-                params=kwargs
+                params=params
             )[1],
         )
