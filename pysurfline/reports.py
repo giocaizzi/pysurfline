@@ -6,9 +6,15 @@ import matplotlib.dates as mdates
 import datetime
 import matplotlib.patheffects as pe
 
-from pysurfline.core import SpotForecasts
+from .core import SpotForecasts
+from .utils import degToCompass
 
 SURF_COLORS = {"surf_max": "dodgerblue", "surf_min": "lightblue"}
+WIND_COLORS = {
+    "Offshore": "darkred",
+    "Onshore": "green",
+    "Cross-shore": "darkorange",
+}
 
 
 class SurfReport:
@@ -24,7 +30,7 @@ class SurfReport:
         self.forecasts = spotforecast.get_dataframe("surf")
         self.sunrisesunsettimes = spotforecast.get_dataframe("sunlightTimes")
         # figure
-        self.f, self.ax = plt.subplots(dpi=300)
+        self.f, self.ax = plt.subplots(dpi=300, figsize=(6, 3))
         pass
 
     @property
@@ -35,7 +41,7 @@ class SurfReport:
             factor = 2
         return factor
 
-    def plot(self, barLabels: bool = False):
+    def plot(self, barLabels: bool = False, wind: bool = False):
         """plot surf report
 
         Args:
@@ -55,6 +61,10 @@ class SurfReport:
         if barLabels:
             # zorder 4 : bar labels
             self._plot_bar_labels(barplots)
+
+        if wind:
+            # zorder 4 : wind
+            self._plot_wind()
 
         # format axes
         self._fmt_ax()
@@ -158,49 +168,48 @@ class SurfReport:
                 path_effects=[pe.withStroke(linewidth=1, foreground="w")],
             )
 
+    def _plot_wind(self):
+        # windspeed and wind direction colored on condition
+        xs = self.forecasts.timestamp_dt.tolist()
+        windspeeds = self.forecasts.speed.tolist()
+        conditions = self.forecasts.directionType.tolist()
+        winddirections = self.forecasts.direction.tolist()
+        for x, ws, cond, wd in zip(xs, windspeeds, conditions, winddirections):
+            self.ax.annotate(
+                int(ws),
+                xy=(mdates.date2num(x), self.h_scale - (self.h_scale * 0.01)),
+                fontsize=6,
+                color=WIND_COLORS[cond],
+                zorder=4,
+                weight="bold",
+                va="top",
+                ha="center",
+                path_effects=[pe.withStroke(linewidth=1, foreground="w")],
+            )
+            self.ax.annotate(
+                degToCompass(wd) + "\n(" + "{:.0f}".format(wd) + "°)",
+                xy=(mdates.date2num(x), self.h_scale - (self.h_scale * 0.04)),
+                fontsize=3,
+                color=WIND_COLORS[cond],
+                weight="bold",
+                zorder=4,
+                va="top",
+                ha="center",
+                path_effects=[pe.withStroke(linewidth=1, foreground="w")],
+            )
 
-def plot_surf_report(spotforecast: SpotForecasts, barLabels=False) -> SurfReport:
+
+def plot_surf_report(
+    spotforecast: SpotForecasts, barLabels=False, wind=False
+) -> SurfReport:
     """
     Plot surf report from a spotforecast object.
 
-    Control the plot by passing a keyword arguments:
-    - barLabels: label surf with height.
-
     Args:
         spotforecast (SpotForecast): SpotForecast object
-        \\*\\*kwargs: Keyword arguments to pass to `SurfReport.plot`.
+        barLabels: label surf with height.
 
     Returns:
         SurfReport: SurfReport object
     """
-    return SurfReport(spotforecast).plot(barLabels=barLabels)
-
-    # def _plot_wind(self):
-    #     # windspeed and wind direction colored on condition
-    #     xs = self.forecasts.index.tolist()
-    #     windspeeds = self.forecasts.speed.tolist()
-    #     conditions = self.forecasts.directionType.tolist()
-    #     winddirections = self.forecasts.direction.tolist()
-    #     for x, ws, cond, wd in zip(xs, windspeeds, conditions, winddirections):
-    #         ax.annotate(
-    #             int(ws),
-    #             xy=(mdates.date2num(x), h_scale - (h_scale * 0.01)),
-    #             fontsize=7,
-    #             color=wind_colors[cond],
-    #             zorder=4,
-    #             weight="bold",
-    #             va="top",
-    #             ha="center",
-    #             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
-    #         )
-    #         ax.annotate(
-    #             degToCompass(wd) + "\n(" + "{:.0f}".format(wd) + "°)",
-    #             xy=(mdates.date2num(x), h_scale - (h_scale * 0.04)),
-    #             fontsize=4,
-    #             color=wind_colors[cond],s
-    #             weight="bold",
-    #             zorder=4,
-    #             va="top",
-    #             ha="center",
-    #             path_effects=[pe.withStroke(linewidth=1, foreground="w")],
-    #         )
+    return SurfReport(spotforecast).plot(barLabels=barLabels, wind=wind)
