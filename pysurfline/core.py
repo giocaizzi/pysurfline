@@ -46,14 +46,20 @@ class SpotForecasts:
         self.weather = weather.data
         self.sunlightTimes = sunlightTimes.data
 
-    def get_dataframe(self, attr="waves") -> pd.DataFrame:
+    def get_dataframe(self, attr="surf") -> pd.DataFrame:
         """pandas dataframe of selected attribute
 
-        Get the pandas dataframe of the selected attribute.
+        Use default to get the pandas dataframe of surf data,
+        or of the selected attribute `attr`:
+        - waves
+        - wind
+        - tides
+        - weather
+        - sunlightTimes
 
         Args:
             attr (str, optional): attribute to get dataframe from.
-                Defaults to "waves".
+                Defaults to "surf".
 
         Raises:
             ValueError: if attr is not a valid attribute
