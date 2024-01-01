@@ -8,11 +8,11 @@ Get the surf forecasts for any spot listed on `Surfline <https://www.surfline.co
 Quickly get the forecast data as a `pandas DataFrame <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html>`_ and 
 plot surf forecasts with `matplotlib <https://matplotlib.org/stable/>`_ to visualize the conditions of your favorite surf spot.
 
-- **Surf** (wave min and max)
+- **Waves** (wave min and max)
 - **Wind** (speed and direction)
 - **Swell** (height, period, direction)
-- **Tide** (height, direction)
-- **SunriseSunsetTimes** (sunrise, sunset)
+- **Tides** (height, direction)
+- **SunlightTimes** (sunrise, sunset)
 
 .. image:: images/surfreport_readme.png
    :alt: surfreport example
@@ -33,6 +33,7 @@ plot surf forecasts with `matplotlib <https://matplotlib.org/stable/>`_ to visua
 
    examples/SpotForecasts.ipynb
    examples/SurfReport.ipynb
+   examples/SurflineAPI.md
 
 
 

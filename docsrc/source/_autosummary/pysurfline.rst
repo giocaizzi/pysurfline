@@ -29,7 +29,7 @@
    :recursive:
 
    pysurfline.api
-   pysurfline.models
+   pysurfline.core
    pysurfline.reports
    pysurfline.utils
 

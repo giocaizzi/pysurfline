@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pysurfline.utils.degToCompass &mdash; pysurfline 0.1.1 documentation</title>
+  <title>pysurfline.utils.degToCompass &mdash; pysurfline 0.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -34,7 +36,7 @@
             pysurfline
           </a>
               <div class="version">
-                0.1.1
+                0.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -53,10 +55,13 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="pysurfline.html">pysurfline</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pysurfline.api.html">pysurfline.api</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pysurfline.models.html">pysurfline.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysurfline.core.html">pysurfline.core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pysurfline.reports.html">pysurfline.reports</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="pysurfline.utils.html">pysurfline.utils</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.utils.degToCompass</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.utils.degToCompass</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pysurfline.utils.degToCompass"><code class="docutils literal notranslate"><span class="pre">degToCompass()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="pysurfline.utils.flatten.html">pysurfline.utils.flatten</a></li>
 </ul>
 </li>
@@ -90,27 +95,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="pysurfline-utils-degtocompass">
-<h1>pysurfline.utils.degToCompass<a class="headerlink" href="#pysurfline-utils-degtocompass" title="Permalink to this headline"></a></h1>
+  <section id="pysurfline-utils-degtocompass">
+<h1>pysurfline.utils.degToCompass<a class="headerlink" href="#pysurfline-utils-degtocompass" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pysurfline.utils.degToCompass">
-<span class="sig-prename descclassname"><span class="pre">pysurfline.utils.</span></span><span class="sig-name descname"><span class="pre">degToCompass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pysurfline.utils.degToCompass" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pysurfline.utils.</span></span><span class="sig-name descname"><span class="pre">degToCompass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pysurfline.utils.degToCompass" title="Link to this definition"></a></dt>
 <dd><p>convert numerical (deg) direction into a cardinal string
 eg. N, S, W with a 22.5 deg accuracy.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>num</strong> (<em>float</em>) – angle in degrees</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>cardinal string</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

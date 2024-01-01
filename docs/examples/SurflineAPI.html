@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surfline API &mdash; pysurfline 0.2.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pysurfline" href="../_autosummary/pysurfline.html" />
+    <link rel="prev" title="Visualize the surf report" href="SurfReport.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pysurfline
+          </a>
+              <div class="version">
+                0.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="SpotForecasts.html">Surf forecasts for a Surfline spot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SurfReport.html">Visualize the surf report</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Surfline API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pysurfline-objects"><code class="docutils literal notranslate"><span class="pre">pysurfline</span></code> Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spotforecasts"><code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#wave"><code class="docutils literal notranslate"><span class="pre">Wave</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wind"><code class="docutils literal notranslate"><span class="pre">Wind</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tides"><code class="docutils literal notranslate"><span class="pre">Tides</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#weather"><code class="docutils literal notranslate"><span class="pre">Weather</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/pysurfline.html">pysurfline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pysurfline</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Surfline API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/SurflineAPI.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="surfline-api">
+<h1>Surfline API<a class="headerlink" href="#surfline-api" title="Link to this heading"></a></h1>
+<p>The surfline api is structured as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kbyg</span></code>/</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">spots/</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">details/</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">forecasts/</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">conditions/</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wave</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wind</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tides</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weather</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Required parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">spotId</span></code>: the id of the spot you want to get data for</p></li>
+</ul>
+<p><strong>Optional parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">forecasts/</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">days</span></code>: the number of days of data you want to get (default: X)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intervalHours</span></code>: the interval in hours of the data you want to get (default: X)</p></li>
+</ul>
+</li>
+</ul>
+<section id="pysurfline-objects">
+<h2><code class="docutils literal notranslate"><span class="pre">pysurfline</span></code> Objects<a class="headerlink" href="#pysurfline-objects" title="Link to this heading"></a></h2>
+<p>Surfline API objects have equivalent python objects.</p>
+<p>In order to make the API easier to use, a nested object structure is used to represent the API data and translated into python objects.</p>
+<section id="spotforecasts">
+<h3><code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code><a class="headerlink" href="#spotforecasts" title="Link to this heading"></a></h3>
+<p>The main object is <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code>.</p>
+<p>This object is a fusion of <code class="docutils literal notranslate"><span class="pre">spots/details</span> </code>and <code class="docutils literal notranslate"><span class="pre">spots/forecasts/*</span></code> data.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">spots/details</span></code> data is stored as object attributes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spots/forecasts/*</span></code> data is stored as lists of objects.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpotForecasts</span><span class="p">:</span>
+    <span class="n">spotId</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">waves</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Wave</span><span class="p">]</span>
+    <span class="n">wind</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Wind</span><span class="p">]</span>
+    <span class="n">tides</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tides</span><span class="p">]</span>
+    <span class="n">weather</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Weather</span><span class="p">]</span>
+    <span class="n">sunlightTimes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SunlightTime</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="wave">
+<h4><code class="docutils literal notranslate"><span class="pre">Wave</span></code><a class="headerlink" href="#wave" title="Link to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Wave</span><span class="p">:</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="n">Timestamp</span>
+    <span class="n">probability</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">utcOffSet</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">surf</span><span class="p">:</span> <span class="n">Surf</span>
+    <span class="n">power</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">swells</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Swell</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="surf">
+<h5><code class="docutils literal notranslate"><span class="pre">Surf</span></code><a class="headerlink" href="#surf" title="Link to this heading"></a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Surf</span><span class="p">:</span>
+    <span class="nb">min</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="nb">max</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">optimalScore</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">plus</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">humanRelation</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">raw</span><span class="p">:</span> <span class="nb">dict</span>
+</pre></div>
+</div>
+</section>
+<section id="swell">
+<h5><code class="docutils literal notranslate"><span class="pre">Swell</span></code><a class="headerlink" href="#swell" title="Link to this heading"></a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Swell</span><span class="p">:</span>
+    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">period</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">impact</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">power</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">direction</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">directionMin</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">optimalScore</span><span class="p">:</span> <span class="nb">float</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="wind">
+<h4><code class="docutils literal notranslate"><span class="pre">Wind</span></code><a class="headerlink" href="#wind" title="Link to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Wind</span><span class="p">:</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="n">Timestamp</span>
+    <span class="n">utcOffSet</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">direction</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">directionType</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">gust</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">optimalScore</span><span class="p">:</span> <span class="nb">int</span>
+</pre></div>
+</div>
+</section>
+<section id="tides">
+<h4><code class="docutils literal notranslate"><span class="pre">Tides</span></code><a class="headerlink" href="#tides" title="Link to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Tides</span><span class="p">:</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="n">Timestamp</span>
+    <span class="n">utcOffSet</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="nb">type</span>    
+    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span>
+</pre></div>
+</div>
+</section>
+<section id="weather">
+<h4><code class="docutils literal notranslate"><span class="pre">Weather</span></code><a class="headerlink" href="#weather" title="Link to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Weather</span><span class="p">:</span>
+    <span class="n">midnight</span><span class="p">:</span> <span class="n">Timestamp</span><span class="p">,</span>
+    <span class="n">midnightUTCOffset</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">dawn</span><span class="p">:</span> <span class="n">Timestamp</span><span class="p">,</span>
+    <span class="n">dawnUTCOffset</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">sunrise</span><span class="p">:</span> <span class="n">Timestamp</span><span class="p">,</span>
+    <span class="n">sunriseUTCOffset</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">sunset</span><span class="p">:</span> <span class="n">Timestamp</span><span class="p">,</span>
+    <span class="n">sunsetUTCOffset</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">dusk</span><span class="p">:</span> <span class="n">Timestamp</span><span class="p">,</span>
+    <span class="n">duskUTCOffset</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SurfReport.html" class="btn btn-neutral float-left" title="Visualize the surf report" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../_autosummary/pysurfline.html" class="btn btn-neutral float-right" title="pysurfline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, giocaizzi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
