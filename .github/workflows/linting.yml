@@ -10,4 +10,4 @@ jobs:
   lint:
     uses: giocaizzi/python-dev-actions/.github/workflows/linting.yml@main
     with:
-      repo: ${{ github.repository }}
+      repo: ${{ github.event.repository.name }}
