@@ -57,8 +57,11 @@ jobs:
           pip install -r docsrc/requirements.txt
           pip install . 
       
+      # when building, removing local build and cached files is necessary
+      # otherwise the build will fail with major version updates
       - name: Build docs
         run : |
           cd docsrc/
+          make gitclean
           make github-action
           cd ..
