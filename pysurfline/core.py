@@ -67,8 +67,9 @@ class SpotForecasts:
         if attr == "surf":
             # concat all dataframes
             data = []
-            for attr in ["waves", "wind", "tides", "weather"]:
-                # excluding "sunlightTimes"
+            for attr in ["waves", "wind", "weather"]:
+                # excluding "sunlightTimes" and "tides" due to different timestamps
+                # TODO: include "surf" in `surf` output
                 data.append(
                     pd.DataFrame(_flatten_objects(getattr(self, attr))).set_index(
                         "timestamp_dt"
