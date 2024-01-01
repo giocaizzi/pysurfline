@@ -41,12 +41,22 @@ class SurfReport:
             factor = 2
         return factor
 
-    def plot(self, barLabels: bool = False, wind: bool = False):
+    def plot(
+        self,
+        barLabels: bool = False,
+        wind: bool = False,
+        wind_kwargs: dict = {},
+        legend: bool = False,
+    ):
         """plot surf report
 
         Args:
             barLabels (bool, optional): surf height labels.
                 Defaults to False.
+            wind (bool, optional): wind speed and direction.
+                Defaults to False.
+            wind_kwarg (dict, optional): wind kwargs. Defaults to {}.
+            legend (bool, optional): legend. Defaults to False.
         """
         # zorder 0 : night and day
         self._plot_daylight()
@@ -64,7 +74,7 @@ class SurfReport:
 
         if wind:
             # zorder 4 : wind
-            self._plot_wind()
+            self._plot_wind(**wind_kwargs)
 
         # format axes
         self._fmt_ax()
@@ -73,7 +83,9 @@ class SurfReport:
         self.ax.set_title(self.spot_name)
 
         # legend
-        self.ax.legend(loc="lower left", bbox_to_anchor=(1, 0), fontsize=5)
+        if legend:
+            self.ax.legend(loc="lower left", bbox_to_anchor=(1, 0), fontsize=5)
+
         # tight layout
         self.f.set_tight_layout(True)
 
@@ -124,13 +136,20 @@ class SurfReport:
         self.ax.xaxis.set_minor_formatter(mdates.DateFormatter("%H"))
 
         # Rotates and right-aligns the x labels so they don't crowd each other.
+        # ?????
+        # y axis
         self.ax.tick_params(axis="x", which="major", pad=10)
         for label in self.ax.get_yticklabels(which="major"):
             label.set(rotation=0, size=4)
+        # x axis
         for label in self.ax.get_xticklabels(which="major"):
             label.set(rotation=0, horizontalalignment="center", size=4)
         for label in self.ax.get_xticklabels(which="minor"):
             label.set(horizontalalignment="center", size=3)
+
+        # set axis labels fontsize
+        self.ax.xaxis.label.set_size(4)
+        self.ax.yaxis.label.set_size(4)
 
         # lims
         self.ax.set_ylim([0, self.h_scale])
@@ -162,13 +181,13 @@ class SurfReport:
                 barplot,
                 label_type="edge",
                 zorder=4,
-                size=5,
+                size=2,
                 fmt="%.1f",
                 weight="bold",
                 path_effects=[pe.withStroke(linewidth=1, foreground="w")],
             )
 
-    def _plot_wind(self):
+    def _plot_wind(self, cardinal=True):
         # windspeed and wind direction colored on condition
         xs = self.forecasts.timestamp_dt.tolist()
         windspeeds = self.forecasts.speed.tolist()
@@ -186,10 +205,16 @@ class SurfReport:
                 ha="center",
                 path_effects=[pe.withStroke(linewidth=1, foreground="w")],
             )
+
+            if cardinal:
+                stringDirection = degToCompass(wd)
+            else:
+                stringDirection = "{:.0f}".format(wd) + "°"
+
             self.ax.annotate(
-                degToCompass(wd) + "\n(" + "{:.0f}".format(wd) + "°)",
-                xy=(mdates.date2num(x), self.h_scale - (self.h_scale * 0.04)),
-                fontsize=3,
+                stringDirection,
+                xy=(mdates.date2num(x), self.h_scale - (self.h_scale * 0.05)),
+                fontsize=2,
                 color=WIND_COLORS[cond],
                 weight="bold",
                 zorder=4,
