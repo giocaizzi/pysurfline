@@ -30,7 +30,7 @@ pip install pysurfline
 
 ## Example
 
-- Get the surf forecasts for a given `SpotId` and get data as a pandas Dataframe.
+- Get the surf forecasts for a given `SpotId` and get data as a pandas Dataframe. Control forecast timespan with `days` and `intervalHours`.
 
     [Go to full example.](https://giocaizzi.github.io/pysurfline/examples/SpotForecasts.html)
 
@@ -39,7 +39,11 @@ pip install pysurfline
 
     spotId = "5842041f4e65fad6a7708cfd"
 
-    spotforecasts = pysurfline.get_spot_forecasts(spotId)
+    spotforecasts = pysurfline.get_spot_forecasts(
+        spotId,
+        days = 2,
+        intervalHours = 3,
+    )
 
     df = spotforecasts.get_dataframe()
     ```
