@@ -6,36 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-
 jobs:
   tests:
-    runs-on: ubuntu-latest
-    strategy:
-    #allow the matrix to not fail completely if one fails
-      fail-fast: false
-      matrix:
-        #os: [ubuntu-latest] #macos-latest
-        python-version: ["3.7","3.8", "3.9","3.10"]
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install .
-        pip install -r tests/requirements.txt
-
-   
-    # pytest params specified in pytest.ini
-    - run: |
-        pytest 
-      
-    - name: "Upload coverage to Codecov"
-      uses: codecov/codecov-action@v3
-      if: matrix.python-version == '3.10'
+    uses: python-dev-actions/.github/workflows/tests.yml@main
