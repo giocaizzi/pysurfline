@@ -2,9 +2,9 @@
 utility functions
 """
 from collections.abc import MutableMapping
-
-
 from dataclasses import is_dataclass
+
+from .api.models.spots import Time
 
 
 def flatten(d: dict, parent_key: str = "", sep: str = "_") -> dict:
@@ -34,7 +34,7 @@ def flatten(d: dict, parent_key: str = "", sep: str = "_") -> dict:
                     )
                 else:
                     items.append((f"{new_key}{sep}{i}", item))
-        elif is_dataclass(v):
+        elif is_dataclass(v) or isinstance(v, Time):
             items.extend(flatten(v.__dict__, new_key, sep=sep).items())
         else:
             items.append((new_key, v))
