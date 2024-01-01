@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pysurfline.api.public.get_spot_forecasts &mdash; pysurfline 0.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -11,11 +10,10 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=938c9ccc"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -48,8 +46,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/SpotForecasts.html">Get surf forecasts for a Surfline spot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/SpotForecasts.html">Surf forecasts for a Surfline spot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/SurfReport.html">Visualize the surf report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/SurflineAPI.html">Surfline API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code reference</span></p>
 <ul class="current">
@@ -99,29 +98,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="pysurfline-api-public-get-spot-forecasts">
-<h1>pysurfline.api.public.get_spot_forecasts<a class="headerlink" href="#pysurfline-api-public-get-spot-forecasts" title="Link to this heading"></a></h1>
+  <div class="section" id="pysurfline-api-public-get-spot-forecasts">
+<h1>pysurfline.api.public.get_spot_forecasts<a class="headerlink" href="#pysurfline-api-public-get-spot-forecasts" title="Permalink to this headline"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pysurfline.api.public.get_spot_forecasts">
-<span class="sig-prename descclassname"><span class="pre">pysurfline.api.public.</span></span><span class="sig-name descname"><span class="pre">get_spot_forecasts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spotId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervalHours</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pysurfline.core.SpotForecasts.html#pysurfline.core.SpotForecasts" title="pysurfline.core.SpotForecasts"><span class="pre">SpotForecasts</span></a></span></span><a class="headerlink" href="#pysurfline.api.public.get_spot_forecasts" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pysurfline.api.public.</span></span><span class="sig-name descname"><span class="pre">get_spot_forecasts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spotId</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervalHours</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pysurfline.core.SpotForecasts.html#pysurfline.core.SpotForecasts" title="pysurfline.core.SpotForecasts"><span class="pre">pysurfline.core.SpotForecasts</span></a></span></span><a class="headerlink" href="#pysurfline.api.public.get_spot_forecasts" title="Permalink to this definition"></a></dt>
 <dd><p>get spot forecast</p>
 <p>Get forecast for given spot by passing the spotId
 argument.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>spotId</strong> (<em>str</em>) – spot id</p></li>
 <li><p><strong>intervalHours</strong> (<em>int</em><em>, </em><em>optional</em>) – interval hours. Defaults to None.</p></li>
 <li><p><strong>days</strong> (<em>int</em><em>, </em><em>optional</em>) – days. Defaults to None.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>forecast (<code class="xref py py-obj docutils literal notranslate"><span class="pre">SpotForecast</span></code>)</p>
 </dd>
 </dl>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Surf forecasts for a Surfline spot &mdash; pysurfline 0.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -12,14 +11,13 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=938c9ccc"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -100,11 +98,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Surf-forecasts-for-a-Surfline-spot">
-<h1>Surf forecasts for a Surfline spot<a class="headerlink" href="#Surf-forecasts-for-a-Surfline-spot" title="Link to this heading"></a></h1>
+  <div class="section" id="Surf-forecasts-for-a-Surfline-spot">
+<h1>Surf forecasts for a Surfline spot<a class="headerlink" href="#Surf-forecasts-for-a-Surfline-spot" title="Permalink to this headline"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">pysurfline</span></code> offers a simple interface to get the forecast for any spot listed on Surfline.</p>
-<section id="Retriving-the-spotId-of-a-Surfline-spot">
-<h2>Retriving the <code class="docutils literal notranslate"><span class="pre">spotId</span></code> of a Surfline spot<a class="headerlink" href="#Retriving-the-spotId-of-a-Surfline-spot" title="Link to this heading"></a></h2>
+<div class="section" id="Retriving-the-spotId-of-a-Surfline-spot">
+<h2>Retriving the <code class="docutils literal notranslate"><span class="pre">spotId</span></code> of a Surfline spot<a class="headerlink" href="#Retriving-the-spotId-of-a-Surfline-spot" title="Permalink to this headline"></a></h2>
 <p>In order to request the data for the correct spot to the SurflineAPI, we must provide the spot with its <code class="docutils literal notranslate"><span class="pre">spotID</span></code> argument. This can be found easily from the URL of the surfline webpage of each spot.</p>
 <blockquote>
 <div><p>For example, going to <a class="reference external" href="https://www.surfline.com/surf-report/anchor-point/5842041f4e65fad6a7708cfd">Anchor Point</a> webpage, the URL is:</p>
@@ -133,9 +131,9 @@
 </pre></div>
 </div>
 </div>
-</section>
-<section id="SpotForecast">
-<h2>SpotForecast<a class="headerlink" href="#SpotForecast" title="Link to this heading"></a></h2>
+</div>
+<div class="section" id="SpotForecast">
+<h2>SpotForecast<a class="headerlink" href="#SpotForecast" title="Permalink to this headline"></a></h2>
 <p>This data received from the API is unpacked into a <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> object.</p>
 <blockquote>
 <div><p>To understand the logic behind the Surfline API and subsequent implementation of <code class="docutils literal notranslate"><span class="pre">pysufline</span></code> objects, please refer to <a class="reference internal" href="SurflineAPI.html"><span class="doc">Surfline API Schema</span></a>.</p>
@@ -167,8 +165,8 @@
 &#39;Anchor Point&#39;
 </pre></div></div>
 </div>
-<section id="Waves">
-<h3>Waves<a class="headerlink" href="#Waves" title="Link to this heading"></a></h3>
+<div class="section" id="Waves">
+<h3>Waves<a class="headerlink" href="#Waves" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
@@ -190,9 +188,9 @@
  Wave(timestamp=Time(2024-01-01 11:00:00), probability=100, utcOffset=1, surf=Surf(min=1.5, max=2.1, optimalScore=2, plus=False, humanRelation=&#39;Head to 0.6m overhead&#39;, raw={&#39;min&#39;: 1.36119, &#39;max&#39;: 2.12686}), power=1276.66436, swells=[Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=1.8, period=14, impact=1, power=1276.66436, direction=303.54, directionMin=296.165, optimalScore=2), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0)])]
 </pre></div></div>
 </div>
-</section>
-<section id="Wind">
-<h3>Wind<a class="headerlink" href="#Wind" title="Link to this heading"></a></h3>
+</div>
+<div class="section" id="Wind">
+<h3>Wind<a class="headerlink" href="#Wind" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
@@ -214,9 +212,9 @@
  Wind(timestamp=Time(2024-01-01 11:00:00), utcOffset=1, speed=1.63095, direction=175.0945, directionType=&#39;Cross-shore&#39;, gust=1.9673, optimalScore=2)]
 </pre></div></div>
 </div>
-</section>
-<section id="Tides">
-<h3>Tides<a class="headerlink" href="#Tides" title="Link to this heading"></a></h3>
+</div>
+<div class="section" id="Tides">
+<h3>Tides<a class="headerlink" href="#Tides" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
@@ -238,9 +236,9 @@
  Tides(timestamp=Time(2024-01-01 03:00:00), utcOffset=1, type=&#39;NORMAL&#39;, height=2.85)]
 </pre></div></div>
 </div>
-</section>
-<section id="Weather">
-<h3>Weather<a class="headerlink" href="#Weather" title="Link to this heading"></a></h3>
+</div>
+<div class="section" id="Weather">
+<h3>Weather<a class="headerlink" href="#Weather" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
@@ -262,9 +260,9 @@
  Weather(timestamp=Time(2024-01-01 11:00:00), utcOffset=1, temperature=19.82248, condition=&#39;CLEAR&#39;, pressure=1021)]
 </pre></div></div>
 </div>
-</section>
-<section id="Sunlight-Times">
-<h3>Sunlight Times<a class="headerlink" href="#Sunlight-Times" title="Link to this heading"></a></h3>
+</div>
+<div class="section" id="Sunlight-Times">
+<h3>Sunlight Times<a class="headerlink" href="#Sunlight-Times" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
@@ -283,15 +281,15 @@
  SunlightTimes(midnight=Time(2024-01-01 23:00:00), midnightUTCOffset=1, dawn=Time(2024-01-02 07:10:55), dawnUTCOffset=1, sunrise=Time(2024-01-02 07:37:21), sunriseUTCOffset=1, sunset=Time(2024-01-02 17:50:09), sunsetUTCOffset=1, dusk=Time(2024-01-02 18:16:35), duskUTCOffset=1)]
 </pre></div></div>
 </div>
-</section>
-</section>
-<section id="Get-data-as-pandas-Dataframe">
-<h2>Get data as <em>pandas Dataframe</em><a class="headerlink" href="#Get-data-as-pandas-Dataframe" title="Link to this heading"></a></h2>
+</div>
+</div>
+<div class="section" id="Get-data-as-pandas-Dataframe">
+<h2>Get data as <em>pandas Dataframe</em><a class="headerlink" href="#Get-data-as-pandas-Dataframe" title="Permalink to this headline"></a></h2>
 <p>The different <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> attributes can be accessed as pandas DataFrame for easy data manipulation.</p>
 <p>As default, it will return a dataframe that is a join of the data contained in the single <code class="docutils literal notranslate"><span class="pre">waves</span></code>, <code class="docutils literal notranslate"><span class="pre">wind</span></code>,<code class="docutils literal notranslate"><span class="pre">weather</span></code> attributes.</p>
 <p>To select data to convert to Dataframe, use a string argument: - <code class="docutils literal notranslate"><span class="pre">surf</span></code> (<em>Default</em>) - Attribute name: - <code class="docutils literal notranslate"><span class="pre">waves</span></code>, - <code class="docutils literal notranslate"><span class="pre">wind</span></code>, - <code class="docutils literal notranslate"><span class="pre">tides</span></code>, - <code class="docutils literal notranslate"><span class="pre">weather</span></code>, - <code class="docutils literal notranslate"><span class="pre">sunlightTimes</span></code>.</p>
-<section id="Get-surf-data-as-a-single-Dataframe">
-<h3>Get surf data as a single Dataframe<a class="headerlink" href="#Get-surf-data-as-a-single-Dataframe" title="Link to this heading"></a></h3>
+<div class="section" id="Get-surf-data-as-a-single-Dataframe">
+<h3>Get surf data as a single Dataframe<a class="headerlink" href="#Get-surf-data-as-a-single-Dataframe" title="Permalink to this headline"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">surf</span></code> Dataframe is a join of the data contained in the <code class="docutils literal notranslate"><span class="pre">waves</span></code>, <code class="docutils literal notranslate"><span class="pre">wind</span></code>, <code class="docutils literal notranslate"><span class="pre">tides</span></code>, <code class="docutils literal notranslate"><span class="pre">weather</span></code> attributes.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
@@ -728,9 +726,9 @@
 </table>
 </div></div>
 </div>
-</section>
-<section id="Single-attribute-as-DataFrame">
-<h3>Single attribute as DataFrame<a class="headerlink" href="#Single-attribute-as-DataFrame" title="Link to this heading"></a></h3>
+</div>
+<div class="section" id="Single-attribute-as-DataFrame">
+<h3>Single attribute as DataFrame<a class="headerlink" href="#Single-attribute-as-DataFrame" title="Permalink to this headline"></a></h3>
 <p>In order to get a single attribute as a DataFrame, the attribute name must be specified as an argument. - <code class="docutils literal notranslate"><span class="pre">waves</span></code> - <code class="docutils literal notranslate"><span class="pre">wind</span></code> - <code class="docutils literal notranslate"><span class="pre">weather</span></code> - <code class="docutils literal notranslate"><span class="pre">tides</span></code> - <code class="docutils literal notranslate"><span class="pre">sunlightTimes</span></code></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
@@ -839,9 +837,9 @@
 </table>
 </div></div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>

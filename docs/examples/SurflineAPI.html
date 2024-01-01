@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Surfline API &mdash; pysurfline 0.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -11,11 +10,10 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=938c9ccc"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -93,8 +91,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="surfline-api">
-<h1>Surfline API<a class="headerlink" href="#surfline-api" title="Link to this heading"></a></h1>
+  <div class="section" id="surfline-api">
+<h1>Surfline API<a class="headerlink" href="#surfline-api" title="Permalink to this headline"></a></h1>
 <p>The surfline api is structured as follows:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">kbyg</span></code>/</p>
@@ -129,12 +127,12 @@
 </ul>
 </li>
 </ul>
-<section id="pysurfline-objects">
-<h2><code class="docutils literal notranslate"><span class="pre">pysurfline</span></code> Objects<a class="headerlink" href="#pysurfline-objects" title="Link to this heading"></a></h2>
+<div class="section" id="pysurfline-objects">
+<h2><code class="docutils literal notranslate"><span class="pre">pysurfline</span></code> Objects<a class="headerlink" href="#pysurfline-objects" title="Permalink to this headline"></a></h2>
 <p>Surfline API objects have equivalent python objects.</p>
 <p>In order to make the API easier to use, a nested object structure is used to represent the API data and translated into python objects.</p>
-<section id="spotforecasts">
-<h3><code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code><a class="headerlink" href="#spotforecasts" title="Link to this heading"></a></h3>
+<div class="section" id="spotforecasts">
+<h3><code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code><a class="headerlink" href="#spotforecasts" title="Permalink to this headline"></a></h3>
 <p>The main object is <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code>.</p>
 <p>This object is a fusion of <code class="docutils literal notranslate"><span class="pre">spots/details</span> </code>and <code class="docutils literal notranslate"><span class="pre">spots/forecasts/*</span></code> data.</p>
 <ul class="simple">
@@ -151,8 +149,8 @@
     <span class="n">sunlightTimes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SunlightTime</span><span class="p">]</span>
 </pre></div>
 </div>
-<section id="wave">
-<h4><code class="docutils literal notranslate"><span class="pre">Wave</span></code><a class="headerlink" href="#wave" title="Link to this heading"></a></h4>
+<div class="section" id="wave">
+<h4><code class="docutils literal notranslate"><span class="pre">Wave</span></code><a class="headerlink" href="#wave" title="Permalink to this headline"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Wave</span><span class="p">:</span>
     <span class="n">timestamp</span><span class="p">:</span> <span class="n">Timestamp</span>
     <span class="n">probability</span><span class="p">:</span> <span class="nb">int</span>
@@ -162,8 +160,8 @@
     <span class="n">swells</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Swell</span><span class="p">]</span>
 </pre></div>
 </div>
-<section id="surf">
-<h5><code class="docutils literal notranslate"><span class="pre">Surf</span></code><a class="headerlink" href="#surf" title="Link to this heading"></a></h5>
+<div class="section" id="surf">
+<h5><code class="docutils literal notranslate"><span class="pre">Surf</span></code><a class="headerlink" href="#surf" title="Permalink to this headline"></a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Surf</span><span class="p">:</span>
     <span class="nb">min</span><span class="p">:</span> <span class="nb">float</span>
     <span class="nb">max</span><span class="p">:</span> <span class="nb">float</span>
@@ -173,9 +171,9 @@
     <span class="n">raw</span><span class="p">:</span> <span class="nb">dict</span>
 </pre></div>
 </div>
-</section>
-<section id="swell">
-<h5><code class="docutils literal notranslate"><span class="pre">Swell</span></code><a class="headerlink" href="#swell" title="Link to this heading"></a></h5>
+</div>
+<div class="section" id="swell">
+<h5><code class="docutils literal notranslate"><span class="pre">Swell</span></code><a class="headerlink" href="#swell" title="Permalink to this headline"></a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Swell</span><span class="p">:</span>
     <span class="n">height</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">period</span><span class="p">:</span> <span class="nb">int</span>
@@ -186,10 +184,10 @@
     <span class="n">optimalScore</span><span class="p">:</span> <span class="nb">float</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="wind">
-<h4><code class="docutils literal notranslate"><span class="pre">Wind</span></code><a class="headerlink" href="#wind" title="Link to this heading"></a></h4>
+</div>
+</div>
+<div class="section" id="wind">
+<h4><code class="docutils literal notranslate"><span class="pre">Wind</span></code><a class="headerlink" href="#wind" title="Permalink to this headline"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Wind</span><span class="p">:</span>
     <span class="n">timestamp</span><span class="p">:</span> <span class="n">Timestamp</span>
     <span class="n">utcOffSet</span><span class="p">:</span> <span class="nb">int</span>
@@ -200,9 +198,9 @@
     <span class="n">optimalScore</span><span class="p">:</span> <span class="nb">int</span>
 </pre></div>
 </div>
-</section>
-<section id="tides">
-<h4><code class="docutils literal notranslate"><span class="pre">Tides</span></code><a class="headerlink" href="#tides" title="Link to this heading"></a></h4>
+</div>
+<div class="section" id="tides">
+<h4><code class="docutils literal notranslate"><span class="pre">Tides</span></code><a class="headerlink" href="#tides" title="Permalink to this headline"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Tides</span><span class="p">:</span>
     <span class="n">timestamp</span><span class="p">:</span> <span class="n">Timestamp</span>
     <span class="n">utcOffSet</span><span class="p">:</span> <span class="nb">int</span>
@@ -210,9 +208,9 @@
     <span class="n">height</span><span class="p">:</span> <span class="nb">float</span>
 </pre></div>
 </div>
-</section>
-<section id="weather">
-<h4><code class="docutils literal notranslate"><span class="pre">Weather</span></code><a class="headerlink" href="#weather" title="Link to this heading"></a></h4>
+</div>
+<div class="section" id="weather">
+<h4><code class="docutils literal notranslate"><span class="pre">Weather</span></code><a class="headerlink" href="#weather" title="Permalink to this headline"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Weather</span><span class="p">:</span>
     <span class="n">midnight</span><span class="p">:</span> <span class="n">Timestamp</span><span class="p">,</span>
     <span class="n">midnightUTCOffset</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -226,10 +224,10 @@
     <span class="n">duskUTCOffset</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 </pre></div>
 </div>
-</section>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
+</div>
 
 
            </div>
