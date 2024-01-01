@@ -8,7 +8,7 @@ Quickly get the forecast data as a [pandas Dataframe](https://pandas.pydata.org/
 - **Wind** (speed, direction)
 - **Swell** (height, period, direction)
 - **Tide** (height, direction)
-- **Daylight** (sunrise, sunset)
+- **sunlightTimes** (sunrise, sunset)
 
 
 | | |
