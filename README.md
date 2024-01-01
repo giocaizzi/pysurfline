@@ -1,5 +1,7 @@
 # pysurfline
 
+![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_readme.png)
+
 **Get the surf forecast** for any spot listed on [Surfline](https://www.surfline.com/).
 
 Quickly get the forecast data as a [pandas Dataframe](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) and plot surf forecast with [matplotlib](https://matplotlib.org/stable/) to visualize the conditions of your favorite surf spot.
@@ -58,9 +60,6 @@ pip install pysurfline
         barLabels = True,
         )
     ```
-
-
-![SurfReport plot](https://github.com/giocaizzi/pysurfline/blob/gh-pages/docsrc/source/images/surfreport_readme.png)
 
 ## Documentation
 
