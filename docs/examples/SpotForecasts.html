@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Surf forecasts for a Surfline spot &mdash; pysurfline 0.2.0 documentation</title>
+  <title>Quickstart &mdash; pysurfline 0.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
@@ -49,21 +49,22 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Surf forecasts for a Surfline spot</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Retriving-the-spotId-of-a-Surfline-spot">Retriving the <code class="docutils literal notranslate"><span class="pre">spotId</span></code> of a Surfline spot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#SpotForecast">SpotForecast</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Waves">Waves</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Wind">Wind</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Tides">Tides</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Weather">Weather</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Sunlight-Times">Sunlight Times</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Retriving-the-spotId-of-a-Surfline-spot">Retriving the <code class="docutils literal notranslate"><span class="pre">spotId</span></code> of a Surfline spot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Getting-the-Surfline-forecast-of-a-spot">Getting the Surfline forecast of a spot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpotForecast">SpotForecast</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Get-data-as-pandas-Dataframe">Get data as <em>pandas Dataframe</em></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Get-surf-data-as-a-single-Dataframe">Get surf data as a single Dataframe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Single-attribute-as-DataFrame">Single attribute as DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Waves">Waves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Wind">Wind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Tides">Tides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Weather">Weather</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Sunlight-Times">Sunlight Times</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Get-data-as-pandas-Dataframe">Get data as <em>pandas Dataframe</em></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#Get-surf-data-as-a-single-Dataframe">Get surf data as a single Dataframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Single-attribute-as-DataFrame">Single attribute as DataFrame</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="SurfReport.html">Visualize the surf report</a></li>
@@ -88,7 +89,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Surf forecasts for a Surfline spot</li>
+      <li class="breadcrumb-item active">Quickstart</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/examples/SpotForecasts.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -98,22 +99,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="Surf-forecasts-for-a-Surfline-spot">
-<h1>Surf forecasts for a Surfline spot<a class="headerlink" href="#Surf-forecasts-for-a-Surfline-spot" title="Permalink to this headline"></a></h1>
+  <div class="section" id="Quickstart">
+<h1>Quickstart<a class="headerlink" href="#Quickstart" title="Permalink to this headline"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">pysurfline</span></code> offers a simple interface to get the forecast for any spot listed on Surfline.</p>
+<p>In order to request the data for the correct spot to the SurflineAPI, we must provide the spot with its <code class="docutils literal notranslate"><span class="pre">spotID</span></code> argument. This can be found easily from the URL of the surfline webpage of each spot.</p>
 <div class="section" id="Retriving-the-spotId-of-a-Surfline-spot">
 <h2>Retriving the <code class="docutils literal notranslate"><span class="pre">spotId</span></code> of a Surfline spot<a class="headerlink" href="#Retriving-the-spotId-of-a-Surfline-spot" title="Permalink to this headline"></a></h2>
-<p>In order to request the data for the correct spot to the SurflineAPI, we must provide the spot with its <code class="docutils literal notranslate"><span class="pre">spotID</span></code> argument. This can be found easily from the URL of the surfline webpage of each spot.</p>
+<p>For example, going to <a class="reference external" href="https://www.surfline.com/surf-report/anchor-point/5842041f4e65fad6a7708cfd">Anchor Point</a> webpage, the URL is:</p>
 <blockquote>
-<div><p>For example, going to <a class="reference external" href="https://www.surfline.com/surf-report/anchor-point/5842041f4e65fad6a7708cfd">Anchor Point</a> webpage, the URL is:</p>
-<p><code class="docutils literal notranslate"><span class="pre">https://www.surfline.com/surf-report/anchor-point/5842041f4e65fad6a7708cfd</span></code></p>
-<p>after a few seconds of loading the page, the URL could change to something like this:</p>
-<p><code class="docutils literal notranslate"><span class="pre">https://www.surfline.com/surf-report/anchor-point/5842041f4e65fad6a7708cfd?camId=5fd1e2a2bdd08a3999f23aa4&amp;view=table</span></code></p>
-<p>By examining both URLs, we recognize 5842041f4e65fad6a7708cfd is actually Anchor Point’s <code class="docutils literal notranslate"><span class="pre">spotId</span></code>.</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">https://www.surfline.com/surf-report/anchor-point/5842041f4e65fad6a7708cfd</span></code></p>
 </div></blockquote>
+<p>after a few seconds of loading the page, the URL could change to something like this:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">https://www.surfline.com/surf-report/anchor-point/5842041f4e65fad6a7708cfd?camId=5fd1e2a2bdd08a3999f23aa4&amp;view=table</span></code></p>
+</div></blockquote>
+<p>By examining both URLs, we recognize 5842041f4e65fad6a7708cfd is actually Anchor Point’s <code class="docutils literal notranslate"><span class="pre">spotId</span></code>.</p>
+<div class="section" id="Getting-the-Surfline-forecast-of-a-spot">
+<h3>Getting the Surfline forecast of a spot<a class="headerlink" href="#Getting-the-Surfline-forecast-of-a-spot" title="Permalink to this headline"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">get_spot_forecasts()</span></code> function taks the additional parameters: - <code class="docutils literal notranslate"><span class="pre">days</span></code> <em>(int)</em>: the number of days to forecast - <code class="docutils literal notranslate"><span class="pre">intervalHours</span></code> <em>(int)</em>: the interval between each forecast</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pysurfline</span>
@@ -121,7 +126,7 @@
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_forecasts</span> <span class="o">=</span> <span class="n">pysurfline</span><span class="o">.</span><span class="n">get_spot_forecasts</span><span class="p">(</span>
@@ -134,7 +139,7 @@
 </div>
 </div>
 <div class="section" id="SpotForecast">
-<h2>SpotForecast<a class="headerlink" href="#SpotForecast" title="Permalink to this headline"></a></h2>
+<h3>SpotForecast<a class="headerlink" href="#SpotForecast" title="Permalink to this headline"></a></h3>
 <p>This data received from the API is unpacked into a <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> object.</p>
 <blockquote>
 <div><p>To understand the logic behind the Surfline API and subsequent implementation of <code class="docutils literal notranslate"><span class="pre">pysufline</span></code> objects, please refer to <a class="reference internal" href="SurflineAPI.html"><span class="doc">Surfline API Schema</span></a>.</p>
@@ -146,11 +151,11 @@
     <span class="n">wind</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Wind</span><span class="p">]</span>
     <span class="n">tides</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tides</span><span class="p">]</span>
     <span class="n">weather</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Weather</span><span class="p">]</span>
-    <span class="n">sunlightTimes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SunlightTime</span><span class="p">]</span>
+    <span class="n">sunlightTimes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SunlightTimes</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_forecasts</span><span class="o">.</span><span class="n">name</span>
@@ -158,7 +163,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -166,10 +171,12 @@
 &#39;Anchor Point&#39;
 </pre></div></div>
 </div>
+</div>
+</div>
 <div class="section" id="Waves">
-<h3>Waves<a class="headerlink" href="#Waves" title="Permalink to this headline"></a></h3>
+<h2>Waves<a class="headerlink" href="#Waves" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_forecasts</span><span class="o">.</span><span class="n">waves</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
@@ -177,7 +184,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -185,15 +192,15 @@
 [Wave(timestamp=Time(2023-12-31 23:00:00), probability=60, utcOffset=1, surf=Surf(min=0.9, max=1.5, optimalScore=2, plus=False, humanRelation=&#39;Waist to head&#39;, raw={&#39;min&#39;: 0.90473, &#39;max&#39;: 1.41365}), power=369.76912, swells=[Swell(height=1.23, period=11, impact=1, power=369.76912, direction=303.36, directionMin=295.815, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0)]),
  Wave(timestamp=Time(2024-01-01 02:00:00), probability=100, utcOffset=1, surf=Surf(min=0.9, max=1.4, optimalScore=2, plus=False, humanRelation=&#39;Waist to shoulder&#39;, raw={&#39;min&#39;: 0.83651, &#39;max&#39;: 1.30705}), power=269.26941, swells=[Swell(height=1.11, period=11, impact=0.5456, power=164.00688, direction=303.43, directionMin=295.91, optimalScore=0), Swell(height=0.72, period=15, impact=0.4544, power=105.26253, direction=304.68, directionMin=297.47, optimalScore=1), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0)]),
  Wave(timestamp=Time(2024-01-01 05:00:00), probability=100, utcOffset=1, surf=Surf(min=1.2, max=1.8, optimalScore=2, plus=False, humanRelation=&#39;Chest to overhead&#39;, raw={&#39;min&#39;: 1.02848, &#39;max&#39;: 1.607}), power=442.12028, swells=[Swell(height=0.9, period=11, impact=0.4045, power=74.71935, direction=307.33, directionMin=299.905, optimalScore=0), Swell(height=1.19, period=15, impact=0.5955, power=367.40093, direction=302.68, directionMin=295.34000000000003, optimalScore=2), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0)]),
- Wave(timestamp=Time(2024-01-01 08:00:00), probability=100, utcOffset=1, surf=Surf(min=1.5, max=2.1, optimalScore=2, plus=False, humanRelation=&#39;Head to 0.6m overhead&#39;, raw={&#39;min&#39;: 1.29637, &#39;max&#39;: 2.02557}), power=1036.55914, swells=[Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=1.66, period=14, impact=0.9205, power=1036.4889, direction=303.9, directionMin=296.65, optimalScore=2), Swell(height=0.1, period=7, impact=0.0795, power=0.07024, direction=260.62, directionMin=258.065, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0)]),
- Wave(timestamp=Time(2024-01-01 11:00:00), probability=100, utcOffset=1, surf=Surf(min=1.5, max=2.1, optimalScore=2, plus=False, humanRelation=&#39;Head to 0.6m overhead&#39;, raw={&#39;min&#39;: 1.36119, &#39;max&#39;: 2.12686}), power=1276.66436, swells=[Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=1.8, period=14, impact=1, power=1276.66436, direction=303.54, directionMin=296.165, optimalScore=2), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0)])]
+ Wave(timestamp=Time(2024-01-01 08:00:00), probability=100, utcOffset=1, surf=Surf(min=1.2, max=2, optimalScore=2, plus=False, humanRelation=&#39;Chest to 0.3m overhead&#39;, raw={&#39;min&#39;: 1.25571, &#39;max&#39;: 1.96205}), power=1031.61297, swells=[Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=1.59, period=14, impact=1, power=1031.61297, direction=304.04, directionMin=296.62, optimalScore=2), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0)]),
+ Wave(timestamp=Time(2024-01-01 11:00:00), probability=100, utcOffset=1, surf=Surf(min=1.5, max=2.1, optimalScore=2, plus=False, humanRelation=&#39;Head to 0.6m overhead&#39;, raw={&#39;min&#39;: 1.303, &#39;max&#39;: 2.03594}), power=1133.35151, swells=[Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=1.69, period=14, impact=1, power=1133.35151, direction=303.83, directionMin=296.375, optimalScore=2), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0), Swell(height=0, period=0, impact=0, power=0, direction=0, directionMin=0, optimalScore=0)])]
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Wind">
-<h3>Wind<a class="headerlink" href="#Wind" title="Permalink to this headline"></a></h3>
+<h2>Wind<a class="headerlink" href="#Wind" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_forecasts</span><span class="o">.</span><span class="n">wind</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
@@ -201,7 +208,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -209,15 +216,15 @@
 [Wind(timestamp=Time(2023-12-31 23:00:00), utcOffset=1, speed=4.55097, direction=114.47656, directionType=&#39;Offshore&#39;, gust=4.6808, optimalScore=2),
  Wind(timestamp=Time(2024-01-01 02:00:00), utcOffset=1, speed=5.88996, direction=126.73413, directionType=&#39;Offshore&#39;, gust=6.22659, optimalScore=0),
  Wind(timestamp=Time(2024-01-01 05:00:00), utcOffset=1, speed=1.01431, direction=315.08246, directionType=&#39;Onshore&#39;, gust=2.3332, optimalScore=2),
- Wind(timestamp=Time(2024-01-01 08:00:00), utcOffset=1, speed=6.55898, direction=329.82323, directionType=&#39;Onshore&#39;, gust=6.80379, optimalScore=0),
- Wind(timestamp=Time(2024-01-01 11:00:00), utcOffset=1, speed=1.63095, direction=175.0945, directionType=&#39;Cross-shore&#39;, gust=1.9673, optimalScore=2)]
+ Wind(timestamp=Time(2024-01-01 08:00:00), utcOffset=1, speed=5.83969, direction=330.14504, directionType=&#39;Cross-shore&#39;, gust=6.0273, optimalScore=0),
+ Wind(timestamp=Time(2024-01-01 11:00:00), utcOffset=1, speed=2.39737, direction=289.40235, directionType=&#39;Onshore&#39;, gust=2.39737, optimalScore=2)]
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Tides">
-<h3>Tides<a class="headerlink" href="#Tides" title="Permalink to this headline"></a></h3>
+<h2>Tides<a class="headerlink" href="#Tides" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_forecasts</span><span class="o">.</span><span class="n">tides</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
@@ -225,7 +232,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -239,9 +246,9 @@
 </div>
 </div>
 <div class="section" id="Weather">
-<h3>Weather<a class="headerlink" href="#Weather" title="Permalink to this headline"></a></h3>
+<h2>Weather<a class="headerlink" href="#Weather" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_forecasts</span><span class="o">.</span><span class="n">weather</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
@@ -249,7 +256,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -257,15 +264,15 @@
 [Weather(timestamp=Time(2023-12-31 23:00:00), utcOffset=1, temperature=17.34355, condition=&#39;NIGHT_CLEAR&#39;, pressure=1021),
  Weather(timestamp=Time(2024-01-01 02:00:00), utcOffset=1, temperature=16.6358, condition=&#39;NIGHT_CLEAR&#39;, pressure=1020),
  Weather(timestamp=Time(2024-01-01 05:00:00), utcOffset=1, temperature=16.46528, condition=&#39;NIGHT_OVERCAST&#39;, pressure=1019),
- Weather(timestamp=Time(2024-01-01 08:00:00), utcOffset=1, temperature=17.52932, condition=&#39;CLEAR&#39;, pressure=1021),
- Weather(timestamp=Time(2024-01-01 11:00:00), utcOffset=1, temperature=19.82248, condition=&#39;CLEAR&#39;, pressure=1021)]
+ Weather(timestamp=Time(2024-01-01 08:00:00), utcOffset=1, temperature=17.62935, condition=&#39;MOSTLY_CLOUDY&#39;, pressure=1021),
+ Weather(timestamp=Time(2024-01-01 11:00:00), utcOffset=1, temperature=19.67752, condition=&#39;CLEAR&#39;, pressure=1021)]
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Sunlight-Times">
-<h3>Sunlight Times<a class="headerlink" href="#Sunlight-Times" title="Permalink to this headline"></a></h3>
+<h2>Sunlight Times<a class="headerlink" href="#Sunlight-Times" title="Permalink to this headline"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_forecasts</span><span class="o">.</span><span class="n">sunlightTimes</span><span class="p">[:]</span>
@@ -273,7 +280,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -282,18 +289,18 @@
  SunlightTimes(midnight=Time(2024-01-01 23:00:00), midnightUTCOffset=1, dawn=Time(2024-01-02 07:10:55), dawnUTCOffset=1, sunrise=Time(2024-01-02 07:37:21), sunriseUTCOffset=1, sunset=Time(2024-01-02 17:50:09), sunsetUTCOffset=1, dusk=Time(2024-01-02 18:16:35), duskUTCOffset=1)]
 </pre></div></div>
 </div>
-</div>
-</div>
 <div class="section" id="Get-data-as-pandas-Dataframe">
-<h2>Get data as <em>pandas Dataframe</em><a class="headerlink" href="#Get-data-as-pandas-Dataframe" title="Permalink to this headline"></a></h2>
+<h3>Get data as <em>pandas Dataframe</em><a class="headerlink" href="#Get-data-as-pandas-Dataframe" title="Permalink to this headline"></a></h3>
 <p>The different <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> attributes can be accessed as pandas DataFrame for easy data manipulation.</p>
 <p>As default, it will return a dataframe that is a join of the data contained in the single <code class="docutils literal notranslate"><span class="pre">waves</span></code>, <code class="docutils literal notranslate"><span class="pre">wind</span></code>,<code class="docutils literal notranslate"><span class="pre">weather</span></code> attributes.</p>
 <p>To select data to convert to Dataframe, use a string argument: - <code class="docutils literal notranslate"><span class="pre">surf</span></code> (<em>Default</em>) - Attribute name: - <code class="docutils literal notranslate"><span class="pre">waves</span></code>, - <code class="docutils literal notranslate"><span class="pre">wind</span></code>, - <code class="docutils literal notranslate"><span class="pre">tides</span></code>, - <code class="docutils literal notranslate"><span class="pre">weather</span></code>, - <code class="docutils literal notranslate"><span class="pre">sunlightTimes</span></code>.</p>
+</div>
+</div>
 <div class="section" id="Get-surf-data-as-a-single-Dataframe">
-<h3>Get surf data as a single Dataframe<a class="headerlink" href="#Get-surf-data-as-a-single-Dataframe" title="Permalink to this headline"></a></h3>
+<h2>Get surf data as a single Dataframe<a class="headerlink" href="#Get-surf-data-as-a-single-Dataframe" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">surf</span></code> Dataframe is a join of the data contained in the <code class="docutils literal notranslate"><span class="pre">waves</span></code>, <code class="docutils literal notranslate"><span class="pre">wind</span></code>, <code class="docutils literal notranslate"><span class="pre">tides</span></code>, <code class="docutils literal notranslate"><span class="pre">weather</span></code> attributes.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show all columns in HTML</span>
@@ -303,7 +310,7 @@
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_forecasts</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># &quot;surf&quot;</span>
@@ -311,7 +318,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -426,12 +433,12 @@
       <td>0.00</td>
       <td>0.000</td>
       <td>0</td>
-      <td>0.0</td>
       <td>0</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
-      <td>0.00</td>
-      <td>0.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -491,12 +498,12 @@
       <td>304.68</td>
       <td>297.470</td>
       <td>1</td>
-      <td>0.0</td>
       <td>0</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
-      <td>0.00</td>
-      <td>0.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -556,12 +563,12 @@
       <td>302.68</td>
       <td>295.340</td>
       <td>2</td>
-      <td>0.0</td>
       <td>0</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
-      <td>0.00</td>
-      <td>0.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -599,14 +606,14 @@
       <td>1704096000</td>
       <td>100</td>
       <td>1</td>
-      <td>1.5</td>
-      <td>2.1</td>
+      <td>1.2</td>
+      <td>2.0</td>
       <td>2</td>
       <td>False</td>
-      <td>Head to 0.6m overhead</td>
-      <td>1.29637</td>
-      <td>2.02557</td>
-      <td>1036.55914</td>
+      <td>Chest to 0.3m overhead</td>
+      <td>1.25571</td>
+      <td>1.96205</td>
+      <td>1031.61297</td>
       <td>0.00</td>
       <td>0</td>
       <td>0.0000</td>
@@ -614,19 +621,13 @@
       <td>0.00</td>
       <td>0.000</td>
       <td>0</td>
-      <td>1.66</td>
+      <td>1.59</td>
       <td>14</td>
-      <td>0.9205</td>
-      <td>1036.48890</td>
-      <td>303.90</td>
-      <td>296.650</td>
+      <td>1.0000</td>
+      <td>1031.61297</td>
+      <td>304.04</td>
+      <td>296.620</td>
       <td>2</td>
-      <td>0.1</td>
-      <td>7</td>
-      <td>0.0795</td>
-      <td>0.07024</td>
-      <td>260.62</td>
-      <td>258.065</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -649,13 +650,19 @@
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>6.55898</td>
-      <td>329.82323</td>
-      <td>Onshore</td>
-      <td>6.80379</td>
       <td>0</td>
-      <td>17.52932</td>
-      <td>CLEAR</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5.83969</td>
+      <td>330.14504</td>
+      <td>Cross-shore</td>
+      <td>6.02730</td>
+      <td>0</td>
+      <td>17.62935</td>
+      <td>MOSTLY_CLOUDY</td>
       <td>1021</td>
     </tr>
     <tr>
@@ -669,9 +676,9 @@
       <td>2</td>
       <td>False</td>
       <td>Head to 0.6m overhead</td>
-      <td>1.36119</td>
-      <td>2.12686</td>
-      <td>1276.66436</td>
+      <td>1.30300</td>
+      <td>2.03594</td>
+      <td>1133.35151</td>
       <td>0.00</td>
       <td>0</td>
       <td>0.0000</td>
@@ -679,19 +686,13 @@
       <td>0.00</td>
       <td>0.000</td>
       <td>0</td>
-      <td>1.80</td>
+      <td>1.69</td>
       <td>14</td>
       <td>1.0000</td>
-      <td>1276.66436</td>
-      <td>303.54</td>
-      <td>296.165</td>
+      <td>1133.35151</td>
+      <td>303.83</td>
+      <td>296.375</td>
       <td>2</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
-      <td>0.00</td>
-      <td>0.000</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -714,12 +715,18 @@
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1.63095</td>
-      <td>175.09450</td>
-      <td>Cross-shore</td>
-      <td>1.96730</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.39737</td>
+      <td>289.40235</td>
+      <td>Onshore</td>
+      <td>2.39737</td>
       <td>2</td>
-      <td>19.82248</td>
+      <td>19.67752</td>
       <td>CLEAR</td>
       <td>1021</td>
     </tr>
@@ -729,10 +736,10 @@
 </div>
 </div>
 <div class="section" id="Single-attribute-as-DataFrame">
-<h3>Single attribute as DataFrame<a class="headerlink" href="#Single-attribute-as-DataFrame" title="Permalink to this headline"></a></h3>
+<h2>Single attribute as DataFrame<a class="headerlink" href="#Single-attribute-as-DataFrame" title="Permalink to this headline"></a></h2>
 <p>In order to get a single attribute as a DataFrame, the attribute name must be specified as an argument. - <code class="docutils literal notranslate"><span class="pre">waves</span></code> - <code class="docutils literal notranslate"><span class="pre">wind</span></code> - <code class="docutils literal notranslate"><span class="pre">weather</span></code> - <code class="docutils literal notranslate"><span class="pre">tides</span></code> - <code class="docutils literal notranslate"><span class="pre">sunlightTimes</span></code></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_forecasts</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">(</span><span class="s2">&quot;wind&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -740,7 +747,7 @@
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -816,10 +823,10 @@
       <td>1704096000</td>
       <td>2024-01-01 08:00:00</td>
       <td>1</td>
-      <td>6.55898</td>
-      <td>329.82323</td>
-      <td>Onshore</td>
-      <td>6.80379</td>
+      <td>5.83969</td>
+      <td>330.14504</td>
+      <td>Cross-shore</td>
+      <td>6.02730</td>
       <td>0</td>
     </tr>
     <tr>
@@ -828,16 +835,15 @@
       <td>1704106800</td>
       <td>2024-01-01 11:00:00</td>
       <td>1</td>
-      <td>1.63095</td>
-      <td>175.09450</td>
-      <td>Cross-shore</td>
-      <td>1.96730</td>
+      <td>2.39737</td>
+      <td>289.40235</td>
+      <td>Onshore</td>
+      <td>2.39737</td>
       <td>2</td>
     </tr>
   </tbody>
 </table>
 </div></div>
-</div>
 </div>
 </div>
 </div>
