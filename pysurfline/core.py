@@ -71,9 +71,9 @@ class SpotForecasts:
                 # excluding "sunlightTimes" and "tides" due to different timestamps
                 # TODO: include "surf" in `surf` output
                 data.append(
-                    pd.DataFrame(_flatten_objects(getattr(self, attr))).set_index(
-                        "timestamp_dt"
-                    ).reset_index()
+                    pd.DataFrame(_flatten_objects(getattr(self, attr)))
+                    .set_index("timestamp_dt")
+                    .reset_index()
                 )
             df = pd.concat(data, axis=1)
             # remove duplicated columns
