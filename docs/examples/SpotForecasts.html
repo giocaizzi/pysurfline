@@ -50,21 +50,21 @@
               <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Retriving-the-spotId-of-a-Surfline-spot">Retriving the <code class="docutils literal notranslate"><span class="pre">spotId</span></code> of a Surfline spot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Getting-the-Surfline-forecast-of-a-spot">Getting the Surfline forecast of a spot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#SpotForecast">SpotForecast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Retriving-the-spotId-of-a-Surfline-spot">Retriving the <code class="docutils literal notranslate"><span class="pre">spotId</span></code> of a Surfline spot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Getting-the-Surfline-forecast-of-a-spot">Getting the Surfline forecast of a spot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#SpotForecast">SpotForecast</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Waves">Waves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Wind">Wind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Tides">Tides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Weather">Weather</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Sunlight-Times">Sunlight Times</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Waves">Waves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Wind">Wind</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Tides">Tides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Weather">Weather</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Sunlight-Times">Sunlight Times</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Get-data-as-pandas-Dataframe">Get data as <em>pandas Dataframe</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Get-data-as-pandas-Dataframe">Get data as <em>pandas Dataframe</em></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Get-surf-data-as-a-single-Dataframe">Get surf data as a single Dataframe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Single-attribute-as-DataFrame">Single attribute as DataFrame</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Get-surf-data-as-a-single-Dataframe">Get surf data as a single Dataframe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Single-attribute-as-DataFrame">Single attribute as DataFrame</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="SurfReport.html">Visualize the surf report</a></li>
@@ -114,8 +114,9 @@
 <div><p><code class="docutils literal notranslate"><span class="pre">https://www.surfline.com/surf-report/anchor-point/5842041f4e65fad6a7708cfd?camId=5fd1e2a2bdd08a3999f23aa4&amp;view=table</span></code></p>
 </div></blockquote>
 <p>By examining both URLs, we recognize 5842041f4e65fad6a7708cfd is actually Anchor Point’s <code class="docutils literal notranslate"><span class="pre">spotId</span></code>.</p>
+</div>
 <div class="section" id="Getting-the-Surfline-forecast-of-a-spot">
-<h3>Getting the Surfline forecast of a spot<a class="headerlink" href="#Getting-the-Surfline-forecast-of-a-spot" title="Permalink to this headline"></a></h3>
+<h2>Getting the Surfline forecast of a spot<a class="headerlink" href="#Getting-the-Surfline-forecast-of-a-spot" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">get_spot_forecasts()</span></code> function taks the additional parameters: - <code class="docutils literal notranslate"><span class="pre">days</span></code> <em>(int)</em>: the number of days to forecast - <code class="docutils literal notranslate"><span class="pre">intervalHours</span></code> <em>(int)</em>: the interval between each forecast</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -139,7 +140,7 @@
 </div>
 </div>
 <div class="section" id="SpotForecast">
-<h3>SpotForecast<a class="headerlink" href="#SpotForecast" title="Permalink to this headline"></a></h3>
+<h2>SpotForecast<a class="headerlink" href="#SpotForecast" title="Permalink to this headline"></a></h2>
 <p>This data received from the API is unpacked into a <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> object.</p>
 <blockquote>
 <div><p>To understand the logic behind the Surfline API and subsequent implementation of <code class="docutils literal notranslate"><span class="pre">pysufline</span></code> objects, please refer to <a class="reference internal" href="SurflineAPI.html"><span class="doc">Surfline API Schema</span></a>.</p>
@@ -171,10 +172,8 @@
 &#39;Anchor Point&#39;
 </pre></div></div>
 </div>
-</div>
-</div>
 <div class="section" id="Waves">
-<h2>Waves<a class="headerlink" href="#Waves" title="Permalink to this headline"></a></h2>
+<h3>Waves<a class="headerlink" href="#Waves" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -198,7 +197,7 @@
 </div>
 </div>
 <div class="section" id="Wind">
-<h2>Wind<a class="headerlink" href="#Wind" title="Permalink to this headline"></a></h2>
+<h3>Wind<a class="headerlink" href="#Wind" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -222,7 +221,7 @@
 </div>
 </div>
 <div class="section" id="Tides">
-<h2>Tides<a class="headerlink" href="#Tides" title="Permalink to this headline"></a></h2>
+<h3>Tides<a class="headerlink" href="#Tides" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -246,7 +245,7 @@
 </div>
 </div>
 <div class="section" id="Weather">
-<h2>Weather<a class="headerlink" href="#Weather" title="Permalink to this headline"></a></h2>
+<h3>Weather<a class="headerlink" href="#Weather" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -270,7 +269,7 @@
 </div>
 </div>
 <div class="section" id="Sunlight-Times">
-<h2>Sunlight Times<a class="headerlink" href="#Sunlight-Times" title="Permalink to this headline"></a></h2>
+<h3>Sunlight Times<a class="headerlink" href="#Sunlight-Times" title="Permalink to this headline"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -289,15 +288,15 @@
  SunlightTimes(midnight=Time(2024-01-01 23:00:00), midnightUTCOffset=1, dawn=Time(2024-01-02 07:10:55), dawnUTCOffset=1, sunrise=Time(2024-01-02 07:37:21), sunriseUTCOffset=1, sunset=Time(2024-01-02 17:50:09), sunsetUTCOffset=1, dusk=Time(2024-01-02 18:16:35), duskUTCOffset=1)]
 </pre></div></div>
 </div>
+</div>
+</div>
 <div class="section" id="Get-data-as-pandas-Dataframe">
-<h3>Get data as <em>pandas Dataframe</em><a class="headerlink" href="#Get-data-as-pandas-Dataframe" title="Permalink to this headline"></a></h3>
+<h2>Get data as <em>pandas Dataframe</em><a class="headerlink" href="#Get-data-as-pandas-Dataframe" title="Permalink to this headline"></a></h2>
 <p>The different <code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code> attributes can be accessed as pandas DataFrame for easy data manipulation.</p>
 <p>As default, it will return a dataframe that is a join of the data contained in the single <code class="docutils literal notranslate"><span class="pre">waves</span></code>, <code class="docutils literal notranslate"><span class="pre">wind</span></code>,<code class="docutils literal notranslate"><span class="pre">weather</span></code> attributes.</p>
 <p>To select data to convert to Dataframe, use a string argument: - <code class="docutils literal notranslate"><span class="pre">surf</span></code> (<em>Default</em>) - Attribute name: - <code class="docutils literal notranslate"><span class="pre">waves</span></code>, - <code class="docutils literal notranslate"><span class="pre">wind</span></code>, - <code class="docutils literal notranslate"><span class="pre">tides</span></code>, - <code class="docutils literal notranslate"><span class="pre">weather</span></code>, - <code class="docutils literal notranslate"><span class="pre">sunlightTimes</span></code>.</p>
-</div>
-</div>
 <div class="section" id="Get-surf-data-as-a-single-Dataframe">
-<h2>Get surf data as a single Dataframe<a class="headerlink" href="#Get-surf-data-as-a-single-Dataframe" title="Permalink to this headline"></a></h2>
+<h3>Get surf data as a single Dataframe<a class="headerlink" href="#Get-surf-data-as-a-single-Dataframe" title="Permalink to this headline"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">surf</span></code> Dataframe is a join of the data contained in the <code class="docutils literal notranslate"><span class="pre">waves</span></code>, <code class="docutils literal notranslate"><span class="pre">wind</span></code>, <code class="docutils literal notranslate"><span class="pre">tides</span></code>, <code class="docutils literal notranslate"><span class="pre">weather</span></code> attributes.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -736,7 +735,7 @@
 </div>
 </div>
 <div class="section" id="Single-attribute-as-DataFrame">
-<h2>Single attribute as DataFrame<a class="headerlink" href="#Single-attribute-as-DataFrame" title="Permalink to this headline"></a></h2>
+<h3>Single attribute as DataFrame<a class="headerlink" href="#Single-attribute-as-DataFrame" title="Permalink to this headline"></a></h3>
 <p>In order to get a single attribute as a DataFrame, the attribute name must be specified as an argument. - <code class="docutils literal notranslate"><span class="pre">waves</span></code> - <code class="docutils literal notranslate"><span class="pre">wind</span></code> - <code class="docutils literal notranslate"><span class="pre">weather</span></code> - <code class="docutils literal notranslate"><span class="pre">tides</span></code> - <code class="docutils literal notranslate"><span class="pre">sunlightTimes</span></code></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
@@ -844,6 +843,7 @@
   </tbody>
 </table>
 </div></div>
+</div>
 </div>
 </div>
 </div>
