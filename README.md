@@ -32,7 +32,7 @@ pip install pysurfline
 
 - Get the surf forecasts for a given `SpotId` and get data as a pandas Dataframe.
 
-    [Go to full example.](https://giocaizzi.github.io/pysurfline/examples/SpotForecast.html)
+    [Go to full example.](https://giocaizzi.github.io/pysurfline/examples/SpotForecasts.html)
 
     ```python
     import pysurfline
