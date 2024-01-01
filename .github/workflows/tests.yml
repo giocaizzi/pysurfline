@@ -8,4 +8,4 @@ on:
 
 jobs:
   tests:
-    uses: python-dev-actions/.github/workflows/tests.yml@main
+    uses: giocaizzi/python-dev-actions/.github/workflows/tests.yml@main
