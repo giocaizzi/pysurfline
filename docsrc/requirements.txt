@@ -1,4 +1,4 @@
-sphinx==4.1.2
+sphinx
 sphinx_rtd_theme
 myst-parser
 docutils==0.16
