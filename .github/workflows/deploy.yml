@@ -1,4 +1,4 @@
-name: Tests
+name: Deploy
 
 on:
   push:
@@ -7,5 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
+  lint:
+    uses: giocaizzi/python-dev-actions/.github/workflows/linting.yml@main
   tests:
     uses: giocaizzi/python-dev-actions/.github/workflows/tests.yml@main
