@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pysurfline.core.SpotForecasts &mdash; pysurfline 0.2.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -13,7 +15,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -55,7 +59,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="pysurfline.html">pysurfline</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pysurfline.api.html">pysurfline.api</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="pysurfline.core.html">pysurfline.core</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.core.SpotForecasts</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pysurfline.core.SpotForecasts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pysurfline.core.SpotForecasts"><code class="docutils literal notranslate"><span class="pre">SpotForecasts</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pysurfline.reports.html">pysurfline.reports</a></li>
@@ -91,10 +98,10 @@
            <div itemprop="articleBody">
              
   <div class="section" id="pysurfline-core-spotforecasts">
-<h1>pysurfline.core.SpotForecasts<a class="headerlink" href="#pysurfline-core-spotforecasts" title="Permalink to this headline"></a></h1>
+<h1>pysurfline.core.SpotForecasts<a class="headerlink" href="#pysurfline-core-spotforecasts" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pysurfline.core.SpotForecasts">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pysurfline.core.</span></span><span class="sig-name descname"><span class="pre">SpotForecasts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spotId</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">details</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotDetails.html#pysurfline.api.objects.SpotDetails" title="pysurfline.api.objects.SpotDetails"><span class="pre">pysurfline.api.objects.SpotDetails</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">waves</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsWave.html#pysurfline.api.objects.SpotForecastsWave" title="pysurfline.api.objects.SpotForecastsWave"><span class="pre">pysurfline.api.objects.SpotForecastsWave</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">winds</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsWind.html#pysurfline.api.objects.SpotForecastsWind" title="pysurfline.api.objects.SpotForecastsWind"><span class="pre">pysurfline.api.objects.SpotForecastsWind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tides</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsTides.html#pysurfline.api.objects.SpotForecastsTides" title="pysurfline.api.objects.SpotForecastsTides"><span class="pre">pysurfline.api.objects.SpotForecastsTides</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sunlightTimes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsSunlightTimes.html#pysurfline.api.objects.SpotForecastsSunlightTimes" title="pysurfline.api.objects.SpotForecastsSunlightTimes"><span class="pre">pysurfline.api.objects.SpotForecastsSunlightTimes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">weather</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsWeather.html#pysurfline.api.objects.SpotForecastsWeather" title="pysurfline.api.objects.SpotForecastsWeather"><span class="pre">pysurfline.api.objects.SpotForecastsWeather</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.core.SpotForecasts" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pysurfline.core.</span></span><span class="sig-name descname"><span class="pre">SpotForecasts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spotId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotDetails.html#pysurfline.api.objects.SpotDetails" title="pysurfline.api.objects.SpotDetails"><span class="pre">SpotDetails</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">waves</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsWave.html#pysurfline.api.objects.SpotForecastsWave" title="pysurfline.api.objects.SpotForecastsWave"><span class="pre">SpotForecastsWave</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">winds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsWind.html#pysurfline.api.objects.SpotForecastsWind" title="pysurfline.api.objects.SpotForecastsWind"><span class="pre">SpotForecastsWind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tides</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsTides.html#pysurfline.api.objects.SpotForecastsTides" title="pysurfline.api.objects.SpotForecastsTides"><span class="pre">SpotForecastsTides</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sunlightTimes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsSunlightTimes.html#pysurfline.api.objects.SpotForecastsSunlightTimes" title="pysurfline.api.objects.SpotForecastsSunlightTimes"><span class="pre">SpotForecastsSunlightTimes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">weather</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pysurfline.api.objects.SpotForecastsWeather.html#pysurfline.api.objects.SpotForecastsWeather" title="pysurfline.api.objects.SpotForecastsWeather"><span class="pre">SpotForecastsWeather</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pysurfline.core.SpotForecasts" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>spot forecasts data model</p>
 <p>Composite data model of all the spot forecasts data,
@@ -105,13 +112,13 @@
 - weather and sunrise and sunset times</p>
 <p>TODO: add associated data and improve utcOffset</p>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code>(spotId, details, waves, winds, …)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code>(spotId, details, waves, winds, ...)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pysurfline.core.SpotForecasts.get_dataframe" title="pysurfline.core.SpotForecasts.get_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dataframe</span></code></a>([attr])</p></td>
@@ -120,7 +127,7 @@
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -133,7 +140,7 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pysurfline.core.SpotForecasts.get_dataframe">
-<span class="sig-name descname"><span class="pre">get_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'surf'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#pysurfline.core.SpotForecasts.get_dataframe" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'surf'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#pysurfline.core.SpotForecasts.get_dataframe" title="Permalink to this definition"></a></dt>
 <dd><p>pandas dataframe of selected attribute</p>
 <p>Use default to get the pandas dataframe of surf data,
 or of the selected attribute <cite>attr</cite>:
