@@ -1,0 +1,13 @@
+name: Deployment on macOS
+
+on:
+  push:
+    branches: [ main]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy-ubuntu:
+    uses: giocaizzi/python-dev-actions/.github/workflows/deployment.yml@main
+    with:
+      os: macos-latest
