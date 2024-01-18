@@ -14,3 +14,8 @@ jobs:
     name: Tests with Pytest
     uses: giocaizzi/python-dev-actions/.github/workflows/tests.yml@main
     needs: lint
+  to-do-issues:
+    name: To Do Issues
+    if: github.event_name == 'push'
+    uses: giocaizzi/python-dev-actions/.github/workflows/todo.yml@main
+    needs: tests

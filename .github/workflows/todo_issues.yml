@@ -1,9 +1,0 @@
-name: "Run TODO to Issue"
-
-on:
-    push:
-      branches: [ main]
-
-jobs:
-    todo:
-      uses: giocaizzi/python-dev-actions/.github/workflows/todo.yml@main
