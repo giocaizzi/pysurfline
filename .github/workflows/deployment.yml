@@ -10,10 +10,13 @@ jobs:
   lint:
     name: Lint with Flake8
     uses: giocaizzi/python-dev-actions/.github/workflows/linting.yml@main
+  versioning:
+    name: Versioning checks
+    uses: giocaizzi/python-dev-actions/.github/workflows/versioning.yml@main
   tests:
     name: Tests with Pytest
     uses: giocaizzi/python-dev-actions/.github/workflows/tests.yml@main
-    needs: lint
+    needs: ['lint', 'versioning']
   to-do-issues:
     name: To Do Issues
     if: github.event_name == 'push'
