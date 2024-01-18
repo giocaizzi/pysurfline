@@ -1,0 +1,10 @@
+Name: To Do Issues
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    to-do-issues:
+        name: To Do Issues
+        uses: giocaizzi/python-dev-actions/.github/workflows/todo.yml@main
