@@ -17,6 +17,11 @@ jobs:
     name: Tests with Pytest
     uses: giocaizzi/python-dev-actions/.github/workflows/tests.yml@main
     needs: ['lint', 'versioning']
+  documentation-prechecks:
+    name: Documentation prechecks
+    if: github.event_name == 'pull_request'
+    uses: giocaizzi/python-dev-actions/.github/workflows/documentation_precheck.yml@main
+    needs: ['lint', 'versioning']
   to-do-issues:
     name: To Do Issues
     if: github.event_name == 'push'
