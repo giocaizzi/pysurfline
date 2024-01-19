@@ -29,7 +29,6 @@ jobs:
         with:
           name: python-package-distributions
           path: dist/
-      - uses: pypa/gh-action-pypi-publish@release/v1
 
   publish-to-pypi:
     name: Publish Python distribution to PyPI
