@@ -1,0 +1,13 @@
+name: Windows
+
+on:
+  push:
+    branches: [ main]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy-windows:
+    uses: giocaizzi/python-dev-actions/.github/workflows/deployment.yml@main
+    with:
+      os: 'windows-latest'
