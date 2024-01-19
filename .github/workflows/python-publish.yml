@@ -17,4 +17,5 @@ jobs:
     permissions:
       id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
+      - uses: actions/checkout@v4
       - uses: pypa/gh-action-pypi-publish@release/v1
