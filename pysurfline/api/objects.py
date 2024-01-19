@@ -9,7 +9,6 @@ class ApiResponseObject:
     _data: dict = None  # spot/forecasts response
     _associated: dict = None
     _spot: dict = None  # spot/details response
-    # permissions : dict = None TODO: add permissions
     _url: str = None
     model_class = None
 
