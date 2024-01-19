@@ -1,4 +1,4 @@
-"""api objects: data models"""
+"""spots data models"""
 from dataclasses import dataclass
 from typing import List, Union
 from datetime import datetime

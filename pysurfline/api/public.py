@@ -1,4 +1,4 @@
-"""api functions and classes"""
+"""public methods"""
 
 from .client import SurflineClient
 from ..core import SpotForecasts

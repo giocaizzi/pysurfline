@@ -1,4 +1,4 @@
-"""api functions and classes"""
+"""API objects"""
 
 import requests
 
