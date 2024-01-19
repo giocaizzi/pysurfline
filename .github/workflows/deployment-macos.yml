@@ -1,4 +1,4 @@
-name: Deployment on macOS
+name: macOS
 
 on:
   push:

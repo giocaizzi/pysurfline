@@ -1,4 +1,4 @@
-name: Deployment on Windows
+name: Windows
 
 on:
   push:

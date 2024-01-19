@@ -1,4 +1,4 @@
-name: Deployment on Ubuntu
+name: Ubuntu
 
 on:
   push:
