@@ -1,4 +1,4 @@
-Name: To Do Issues
+name: To Do Issues
 
 on:
     push:
