@@ -15,9 +15,9 @@ Quickly get the forecast data as a [pandas Dataframe](https://pandas.pydata.org/
 
 | | |
 | --- | --- |
-| Distribution | ![PyPI](https://img.shields.io/pypi/v/pysurfline?color=blue) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pysurfline)
-|Tests| [![Tests](https://github.com/giocaizzi/pysurfline/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/giocaizzi/pysurfline/actions/workflows/tests.yml) [![codecov](https://codecov.io/gh/giocaizzi/pysurfline/branch/main/graph/badge.svg?token=48CPYKM5BR)](https://codecov.io/gh/giocaizzi/pysurfline) |
-| Code | ![black](https://img.shields.io/badge/code%20style-black-000000.svg) ![flake8](https://github.com/giocaizzi/pysurfline/actions/workflows/linting.yml/badge.svg?branch=main) |
+| Distribution | ![PyPI](https://img.shields.io/pypi/v/pysurfline?color=blue) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pysurfline)[![Downloads](https://static.pepy.tech/badge/pysurfline)](https://pepy.tech/project/pysurfline)|
+| Builds |[![macOS](https://github.com/giocaizzi/pysurfline/actions/workflows/deployment-macos.yml/badge.svg?branch=main)](https://github.com/giocaizzi/pysurfline/actions/workflows/deployment-macos.yml)[![Ubuntu](https://github.com/giocaizzi/pysurfline/actions/workflows/deployment-ubuntu.yml/badge.svg)](https://github.com/giocaizzi/pysurfline/actions/workflows/deployment-ubuntu.yml)[![Windows](https://github.com/giocaizzi/pysurfline/actions/workflows/deployment-windows.yml/badge.svg)](https://github.com/giocaizzi/pysurfline/actions/workflows/deployment-windows.yml) |
+|Tests| [![codecov](https://codecov.io/gh/giocaizzi/pysurfline/branch/main/graph/badge.svg?token=48CPYKM5BR)](https://codecov.io/gh/giocaizzi/pysurfline) |
 | Documentation | [![Documentation build](https://github.com/giocaizzi/pysurfline/actions/workflows/documentation.yml/badge.svg?branch=gh-pages)](https://github.com/giocaizzi/pysurfline/actions/workflows/documentation.yml) |
 
 
