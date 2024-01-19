@@ -1,4 +1,4 @@
-name: Deployment on macOS
+name: Deployment on Windows
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  deploy-macos:
+  deploy-windows:
     uses: giocaizzi/python-dev-actions/.github/workflows/deployment.yml@main
     with:
-      os: 'macos-latest'
+      os: 'windows-latest'
