@@ -1,1 +1,1 @@
-"""Surfline API"""
+"""Surfline API module"""

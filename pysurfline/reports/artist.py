@@ -1,4 +1,4 @@
-"""reports"""
+"""artist"""
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,8 +6,8 @@ import matplotlib.dates as mdates
 import datetime
 import matplotlib.patheffects as pe
 
-from .core import SpotForecasts
-from .utils import degToCompass
+from ..core import SpotForecasts
+from ..utils import degToCompass
 
 SURF_COLORS = {"surf_max": "dodgerblue", "surf_min": "lightblue"}
 WIND_COLORS = {
@@ -18,17 +18,55 @@ WIND_COLORS = {
 
 
 class SurfReport:
-    f: plt.Figure
-    ax: plt.Axes
-    forecasts: pd.DataFrame
-    sunrisesunsettimes: pd.DataFrame
+    _spotforecast: SpotForecasts
 
     def __init__(self, spotforecast: SpotForecasts):
+        # spot name
+        self._spotforecast = spotforecast
+
+    @property
+    def spotforecast(self):
+        return self._spotforecast
+
+    def plot(
+        self,
+        barLabels: bool = False,
+        wind: bool = False,
+        wind_kwargs: dict = {},
+        tides: bool = False,
+        legend: bool = False,
+    ):
+        # init artist
+        self._artist = MatplotlibArist(
+            self,
+            barLabels=barLabels,
+            wind=wind,
+            wind_kwargs=wind_kwargs,
+            tides=tides,
+            legend=legend,
+        )
+        # plot
+        self._artist.plot()
+
+
+class MatplotlibArist:
+    def __init__(
+        self,
+        surfreport: SurfReport,
+        barLabels: bool ,
+        wind: bool,
+        wind_kwargs: dict,
+        tides: bool,
+        legend: bool,
+    ):
+        # surf report
+        self._surfreport = surfreport
         # spot name
         self.spot_name = spotforecast.name
         # data as dataframe
         self.forecasts = spotforecast.get_dataframe("surf")
         self.sunrisesunsettimes = spotforecast.get_dataframe("sunlightTimes")
+        self.tides = spotforecast.get_dataframe("tides")
         # figure
         self.f, self.ax = plt.subplots(dpi=300, figsize=(6, 3))
         pass
@@ -46,6 +84,7 @@ class SurfReport:
         barLabels: bool = False,
         wind: bool = False,
         wind_kwargs: dict = {},
+        tides: bool = False,
         legend: bool = False,
     ):
         """plot surf report
@@ -76,6 +115,9 @@ class SurfReport:
             # zorder 4 : wind
             self._plot_wind(**wind_kwargs)
 
+        if tides:
+            self._plot_tides()
+
         # format axes
         self._fmt_ax()
 
@@ -88,6 +130,16 @@ class SurfReport:
 
         # tight layout
         self.f.set_tight_layout(True)
+
+    def _plot_tides(self):
+        insetax = self.ax.inset_axes([0, -0.3, 1, 0.1])
+        insetax.plot(
+            self.tides["timestamp_dt"],
+            self.tides["height"],
+            color="k",
+            linewidth=0.5,
+        )
+        pass
 
     def _plot_gird(self):
         # zorder 1
@@ -222,19 +274,3 @@ class SurfReport:
                 ha="center",
                 path_effects=[pe.withStroke(linewidth=1, foreground="w")],
             )
-
-
-def plot_surf_report(
-    spotforecast: SpotForecasts, barLabels=False, wind=False
-) -> SurfReport:
-    """
-    Plot surf report from a spotforecast object.
-
-    Args:
-        spotforecast (SpotForecast): SpotForecast object
-        barLabels: label surf with height.
-
-    Returns:
-        SurfReport: SurfReport object
-    """
-    return SurfReport(spotforecast).plot(barLabels=barLabels, wind=wind)
