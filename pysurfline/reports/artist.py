@@ -53,7 +53,7 @@ class MatplotlibArist:
     def __init__(
         self,
         surfreport: SurfReport,
-        barLabels: bool ,
+        barLabels: bool,
         wind: bool,
         wind_kwargs: dict,
         tides: bool,
