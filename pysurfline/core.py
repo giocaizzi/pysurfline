@@ -1,4 +1,4 @@
-"""core module: SpotForecast"""
+"""core classes"""
 
 import pandas as pd
 

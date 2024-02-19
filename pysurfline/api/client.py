@@ -1,3 +1,5 @@
+"""client"""
+
 from pysurfline.api.services import ApiService
 from pysurfline.core import SpotForecasts
 
