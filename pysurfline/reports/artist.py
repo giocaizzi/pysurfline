@@ -1,6 +1,5 @@
 """artist"""
 
-import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import datetime
@@ -62,11 +61,13 @@ class MatplotlibArist:
         # surf report
         self._surfreport = surfreport
         # spot name
-        self.spot_name = spotforecast.name
+        self.spot_name = self._surfreport.spotforecast.name
         # data as dataframe
-        self.forecasts = spotforecast.get_dataframe("surf")
-        self.sunrisesunsettimes = spotforecast.get_dataframe("sunlightTimes")
-        self.tides = spotforecast.get_dataframe("tides")
+        self.forecasts = self._surfreport.spotforecast.get_dataframe("surf")
+        self.sunrisesunsettimes = self._surfreport.spotforecast.get_dataframe(
+            "sunlightTimes"
+        )
+        self.tides = self._surfreport.spotforecast.get_dataframe("tides")
         # figure
         self.f, self.ax = plt.subplots(dpi=300, figsize=(6, 3))
         pass
