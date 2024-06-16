@@ -70,8 +70,8 @@ pip install pysurfline
 The documentation can be found [here](https://giocaizzi.github.io/pysurfline/).
 
 ## Disclaimer
-This package is **not official** and **not affiliated with Surfline in any way**. 
+This package is **not official** and **not affiliated with Surfline in any way**.
 
-**API responses may change at any time** and the developement of this package may not be able to keep up with those changes. 
+**API responses may change at any time** and the developement of this package may not be able to keep up with those changes.
 
 If you find any issues, [please open an issue](https://github.com/giocaizzi/pysurfline/issues) or submit a [pull request](https://github.com/giocaizzi/pysurfline/pulls).

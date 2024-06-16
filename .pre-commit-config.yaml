@@ -1,0 +1,25 @@
+repos:
+  # ------------------------------
+  # General Code Style rules
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  # ------------------------------
+  # Python Code Style rules
+  # Black
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+      # Black Jupyter
+      - id: black-jupyter
+#   # ------------------------------
+#   # Flake8
+#   - repo: https://gitlab.com/pycqa/flake8
+#     rev: 7.0.0
+#     hooks:
+#       - id: flake8
+#       - id: flake8-rst-docstrings

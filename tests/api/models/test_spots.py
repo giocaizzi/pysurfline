@@ -1,4 +1,5 @@
 """Unit tests for models.py"""
+
 from datetime import datetime
 import pytz
 from pysurfline.api.models.spots import (

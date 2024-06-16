@@ -23,11 +23,9 @@ pytest = "^8.2.1"
 pytest-cov = "^5.0.0"
 flake8 = "^7.0.0"
 flake8-rst-docstrings = "^0.3.0"
-black = { extras = ["jupyter"], version = "^24.4.2" }
 # Avoid PyPI/Poetry problem: https://github.com/python-poetry/poetry/issues/9293
 docutils = "!=0.21.post1"
-
-[tool.poetry.group.docs.dependencies]
+pre-commit = {version = "^3.7.1", python = ">=3.9,<4.0.0"}
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

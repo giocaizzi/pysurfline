@@ -1,6 +1,7 @@
 """
 utility functions
 """
+
 from collections.abc import MutableMapping
 from dataclasses import is_dataclass
 
