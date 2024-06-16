@@ -21,7 +21,7 @@ requests = "^2.32.3"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.1"
 pytest-cov = "^5.0.0"
-pre-commit = {version = "^3.7.1", python = ">=3.9,<4.0.0"}
+pre-commit = { version = "^3.7.1", python = ">=3.9,<4.0.0" }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -33,6 +33,23 @@ include = ["pysurfline/*"]
 [tool.isort]
 profile = "black"
 
+[tool.flake8]
+extend-ignore = [
+    # black compatibility
+    # https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html#minimal-configuration
+    "E203",
+    "E701",
+    # RST201, RST203, RST301 - Google Python Style docstrings cause errors (ref:??)
+    "RST201",
+    "RST203",
+    "RST301",
+]
+exclude = ["tests", ".github", ".vscode", "docs", "docsrc", "temp", " ./build"]
+
+max-line-length = 88
+# E203, E701, - black compatibility
+# RST201, RST203, RST301 - Google Python Style docstrings cause errors
+# exclude directories
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

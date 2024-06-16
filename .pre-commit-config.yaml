@@ -62,13 +62,21 @@ repos:
   # ------------------------------
   # Flake8
   - repo: https://github.com/pycqa/flake8
-    rev: 7.0.0
+    rev: 7.1.0
     hooks:
       - id: flake8
         additional_dependencies:
-          - flake8-bugbear
+          # read config from pyproject.toml
+          - flake8-pyproject
+          # - flake8-simplify # help simplify code
+          # - flake8-bugbear # finds bugs
           # - flake8-docstrings
-          - flake8-rst-docstrings
+          - flake8-rst-docstrings # rst docstrings
+          # - flake8-spellcheck # spellcheck docstrings
+          # - flake8-datetimez # no naive datetime
+          # - flake8-annotations-complexity # check annotations complexity
+          # - flake8-expression-complexity # check expression complexity
+          # - flake8-black # enforce black formatting
   # ------------------------------
   # Markdown
   # ------------------------------
