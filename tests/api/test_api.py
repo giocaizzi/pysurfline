@@ -1,6 +1,7 @@
-import pytest
 from unittest.mock import MagicMock, patch
-from requests.exceptions import HTTPError, ConnectionError, SSLError
+
+import pytest
+from requests.exceptions import ConnectionError, HTTPError, SSLError
 
 from pysurfline.api.services import ApiService
 

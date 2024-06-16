@@ -1,3 +1,0 @@
-requests
-matplotlib
-pandas

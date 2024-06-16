@@ -1,0 +1,87 @@
+# pre-commit configuration
+# https://pre-commit.com/
+# use pre-commit hooks to enforce code style
+repos:
+  # ------------------------------
+  # General Code Style rules
+  # ------------------------------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      # check credentials
+      - id: detect-private-key
+      # test names are correct
+      - id: name-tests-test
+        args: [--pytest-test-first]
+      # checks for files that contain merge conflict strings
+      - id: check-merge-conflict
+      # checks toml files for parseable syntax.
+      - id: check-toml
+      # checks yaml files for parseable syntax.
+      - id: check-yaml
+      # check JSON
+      - id: check-json
+      # ensures that a file is either empty, or ends with one newline.
+      - id: end-of-file-fixer
+      # trims trailing whitespace
+      - id: trailing-whitespace
+  # ------------------------------
+  # Python
+  # ------------------------------
+  # # Bandit
+  # - repo: https://github.com/PyCQA/bandit
+  #   rev: 1.7.9
+  #   hooks:
+  #     - id: bandit
+  # autoflake : removes unused imports and unused variables
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.3.1
+    hooks:
+      - id: autoflake
+  # ------------------------------
+  # isort: sorts imports
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+  # ------------------------------
+  # Black: code formatter
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+      # Black Jupyter
+      - id: black-jupyter
+  # blacken-docs: run black in python codeblocks
+  - repo: https://github.com/adamchainz/blacken-docs
+    rev: 1.16.0
+    hooks:
+      - id: blacken-docs
+  # ------------------------------
+  # mypy
+  # ------------------------------
+  # Flake8
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.0
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          # read config from pyproject.toml
+          - flake8-pyproject
+          # - flake8-simplify # help simplify code
+          # - flake8-bugbear # finds bugs
+          # - flake8-docstrings
+          - flake8-rst-docstrings # rst docstrings
+          # - flake8-spellcheck # spellcheck docstrings
+          # - flake8-datetimez # no naive datetime
+          # - flake8-annotations-complexity # check annotations complexity
+          # - flake8-expression-complexity # check expression complexity
+          # - flake8-black # enforce black formatting
+  # ------------------------------
+  # Markdown
+  # ------------------------------
+  # mdformat: format markdown files
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.17
+    hooks:
+      - id: mdformat

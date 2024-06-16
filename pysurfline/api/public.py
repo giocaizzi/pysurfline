@@ -1,7 +1,7 @@
 """api functions and classes"""
 
-from .client import SurflineClient
 from ..core import SpotForecasts
+from .client import SurflineClient
 
 # from .models import SpotForecasts
 
@@ -20,7 +20,7 @@ def get_spot_forecasts(
         days (int, optional): days. Defaults to None.
 
     Returns:
-        forecast (:obj:`SpotForecast`)
+        forecast (`SpotForecast`)
     """
     return SurflineClient().get_spot_forecasts(
         spotId, intervalHours=intervalHours, days=days

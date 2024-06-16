@@ -1,10 +1,11 @@
 """reports"""
 
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 import datetime
+
+import matplotlib.dates as mdates
 import matplotlib.patheffects as pe
+import matplotlib.pyplot as plt
+import pandas as pd
 
 from .core import SpotForecasts
 from .utils import degToCompass
@@ -31,7 +32,6 @@ class SurfReport:
         self.sunrisesunsettimes = spotforecast.get_dataframe("sunlightTimes")
         # figure
         self.f, self.ax = plt.subplots(dpi=300, figsize=(6, 3))
-        pass
 
     @property
     def h_scale(self):
