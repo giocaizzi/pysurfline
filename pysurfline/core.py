@@ -2,15 +2,15 @@
 
 import pandas as pd
 
-from .utils import flatten
 from .api.objects import (
     SpotDetails,
-    SpotForecastsWave,
-    SpotForecastsWind,
-    SpotForecastsTides,
     SpotForecastsSunlightTimes,
+    SpotForecastsTides,
+    SpotForecastsWave,
     SpotForecastsWeather,
+    SpotForecastsWind,
 )
+from .utils import flatten
 
 
 class SpotForecasts:

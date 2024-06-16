@@ -30,6 +30,9 @@ addopts = "--cov --cov-report xml --cov-report html --cov-report lcov"
 [tool.coverage.report]
 include = ["pysurfline/*"]
 
+[tool.isort]
+profile = "black"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

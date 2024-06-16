@@ -1,8 +1,8 @@
 """api objects: data models"""
 
 from dataclasses import dataclass
-from typing import List, Union
 from datetime import datetime
+from typing import List, Union
 
 
 class Time:

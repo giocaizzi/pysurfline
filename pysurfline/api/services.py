@@ -1,16 +1,16 @@
+from typing import Tuple, Union
+
+import requests
+
 from pysurfline.api.objects import (
     ApiResponseObject,
+    SpotDetails,
     SpotForecastsSunlightTimes,
     SpotForecastsTides,
     SpotForecastsWave,
     SpotForecastsWeather,
     SpotForecastsWind,
-    SpotDetails,
 )
-
-
-import requests
-from typing import Tuple, Union
 
 
 class ApiService:

@@ -1,17 +1,19 @@
 """Unit tests for models.py"""
 
 from datetime import datetime
+
 import pytz
+
 from pysurfline.api.models.spots import (
-    Time,
-    Weather,
-    Wind,
+    Details,
+    SunlightTimes,
     Surf,
     Swell,
-    Wave,
     Tides,
-    SunlightTimes,
-    Details,
+    Time,
+    Wave,
+    Weather,
+    Wind,
 )
 
 TEST_TIME = datetime(2021, 8, 24, 16, 20, tzinfo=pytz.utc)

@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 
-from pysurfline.utils import flatten, degToCompass
+from pysurfline.utils import degToCompass, flatten
 
 
 def test_flatten_dict():

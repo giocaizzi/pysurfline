@@ -2,7 +2,7 @@
 
 import requests
 
-from .models.spots import Wave, Wind, Weather, SunlightTimes, Tides, Details
+from .models.spots import Details, SunlightTimes, Tides, Wave, Weather, Wind
 
 
 class ApiResponseObject:
