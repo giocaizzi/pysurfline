@@ -44,7 +44,15 @@ extend-ignore = [
     "RST203",
     "RST301",
 ]
-exclude = ["tests", ".github", ".vscode", "docs", "docsrc", "temp", " ./build"]
+exclude = [
+    "tests/*",
+    ".github/*",
+    ".vscode/*",
+    "docs/*",
+    "docsrc/*",
+    "temp/*",
+    " ./build/*",
+]
 
 max-line-length = 88
 # E203, E701, - black compatibility
