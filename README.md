@@ -41,8 +41,8 @@ pip install pysurfline
 
     spotforecasts = pysurfline.get_spot_forecasts(
         spotId,
-        days = 2,
-        intervalHours = 3,
+        days=2,
+        intervalHours=3,
     )
 
     df = spotforecasts.get_dataframe()
@@ -61,8 +61,8 @@ pip install pysurfline
 
     pysurfline.plot_surf_report(
         spotforecasts,
-        barLabels = True,
-        )
+        barLabels=True,
+    )
     ```
 
 ## Documentation
