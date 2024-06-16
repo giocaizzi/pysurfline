@@ -1,4 +1,11 @@
 [flake8]
+# flake8 and black compatibility
+# https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html#minimal-configuration
+max-line-length = 88
+# E203, E701, - black compatibility
+# RST201, RST203, RST301 - Google Python Style docstrings cause errors
+extend-ignore = E203,E701,RST201,RST203,RST301,
+# exclude directories
 exclude =
     tests,
     .github,
@@ -7,24 +14,6 @@ exclude =
     docsrc,
     temp,
     ./build
-require-plugins =
-    flake8-rst-docstrings
-# flake8 and black compatibility
-max-line-length = 88
-# rst plugin
-rst-roles =
-    class,
-    func,
-    ref,
-    obj,
-rst-directives =
-    envvar,
-    exception,
-rst-substitutions =
-    version,
-# Google Python style is not RST until after processed by Napoleon
-# See https://github.com/peterjc/flake8-rst-docstrings/issues/17
-# E203: flake8 and black compatibility
-# d107: missing docstring in init
-extend-ignore =
-    RST307,RST201,RST203,RST301,E203
+# plugins to use
+require-plugin=
+    falke8-rst-docstrings
